@@ -16,6 +16,8 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - ROCm package installation helper for Ubuntu-based setup.
 - `ollama-setup.sh`
   - Ollama user-service setup helper with MI25/gfx900-oriented environment options.
+- `ollama-manual.sh`
+  - Manual serve helper that pins model/runtime paths and provides start/stop/status/run commands.
 - `build-ollama-gfx900.sh`
   - Source build helper for Ollama with gfx900 target configuration.
 - `build-rocblas-gfx900.sh`
