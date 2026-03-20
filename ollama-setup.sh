@@ -225,6 +225,7 @@ configure_system_service() {
   require_cmd sudo
   local dropin_dir="/etc/systemd/system/ollama.service.d"
   local dropin_file="$dropin_dir/override-models.conf"
+  local preflight_dir=""
 
   echo "Configuring system ollama service..."
   sudo mkdir -p "$dropin_dir"
@@ -242,15 +243,24 @@ EOF
     echo "Environment=\"OLLAMA_KEEP_ALIVE=$KEEP_ALIVE\""
     if [[ -n "$LIBRARY_PATH" ]]; then
       echo "Environment=\"OLLAMA_LIBRARY_PATH=$LIBRARY_PATH\""
+      preflight_dir="$LIBRARY_PATH"
     fi
     if [[ -n "$EXTRA_LD_LIBRARY_PATH" ]]; then
       echo "Environment=\"LD_LIBRARY_PATH=$EXTRA_LD_LIBRARY_PATH\""
+      if [[ -z "$preflight_dir" ]]; then
+        preflight_dir="$EXTRA_LD_LIBRARY_PATH"
+      fi
     fi
     if [[ -n "$ROCBLAS_LIBPATH" ]]; then
       echo "Environment=\"ROCBLAS_TENSILE_LIBPATH=$ROCBLAS_LIBPATH\""
     fi
     if [[ -n "$GPU_DEVICES" ]]; then
       echo "Environment=\"HIP_VISIBLE_DEVICES=$GPU_DEVICES\""
+    fi
+    if [[ -n "$preflight_dir" ]]; then
+      echo "ExecStartPre=/usr/bin/test -f $preflight_dir/libggml-hip.so"
+      echo "ExecStartPre=/usr/bin/test -f $preflight_dir/libggml-base.so"
+      echo "ExecStartPre=/usr/bin/test -f $preflight_dir/libggml-cpu-haswell.so"
     fi
   } | sudo tee "$dropin_file" >/dev/null
 
@@ -323,6 +333,13 @@ Wants=network-online.target
 
 [Service]
 ExecStart=$resolved_exec serve
+EOF
+    if [[ -n "$resolved_library_path" ]]; then
+      echo "ExecStartPre=/usr/bin/test -f $resolved_library_path/libggml-hip.so"
+      echo "ExecStartPre=/usr/bin/test -f $resolved_library_path/libggml-base.so"
+      echo "ExecStartPre=/usr/bin/test -f $resolved_library_path/libggml-cpu-haswell.so"
+    fi
+    cat <<EOF
 Restart=always
 RestartSec=3
 Environment="OLLAMA_MODELS=$MODELS_DIR"
