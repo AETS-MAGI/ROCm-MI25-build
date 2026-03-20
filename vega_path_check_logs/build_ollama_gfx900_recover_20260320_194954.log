@@ -199,3 +199,5 @@ Fetching upstream
 [148/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/diag.cu.o
 [149/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/diagmask.cu.o
 [150/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/cpy.cu.o
+[151/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/fattn-tile.cu.o
+[152/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/binbcast.cu.o
