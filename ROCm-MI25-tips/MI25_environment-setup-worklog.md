@@ -174,3 +174,44 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - `ollama_generate_20260320_174327.json`
 - `rocm_smi_during_generate_20260320_174327.log`
 - `ollama_journal_after_test_20260320_174327.log`
+
+---
+
+## 9. tinyllama 経路安定性チェック（2026-03-20 夜）
+
+### 9.1 重要な観測結果
+
+- `tinyllama:latest` について、以下 2 種類の回が同居することを再確認。
+  - 以前の成功回: `library=ROCm` / `compute=gfx900` / `Radeon Instinct MI25` が出る回。
+  - 今回の再実行回: service restart 後の初回・2回目とも CPU 経路に寄る回。
+- よって「14B が重いから失敗」ではなく、まず GPU 経路の再現性が不安定であることが主問題。
+
+### 9.2 今回の採取手順（固定化）
+
+- user service を `systemctl --user restart ollama`。
+- `tinyllama` で 1回目 generate。
+- 同条件で 2回目 generate。
+- 各 generate 中に `rocm-smi` を 1 秒間隔で採取。
+- 各 phase で `journalctl --user -u ollama` を切り出し、`inference compute` / `library=*` / `GPULayers` を確認。
+
+### 9.3 今回の採取結果（要点）
+
+- 1回目・2回目とも、journal で `GPULayers:[]` が記録され GPUレイヤ割当が行われていない。
+- `rocm-smi` では `GPU use (%)` が 0% 優勢（少なくとも抜粋範囲では上昇を確認できず）。
+- 生成自体は完了するため、機能停止ではなく CPU fallback の再現事象として扱う。
+
+### 9.4 追加証跡（ファイル名）
+
+- `tinyllama_path_summary_20260320_192857.txt`
+- `tinyllama_generate_first_20260320_192857.json`
+- `tinyllama_generate_second_20260320_192857.json`
+- `tinyllama_journal_first_20260320_192857.log`
+- `tinyllama_journal_second_20260320_192857.log`
+- `tinyllama_rocm_smi_first_20260320_192857.log`
+- `tinyllama_rocm_smi_second_20260320_192857.log`
+
+### 9.5 当面の優先順
+
+1. `tinyllama` で restart 後も GPU 経路を安定再現できる条件を固定。
+2. その固定条件で `deepseek-r1:14b` を検証。
+3. 失敗原因を「モデル由来」と「経路不安定由来」に分離して記録。

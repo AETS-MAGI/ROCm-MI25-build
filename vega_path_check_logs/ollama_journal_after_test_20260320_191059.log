@@ -1,0 +1,500 @@
+ 3月 20 17:36:27 hbmx-mi25 ollama[194463]: [GIN-debug] POST   /v1/messages              --> github.com/ollama/ollama/server.(*Server).ChatHandler-fm (7 handlers)
+ 3月 20 17:36:27 hbmx-mi25 ollama[194463]: time=2026-03-20T17:36:27.108+09:00 level=INFO source=routes.go:1782 msg="Listening on 127.0.0.1:11434 (version 0.0.0)"
+ 3月 20 17:36:27 hbmx-mi25 ollama[194463]: time=2026-03-20T17:36:27.109+09:00 level=INFO source=runner.go:67 msg="discovering available GPUs..."
+ 3月 20 17:36:27 hbmx-mi25 ollama[194463]: time=2026-03-20T17:36:27.109+09:00 level=WARN source=runner.go:485 msg="user overrode visible devices" HIP_VISIBLE_DEVICES=0
+ 3月 20 17:36:27 hbmx-mi25 ollama[194463]: time=2026-03-20T17:36:27.109+09:00 level=WARN source=runner.go:485 msg="user overrode visible devices" HSA_OVERRIDE_GFX_VERSION=9.0.0
+ 3月 20 17:36:27 hbmx-mi25 ollama[194463]: time=2026-03-20T17:36:27.109+09:00 level=WARN source=runner.go:489 msg="if GPUs are not correctly discovered, unset and try again"
+ 3月 20 17:36:27 hbmx-mi25 ollama[194463]: time=2026-03-20T17:36:27.109+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 34691"
+ 3月 20 17:36:27 hbmx-mi25 ollama[194463]: time=2026-03-20T17:36:27.221+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 46853"
+ 3月 20 17:36:28 hbmx-mi25 ollama[194463]: time=2026-03-20T17:36:28.512+09:00 level=INFO source=runner.go:464 msg="failure during GPU discovery" OLLAMA_LIBRARY_PATH=[/home/limonene/ROCm-project/ollama-src/build/lib/ollama] extra_envs="map[GGML_CUDA_INIT:1 ROCR_VISIBLE_DEVICES:GPU-021501917da22884]" error="runner crashed"
+ 3月 20 17:36:28 hbmx-mi25 ollama[194463]: time=2026-03-20T17:36:28.512+09:00 level=INFO source=types.go:60 msg="inference compute" id=cpu library=cpu compute="" name=cpu description=cpu libdirs=ollama driver="" pci_id="" type="" total="29.3 GiB" available="25.6 GiB"
+ 3月 20 17:36:28 hbmx-mi25 ollama[194463]: time=2026-03-20T17:36:28.512+09:00 level=INFO source=routes.go:1832 msg="vram-based default context" total_vram="0 B" default_num_ctx=4096
+ 3月 20 17:37:34 hbmx-mi25 systemd[102510]: Stopping ollama.service - Ollama Service (user)...
+ 3月 20 17:37:34 hbmx-mi25 systemd[102510]: Stopped ollama.service - Ollama Service (user).
+ 3月 20 17:37:34 hbmx-mi25 systemd[102510]: Started ollama.service - Ollama Service (user).
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:37:34.466+09:00 level=INFO source=routes.go:1727 msg="server config" env="map[CUDA_VISIBLE_DEVICES: GGML_VK_VISIBLE_DEVICES: GPU_DEVICE_ORDINAL: HIP_VISIBLE_DEVICES:0 HSA_OVERRIDE_GFX_VERSION:9.0.0 HTTPS_PROXY: HTTP_PROXY: NO_PROXY: OLLAMA_CONTEXT_LENGTH:0 OLLAMA_DEBUG:INFO OLLAMA_EDITOR: OLLAMA_FLASH_ATTENTION:false OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://127.0.0.1:11434 OLLAMA_KEEP_ALIVE:10m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:5m0s OLLAMA_MAX_LOADED_MODELS:1 OLLAMA_MAX_QUEUE:512 OLLAMA_MODELS:/home/limonene/ROCm-project/ollama-models OLLAMA_MULTIUSER_CACHE:false OLLAMA_NEW_ENGINE:false OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NO_CLOUD:false OLLAMA_NUM_PARALLEL:1 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://* vscode-file://*] OLLAMA_REMOTES:[ollama.com] OLLAMA_SCHED_SPREAD:false OLLAMA_VULKAN:false ROCR_VISIBLE_DEVICES: http_proxy: https_proxy: no_proxy:]"
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:37:34.466+09:00 level=INFO source=routes.go:1729 msg="Ollama cloud disabled: false"
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:37:34.467+09:00 level=INFO source=images.go:477 msg="total blobs: 0"
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:37:34.467+09:00 level=INFO source=images.go:484 msg="total unused blobs removed: 0"
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]:  - using env:        export GIN_MODE=release
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]:  - using code:        gin.SetMode(gin.ReleaseMode)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] HEAD   /                         --> github.com/ollama/ollama/server.(*Server).GenerateRoutes.func1 (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] GET    /                         --> github.com/ollama/ollama/server.(*Server).GenerateRoutes.func2 (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] HEAD   /api/version              --> github.com/ollama/ollama/server.(*Server).GenerateRoutes.func3 (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] GET    /api/version              --> github.com/ollama/ollama/server.(*Server).GenerateRoutes.func4 (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] GET    /api/status               --> github.com/ollama/ollama/server.(*Server).StatusHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /api/pull                 --> github.com/ollama/ollama/server.(*Server).PullHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /api/push                 --> github.com/ollama/ollama/server.(*Server).PushHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] HEAD   /api/tags                 --> github.com/ollama/ollama/server.(*Server).ListHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] GET    /api/tags                 --> github.com/ollama/ollama/server.(*Server).ListHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /api/show                 --> github.com/ollama/ollama/server.(*Server).ShowHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] DELETE /api/delete               --> github.com/ollama/ollama/server.(*Server).DeleteHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /api/me                   --> github.com/ollama/ollama/server.(*Server).WhoamiHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /api/signout              --> github.com/ollama/ollama/server.(*Server).SignoutHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] DELETE /api/user/keys/:encodedKey --> github.com/ollama/ollama/server.(*Server).SignoutHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /api/create               --> github.com/ollama/ollama/server.(*Server).CreateHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /api/blobs/:digest        --> github.com/ollama/ollama/server.(*Server).CreateBlobHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] HEAD   /api/blobs/:digest        --> github.com/ollama/ollama/server.(*Server).HeadBlobHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /api/copy                 --> github.com/ollama/ollama/server.(*Server).CopyHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /api/experimental/web_search --> github.com/ollama/ollama/server.(*Server).WebSearchExperimentalHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /api/experimental/web_fetch --> github.com/ollama/ollama/server.(*Server).WebFetchExperimentalHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] GET    /api/ps                   --> github.com/ollama/ollama/server.(*Server).PsHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /api/generate             --> github.com/ollama/ollama/server.(*Server).GenerateHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /api/chat                 --> github.com/ollama/ollama/server.(*Server).ChatHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /api/embed                --> github.com/ollama/ollama/server.(*Server).EmbedHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /api/embeddings           --> github.com/ollama/ollama/server.(*Server).EmbeddingsHandler-fm (5 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /v1/chat/completions      --> github.com/ollama/ollama/server.(*Server).ChatHandler-fm (7 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /v1/completions           --> github.com/ollama/ollama/server.(*Server).GenerateHandler-fm (7 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /v1/embeddings            --> github.com/ollama/ollama/server.(*Server).EmbedHandler-fm (7 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] GET    /v1/models                --> github.com/ollama/ollama/server.(*Server).ListHandler-fm (6 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] GET    /v1/models/:model         --> github.com/ollama/ollama/server.(*Server).ShowHandler-fm (7 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /v1/responses             --> github.com/ollama/ollama/server.(*Server).ChatHandler-fm (7 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /v1/images/generations    --> github.com/ollama/ollama/server.(*Server).GenerateHandler-fm (7 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /v1/images/edits          --> github.com/ollama/ollama/server.(*Server).GenerateHandler-fm (7 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: [GIN-debug] POST   /v1/messages              --> github.com/ollama/ollama/server.(*Server).ChatHandler-fm (7 handlers)
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:37:34.472+09:00 level=INFO source=routes.go:1782 msg="Listening on 127.0.0.1:11434 (version 0.0.0)"
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:37:34.473+09:00 level=INFO source=runner.go:67 msg="discovering available GPUs..."
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:37:34.473+09:00 level=WARN source=runner.go:485 msg="user overrode visible devices" HIP_VISIBLE_DEVICES=0
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:37:34.473+09:00 level=WARN source=runner.go:485 msg="user overrode visible devices" HSA_OVERRIDE_GFX_VERSION=9.0.0
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:37:34.473+09:00 level=WARN source=runner.go:489 msg="if GPUs are not correctly discovered, unset and try again"
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:37:34.474+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 35783"
+ 3月 20 17:37:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:37:34.582+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 46003"
+ 3月 20 17:37:35 hbmx-mi25 ollama[195351]: time=2026-03-20T17:37:35.531+09:00 level=INFO source=types.go:42 msg="inference compute" id=GPU-021501917da22884 filter_id="" library=ROCm compute=gfx900 name=ROCm0 description="Radeon Instinct MI25" libdirs=ollama driver=70226.1 pci_id=0000:03:00.0 type=discrete total="16.0 GiB" available="16.0 GiB"
+ 3月 20 17:37:35 hbmx-mi25 ollama[195351]: time=2026-03-20T17:37:35.531+09:00 level=INFO source=routes.go:1832 msg="vram-based default context" total_vram="16.0 GiB" default_num_ctx=4096
+ 3月 20 17:37:36 hbmx-mi25 ollama[195351]: [GIN] 2026/03/20 - 17:37:36 | 200 |     121.801µs |       127.0.0.1 | GET      "/api/version"
+ 3月 20 17:39:58 hbmx-mi25 ollama[195351]: [GIN] 2026/03/20 - 17:39:58 | 200 |       40.07µs |       127.0.0.1 | HEAD     "/"
+ 3月 20 17:39:58 hbmx-mi25 ollama[195351]: [GIN] 2026/03/20 - 17:39:58 | 200 |     393.803µs |       127.0.0.1 | GET      "/api/tags"
+ 3月 20 17:40:05 hbmx-mi25 ollama[195351]: [GIN] 2026/03/20 - 17:40:05 | 200 |       38.99µs |       127.0.0.1 | HEAD     "/"
+ 3月 20 17:40:05 hbmx-mi25 ollama[195351]: [GIN] 2026/03/20 - 17:40:05 | 200 |       76.16µs |       127.0.0.1 | GET      "/api/tags"
+ 3月 20 17:40:05 hbmx-mi25 ollama[195351]: [GIN] 2026/03/20 - 17:40:05 | 200 |     175.951µs |       127.0.0.1 | GET      "/api/tags"
+ 3月 20 17:40:14 hbmx-mi25 ollama[195351]: [GIN] 2026/03/20 - 17:40:14 | 200 |       41.42µs |       127.0.0.1 | HEAD     "/"
+ 3月 20 17:40:15 hbmx-mi25 ollama[195351]: time=2026-03-20T17:40:15.591+09:00 level=INFO source=download.go:179 msg="downloading 2af3b81862c6 in 7 100 MB part(s)"
+ 3月 20 17:43:01 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:01.388+09:00 level=INFO source=download.go:179 msg="downloading af0ddbdaaa26 in 1 70 B part(s)"
+ 3月 20 17:43:02 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:02.992+09:00 level=INFO source=download.go:179 msg="downloading c8472cd9daed in 1 31 B part(s)"
+ 3月 20 17:43:04 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:04.712+09:00 level=INFO source=download.go:179 msg="downloading fa956ab37b8c in 1 98 B part(s)"
+ 3月 20 17:43:06 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:06.341+09:00 level=INFO source=download.go:179 msg="downloading 6331358be52a in 1 483 B part(s)"
+ 3月 20 17:43:08 hbmx-mi25 ollama[195351]: [GIN] 2026/03/20 - 17:43:08 | 200 |         2m53s |       127.0.0.1 | POST     "/api/pull"
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.315+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 33493"
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: loaded meta data with 23 key-value pairs and 201 tensors from /home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816 (version GGUF V3 (latest))
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   0:                       general.architecture str              = llama
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   1:                               general.name str              = TinyLlama
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   2:                       llama.context_length u32              = 2048
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   3:                     llama.embedding_length u32              = 2048
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   4:                          llama.block_count u32              = 22
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   5:                  llama.feed_forward_length u32              = 5632
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   6:                 llama.rope.dimension_count u32              = 64
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   7:                 llama.attention.head_count u32              = 32
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   8:              llama.attention.head_count_kv u32              = 4
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   9:     llama.attention.layer_norm_rms_epsilon f32              = 0.000010
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  10:                       llama.rope.freq_base f32              = 10000.000000
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  11:                          general.file_type u32              = 2
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  12:                       tokenizer.ggml.model str              = llama
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  13:                      tokenizer.ggml.tokens arr[str,32000]   = ["<unk>", "<s>", "</s>", "<0x00>", "<...
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  14:                      tokenizer.ggml.scores arr[f32,32000]   = [0.000000, 0.000000, 0.000000, 0.0000...
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  15:                  tokenizer.ggml.token_type arr[i32,32000]   = [2, 3, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, ...
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  16:                      tokenizer.ggml.merges arr[str,61249]   = ["▁ t", "e r", "i n", "▁ a", "e n...
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  17:                tokenizer.ggml.bos_token_id u32              = 1
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  18:                tokenizer.ggml.eos_token_id u32              = 2
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  19:            tokenizer.ggml.unknown_token_id u32              = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  20:            tokenizer.ggml.padding_token_id u32              = 2
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  21:                    tokenizer.chat_template str              = {% for message in messages %}\n{% if m...
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  22:               general.quantization_version u32              = 2
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - type  f32:   45 tensors
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - type q4_0:  155 tensors
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - type q6_K:    1 tensors
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: file format = GGUF V3 (latest)
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: file type   = Q4_0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: file size   = 606.53 MiB (4.63 BPW)
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load: printing all EOG tokens:
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load:   - 2 ('</s>')
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load: special tokens cache size = 3
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load: token to piece cache size = 0.1684 MB
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: arch             = llama
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: vocab_only       = 1
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: no_alloc         = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: model type       = ?B
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: model params     = 1.10 B
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: general.name     = TinyLlama
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: vocab type       = SPM
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_vocab          = 32000
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_merges         = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: BOS token        = 1 '<s>'
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: EOS token        = 2 '</s>'
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: UNK token        = 0 '<unk>'
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: PAD token        = 2 '</s>'
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: LF token         = 13 '<0x0A>'
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: EOG token        = 2 '</s>'
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: max token length = 48
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_load: vocab only - skipping tensors
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.516+09:00 level=WARN source=server.go:168 msg="requested context size too large for model" num_ctx=4096 n_ctx_train=2048
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.517+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --model /home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816 --port 41479"
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.517+09:00 level=INFO source=sched.go:484 msg="system memory" total="29.3 GiB" free="25.7 GiB" free_swap="8.0 GiB"
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.517+09:00 level=INFO source=sched.go:491 msg="gpu memory" id=GPU-021501917da22884 library=ROCm available="15.5 GiB" free="16.0 GiB" minimum="457.0 MiB" overhead="0 B"
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.517+09:00 level=INFO source=server.go:497 msg="loading model" "model layers"=23 requested=-1
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.518+09:00 level=INFO source=device.go:240 msg="model weights" device=ROCm0 size="571.4 MiB"
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.518+09:00 level=INFO source=device.go:251 msg="kv cache" device=ROCm0 size="44.0 MiB"
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.518+09:00 level=INFO source=device.go:262 msg="compute graph" device=ROCm0 size="148.0 MiB"
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.518+09:00 level=INFO source=device.go:272 msg="total memory" size="763.4 MiB"
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.535+09:00 level=INFO source=runner.go:965 msg="starting go runner"
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: ggml_cuda_init: GGML_CUDA_FORCE_MMQ:    no
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: ggml_cuda_init: GGML_CUDA_FORCE_CUBLAS: no
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: ggml_cuda_init: found 1 ROCm devices:
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]:   Device 0: Radeon Instinct MI25, gfx900:xnack- (0x900), VMM: no, Wave Size: 64, ID: GPU-021501917da22884
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load_backend: loaded ROCm backend from /home/limonene/ROCm-project/ollama-src/build/lib/ollama/libggml-hip.so
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load_backend: loaded CPU backend from /home/limonene/ROCm-project/ollama-src/build/lib/ollama/libggml-cpu-haswell.so
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.624+09:00 level=INFO source=ggml.go:104 msg=system CPU.0.SSE3=1 CPU.0.SSSE3=1 CPU.0.AVX=1 CPU.0.AVX2=1 CPU.0.F16C=1 CPU.0.FMA=1 CPU.0.BMI2=1 CPU.0.LLAMAFILE=1 CPU.1.LLAMAFILE=1 ROCm.0.NO_VMM=1 ROCm.0.PEER_MAX_BATCH_SIZE=128 compiler=cgo(gcc)
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.624+09:00 level=INFO source=runner.go:1001 msg="Server listening on 127.0.0.1:41479"
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.636+09:00 level=INFO source=runner.go:895 msg=load request="{Operation:commit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Auto KvSize:2048 KvCacheType: NumThreads:4 GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}"
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.636+09:00 level=INFO source=server.go:1350 msg="waiting for llama runner to start responding"
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: ggml_hip_get_device_memory searching for device 0000:03:00.0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:27.637+09:00 level=INFO source=server.go:1384 msg="waiting for server to become available" status="llm server loading model"
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: ggml_backend_cuda_device_get_memory device 0000:03:00.0 utilizing AMD specific memory reporting free: 17154715648 total: 17163091968
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_load_from_file_impl: using device ROCm0 (Radeon Instinct MI25) (0000:03:00.0) - 16360 MiB free
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: loaded meta data with 23 key-value pairs and 201 tensors from /home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816 (version GGUF V3 (latest))
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   0:                       general.architecture str              = llama
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   1:                               general.name str              = TinyLlama
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   2:                       llama.context_length u32              = 2048
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   3:                     llama.embedding_length u32              = 2048
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   4:                          llama.block_count u32              = 22
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   5:                  llama.feed_forward_length u32              = 5632
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   6:                 llama.rope.dimension_count u32              = 64
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   7:                 llama.attention.head_count u32              = 32
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   8:              llama.attention.head_count_kv u32              = 4
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   9:     llama.attention.layer_norm_rms_epsilon f32              = 0.000010
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  10:                       llama.rope.freq_base f32              = 10000.000000
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  11:                          general.file_type u32              = 2
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  12:                       tokenizer.ggml.model str              = llama
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  13:                      tokenizer.ggml.tokens arr[str,32000]   = ["<unk>", "<s>", "</s>", "<0x00>", "<...
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  14:                      tokenizer.ggml.scores arr[f32,32000]   = [0.000000, 0.000000, 0.000000, 0.0000...
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  15:                  tokenizer.ggml.token_type arr[i32,32000]   = [2, 3, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, ...
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  16:                      tokenizer.ggml.merges arr[str,61249]   = ["▁ t", "e r", "i n", "▁ a", "e n...
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  17:                tokenizer.ggml.bos_token_id u32              = 1
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  18:                tokenizer.ggml.eos_token_id u32              = 2
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  19:            tokenizer.ggml.unknown_token_id u32              = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  20:            tokenizer.ggml.padding_token_id u32              = 2
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  21:                    tokenizer.chat_template str              = {% for message in messages %}\n{% if m...
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  22:               general.quantization_version u32              = 2
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - type  f32:   45 tensors
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - type q4_0:  155 tensors
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: llama_model_loader: - type q6_K:    1 tensors
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: file format = GGUF V3 (latest)
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: file type   = Q4_0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: file size   = 606.53 MiB (4.63 BPW)
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load: printing all EOG tokens:
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load:   - 2 ('</s>')
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load: special tokens cache size = 3
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load: token to piece cache size = 0.1684 MB
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: arch             = llama
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: vocab_only       = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: no_alloc         = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_ctx_train      = 2048
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_embd           = 2048
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_embd_inp       = 2048
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_layer          = 22
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_head           = 32
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_head_kv        = 4
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_rot            = 64
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_swa            = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: is_swa_any       = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_embd_head_k    = 64
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_embd_head_v    = 64
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_gqa            = 8
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_embd_k_gqa     = 256
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_embd_v_gqa     = 256
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: f_norm_eps       = 0.0e+00
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: f_norm_rms_eps   = 1.0e-05
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: f_clamp_kqv      = 0.0e+00
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: f_max_alibi_bias = 0.0e+00
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: f_logit_scale    = 0.0e+00
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: f_attn_scale     = 0.0e+00
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_ff             = 5632
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_expert         = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_expert_used    = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_expert_groups  = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_group_used     = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: causal attn      = 1
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: pooling type     = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: rope type        = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: rope scaling     = linear
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: freq_base_train  = 10000.0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: freq_scale_train = 1
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_ctx_orig_yarn  = 2048
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: rope_yarn_log_mul= 0.0000
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: rope_finetuned   = unknown
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: model type       = 1B
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: model params     = 1.10 B
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: general.name     = TinyLlama
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: vocab type       = SPM
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_vocab          = 32000
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: n_merges         = 0
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: BOS token        = 1 '<s>'
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: EOS token        = 2 '</s>'
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: UNK token        = 0 '<unk>'
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: PAD token        = 2 '</s>'
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: LF token         = 13 '<0x0A>'
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: EOG token        = 2 '</s>'
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: print_info: max token length = 48
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load_tensors: loading model tensors, this can take a while... (mmap = true)
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load_tensors: offloading 22 repeating layers to GPU
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load_tensors: offloading output layer to GPU
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load_tensors: offloaded 23/23 layers to GPU
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load_tensors:   CPU_Mapped model buffer size =    35.16 MiB
+ 3月 20 17:43:27 hbmx-mi25 ollama[195351]: load_tensors:        ROCm0 model buffer size =   571.37 MiB
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context: constructing llama_context
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context: n_seq_max     = 1
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context: n_ctx         = 2048
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context: n_ctx_seq     = 2048
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context: n_batch       = 512
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context: n_ubatch      = 512
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context: causal_attn   = 1
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context: flash_attn    = auto
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context: kv_unified    = false
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context: freq_base     = 10000.0
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context: freq_scale    = 1
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context:  ROCm_Host  output buffer size =     0.13 MiB
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_kv_cache:      ROCm0 KV buffer size =    44.00 MiB
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_kv_cache: size =   44.00 MiB (  2048 cells,  22 layers,  1/1 seqs), K (f16):   22.00 MiB, V (f16):   22.00 MiB
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context: Flash Attention was auto, set to enabled
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context:      ROCm0 compute buffer size =    66.50 MiB
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context:  ROCm_Host compute buffer size =     8.01 MiB
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context: graph nodes  = 689
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: llama_context: graph splits = 2
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:28.640+09:00 level=INFO source=server.go:1388 msg="llama runner started in 1.12 seconds"
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:28.640+09:00 level=INFO source=sched.go:561 msg="loaded runners" count=1
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:28.640+09:00 level=INFO source=server.go:1350 msg="waiting for llama runner to start responding"
+ 3月 20 17:43:28 hbmx-mi25 ollama[195351]: time=2026-03-20T17:43:28.641+09:00 level=INFO source=server.go:1388 msg="llama runner started in 1.12 seconds"
+ 3月 20 17:43:32 hbmx-mi25 ollama[195351]: [GIN] 2026/03/20 - 17:43:32 | 200 |  5.533455143s |       127.0.0.1 | POST     "/api/generate"
+ 3月 20 17:53:32 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:32.881+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 42197"
+ 3月 20 17:53:32 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:32.906+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:33 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:33.158+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 36213"
+ 3月 20 17:53:33 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:33.183+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:33 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:33.408+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 37751"
+ 3月 20 17:53:33 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:33.435+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:33 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:33.658+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 43709"
+ 3月 20 17:53:33 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:33.683+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:33 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:33.908+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 46361"
+ 3月 20 17:53:33 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:33.932+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:34.158+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 40147"
+ 3月 20 17:53:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:34.193+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:34.408+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 43331"
+ 3月 20 17:53:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:34.447+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:34.657+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 34629"
+ 3月 20 17:53:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:34.692+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:34.907+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 46211"
+ 3月 20 17:53:34 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:34.943+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:35 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:35.157+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 36591"
+ 3月 20 17:53:35 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:35.182+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:35 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:35.407+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 39571"
+ 3月 20 17:53:35 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:35.432+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:35 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:35.657+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 40013"
+ 3月 20 17:53:35 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:35.693+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:35 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:35.907+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 36489"
+ 3月 20 17:53:35 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:35.932+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:36 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:36.157+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 37075"
+ 3月 20 17:53:36 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:36.194+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:36 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:36.407+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 43265"
+ 3月 20 17:53:36 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:36.432+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:36 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:36.657+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 35345"
+ 3月 20 17:53:36 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:36.685+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:36 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:36.907+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 36459"
+ 3月 20 17:53:36 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:36.932+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:37 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:37.157+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 34825"
+ 3月 20 17:53:37 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:37.183+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:37 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:37.408+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 33069"
+ 3月 20 17:53:37 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:37.433+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:37 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:37.658+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 36059"
+ 3月 20 17:53:37 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:37.695+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 17:53:37 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:37.907+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 33403"
+ 3月 20 17:53:37 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:37.908+09:00 level=INFO source=runner.go:464 msg="failure during GPU discovery" OLLAMA_LIBRARY_PATH="[/home/limonene/ROCm-project/ollama-src/build/lib/ollama ]" extra_envs=map[ROCR_VISIBLE_DEVICES:GPU-021501917da22884] error="failed to finish discovery before timeout"
+ 3月 20 17:53:37 hbmx-mi25 ollama[195351]: time=2026-03-20T17:53:37.908+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 19:08:00 hbmx-mi25 ollama[195351]: [GIN] 2026/03/20 - 19:08:00 | 200 |      53.371µs |       127.0.0.1 | GET      "/api/version"
+ 3月 20 19:08:00 hbmx-mi25 ollama[195351]: [GIN] 2026/03/20 - 19:08:00 | 200 |     411.672µs |       127.0.0.1 | GET      "/api/tags"
+ 3月 20 19:08:31 hbmx-mi25 ollama[195351]: [GIN] 2026/03/20 - 19:08:31 | 200 |      94.102µs |       127.0.0.1 | GET      "/api/version"
+ 3月 20 19:08:31 hbmx-mi25 ollama[195351]: [GIN] 2026/03/20 - 19:08:31 | 200 |       719.9µs |       127.0.0.1 | GET      "/api/tags"
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: time=2026-03-20T19:10:59.865+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 35603"
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: time=2026-03-20T19:10:59.925+09:00 level=WARN source=runner.go:356 msg="unable to refresh free memory, using old values"
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: loaded meta data with 23 key-value pairs and 201 tensors from /home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816 (version GGUF V3 (latest))
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   0:                       general.architecture str              = llama
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   1:                               general.name str              = TinyLlama
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   2:                       llama.context_length u32              = 2048
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   3:                     llama.embedding_length u32              = 2048
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   4:                          llama.block_count u32              = 22
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   5:                  llama.feed_forward_length u32              = 5632
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   6:                 llama.rope.dimension_count u32              = 64
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   7:                 llama.attention.head_count u32              = 32
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   8:              llama.attention.head_count_kv u32              = 4
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   9:     llama.attention.layer_norm_rms_epsilon f32              = 0.000010
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  10:                       llama.rope.freq_base f32              = 10000.000000
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  11:                          general.file_type u32              = 2
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  12:                       tokenizer.ggml.model str              = llama
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  13:                      tokenizer.ggml.tokens arr[str,32000]   = ["<unk>", "<s>", "</s>", "<0x00>", "<...
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  14:                      tokenizer.ggml.scores arr[f32,32000]   = [0.000000, 0.000000, 0.000000, 0.0000...
+ 3月 20 19:10:59 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  15:                  tokenizer.ggml.token_type arr[i32,32000]   = [2, 3, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, ...
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  16:                      tokenizer.ggml.merges arr[str,61249]   = ["▁ t", "e r", "i n", "▁ a", "e n...
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  17:                tokenizer.ggml.bos_token_id u32              = 1
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  18:                tokenizer.ggml.eos_token_id u32              = 2
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  19:            tokenizer.ggml.unknown_token_id u32              = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  20:            tokenizer.ggml.padding_token_id u32              = 2
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  21:                    tokenizer.chat_template str              = {% for message in messages %}\n{% if m...
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  22:               general.quantization_version u32              = 2
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - type  f32:   45 tensors
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - type q4_0:  155 tensors
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - type q6_K:    1 tensors
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: file format = GGUF V3 (latest)
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: file type   = Q4_0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: file size   = 606.53 MiB (4.63 BPW)
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: load: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: load: printing all EOG tokens:
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: load:   - 2 ('</s>')
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: load: special tokens cache size = 3
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: load: token to piece cache size = 0.1684 MB
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: arch             = llama
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: vocab_only       = 1
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: no_alloc         = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: model type       = ?B
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: model params     = 1.10 B
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: general.name     = TinyLlama
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: vocab type       = SPM
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_vocab          = 32000
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_merges         = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: BOS token        = 1 '<s>'
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: EOS token        = 2 '</s>'
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: UNK token        = 0 '<unk>'
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: PAD token        = 2 '</s>'
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: LF token         = 13 '<0x0A>'
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: EOG token        = 2 '</s>'
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: max token length = 48
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_load: vocab only - skipping tensors
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.025+09:00 level=WARN source=server.go:168 msg="requested context size too large for model" num_ctx=4096 n_ctx_train=2048
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.025+09:00 level=INFO source=server.go:430 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --model /home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816 --port 38571"
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.026+09:00 level=INFO source=sched.go:484 msg="system memory" total="29.3 GiB" free="26.1 GiB" free_swap="8.0 GiB"
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.026+09:00 level=INFO source=sched.go:491 msg="gpu memory" id=GPU-021501917da22884 library=ROCm available="15.5 GiB" free="16.0 GiB" minimum="457.0 MiB" overhead="0 B"
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.026+09:00 level=INFO source=server.go:497 msg="loading model" "model layers"=23 requested=-1
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.026+09:00 level=INFO source=device.go:240 msg="model weights" device=ROCm0 size="571.4 MiB"
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.026+09:00 level=INFO source=device.go:251 msg="kv cache" device=ROCm0 size="44.0 MiB"
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.026+09:00 level=INFO source=device.go:262 msg="compute graph" device=ROCm0 size="148.0 MiB"
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.026+09:00 level=INFO source=device.go:272 msg="total memory" size="763.4 MiB"
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.040+09:00 level=INFO source=runner.go:965 msg="starting go runner"
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.041+09:00 level=INFO source=ggml.go:104 msg=system CPU.0.LLAMAFILE=1 compiler=cgo(gcc)
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.044+09:00 level=INFO source=runner.go:1001 msg="Server listening on 127.0.0.1:38571"
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.048+09:00 level=INFO source=runner.go:895 msg=load request="{Operation:commit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Auto KvSize:2048 KvCacheType: NumThreads:4 GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}"
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.048+09:00 level=INFO source=server.go:1350 msg="waiting for llama runner to start responding"
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.049+09:00 level=INFO source=server.go:1384 msg="waiting for server to become available" status="llm server loading model"
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: loaded meta data with 23 key-value pairs and 201 tensors from /home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816 (version GGUF V3 (latest))
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   0:                       general.architecture str              = llama
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   1:                               general.name str              = TinyLlama
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   2:                       llama.context_length u32              = 2048
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   3:                     llama.embedding_length u32              = 2048
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   4:                          llama.block_count u32              = 22
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   5:                  llama.feed_forward_length u32              = 5632
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   6:                 llama.rope.dimension_count u32              = 64
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   7:                 llama.attention.head_count u32              = 32
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   8:              llama.attention.head_count_kv u32              = 4
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv   9:     llama.attention.layer_norm_rms_epsilon f32              = 0.000010
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  10:                       llama.rope.freq_base f32              = 10000.000000
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  11:                          general.file_type u32              = 2
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  12:                       tokenizer.ggml.model str              = llama
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  13:                      tokenizer.ggml.tokens arr[str,32000]   = ["<unk>", "<s>", "</s>", "<0x00>", "<...
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  14:                      tokenizer.ggml.scores arr[f32,32000]   = [0.000000, 0.000000, 0.000000, 0.0000...
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  15:                  tokenizer.ggml.token_type arr[i32,32000]   = [2, 3, 3, 6, 6, 6, 6, 6, 6, 6, 6, 6, ...
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  16:                      tokenizer.ggml.merges arr[str,61249]   = ["▁ t", "e r", "i n", "▁ a", "e n...
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  17:                tokenizer.ggml.bos_token_id u32              = 1
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  18:                tokenizer.ggml.eos_token_id u32              = 2
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  19:            tokenizer.ggml.unknown_token_id u32              = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  20:            tokenizer.ggml.padding_token_id u32              = 2
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  21:                    tokenizer.chat_template str              = {% for message in messages %}\n{% if m...
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - kv  22:               general.quantization_version u32              = 2
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - type  f32:   45 tensors
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - type q4_0:  155 tensors
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_model_loader: - type q6_K:    1 tensors
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: file format = GGUF V3 (latest)
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: file type   = Q4_0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: file size   = 606.53 MiB (4.63 BPW)
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: load: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: load: printing all EOG tokens:
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: load:   - 2 ('</s>')
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: load: special tokens cache size = 3
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: load: token to piece cache size = 0.1684 MB
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: arch             = llama
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: vocab_only       = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: no_alloc         = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_ctx_train      = 2048
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_embd           = 2048
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_embd_inp       = 2048
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_layer          = 22
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_head           = 32
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_head_kv        = 4
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_rot            = 64
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_swa            = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: is_swa_any       = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_embd_head_k    = 64
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_embd_head_v    = 64
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_gqa            = 8
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_embd_k_gqa     = 256
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_embd_v_gqa     = 256
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: f_norm_eps       = 0.0e+00
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: f_norm_rms_eps   = 1.0e-05
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: f_clamp_kqv      = 0.0e+00
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: f_max_alibi_bias = 0.0e+00
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: f_logit_scale    = 0.0e+00
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: f_attn_scale     = 0.0e+00
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_ff             = 5632
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_expert         = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_expert_used    = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_expert_groups  = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_group_used     = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: causal attn      = 1
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: pooling type     = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: rope type        = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: rope scaling     = linear
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: freq_base_train  = 10000.0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: freq_scale_train = 1
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_ctx_orig_yarn  = 2048
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: rope_yarn_log_mul= 0.0000
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: rope_finetuned   = unknown
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: model type       = 1B
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: model params     = 1.10 B
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: general.name     = TinyLlama
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: vocab type       = SPM
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_vocab          = 32000
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: n_merges         = 0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: BOS token        = 1 '<s>'
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: EOS token        = 2 '</s>'
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: UNK token        = 0 '<unk>'
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: PAD token        = 2 '</s>'
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: LF token         = 13 '<0x0A>'
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: EOG token        = 2 '</s>'
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: print_info: max token length = 48
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: load_tensors: loading model tensors, this can take a while... (mmap = true)
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: load_tensors:   CPU_Mapped model buffer size =   606.53 MiB
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context: constructing llama_context
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context: n_seq_max     = 1
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context: n_ctx         = 2048
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context: n_ctx_seq     = 2048
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context: n_batch       = 512
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context: n_ubatch      = 512
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context: causal_attn   = 1
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context: flash_attn    = auto
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context: kv_unified    = false
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context: freq_base     = 10000.0
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context: freq_scale    = 1
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context:        CPU  output buffer size =     0.13 MiB
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_kv_cache:        CPU KV buffer size =    44.00 MiB
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_kv_cache: size =   44.00 MiB (  2048 cells,  22 layers,  1/1 seqs), K (f16):   22.00 MiB, V (f16):   22.00 MiB
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context: Flash Attention was auto, set to enabled
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context:        CPU compute buffer size =    66.50 MiB
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context: graph nodes  = 689
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: llama_context: graph splits = 1
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.300+09:00 level=INFO source=server.go:1388 msg="llama runner started in 0.27 seconds"
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.300+09:00 level=INFO source=sched.go:561 msg="loaded runners" count=1
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.300+09:00 level=INFO source=server.go:1350 msg="waiting for llama runner to start responding"
+ 3月 20 19:11:00 hbmx-mi25 ollama[195351]: time=2026-03-20T19:11:00.301+09:00 level=INFO source=server.go:1388 msg="llama runner started in 0.27 seconds"
+ 3月 20 19:11:04 hbmx-mi25 ollama[195351]: [GIN] 2026/03/20 - 19:11:04 | 200 |  5.046473391s |       127.0.0.1 | POST     "/api/generate"
