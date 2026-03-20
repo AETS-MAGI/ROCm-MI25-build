@@ -232,3 +232,11 @@ Fetching upstream
 [181/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/sumrows.cu.o
 [182/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/solve_tri.cu.o
 [183/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/mmvf.cu.o
+[184/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/tri.cu.o
+[185/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/tsembd.cu.o
+[186/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/topk-moe.cu.o
+[187/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/upscale.cu.o
+[188/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/unary.cu.o
+[189/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/wkv.cu.o
+[190/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/mmf.cu.o
+[191/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/mmvq.cu.o
