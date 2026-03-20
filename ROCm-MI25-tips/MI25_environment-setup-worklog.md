@@ -3,9 +3,17 @@
 このファイルは実作業ログ専用です。
 `MI25_environment-setup.md` は手順書として維持し、観測結果や暫定結論は本ファイルに集約します。
 
+## 0. 読み方
+
+- 本ログは時系列で追えるように、古い切り分けから新しい実測まで順番に記録しています。
+- 章タイトルの末尾ラベルで情報源を区別します。
+  - `[historical]`: 当時の切り分け時点の記録
+  - `[main-node confirmed]`: 今回の実測で確認した事実
+  - `[inference]`: 観測に基づく推定（未確定を含む）
+
 ---
 
-## 1. 今回の環境で確認できた事実 / 未確認事項
+## 1. 初期切り分け時点の事実と未確認 [historical]
 
 ### 1.1 事実（確認済み）
 
@@ -32,7 +40,7 @@
 
 ---
 
-## 2. ドキュメント反映メモ（要約）
+## 2. 文書化ポリシーの更新メモ [historical]
 
 - ROCmでのGPU可視性確認と、Ollamaでの計算実行確認を分離して記述。
 - `GPUが見える` と `GPUで計算している` を別判定に統一。
@@ -41,7 +49,7 @@
 
 ---
 
-## 3. 参照した主要メモ / ファイル名一覧
+## 3. 参照した主要メモ / ファイル名 [historical]
 
 - `MI25_environment-setup.md`
 - `work_logs.md`
@@ -53,7 +61,7 @@
 
 ---
 
-## 4. 追加で証拠取得するとよいコマンド一覧
+## 4. 追加証拠の採取コマンド [historical]
 
 ```bash
 # 1) ROCmデバイス可視性
@@ -92,7 +100,7 @@ curl -sv http://127.0.0.1:12601/info
 
 ---
 
-## 5. ROCm-vega / ROCm-build との照合メモ
+## 5. 参照ノートとの照合メモ [historical]
 
 - `ROCm-vega` には「過去観測では rocBLAS の gfx900 出荷資産が厚かった」記述が残る。
 - 今回の実機再現（ROCm 7.2.0 apt）では `rocblas/library` に `gfx900` 向け Tensile/Kernels 資産が見当たらず、runner で `rocBLAS error` が直接出る。
@@ -100,7 +108,7 @@ curl -sv http://127.0.0.1:12601/info
 
 ---
 
-## 6. セッション復旧メモ（2026-03-20）
+## 6. セッション復旧メモ（2026-03-20）[main-node confirmed]
 
 - 作業ルート統一方針: ROCm ローカル clone の既定先を `ROCm-repos_AETS` に統一。
 - 実体確認結果: `rocBLAS` / `Tensile` はすでに `ROCm-repos_AETS` 配下に存在し、旧 `ROCm-repos` 直下には存在しない。
@@ -120,7 +128,7 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 
 ---
 
-## 7. 最終認定試験ログ（2026-03-20）
+## 7. 最終認定試験ログ（2026-03-20）[main-node confirmed]
 
 ### 7.1 実施内容
 
@@ -153,7 +161,7 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 
 ---
 
-## 8. 状態更新メモ（2026-03-20 追記）
+## 8. 状態更新メモ（2026-03-20 追記）[main-node confirmed]
 
 本節は、上記 7 章の証跡に基づく更新のみを記録する。
 
@@ -177,7 +185,7 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 
 ---
 
-## 9. tinyllama 経路安定性チェック（2026-03-20 夜）
+## 9. tinyllama 経路安定性チェック（2026-03-20 夜）[main-node confirmed]
 
 ### 9.1 重要な観測結果
 
@@ -218,7 +226,7 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 
 ---
 
-## 10. A/B 実行モード追加（2026-03-20 夜）
+## 10. A/B 実行モード追加（2026-03-20 夜）[main-node confirmed]
 
 ### 10.1 実装内容
 
@@ -255,7 +263,7 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 
 ---
 
-## 11. 追加切り分けと再評価（2026-03-20 夜）
+## 11. 追加切り分けと再評価（2026-03-20 夜）[main-node confirmed]
 
 ### 11.1 直接原因として確認できた事項
 
@@ -285,7 +293,7 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - case 別では全ケースで少なくとも 1 phase は GPU 判定。
 - 特に `r0_*` 系はすべて `GPU/GPU` で完走。
 
-### 11.5 重要な更新結論
+### 11.5 重要な更新結論 [inference]
 
 - 直前に見えていた「restart 後は常時 CPU fallback」傾向は、backend 実体欠落時の挙動が強く混ざっていた可能性が高い。
 - 復旧後は `restart=1` を含む多数ケースで `library=ROCm` / `GPULayers:23` / 高い `GPU use` が再観測された。
@@ -301,7 +309,7 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 
 ---
 
-## 12. deepseek-r1:14b 実測（2026-03-20 夜）
+## 12. deepseek-r1:14b 実測（2026-03-20 夜）[main-node confirmed]
 
 ### 12.1 前提
 
@@ -336,3 +344,26 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - `vega_path_check_logs/deepseek14b_journal_20260320_212146.log`
 - `vega_path_check_logs/deepseek14b_rocm_smi_20260320_212146.log`
 - `assets/screen_shot-gfx900-deepseek-r1.png`
+
+---
+
+## 13. 証跡インデックス（要約）[main-node confirmed]
+
+### 13.1 tinyllama A/B
+
+- `tinyllama_path_index_20260320_195741.tsv`
+- `tinyllama_path_index_20260320_200424.tsv`
+- `tinyllama_path_summary_20260320_195741.txt`
+- `tinyllama_path_summary_20260320_200424.txt`
+
+### 13.2 deepseek-r1:14b
+
+- `deepseek14b_generate_20260320_212146.json`
+- `deepseek14b_journal_20260320_212146.log`
+- `deepseek14b_rocm_smi_20260320_212146.log`
+- `assets/screen_shot-gfx900-deepseek-r1.png`
+
+### 13.3 復旧手順関連
+
+- `build_ollama_gfx900_recover_20260320_194954.log`
+- `rocblas_gfx900_build_retry_20260320_171312.log`

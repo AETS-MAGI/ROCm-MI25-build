@@ -2,6 +2,9 @@
 
 set -euo pipefail
 
+# A/B probe for GPU path stability on MI25/gfx900.
+# Axes: restart (0/1), warm-up (0/1), keep_alive (0s/10m).
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 
@@ -85,6 +88,7 @@ run_generate() {
   smi_log="$LOG_DIR/tinyllama_rocm_smi_${case_name}_${phase}_${TS}.log"
   j_log="$LOG_DIR/tinyllama_journal_${case_name}_${phase}_${TS}.log"
 
+  # Run request while sampling rocm-smi so each phase has a paired GPU trace.
   curl -s http://127.0.0.1:11434/api/generate \
     -d "{\"model\":\"${MODEL}\",\"prompt\":\"${prompt}\",\"stream\":false,\"keep_alive\":\"${keep_alive}\",\"options\":{\"num_predict\":${NUM_PREDICT},\"temperature\":${TEMPERATURE}}}" \
     > "$gen_json" &
@@ -171,6 +175,7 @@ judge_path() {
   local has_cpu="0"
   local max_gpu_use="0"
 
+  # Combine journal signals and live GPU utilization for a conservative verdict.
   if rg -q "library=ROCm|compute=gfx900|offloaded .* layers to GPU|using device ROCm" "$j_log"; then
     has_gpu="1"
   fi

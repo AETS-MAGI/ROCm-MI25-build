@@ -26,6 +26,10 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - Chronological worklog and collected evidence.
 - `ROCm-MI25-tips/MI25_build-dependencies-map.md`
   - Dependency map used during Ubuntu 24.04 bring-up.
+- `ROCm-MI25-tips/MI25_gfx900_inference-success-summary_20260320.md`
+  - One-page public summary of root cause, fix, and validation result.
+- `ROCm-MI25-tips/MI25_logging-and-benchmark-notes.md`
+  - Log naming rules, TSV column definitions, and benchmark baselines.
 
 ## Expected directory layout
 
@@ -72,6 +76,12 @@ The script prepares:
 
 - This repository is for experimental lab validation, not an official compatibility statement.
 - Results are environment-dependent and should be revalidated on each target machine.
+
+## Current validated conclusion
+
+- MI25/gfx900 inference path is viable in this workspace.
+- A major instability source was backend runtime library placement (missing/misaligned files), not intrinsic MI25 incompatibility.
+- After backend recovery, both `tinyllama` and `deepseek-r1:14b` were validated on ROCm/gfx900 with GPU offload evidence.
 
 ## Branch policy
 

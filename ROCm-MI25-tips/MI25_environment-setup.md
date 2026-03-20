@@ -374,3 +374,66 @@ ROCm-vega 配下で参照推奨（ファイル名ベース）:
 
 - 実行ログ、観測結果、暫定結論、セッション復旧メモは `MI25_environment-setup-worklog.md` に記録する。
 - 本書には、再現可能なセットアップ手順と検証手順のみを残す。
+
+---
+
+## 11. 検証済み構成（2026-03-20 時点）
+
+### 11.1 有効だった構成
+
+- user service で `ollama serve` を起動。
+- `OLLAMA_LIBRARY_PATH` と `LD_LIBRARY_PATH` を `ollama-src/build/lib/ollama` に固定。
+- `ROCBLAS_TENSILE_LIBPATH` を local build の gfx900 対応 assets に固定。
+- `HIP_VISIBLE_DEVICES=0` と `HSA_OVERRIDE_GFX_VERSION=9.0.0` を設定。
+
+### 11.2 backend 欠落時の症状
+
+以下が同時に出る場合は backend 配備不整合を優先疑いする。
+
+- `inference compute ... library=cpu`
+- `GPULayers:[]`
+- `device=CPU`
+- `GPU use (%)` が 0% 優勢
+- `OLLAMA_LIBRARY_PATH` は設定されていても、参照先に `libggml-hip.so` が存在しない
+
+### 11.3 起動前確認コマンド（最小セット）
+
+```bash
+systemctl --user show ollama -p ExecStart -p Environment
+ls -l /home/$USER/ROCm-project/ollama-src/build/lib/ollama/libggml-hip.so
+ls -l /home/$USER/ROCm-project/ollama-src/build/lib/ollama/libggml-base.so
+ls -l /home/$USER/ROCm-project/ollama-src/build/lib/ollama/libggml-cpu-haswell.so
+```
+
+---
+
+## 12. 検証コマンド集（整理版）
+
+### 12.1 tinyllama A/B
+
+```bash
+cd /home/$USER/ROCm-project/ROCm-MI25-build
+NUM_PREDICT=96 ./tinyllama-gpu-path-check.sh
+```
+
+### 12.2 特定ケース再走（例: 以前 UNSURE だったケース）
+
+```bash
+cd /home/$USER/ROCm-project/ROCm-MI25-build
+CASE_FILTER=r1_w0_k1 NUM_PREDICT=192 ./tinyllama-gpu-path-check.sh
+```
+
+### 12.3 任意モデル検証（共通スクリプト）
+
+```bash
+cd /home/$USER/ROCm-project/ROCm-MI25-build
+MODEL=deepseek-r1:14b NUM_PREDICT=140 KEEP_ALIVE=0s ./model-gpu-path-check.sh
+```
+
+### 12.4 VRAM 解放確認
+
+```bash
+ollama ps
+ollama stop deepseek-r1:14b
+rocm-smi --showmemuse --showpids --showpidgpus
+```
