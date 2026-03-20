@@ -298,3 +298,41 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - `tinyllama_path_index_20260320_195645.tsv`
 - `tinyllama_path_summary_20260320_195741.txt`
 - `tinyllama_path_index_20260320_195741.tsv`
+
+---
+
+## 12. deepseek-r1:14b 実測（2026-03-20 夜）
+
+### 12.1 前提
+
+- backend 実体（`libggml-hip.so` など）復旧後の同一サービス構成で検証。
+- user service restart 後に `deepseek-r1:14b` を generate し、`journalctl` と `rocm-smi` を同時採取。
+
+### 12.2 結果
+
+- generate 完了:
+  - `model=deepseek-r1:14b`
+  - `done=true`
+  - `done_reason=length`
+  - `eval_count=140`
+- journal で GPU 経路を確認:
+  - `inference compute ... library=ROCm compute=gfx900`
+  - `Radeon Instinct MI25`
+  - `GPULayers:49`
+  - `offloaded 49/49 layers to GPU`
+- `rocm-smi` で高負荷を確認:
+  - `GPU use`: 最大 99%
+  - `Socket Power`: 200W 超級（最大 217W 観測）
+  - `VRAM`: 約 58%
+
+### 12.3 判定
+
+- `deepseek-r1:14b` でも MI25(gfx900) 上で ROCm 経路の実推論が成立することを確認。
+- これにより「tinyllama 限定でのみ成功」ではなく、上位モデルまで GPU 実行可能であることを実証。
+
+### 12.4 証跡
+
+- `vega_path_check_logs/deepseek14b_generate_20260320_212146.json`
+- `vega_path_check_logs/deepseek14b_journal_20260320_212146.log`
+- `vega_path_check_logs/deepseek14b_rocm_smi_20260320_212146.log`
+- `assets/screen_shot-gfx900-deepseek-r1.png`
