@@ -48,7 +48,7 @@
 - [x] 日本語の自然さ・技術説明品質を簡単に確認する
 - [x] 実用候補モデルを 1〜2 個追加で試す
 - [x] MI25 16GB で現実的に運用できそうなモデル帯を整理する
-- [ ] `gpt-oss:20b` の DL 完了後、同一手順（generate/journal/rocm-smi）で検証する
+- [x] `gpt-oss:latest`（20.9B）を同一手順（generate/journal/rocm-smi）で検証する
 
 ## 6. 残務: 共有・公開
 - [x] AMD Developer Community / Discord に続報を書く（下書き作成）
