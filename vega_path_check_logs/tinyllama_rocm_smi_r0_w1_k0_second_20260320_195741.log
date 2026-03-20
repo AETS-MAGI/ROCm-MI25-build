@@ -1,18 +1,18 @@
-===== 2026-03-20T19:58:06+09:00 =====
+===== 2026-03-20T19:58:12+09:00 =====
 
 
 ============================ ROCm System Management Interface ============================
 ====================================== Temperature =======================================
-GPU[0]		: Temperature (Sensor edge) (C): 37.0
-GPU[0]		: Temperature (Sensor junction) (C): 42.0
+GPU[0]		: Temperature (Sensor edge) (C): 36.0
+GPU[0]		: Temperature (Sensor junction) (C): 40.0
 GPU[0]		: Temperature (Sensor memory) (C): 37.0
-GPU[1]		: Temperature (Sensor edge) (C): 38.0
+GPU[1]		: Temperature (Sensor edge) (C): 37.0
 ==========================================================================================
 =============================== Current clock frequencies ================================
 GPU[0]		: mclk clock level: 0: (167Mhz)
 GPU[0]		: sclk clock level: 0: (852Mhz)
 GPU[0]		: socclk clock level: 0: (600Mhz)
-GPU[1]		: mclk clock level: 2: (1200Mhz)
+GPU[1]		: mclk clock level: 3: (1333Mhz)
 GPU[1]		: sclk clock level: 0: (200Mhz)
 ==========================================================================================
 =================================== Power Consumption ====================================
@@ -33,29 +33,29 @@ GPU[1]		: Not supported on the given system
 ==========================================================================================
 ================================== End of ROCm SMI Log ===================================
 
-===== 2026-03-20T19:58:07+09:00 =====
+===== 2026-03-20T19:58:13+09:00 =====
 
 
 ============================ ROCm System Management Interface ============================
 ====================================== Temperature =======================================
-GPU[0]		: Temperature (Sensor edge) (C): 36.0
-GPU[0]		: Temperature (Sensor junction) (C): 41.0
+GPU[0]		: Temperature (Sensor edge) (C): 35.0
+GPU[0]		: Temperature (Sensor junction) (C): 40.0
 GPU[0]		: Temperature (Sensor memory) (C): 36.0
-GPU[1]		: Temperature (Sensor edge) (C): 38.0
+GPU[1]		: Temperature (Sensor edge) (C): 37.0
 ==========================================================================================
 =============================== Current clock frequencies ================================
 GPU[0]		: mclk clock level: 3: (945Mhz)
-GPU[0]		: sclk clock level: 0: (852Mhz)
-GPU[0]		: socclk clock level: 3: (960Mhz)
+GPU[0]		: sclk clock level: 5: (1399Mhz)
+GPU[0]		: socclk clock level: 4: (1028Mhz)
 GPU[1]		: mclk clock level: 3: (1333Mhz)
 GPU[1]		: sclk clock level: 0: (200Mhz)
 ==========================================================================================
 =================================== Power Consumption ====================================
-GPU[0]		: Current Socket Graphics Package Power (W): 25.0
+GPU[0]		: Current Socket Graphics Package Power (W): 101.0
 energy_count_secondary_die_check, Unexpected data received
 ==========================================================================================
 =================================== % time GPU is busy ===================================
-GPU[0]		: GPU use (%): 1
+GPU[0]		: GPU use (%): 99
 GPU[1]		: GPU use (%): 0
 ==========================================================================================
 =================================== Current Memory Use ===================================

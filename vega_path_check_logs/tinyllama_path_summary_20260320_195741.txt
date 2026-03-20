@@ -496,3 +496,399 @@ length
 30:GPU[1]		: GPU Memory Allocated (VRAM%): 1
 31:GPU[1]		: Memory Activity: N/A
 32:GPU[1]		: Not supported on the given system
+
+== case=r0_w0_k0 phase=second keep_alive=0s ==
+verdict=GPU
+max_gpu_use=1
+inference_library=ROCm
+inference_compute=unknown
+gpulayers=GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}
+generate_json=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_generate_r0_w0_k0_second_20260320_195741.json
+rocm_smi_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_rocm_smi_r0_w0_k0_second_20260320_195741.log
+journal_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_journal_r0_w0_k0_second_20260320_195741.log
+-- generate --
+tinyllama:latest
+true
+length
+1805570094
+1164339964
+61
+96
+-- journal key lines --
+59: 3月 20 19:58:06 hbmx-mi25 ollama[325688]: time=2026-03-20T19:58:06.724+09:00 level=INFO source=sched.go:491 msg="gpu memory" id=GPU-021501917da22884 library=ROCm available="15.5 GiB" free="16.0 GiB" minimum="457.0 MiB" overhead="0 B"
+69: 3月 20 19:58:06 hbmx-mi25 ollama[325688]:   Device 0: Radeon Instinct MI25, gfx900:xnack- (0x900), VMM: no, Wave Size: 64, ID: GPU-021501917da22884
+79: 3月 20 19:58:06 hbmx-mi25 ollama[325688]: llama_model_load_from_file_impl: using device ROCm0 (Radeon Instinct MI25) (0000:03:00.0) - 16360 MiB free
+169: 3月 20 19:58:06 hbmx-mi25 ollama[325688]: load_tensors: offloaded 23/23 layers to GPU
+170: 3月 20 19:58:06 hbmx-mi25 ollama[325688]: load_tensors:   CPU_Mapped model buffer size =    35.16 MiB
+-- rocm-smi key lines --
+5:====================================== Temperature =======================================
+6:GPU[0]		: Temperature (Sensor edge) (C): 37.0
+7:GPU[0]		: Temperature (Sensor junction) (C): 42.0
+8:GPU[0]		: Temperature (Sensor memory) (C): 37.0
+9:GPU[1]		: Temperature (Sensor edge) (C): 38.0
+12:GPU[0]		: mclk clock level: 0: (167Mhz)
+13:GPU[0]		: sclk clock level: 0: (852Mhz)
+14:GPU[0]		: socclk clock level: 0: (600Mhz)
+15:GPU[1]		: mclk clock level: 2: (1200Mhz)
+16:GPU[1]		: sclk clock level: 0: (200Mhz)
+19:GPU[0]		: Current Socket Graphics Package Power (W): 8.0
+23:GPU[0]		: GPU use (%): 0
+24:GPU[1]		: GPU use (%): 0
+27:GPU[0]		: GPU Memory Allocated (VRAM%): 0
+28:GPU[0]		: Memory Activity: N/A
+29:GPU[0]		: Not supported on the given system
+30:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+31:GPU[1]		: Memory Activity: N/A
+32:GPU[1]		: Not supported on the given system
+40:====================================== Temperature =======================================
+41:GPU[0]		: Temperature (Sensor edge) (C): 36.0
+42:GPU[0]		: Temperature (Sensor junction) (C): 41.0
+43:GPU[0]		: Temperature (Sensor memory) (C): 36.0
+44:GPU[1]		: Temperature (Sensor edge) (C): 38.0
+47:GPU[0]		: mclk clock level: 3: (945Mhz)
+48:GPU[0]		: sclk clock level: 0: (852Mhz)
+49:GPU[0]		: socclk clock level: 3: (960Mhz)
+50:GPU[1]		: mclk clock level: 3: (1333Mhz)
+51:GPU[1]		: sclk clock level: 0: (200Mhz)
+54:GPU[0]		: Current Socket Graphics Package Power (W): 25.0
+58:GPU[0]		: GPU use (%): 1
+59:GPU[1]		: GPU use (%): 0
+62:GPU[0]		: GPU Memory Allocated (VRAM%): 5
+63:GPU[0]		: Memory Activity: N/A
+64:GPU[0]		: Not supported on the given system
+65:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+66:GPU[1]		: Memory Activity: N/A
+67:GPU[1]		: Not supported on the given system
+[case r0_w1_k0] restart=0 warmup=1 keep_alive=0s
+[case r0_w1_k0] warm-up request
+
+== case=r0_w1_k0 phase=first keep_alive=0s ==
+verdict=GPU
+max_gpu_use=92
+inference_library=ROCm
+inference_compute=unknown
+gpulayers=GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}
+generate_json=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_generate_r0_w1_k0_first_20260320_195741.json
+rocm_smi_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_rocm_smi_r0_w1_k0_first_20260320_195741.log
+journal_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_journal_r0_w1_k0_first_20260320_195741.log
+-- generate --
+tinyllama:latest
+true
+length
+1640139188
+975622741
+61
+96
+-- journal key lines --
+61: 3月 20 19:58:09 hbmx-mi25 ollama[325688]: time=2026-03-20T19:58:09.247+09:00 level=INFO source=sched.go:491 msg="gpu memory" id=GPU-021501917da22884 library=ROCm available="15.5 GiB" free="16.0 GiB" minimum="457.0 MiB" overhead="0 B"
+71: 3月 20 19:58:09 hbmx-mi25 ollama[325688]:   Device 0: Radeon Instinct MI25, gfx900:xnack- (0x900), VMM: no, Wave Size: 64, ID: GPU-021501917da22884
+81: 3月 20 19:58:09 hbmx-mi25 ollama[325688]: llama_model_load_from_file_impl: using device ROCm0 (Radeon Instinct MI25) (0000:03:00.0) - 16360 MiB free
+171: 3月 20 19:58:09 hbmx-mi25 ollama[325688]: load_tensors: offloaded 23/23 layers to GPU
+172: 3月 20 19:58:09 hbmx-mi25 ollama[325688]: load_tensors:   CPU_Mapped model buffer size =    35.16 MiB
+257: 3月 20 19:58:10 hbmx-mi25 ollama[325688]: time=2026-03-20T19:58:10.429+09:00 level=INFO source=sched.go:491 msg="gpu memory" id=GPU-021501917da22884 library=ROCm available="15.5 GiB" free="16.0 GiB" minimum="457.0 MiB" overhead="0 B"
+267: 3月 20 19:58:10 hbmx-mi25 ollama[325688]:   Device 0: Radeon Instinct MI25, gfx900:xnack- (0x900), VMM: no, Wave Size: 64, ID: GPU-021501917da22884
+277: 3月 20 19:58:10 hbmx-mi25 ollama[325688]: llama_model_load_from_file_impl: using device ROCm0 (Radeon Instinct MI25) (0000:03:00.0) - 16359 MiB free
+367: 3月 20 19:58:10 hbmx-mi25 ollama[325688]: load_tensors: offloaded 23/23 layers to GPU
+368: 3月 20 19:58:10 hbmx-mi25 ollama[325688]: load_tensors:   CPU_Mapped model buffer size =    35.16 MiB
+-- rocm-smi key lines --
+5:====================================== Temperature =======================================
+6:GPU[0]		: Temperature (Sensor edge) (C): 37.0
+7:GPU[0]		: Temperature (Sensor junction) (C): 42.0
+8:GPU[0]		: Temperature (Sensor memory) (C): 37.0
+9:GPU[1]		: Temperature (Sensor edge) (C): 38.0
+12:GPU[0]		: mclk clock level: 3: (945Mhz)
+13:GPU[0]		: sclk clock level: 0: (852Mhz)
+14:GPU[0]		: socclk clock level: 3: (960Mhz)
+15:GPU[1]		: mclk clock level: 3: (1333Mhz)
+16:GPU[1]		: sclk clock level: 0: (200Mhz)
+19:GPU[0]		: Current Socket Graphics Package Power (W): 19.0
+23:GPU[0]		: GPU use (%): 0
+24:GPU[1]		: GPU use (%): 0
+27:GPU[0]		: GPU Memory Allocated (VRAM%): 5
+28:GPU[0]		: Memory Activity: N/A
+29:GPU[0]		: Not supported on the given system
+30:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+31:GPU[1]		: Memory Activity: N/A
+32:GPU[1]		: Not supported on the given system
+40:====================================== Temperature =======================================
+41:GPU[0]		: Temperature (Sensor edge) (C): 37.0
+42:GPU[0]		: Temperature (Sensor junction) (C): 47.0
+43:GPU[0]		: Temperature (Sensor memory) (C): 38.0
+44:GPU[1]		: Temperature (Sensor edge) (C): 38.0
+47:GPU[0]		: mclk clock level: 3: (945Mhz)
+48:GPU[0]		: sclk clock level: 7: (1500Mhz)
+49:GPU[0]		: socclk clock level: 5: (1107Mhz)
+50:GPU[1]		: mclk clock level: 2: (1200Mhz)
+51:GPU[1]		: sclk clock level: 0: (200Mhz)
+54:GPU[0]		: Current Socket Graphics Package Power (W): 166.0
+58:GPU[0]		: GPU use (%): 92
+59:GPU[1]		: GPU use (%): 0
+62:GPU[0]		: GPU Memory Allocated (VRAM%): 6
+63:GPU[0]		: Memory Activity: N/A
+64:GPU[0]		: Not supported on the given system
+65:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+66:GPU[1]		: Memory Activity: N/A
+67:GPU[1]		: Not supported on the given system
+
+== case=r0_w1_k0 phase=second keep_alive=0s ==
+verdict=GPU
+max_gpu_use=99
+inference_library=ROCm
+inference_compute=unknown
+gpulayers=GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}
+generate_json=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_generate_r0_w1_k0_second_20260320_195741.json
+rocm_smi_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_rocm_smi_r0_w1_k0_second_20260320_195741.log
+journal_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_journal_r0_w1_k0_second_20260320_195741.log
+-- generate --
+tinyllama:latest
+true
+length
+1799815806
+1179594793
+61
+96
+-- journal key lines --
+59: 3月 20 19:58:12 hbmx-mi25 ollama[325688]: time=2026-03-20T19:58:12.888+09:00 level=INFO source=sched.go:491 msg="gpu memory" id=GPU-021501917da22884 library=ROCm available="15.5 GiB" free="16.0 GiB" minimum="457.0 MiB" overhead="0 B"
+69: 3月 20 19:58:12 hbmx-mi25 ollama[325688]:   Device 0: Radeon Instinct MI25, gfx900:xnack- (0x900), VMM: no, Wave Size: 64, ID: GPU-021501917da22884
+79: 3月 20 19:58:12 hbmx-mi25 ollama[325688]: llama_model_load_from_file_impl: using device ROCm0 (Radeon Instinct MI25) (0000:03:00.0) - 16360 MiB free
+169: 3月 20 19:58:13 hbmx-mi25 ollama[325688]: load_tensors: offloaded 23/23 layers to GPU
+170: 3月 20 19:58:13 hbmx-mi25 ollama[325688]: load_tensors:   CPU_Mapped model buffer size =    35.16 MiB
+-- rocm-smi key lines --
+5:====================================== Temperature =======================================
+6:GPU[0]		: Temperature (Sensor edge) (C): 36.0
+7:GPU[0]		: Temperature (Sensor junction) (C): 40.0
+8:GPU[0]		: Temperature (Sensor memory) (C): 37.0
+9:GPU[1]		: Temperature (Sensor edge) (C): 37.0
+12:GPU[0]		: mclk clock level: 0: (167Mhz)
+13:GPU[0]		: sclk clock level: 0: (852Mhz)
+14:GPU[0]		: socclk clock level: 0: (600Mhz)
+15:GPU[1]		: mclk clock level: 3: (1333Mhz)
+16:GPU[1]		: sclk clock level: 0: (200Mhz)
+19:GPU[0]		: Current Socket Graphics Package Power (W): 8.0
+23:GPU[0]		: GPU use (%): 0
+24:GPU[1]		: GPU use (%): 0
+27:GPU[0]		: GPU Memory Allocated (VRAM%): 0
+28:GPU[0]		: Memory Activity: N/A
+29:GPU[0]		: Not supported on the given system
+30:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+31:GPU[1]		: Memory Activity: N/A
+32:GPU[1]		: Not supported on the given system
+40:====================================== Temperature =======================================
+41:GPU[0]		: Temperature (Sensor edge) (C): 35.0
+42:GPU[0]		: Temperature (Sensor junction) (C): 40.0
+43:GPU[0]		: Temperature (Sensor memory) (C): 36.0
+44:GPU[1]		: Temperature (Sensor edge) (C): 37.0
+47:GPU[0]		: mclk clock level: 3: (945Mhz)
+48:GPU[0]		: sclk clock level: 5: (1399Mhz)
+49:GPU[0]		: socclk clock level: 4: (1028Mhz)
+50:GPU[1]		: mclk clock level: 3: (1333Mhz)
+51:GPU[1]		: sclk clock level: 0: (200Mhz)
+54:GPU[0]		: Current Socket Graphics Package Power (W): 101.0
+58:GPU[0]		: GPU use (%): 99
+59:GPU[1]		: GPU use (%): 0
+62:GPU[0]		: GPU Memory Allocated (VRAM%): 5
+63:GPU[0]		: Memory Activity: N/A
+64:GPU[0]		: Not supported on the given system
+65:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+66:GPU[1]		: Memory Activity: N/A
+67:GPU[1]		: Not supported on the given system
+[case r0_w0_k1] restart=0 warmup=0 keep_alive=10m
+
+== case=r0_w0_k1 phase=first keep_alive=10m ==
+verdict=GPU
+max_gpu_use=91
+inference_library=ROCm
+inference_compute=unknown
+gpulayers=GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}
+generate_json=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_generate_r0_w0_k1_first_20260320_195741.json
+rocm_smi_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_rocm_smi_r0_w0_k1_first_20260320_195741.log
+journal_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_journal_r0_w0_k1_first_20260320_195741.log
+-- generate --
+tinyllama:latest
+true
+length
+1536731399
+928611661
+61
+96
+-- journal key lines --
+58: 3月 20 19:58:15 hbmx-mi25 ollama[325688]: time=2026-03-20T19:58:15.341+09:00 level=INFO source=sched.go:491 msg="gpu memory" id=GPU-021501917da22884 library=ROCm available="15.5 GiB" free="16.0 GiB" minimum="457.0 MiB" overhead="0 B"
+68: 3月 20 19:58:15 hbmx-mi25 ollama[325688]:   Device 0: Radeon Instinct MI25, gfx900:xnack- (0x900), VMM: no, Wave Size: 64, ID: GPU-021501917da22884
+77: 3月 20 19:58:15 hbmx-mi25 ollama[325688]: llama_model_load_from_file_impl: using device ROCm0 (Radeon Instinct MI25) (0000:03:00.0) - 16360 MiB free
+168: 3月 20 19:58:15 hbmx-mi25 ollama[325688]: load_tensors: offloaded 23/23 layers to GPU
+169: 3月 20 19:58:15 hbmx-mi25 ollama[325688]: load_tensors:   CPU_Mapped model buffer size =    35.16 MiB
+-- rocm-smi key lines --
+5:====================================== Temperature =======================================
+6:GPU[0]		: Temperature (Sensor edge) (C): 37.0
+7:GPU[0]		: Temperature (Sensor junction) (C): 42.0
+8:GPU[0]		: Temperature (Sensor memory) (C): 37.0
+9:GPU[1]		: Temperature (Sensor edge) (C): 46.0
+12:GPU[0]		: mclk clock level: 0: (167Mhz)
+13:GPU[0]		: sclk clock level: 0: (852Mhz)
+14:GPU[0]		: socclk clock level: 0: (600Mhz)
+15:GPU[1]		: mclk clock level: 3: (1333Mhz)
+16:GPU[1]		: sclk clock level: 0: (200Mhz)
+19:GPU[0]		: Current Socket Graphics Package Power (W): 8.0
+23:GPU[0]		: GPU use (%): 0
+24:GPU[1]		: GPU use (%): 0
+27:GPU[0]		: GPU Memory Allocated (VRAM%): 0
+28:GPU[0]		: Memory Activity: N/A
+29:GPU[0]		: Not supported on the given system
+30:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+31:GPU[1]		: Memory Activity: N/A
+32:GPU[1]		: Not supported on the given system
+40:====================================== Temperature =======================================
+41:GPU[0]		: Temperature (Sensor edge) (C): 39.0
+42:GPU[0]		: Temperature (Sensor junction) (C): 54.0
+43:GPU[0]		: Temperature (Sensor memory) (C): 40.0
+44:GPU[1]		: Temperature (Sensor edge) (C): 44.0
+47:GPU[0]		: mclk clock level: 3: (945Mhz)
+48:GPU[0]		: sclk clock level: 7: (1500Mhz)
+49:GPU[0]		: socclk clock level: 5: (1107Mhz)
+50:GPU[1]		: mclk clock level: 3: (1333Mhz)
+51:GPU[1]		: sclk clock level: 0: (200Mhz)
+54:GPU[0]		: Current Socket Graphics Package Power (W): 181.0
+58:GPU[0]		: GPU use (%): 91
+59:GPU[1]		: GPU use (%): 0
+62:GPU[0]		: GPU Memory Allocated (VRAM%): 5
+63:GPU[0]		: Memory Activity: N/A
+64:GPU[0]		: Not supported on the given system
+65:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+66:GPU[1]		: Memory Activity: N/A
+67:GPU[1]		: Not supported on the given system
+
+== case=r0_w0_k1 phase=second keep_alive=10m ==
+verdict=GPU
+max_gpu_use=85
+inference_library=unknown
+inference_compute=unknown
+gpulayers=unknown
+generate_json=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_generate_r0_w0_k1_second_20260320_195741.json
+rocm_smi_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_rocm_smi_r0_w0_k1_second_20260320_195741.log
+journal_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_journal_r0_w0_k1_second_20260320_195741.log
+-- generate --
+tinyllama:latest
+true
+length
+592614091
+96819576
+61
+96
+-- journal key lines --
+-- rocm-smi key lines --
+5:====================================== Temperature =======================================
+6:GPU[0]		: Temperature (Sensor edge) (C): 38.0
+7:GPU[0]		: Temperature (Sensor junction) (C): 44.0
+8:GPU[0]		: Temperature (Sensor memory) (C): 38.0
+9:GPU[1]		: Temperature (Sensor edge) (C): 43.0
+12:GPU[0]		: mclk clock level: 3: (945Mhz)
+13:GPU[0]		: sclk clock level: 1: (991Mhz)
+14:GPU[0]		: socclk clock level: 3: (960Mhz)
+15:GPU[1]		: mclk clock level: 3: (1333Mhz)
+16:GPU[1]		: sclk clock level: 0: (200Mhz)
+19:GPU[0]		: Current Socket Graphics Package Power (W): 87.0
+23:GPU[0]		: GPU use (%): 85
+24:GPU[1]		: GPU use (%): 0
+27:GPU[0]		: GPU Memory Allocated (VRAM%): 5
+28:GPU[0]		: Memory Activity: N/A
+29:GPU[0]		: Not supported on the given system
+30:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+31:GPU[1]		: Memory Activity: N/A
+32:GPU[1]		: Not supported on the given system
+[case r0_w1_k1] restart=0 warmup=1 keep_alive=10m
+[case r0_w1_k1] warm-up request
+
+== case=r0_w1_k1 phase=first keep_alive=10m ==
+verdict=GPU
+max_gpu_use=83
+inference_library=unknown
+inference_compute=unknown
+gpulayers=unknown
+generate_json=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_generate_r0_w1_k1_first_20260320_195741.json
+rocm_smi_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_rocm_smi_r0_w1_k1_first_20260320_195741.log
+journal_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_journal_r0_w1_k1_first_20260320_195741.log
+-- generate --
+tinyllama:latest
+true
+length
+650252193
+97031497
+61
+96
+-- journal key lines --
+-- rocm-smi key lines --
+5:====================================== Temperature =======================================
+6:GPU[0]		: Temperature (Sensor edge) (C): 39.0
+7:GPU[0]		: Temperature (Sensor junction) (C): 45.0
+8:GPU[0]		: Temperature (Sensor memory) (C): 39.0
+9:GPU[1]		: Temperature (Sensor edge) (C): 40.0
+12:GPU[0]		: mclk clock level: 3: (945Mhz)
+13:GPU[0]		: sclk clock level: 1: (991Mhz)
+14:GPU[0]		: socclk clock level: 3: (960Mhz)
+15:GPU[1]		: mclk clock level: 1: (933Mhz)
+16:GPU[1]		: sclk clock level: 0: (200Mhz)
+19:GPU[0]		: Current Socket Graphics Package Power (W): 46.0
+23:GPU[0]		: GPU use (%): 83
+24:GPU[1]		: GPU use (%): 0
+27:GPU[0]		: GPU Memory Allocated (VRAM%): 6
+28:GPU[0]		: Memory Activity: N/A
+29:GPU[0]		: Not supported on the given system
+30:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+31:GPU[1]		: Memory Activity: N/A
+32:GPU[1]		: Not supported on the given system
+
+== case=r0_w1_k1 phase=second keep_alive=10m ==
+verdict=GPU
+max_gpu_use=62
+inference_library=unknown
+inference_compute=unknown
+gpulayers=unknown
+generate_json=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_generate_r0_w1_k1_second_20260320_195741.json
+rocm_smi_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_rocm_smi_r0_w1_k1_second_20260320_195741.log
+journal_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_journal_r0_w1_k1_second_20260320_195741.log
+-- generate --
+tinyllama:latest
+true
+length
+602035570
+118692448
+61
+96
+-- journal key lines --
+-- rocm-smi key lines --
+5:====================================== Temperature =======================================
+6:GPU[0]		: Temperature (Sensor edge) (C): 41.0
+7:GPU[0]		: Temperature (Sensor junction) (C): 46.0
+8:GPU[0]		: Temperature (Sensor memory) (C): 40.0
+9:GPU[1]		: Temperature (Sensor edge) (C): 39.0
+12:GPU[0]		: mclk clock level: 3: (945Mhz)
+13:GPU[0]		: sclk clock level: 0: (852Mhz)
+14:GPU[0]		: socclk clock level: 3: (960Mhz)
+15:GPU[1]		: mclk clock level: 2: (1200Mhz)
+16:GPU[1]		: sclk clock level: 0: (200Mhz)
+19:GPU[0]		: Current Socket Graphics Package Power (W): 56.0
+23:GPU[0]		: GPU use (%): 62
+24:GPU[1]		: GPU use (%): 0
+27:GPU[0]		: GPU Memory Allocated (VRAM%): 6
+28:GPU[0]		: Memory Activity: N/A
+29:GPU[0]		: Not supported on the given system
+30:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+31:GPU[1]		: Memory Activity: N/A
+32:GPU[1]		: Not supported on the given system
+
+== index summary (verdict count) ==
+GPU	15
+UNSURE	1
+
+== per-case compact view ==
+case	first	second	first_gpu	second_gpu	first_lib	second_lib	first_comp	second_comp	first_gpulayers	second_gpulayers
+r0_w0_k0	GPU	GPU	85	1	unknown	ROCm	unknown	unknown	unknown	GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}
+r0_w0_k1	GPU	GPU	91	85	ROCm	unknown	unknown	unknown	GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}	unknown
+r0_w1_k0	GPU	GPU	92	99	ROCm	ROCm	unknown	unknown	GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}	GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}
+r0_w1_k1	GPU	GPU	83	62	unknown	unknown	unknown	unknown	unknown	unknown
+r1_w0_k0	GPU	GPU	87	90	ROCm	ROCm	gfx900	unknown	GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}	GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}
+r1_w0_k1	GPU	UNSURE	91	0	ROCm	unknown	gfx900	unknown	GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}	unknown
+r1_w1_k0	GPU	GPU	26	89	ROCm	ROCm	gfx900	unknown	GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}	GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}
+r1_w1_k1	GPU	GPU	97	59	ROCm	unknown	gfx900	unknown	GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}	unknown
+
+index_tsv=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_path_index_20260320_195741.tsv
