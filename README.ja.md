@@ -90,4 +90,11 @@ cd /path/to/ROCm-MI25-build
 
 ## ライセンス
 
-本リポジトリは主にスクリプトと文書で構成されます。各コンポーネントの upstream ライセンスは、元の upstream/fork リポジトリで維持されます。
+本リポジトリは Apache-2.0 で提供します。`LICENSE` と `NOTICE` を参照してください。
+
+各コンポーネントの upstream ライセンスは、元の upstream/fork リポジトリで維持されます。
+
+## 運用ポリシー文書
+
+- コントリビューション: `CONTRIBUTING.md`
+- セキュリティポリシー: `SECURITY.md`

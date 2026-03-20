@@ -88,4 +88,11 @@ The script prepares:
 
 ## License
 
-This repository primarily contains scripts and documentation. Upstream component licenses remain in their original upstream/fork repositories.
+This repository is licensed under Apache-2.0. See `LICENSE` and `NOTICE`.
+
+Upstream component licenses remain in their original upstream/fork repositories.
+
+## Governance documents
+
+- Contribution guide: `CONTRIBUTING.md`
+- Security policy: `SECURITY.md`

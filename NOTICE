@@ -1,0 +1,12 @@
+ROCm-MI25-build
+Copyright 2026 ROCm-MI25-build contributors
+
+This repository includes scripts and documentation for experimental
+ROCm MI25 (gfx900) setup and validation workflows.
+
+Third-party software used during experiments (for example ROCm,
+rocBLAS, Tensile, and Ollama) is licensed under their respective
+upstream licenses in their own repositories/distributions.
+
+This NOTICE file is for attribution and context only and does not
+change license terms.
