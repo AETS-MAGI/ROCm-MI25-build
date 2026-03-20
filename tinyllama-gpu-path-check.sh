@@ -142,7 +142,7 @@ judge_path() {
   if rg -q "library=ROCm|compute=gfx900|offloaded .* layers to GPU|using device ROCm" "$j_log"; then
     has_gpu="1"
   fi
-  if rg -q "library=cpu|GPULayers:\[\]|device=CPU|load_tensors:\s+CPU" "$j_log"; then
+  if rg -q "inference compute.*library=cpu|GPULayers:\[\]|device=CPU size=|load_tensors:\s+CPU model buffer size" "$j_log"; then
     has_cpu="1"
   fi
 
