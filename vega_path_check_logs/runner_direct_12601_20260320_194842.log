@@ -1,0 +1,49 @@
+time=2026-03-20T19:48:42.939+09:00 level=INFO source=runner.go:1411 msg="starting ollama engine"
+time=2026-03-20T19:48:42.939+09:00 level=INFO source=runner.go:1446 msg="Server listening on 127.0.0.1:12601"
+time=2026-03-20T19:48:45.929+09:00 level=DEBUG source=gguf.go:604 msg=general.architecture type=string
+time=2026-03-20T19:48:45.929+09:00 level=DEBUG source=gguf.go:604 msg=tokenizer.ggml.model type=string
+time=2026-03-20T19:48:45.929+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=general.alignment default=32
+time=2026-03-20T19:48:45.929+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=general.alignment default=32
+time=2026-03-20T19:48:45.929+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=general.file_type default=0
+time=2026-03-20T19:48:45.929+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=general.name default=""
+time=2026-03-20T19:48:45.929+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=general.description default=""
+time=2026-03-20T19:48:45.929+09:00 level=INFO source=ggml.go:136 msg="" architecture=llama file_type=unknown name="" description="" num_tensors=0 num_key_values=3
+time=2026-03-20T19:48:45.929+09:00 level=DEBUG source=ggml.go:94 msg="ggml backend load all from path" path=/home/limonene/ROCm-project/ollama-src/build/lib/ollama
+ggml_backend_load_best: search path /home/limonene/ROCm-project/ollama-src/build/lib/ollama does not exist
+ggml_backend_load_best: search path /home/limonene/ROCm-project/ollama-src/build/lib/ollama does not exist
+ggml_backend_load_best: search path /home/limonene/ROCm-project/ollama-src/build/lib/ollama does not exist
+ggml_backend_load_best: search path /home/limonene/ROCm-project/ollama-src/build/lib/ollama does not exist
+ggml_backend_load_best: search path /home/limonene/ROCm-project/ollama-src/build/lib/ollama does not exist
+ggml_backend_load_best: search path /home/limonene/ROCm-project/ollama-src/build/lib/ollama does not exist
+ggml_backend_load_best: search path /home/limonene/ROCm-project/ollama-src/build/lib/ollama does not exist
+ggml_backend_load_best: search path /home/limonene/ROCm-project/ollama-src/build/lib/ollama does not exist
+ggml_backend_load_best: search path /home/limonene/ROCm-project/ollama-src/build/lib/ollama does not exist
+ggml_backend_load_best: search path /home/limonene/ROCm-project/ollama-src/build/lib/ollama does not exist
+ggml_backend_load_best: search path /home/limonene/ROCm-project/ollama-src/build/lib/ollama does not exist
+ggml_backend_load_best: search path /home/limonene/ROCm-project/ollama-src/build/lib/ollama does not exist
+ggml_backend_load_best: search path /home/limonene/ROCm-project/ollama-src/build/lib/ollama does not exist
+time=2026-03-20T19:48:45.930+09:00 level=INFO source=ggml.go:104 msg=system CPU.0.LLAMAFILE=1 compiler=cgo(gcc)
+time=2026-03-20T19:48:45.933+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=llama.block_count default=0
+time=2026-03-20T19:48:45.933+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=llama.pooling_type default=0
+time=2026-03-20T19:48:45.933+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=llama.expert_count default=0
+time=2026-03-20T19:48:45.933+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=tokenizer.ggml.tokens default="&{size:0 values:[]}"
+time=2026-03-20T19:48:45.933+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=tokenizer.ggml.scores default="&{size:0 values:[]}"
+time=2026-03-20T19:48:45.933+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=tokenizer.ggml.token_type default="&{size:0 values:[]}"
+time=2026-03-20T19:48:45.933+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=tokenizer.ggml.merges default="&{size:0 values:[]}"
+time=2026-03-20T19:48:45.933+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=tokenizer.ggml.add_bos_token default=true
+time=2026-03-20T19:48:45.933+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=tokenizer.ggml.bos_token_id default=0
+time=2026-03-20T19:48:45.933+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=tokenizer.ggml.add_eos_token default=false
+time=2026-03-20T19:48:45.933+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=tokenizer.ggml.eos_token_id default=0
+time=2026-03-20T19:48:45.933+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=tokenizer.ggml.eos_token_ids default="&{size:0 values:[]}"
+time=2026-03-20T19:48:45.933+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=tokenizer.ggml.pre default=""
+time=2026-03-20T19:48:45.934+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=llama.block_count default=0
+time=2026-03-20T19:48:45.934+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=llama.embedding_length default=0
+time=2026-03-20T19:48:45.934+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=llama.attention.head_count default=0
+time=2026-03-20T19:48:45.934+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=llama.attention.head_count_kv default=0
+time=2026-03-20T19:48:45.934+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=llama.attention.key_length default=0
+time=2026-03-20T19:48:45.934+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=llama.rope.dimension_count default=0
+time=2026-03-20T19:48:45.934+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=llama.attention.layer_norm_rms_epsilon default=0
+time=2026-03-20T19:48:45.934+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=llama.rope.freq_base default=100000
+time=2026-03-20T19:48:45.934+09:00 level=DEBUG source=ggml.go:324 msg="key with type not found" key=llama.rope.scaling.factor default=1
+time=2026-03-20T19:48:45.934+09:00 level=DEBUG source=runner.go:1386 msg="dummy model load took" duration=5.094726ms
+time=2026-03-20T19:48:45.934+09:00 level=DEBUG source=runner.go:1391 msg="gathering device infos took" duration=640ns
