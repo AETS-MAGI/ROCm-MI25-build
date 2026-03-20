@@ -68,3 +68,75 @@ null
 67:GPU[1]		: Not supported on the given system
 75:====================================== Temperature =======================================
 76:GPU[0]		: Temperature (Sensor edge) (C): 27.0
+
+== case=baseline phase=second keep_alive=0s ==
+verdict=MIXED
+max_gpu_use=91
+inference_library=ROCm
+inference_compute=unknown
+gpulayers=GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}
+generate_json=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_generate_baseline_second_20260320_195645.json
+rocm_smi_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_rocm_smi_baseline_second_20260320_195645.log
+journal_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_journal_baseline_second_20260320_195645.log
+-- generate --
+tinyllama:latest
+true
+length
+1420883388
+933127511
+61
+64
+-- journal key lines --
+365: 3月 20 19:57:01 hbmx-mi25 ollama[323759]: time=2026-03-20T19:57:01.306+09:00 level=INFO source=sched.go:491 msg="gpu memory" id=GPU-021501917da22884 library=ROCm available="15.5 GiB" free="16.0 GiB" minimum="457.0 MiB" overhead="0 B"
+375: 3月 20 19:57:01 hbmx-mi25 ollama[323759]:   Device 0: Radeon Instinct MI25, gfx900:xnack- (0x900), VMM: no, Wave Size: 64, ID: GPU-021501917da22884
+386: 3月 20 19:57:01 hbmx-mi25 ollama[323759]: llama_model_load_from_file_impl: using device ROCm0 (Radeon Instinct MI25) (0000:03:00.0) - 16360 MiB free
+476: 3月 20 19:57:01 hbmx-mi25 ollama[323759]: load_tensors: offloaded 23/23 layers to GPU
+477: 3月 20 19:57:01 hbmx-mi25 ollama[323759]: load_tensors:   CPU_Mapped model buffer size =    35.16 MiB
+-- rocm-smi key lines --
+5:====================================== Temperature =======================================
+6:GPU[0]		: Temperature (Sensor edge) (C): 31.0
+7:GPU[0]		: Temperature (Sensor junction) (C): 34.0
+8:GPU[0]		: Temperature (Sensor memory) (C): 30.0
+9:GPU[1]		: Temperature (Sensor edge) (C): 39.0
+12:GPU[0]		: mclk clock level: 3: (945Mhz)
+13:GPU[0]		: sclk clock level: 0: (852Mhz)
+14:GPU[0]		: socclk clock level: 5: (1107Mhz)
+15:GPU[1]		: mclk clock level: 3: (1333Mhz)
+16:GPU[1]		: sclk clock level: 0: (200Mhz)
+19:GPU[0]		: Current Socket Graphics Package Power (W): 20.0
+23:GPU[0]		: GPU use (%): 0
+24:GPU[1]		: GPU use (%): 0
+27:GPU[0]		: GPU Memory Allocated (VRAM%): 0
+28:GPU[0]		: Memory Activity: N/A
+29:GPU[0]		: Not supported on the given system
+30:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+31:GPU[1]		: Memory Activity: N/A
+32:GPU[1]		: Not supported on the given system
+40:====================================== Temperature =======================================
+41:GPU[0]		: Temperature (Sensor edge) (C): 33.0
+42:GPU[0]		: Temperature (Sensor junction) (C): 46.0
+43:GPU[0]		: Temperature (Sensor memory) (C): 33.0
+44:GPU[1]		: Temperature (Sensor edge) (C): 40.0
+47:GPU[0]		: mclk clock level: 3: (945Mhz)
+48:GPU[0]		: sclk clock level: 7: (1500Mhz)
+49:GPU[0]		: socclk clock level: 5: (1107Mhz)
+50:GPU[1]		: mclk clock level: 2: (1200Mhz)
+51:GPU[1]		: sclk clock level: 0: (200Mhz)
+54:GPU[0]		: Current Socket Graphics Package Power (W): 192.0
+58:GPU[0]		: GPU use (%): 91
+59:GPU[1]		: GPU use (%): 0
+62:GPU[0]		: GPU Memory Allocated (VRAM%): 5
+63:GPU[0]		: Memory Activity: N/A
+64:GPU[0]		: Not supported on the given system
+65:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+66:GPU[1]		: Memory Activity: N/A
+67:GPU[1]		: Not supported on the given system
+
+== index summary (verdict count) ==
+MIXED	2
+
+== per-case compact view ==
+baseline	MIXED	MIXED	0	91	ROCm	ROCm	gfx900	unknown	GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}	GPULayers:23[ID:GPU-021501917da22884 Layers:23(0..22)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}
+case	first	second	first_gpu	second_gpu	first_lib	second_lib	first_comp	second_comp	first_gpulayers	second_gpulayers
+
+index_tsv=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_path_index_20260320_195645.tsv
