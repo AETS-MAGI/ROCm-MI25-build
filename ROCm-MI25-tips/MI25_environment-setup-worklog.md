@@ -252,3 +252,49 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - `tinyllama_journal_baseline_second_20260320_193549.log`
 - `tinyllama_rocm_smi_baseline_first_20260320_193549.log`
 - `tinyllama_rocm_smi_baseline_second_20260320_193549.log`
+
+---
+
+## 11. 追加切り分けと再評価（2026-03-20 夜）
+
+### 11.1 直接原因として確認できた事項
+
+- `OLLAMA_LIBRARY_PATH=/home/limonene/ROCm-project/ollama-src/build/lib/ollama` 自体は設定されていた。
+- ただし一時点でこのパス配下の backend 実体（`libggml-hip.so` など）が欠落しており、runner 単体ログでも backend search path 不在メッセージを確認。
+- この状態では service restart 後に `inference compute library=cpu` へ直行する回が出る。
+
+### 11.2 復旧操作
+
+- `build-ollama-gfx900.sh` を再実行し、`build-gfx900/lib/ollama` を再生成。
+- 再生成後に `libggml-hip.so` を含む backend ライブラリ群の存在を確認。
+
+### 11.3 復旧後 baseline 再試験
+
+- 実行条件: `AB_ENABLE=0 NUM_PREDICT=64`
+- 結果:
+  - `baseline:first`: `inference_library=ROCm`, `inference_compute=gfx900`, `GPULayers:23`
+  - `baseline:second`: `max_gpu_use=91`, `offloaded 23/23 layers to GPU`
+- `device=CPU` / `GPULayers:[]` 固定とは矛盾し、GPU経路復帰を確認。
+
+### 11.4 復旧後 full A/B（8ケース）
+
+- 実行条件: `NUM_PREDICT=96`
+- 結果サマリ（16 phase）:
+  - `GPU`: 15
+  - `UNSURE`: 1（`r1_w0_k1` の second）
+- case 別では全ケースで少なくとも 1 phase は GPU 判定。
+- 特に `r0_*` 系はすべて `GPU/GPU` で完走。
+
+### 11.5 重要な更新結論
+
+- 直前に見えていた「restart 後は常時 CPU fallback」傾向は、backend 実体欠落時の挙動が強く混ざっていた可能性が高い。
+- 復旧後は `restart=1` を含む多数ケースで `library=ROCm` / `GPULayers:23` / 高い `GPU use` が再観測された。
+- よって現時点は「MI25 経路が不可能」ではなく、「backend 配備状態が崩れると CPU fallback へ倒れる」という管理課題として扱うのが妥当。
+
+### 11.6 この更新の主証跡
+
+- `build_ollama_gfx900_recover_20260320_194954.log`
+- `tinyllama_path_summary_20260320_195645.txt`
+- `tinyllama_path_index_20260320_195645.tsv`
+- `tinyllama_path_summary_20260320_195741.txt`
+- `tinyllama_path_index_20260320_195741.tsv`

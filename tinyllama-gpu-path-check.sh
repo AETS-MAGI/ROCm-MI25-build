@@ -10,6 +10,7 @@ NUM_PREDICT="${NUM_PREDICT:-420}"
 TEMPERATURE="${TEMPERATURE:-0.1}"
 LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
 AB_ENABLE="${AB_ENABLE:-1}"
+BACKEND_DIR="${BACKEND_DIR:-/home/limonene/ROCm-project/ollama-src/build/lib/ollama}"
 
 mkdir -p "$LOG_DIR"
 
@@ -32,6 +33,36 @@ wait_for_ollama() {
     sleep 1
   done
   return 1
+}
+
+check_backend_files() {
+  local missing=0
+  local required=(
+    "libggml-hip.so"
+    "libggml-base.so"
+    "libggml-cpu-haswell.so"
+  )
+
+  if [[ ! -d "$BACKEND_DIR" ]]; then
+    echo "ERROR: backend directory is missing: $BACKEND_DIR" | tee -a "$SUMMARY"
+    return 1
+  fi
+
+  for f in "${required[@]}"; do
+    if [[ ! -f "$BACKEND_DIR/$f" ]]; then
+      echo "ERROR: backend file is missing: $BACKEND_DIR/$f" | tee -a "$SUMMARY"
+      missing=1
+    fi
+  done
+
+  if [[ "$missing" -ne 0 ]]; then
+    return 1
+  fi
+
+  {
+    echo "backend_dir=$BACKEND_DIR"
+    echo "backend_check=ok"
+  } | tee -a "$SUMMARY"
 }
 
 run_generate() {
@@ -220,6 +251,12 @@ print_index_summary() {
 echo "[0/2] ensure ollama api is reachable"
 if ! wait_for_ollama; then
   echo "ERROR: ollama API is not reachable" | tee -a "$SUMMARY"
+  exit 1
+fi
+
+echo "[0.5/2] check backend files"
+if ! check_backend_files; then
+  echo "ERROR: backend preflight failed" | tee -a "$SUMMARY"
   exit 1
 fi
 
