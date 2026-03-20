@@ -1,0 +1,244 @@
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: ROCm error: unspecified launch failure
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:   current device: -1, in function ggml_backend_cuda_buffer_set_tensor at /home/limonene/ROCm-project/ollama-src/ml/backend/ggml/ggml/src/ggml-cuda/ggml-cuda.cu:752
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:   cudaMemcpyAsyncReserve((char *)tensor->data + offset, data, size, hipMemcpyHostToDevice, ((hipStream_t)2))
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: /home/limonene/ROCm-project/ollama-src/ml/backend/ggml/ggml/src/ggml-cuda/ggml-cuda.cu:94: ROCm error
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: /home/limonene/ROCm-project/ollama-src/build/lib/ollama/libggml-base.so.0(+0x34a58)[0x750d602b6a58]
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: /home/limonene/ROCm-project/ollama-src/build/lib/ollama/libggml-base.so.0(ggml_print_backtrace+0x231)[0x750d602b6a31]
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: /home/limonene/ROCm-project/ollama-src/build/lib/ollama/libggml-base.so.0(ggml_abort+0x109)[0x750d602cc069]
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: /home/limonene/ROCm-project/ollama-src/build/lib/ollama/libggml-hip.so(+0x30ab8e2)[0x750d3baab8e2]
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: /home/limonene/ROCm-project/ollama-src/build/lib/ollama/libggml-hip.so(+0x30ae8ec)[0x750d3baae8ec]
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: /home/limonene/ROCm-project/ollama-src/ollama[0x1466d1d]
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: /home/limonene/ROCm-project/ollama-src/ollama[0x14e4ae1]
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: /home/limonene/ROCm-project/ollama-src/ollama[0x14e5f21]
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: /home/limonene/ROCm-project/ollama-src/ollama[0x14ec21f]
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: /home/limonene/ROCm-project/ollama-src/ollama[0x14eceef]
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: /home/limonene/ROCm-project/ollama-src/ollama[0x1414dd5]
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: /home/limonene/ROCm-project/ollama-src/ollama[0x4b4624]
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: SIGABRT: abort
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: PC=0x750da769eb2c m=3 sigcode=18446744073709551610
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: signal arrived during cgo execution
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 5 gp=0xc000184c40 m=3 mp=0xc00007b008 [syscall]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.cgocall(0x1414d90, 0xc00008fb88)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/cgocall.go:167 +0x4b fp=0xc00008fb60 sp=0xc00008fb28 pc=0x4a968b
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/ollama/ollama/llama._Cfunc_llama_decode(0x750d445834b0, {0x3d, 0x750d45947df0, 0x0, 0x750d45906c40, 0x750d45921ac0, 0x750d459487c0, 0x750d44cc5060})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         _cgo_gotypes.go:685 +0x46 fp=0xc00008fb88 sp=0xc00008fb60 pc=0x9392c6
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/ollama/ollama/llama.(*Context).Decode.func1(...)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/ROCm-project/ollama-src/llama/llama.go:173
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/ollama/ollama/llama.(*Context).Decode(0xc0000765a0?, 0x1?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/ROCm-project/ollama-src/llama/llama.go:173 +0xed fp=0xc00008fc70 sp=0xc00008fb88 pc=0x93c2ad
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/ollama/ollama/runner/llamarunner.(*Server).processBatch(0xc0000b41e0, 0xc0000be000, 0xc000076728)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/ROCm-project/ollama-src/runner/llamarunner/runner.go:494 +0x250 fp=0xc00008fee8 sp=0xc00008fc70 pc=0x9f3970
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/ollama/ollama/runner/llamarunner.(*Server).run(0xc0000b41e0, {0x1bc50f0, 0xc0000be0f0})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/ROCm-project/ollama-src/runner/llamarunner/runner.go:387 +0x1d5 fp=0xc00008ffb8 sp=0xc00008fee8 pc=0x9f35b5
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/ollama/ollama/runner/llamarunner.Execute.gowrap1()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/ROCm-project/ollama-src/runner/llamarunner/runner.go:981 +0x28 fp=0xc00008ffe0 sp=0xc00008ffb8 pc=0x9f8968
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc00008ffe8 sp=0xc00008ffe0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: created by github.com/ollama/ollama/runner/llamarunner.Execute in goroutine 1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/ROCm-project/ollama-src/runner/llamarunner/runner.go:981 +0x4c5
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 1 gp=0xc000002380 m=nil [IO wait]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc0003d3778 sp=0xc0003d3758 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.netpollblock(0xc0005877c8?, 0x4463e6?, 0x0?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/netpoll.go:575 +0xf7 fp=0xc0003d37b0 sp=0xc0003d3778 pc=0x471e97
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: internal/poll.runtime_pollWait(0x750d60449610, 0x72)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/netpoll.go:351 +0x85 fp=0xc0003d37d0 sp=0xc0003d37b0 pc=0x4abd25
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: internal/poll.(*pollDesc).wait(0xc0000bc100?, 0x900000036?, 0x0)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/internal/poll/fd_poll_runtime.go:84 +0x27 fp=0xc0003d37f8 sp=0xc0003d37d0 pc=0x533f87
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: internal/poll.(*pollDesc).waitRead(...)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/internal/poll/fd_poll_runtime.go:89
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: internal/poll.(*FD).Accept(0xc0000bc100)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/internal/poll/fd_unix.go:620 +0x295 fp=0xc0003d38a0 sp=0xc0003d37f8 pc=0x539355
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: net.(*netFD).accept(0xc0000bc100)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/net/fd_unix.go:172 +0x29 fp=0xc0003d3958 sp=0xc0003d38a0 pc=0x5ac849
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: net.(*TCPListener).accept(0xc00062e100)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/net/tcpsock_posix.go:159 +0x1b fp=0xc0003d39a8 sp=0xc0003d3958 pc=0x5c271b
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: net.(*TCPListener).Accept(0xc00062e100)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/net/tcpsock.go:380 +0x30 fp=0xc0003d39d8 sp=0xc0003d39a8 pc=0x5c15d0
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: net/http.(*onceCloseListener).Accept(0xc0000de090?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         <autogenerated>:1 +0x24 fp=0xc0003d39f0 sp=0xc0003d39d8 pc=0x7e8784
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: net/http.(*Server).Serve(0xc000274700, {0x1bc2700, 0xc00062e100})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/net/http/server.go:3424 +0x30c fp=0xc0003d3b20 sp=0xc0003d39f0 pc=0x7c004c
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/ollama/ollama/runner/llamarunner.Execute({0xc0001a8140, 0x4, 0x4})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/ROCm-project/ollama-src/runner/llamarunner/runner.go:1002 +0x8f5 fp=0xc0003d3cf0 sp=0xc0003d3b20 pc=0x9f86f5
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/ollama/ollama/runner.Execute({0xc0001a8130?, 0x0?, 0x0?})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/ROCm-project/ollama-src/runner/runner.go:25 +0x190 fp=0xc0003d3d30 sp=0xc0003d3cf0 pc=0xb71410
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/ollama/ollama/cmd.NewCLI.func3(0xc0004e9300?, {0x198d5ec?, 0x4?, 0x198d5f0?})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/ROCm-project/ollama-src/cmd/cmd.go:2269 +0x45 fp=0xc0003d3d58 sp=0xc0003d3d30 pc=0x1394905
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/spf13/cobra.(*Command).execute(0xc00007db08, {0xc0003e9a00, 0x4, 0x4})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/github.com/spf13/cobra@v1.7.0/command.go:940 +0x85c fp=0xc0003d3e78 sp=0xc0003d3d58 pc=0x62679c
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/spf13/cobra.(*Command).ExecuteC(0xc000142908)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/github.com/spf13/cobra@v1.7.0/command.go:1068 +0x3a5 fp=0xc0003d3f30 sp=0xc0003d3e78 pc=0x626fe5
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/spf13/cobra.(*Command).Execute(...)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/github.com/spf13/cobra@v1.7.0/command.go:992
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/spf13/cobra.(*Command).ExecuteContext(...)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/github.com/spf13/cobra@v1.7.0/command.go:985
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: main.main()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/ROCm-project/ollama-src/main.go:12 +0x4d fp=0xc0003d3f50 sp=0xc0003d3f30 pc=0x13963ad
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.main()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:283 +0x28b fp=0xc0003d3fe0 sp=0xc0003d3f50 pc=0x4794ab
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc0003d3fe8 sp=0xc0003d3fe0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 2 gp=0xc000002e00 m=nil [force gc (idle)]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc000074fa8 sp=0xc000074f88 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goparkunlock(...)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:441
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.forcegchelper()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:348 +0xb3 fp=0xc000074fe0 sp=0xc000074fa8 pc=0x4797f3
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc000074fe8 sp=0xc000074fe0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: created by runtime.init.7 in goroutine 1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:336 +0x1a
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 18 gp=0xc000102380 m=nil [GC sweep wait]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0x1?, 0x0?, 0x0?, 0x0?, 0x0?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc000070780 sp=0xc000070760 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goparkunlock(...)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:441
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.bgsweep(0xc000110000)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgcsweep.go:316 +0xdf fp=0xc0000707c8 sp=0xc000070780 pc=0x46401f
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcenable.gowrap1()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:204 +0x25 fp=0xc0000707e0 sp=0xc0000707c8 pc=0x458485
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc0000707e8 sp=0xc0000707e0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: created by runtime.gcenable in goroutine 1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:204 +0x66
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 19 gp=0xc000102540 m=nil [GC scavenge wait]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0x10000?, 0x1bacad0?, 0x0?, 0x0?, 0x0?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc000070f78 sp=0xc000070f58 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goparkunlock(...)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:441
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.(*scavengerState).park(0x271eec0)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgcscavenge.go:425 +0x49 fp=0xc000070fa8 sp=0xc000070f78 pc=0x461a69
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.bgscavenge(0xc000110000)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgcscavenge.go:658 +0x59 fp=0xc000070fc8 sp=0xc000070fa8 pc=0x461ff9
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcenable.gowrap2()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:205 +0x25 fp=0xc000070fe0 sp=0xc000070fc8 pc=0x458425
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc000070fe8 sp=0xc000070fe0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: created by runtime.gcenable in goroutine 1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:205 +0xa5
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 34 gp=0xc000184380 m=nil [finalizer wait]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0x1b8?, 0xc000002380?, 0x1?, 0x23?, 0xc000074688?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc000074630 sp=0xc000074610 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.runfinq()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mfinal.go:196 +0x107 fp=0xc0000747e0 sp=0xc000074630 pc=0x457447
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc0000747e8 sp=0xc0000747e0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: created by runtime.createfing in goroutine 1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mfinal.go:166 +0x3d
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 35 gp=0xc000184e00 m=nil [chan receive]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0xc00024fb80?, 0xc00040e018?, 0x60?, 0x27?, 0x5933a8?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc000332718 sp=0xc0003326f8 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.chanrecv(0xc000180310, 0x0, 0x1)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/chan.go:664 +0x445 fp=0xc000332790 sp=0xc000332718 pc=0x448f65
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.chanrecv1(0x0?, 0x0?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/chan.go:506 +0x12 fp=0xc0003327b8 sp=0xc000332790 pc=0x448af2
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.unique_runtime_registerUniqueMapCleanup.func2(...)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1796
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.unique_runtime_registerUniqueMapCleanup.gowrap1()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1799 +0x2f fp=0xc0003327e0 sp=0xc0003327b8 pc=0x45b5cf
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc0003327e8 sp=0xc0003327e0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: created by unique.runtime_registerUniqueMapCleanup in goroutine 1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1794 +0x79
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 36 gp=0xc000185180 m=nil [GC worker (idle)]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc000332f38 sp=0xc000332f18 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkWorker(0xc000181570)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1423 +0xe9 fp=0xc000332fc8 sp=0xc000332f38 pc=0x45a8e9
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkStartWorkers.gowrap1()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x25 fp=0xc000332fe0 sp=0xc000332fc8 pc=0x45a7c5
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc000332fe8 sp=0xc000332fe0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: created by runtime.gcBgMarkStartWorkers in goroutine 1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x105
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 3 gp=0xc0000036c0 m=nil [GC worker (idle)]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0x0?, 0x0?, 0x0?, 0x0?, 0x0?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc000075738 sp=0xc000075718 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkWorker(0xc000181570)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1423 +0xe9 fp=0xc0000757c8 sp=0xc000075738 pc=0x45a8e9
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkStartWorkers.gowrap1()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x25 fp=0xc0000757e0 sp=0xc0000757c8 pc=0x45a7c5
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc0000757e8 sp=0xc0000757e0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: created by runtime.gcBgMarkStartWorkers in goroutine 1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x105
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 20 gp=0xc000102700 m=nil [GC worker (idle)]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0x335015672cf0?, 0x0?, 0x0?, 0x0?, 0x0?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc000071738 sp=0xc000071718 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkWorker(0xc000181570)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1423 +0xe9 fp=0xc0000717c8 sp=0xc000071738 pc=0x45a8e9
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkStartWorkers.gowrap1()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x25 fp=0xc0000717e0 sp=0xc0000717c8 pc=0x45a7c5
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc0000717e8 sp=0xc0000717e0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: created by runtime.gcBgMarkStartWorkers in goroutine 1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x105
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 37 gp=0xc000185340 m=nil [GC worker (idle)]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0x33501567942d?, 0x1?, 0x7c?, 0x4c?, 0x0?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc000333738 sp=0xc000333718 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkWorker(0xc000181570)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1423 +0xe9 fp=0xc0003337c8 sp=0xc000333738 pc=0x45a8e9
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkStartWorkers.gowrap1()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x25 fp=0xc0003337e0 sp=0xc0003337c8 pc=0x45a7c5
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc0003337e8 sp=0xc0003337e0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: created by runtime.gcBgMarkStartWorkers in goroutine 1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x105
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 38 gp=0xc000185500 m=nil [GC worker (idle)]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0x33501567039c?, 0x0?, 0x0?, 0x0?, 0x0?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc000333f38 sp=0xc000333f18 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkWorker(0xc000181570)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1423 +0xe9 fp=0xc000333fc8 sp=0xc000333f38 pc=0x45a8e9
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkStartWorkers.gowrap1()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x25 fp=0xc000333fe0 sp=0xc000333fc8 pc=0x45a7c5
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc000333fe8 sp=0xc000333fe0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: created by runtime.gcBgMarkStartWorkers in goroutine 1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x105
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 4 gp=0xc000003880 m=nil [GC worker (idle)]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0x3350155ee92d?, 0x0?, 0x0?, 0x0?, 0x0?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc000075f38 sp=0xc000075f18 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkWorker(0xc000181570)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1423 +0xe9 fp=0xc000075fc8 sp=0xc000075f38 pc=0x45a8e9
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkStartWorkers.gowrap1()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x25 fp=0xc000075fe0 sp=0xc000075fc8 pc=0x45a7c5
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc000075fe8 sp=0xc000075fe0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: created by runtime.gcBgMarkStartWorkers in goroutine 1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x105
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 21 gp=0xc0001028c0 m=nil [GC worker (idle)]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0x33501567a643?, 0x3?, 0xb6?, 0x3?, 0x0?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc000071f38 sp=0xc000071f18 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkWorker(0xc000181570)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1423 +0xe9 fp=0xc000071fc8 sp=0xc000071f38 pc=0x45a8e9
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkStartWorkers.gowrap1()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x25 fp=0xc000071fe0 sp=0xc000071fc8 pc=0x45a7c5
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc000071fe8 sp=0xc000071fe0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: created by runtime.gcBgMarkStartWorkers in goroutine 1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x105
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 39 gp=0xc0001856c0 m=nil [GC worker (idle)]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0x33501567306a?, 0x0?, 0x0?, 0x0?, 0x0?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc000334738 sp=0xc000334718 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkWorker(0xc000181570)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1423 +0xe9 fp=0xc0003347c8 sp=0xc000334738 pc=0x45a8e9
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gcBgMarkStartWorkers.gowrap1()
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x25 fp=0xc0003347e0 sp=0xc0003347c8 pc=0x45a7c5
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.goexit({})
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/asm_amd64.s:1700 +0x1 fp=0xc0003347e8 sp=0xc0003347e0 pc=0x4b49a1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: created by runtime.gcBgMarkStartWorkers in goroutine 1
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/mgc.go:1339 +0x105
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: goroutine 6 gp=0xc000184fc0 m=nil [select]:
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.gopark(0xc00004ba78?, 0x2?, 0xa?, 0x0?, 0xc00004b8cc?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/proc.go:435 +0xce fp=0xc00004b700 sp=0xc00004b6e0 pc=0x4acb0e
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: runtime.selectgo(0xc00004ba78, 0xc00004b8c8, 0x3d?, 0x0, 0x1?, 0x1)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/runtime/select.go:351 +0x837 fp=0xc00004b838 sp=0xc00004b700 pc=0x48b917
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/ollama/ollama/runner/llamarunner.(*Server).completion(0xc0000b41e0, {0x1bc28e0, 0xc000246620}, 0xc000174280)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/ROCm-project/ollama-src/runner/llamarunner/runner.go:716 +0xbe5 fp=0xc00004bac0 sp=0xc00004b838 pc=0x9f5905
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: github.com/ollama/ollama/runner/llamarunner.(*Server).completion-fm({0x1bc28e0?, 0xc000246620?}, 0xc00004bb40?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         <autogenerated>:1 +0x36 fp=0xc00004baf0 sp=0xc00004bac0 pc=0x9f8d76
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: net/http.HandlerFunc.ServeHTTP(0xc0000d2000?, {0x1bc28e0?, 0xc000246620?}, 0xc00004bb60?)
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]:         /home/limonene/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.24.1.linux-amd64/src/net/http/server.go:2294 +0x29 fp=0xc00004bb18 sp=0xc00004baf0 pc=0x7bc689
+ 3月 20 19:57:00 hbmx-mi25 ollama[323759]: net/http.(*ServeMux).ServeHTTP(0x4519a5?, {0x1bc28e0, 0xc000246620}, 0xc000174280)

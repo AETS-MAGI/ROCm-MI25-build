@@ -1,0 +1,408 @@
+===== 2026-03-20T19:56:46+09:00 =====
+
+
+============================ ROCm System Management Interface ============================
+====================================== Temperature =======================================
+GPU[0]		: Temperature (Sensor edge) (C): 26.0
+GPU[0]		: Temperature (Sensor junction) (C): 27.0
+GPU[0]		: Temperature (Sensor memory) (C): 27.0
+GPU[1]		: Temperature (Sensor edge) (C): 44.0
+==========================================================================================
+=============================== Current clock frequencies ================================
+GPU[0]		: mclk clock level: 0: (167Mhz)
+GPU[0]		: sclk clock level: 0: (852Mhz)
+GPU[0]		: socclk clock level: 0: (600Mhz)
+GPU[1]		: mclk clock level: 3: (1333Mhz)
+GPU[1]		: sclk clock level: 0: (200Mhz)
+==========================================================================================
+=================================== Power Consumption ====================================
+GPU[0]		: Current Socket Graphics Package Power (W): 8.0
+energy_count_secondary_die_check, Unexpected data received
+==========================================================================================
+=================================== % time GPU is busy ===================================
+GPU[0]		: GPU use (%): 0
+GPU[1]		: GPU use (%): 0
+==========================================================================================
+=================================== Current Memory Use ===================================
+GPU[0]		: GPU Memory Allocated (VRAM%): 0
+GPU[0]		: Memory Activity: N/A
+GPU[0]		: Not supported on the given system
+GPU[1]		: GPU Memory Allocated (VRAM%): 1
+GPU[1]		: Memory Activity: N/A
+GPU[1]		: Not supported on the given system
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
+===== 2026-03-20T19:56:48+09:00 =====
+
+
+============================ ROCm System Management Interface ============================
+====================================== Temperature =======================================
+GPU[0]		: Temperature (Sensor edge) (C): 26.0
+GPU[0]		: Temperature (Sensor junction) (C): 28.0
+GPU[0]		: Temperature (Sensor memory) (C): 27.0
+GPU[1]		: Temperature (Sensor edge) (C): 43.0
+==========================================================================================
+=============================== Current clock frequencies ================================
+GPU[0]		: mclk clock level: 3: (945Mhz)
+GPU[0]		: sclk clock level: 0: (852Mhz)
+GPU[0]		: socclk clock level: 3: (960Mhz)
+GPU[1]		: mclk clock level: 1: (933Mhz)
+GPU[1]		: sclk clock level: 0: (200Mhz)
+==========================================================================================
+=================================== Power Consumption ====================================
+GPU[0]		: Current Socket Graphics Package Power (W): 17.0
+energy_count_secondary_die_check, Unexpected data received
+==========================================================================================
+=================================== % time GPU is busy ===================================
+GPU[0]		: GPU use (%): 0
+GPU[1]		: GPU use (%): 0
+==========================================================================================
+=================================== Current Memory Use ===================================
+GPU[0]		: GPU Memory Allocated (VRAM%): 5
+GPU[0]		: Memory Activity: N/A
+GPU[0]		: Not supported on the given system
+GPU[1]		: GPU Memory Allocated (VRAM%): 1
+GPU[1]		: Memory Activity: N/A
+GPU[1]		: Not supported on the given system
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
+===== 2026-03-20T19:56:49+09:00 =====
+
+
+============================ ROCm System Management Interface ============================
+====================================== Temperature =======================================
+GPU[0]		: Temperature (Sensor edge) (C): 27.0
+GPU[0]		: Temperature (Sensor junction) (C): 28.0
+GPU[0]		: Temperature (Sensor memory) (C): 27.0
+GPU[1]		: Temperature (Sensor edge) (C): 42.0
+==========================================================================================
+=============================== Current clock frequencies ================================
+GPU[0]		: mclk clock level: 3: (945Mhz)
+GPU[0]		: sclk clock level: 0: (852Mhz)
+GPU[0]		: socclk clock level: 3: (960Mhz)
+GPU[1]		: mclk clock level: 1: (933Mhz)
+GPU[1]		: sclk clock level: 0: (200Mhz)
+==========================================================================================
+=================================== Power Consumption ====================================
+GPU[0]		: Current Socket Graphics Package Power (W): 17.0
+energy_count_secondary_die_check, Unexpected data received
+==========================================================================================
+=================================== % time GPU is busy ===================================
+GPU[0]		: GPU use (%): 0
+GPU[1]		: GPU use (%): 0
+==========================================================================================
+=================================== Current Memory Use ===================================
+GPU[0]		: GPU Memory Allocated (VRAM%): 5
+GPU[0]		: Memory Activity: N/A
+GPU[0]		: Not supported on the given system
+GPU[1]		: GPU Memory Allocated (VRAM%): 1
+GPU[1]		: Memory Activity: N/A
+GPU[1]		: Not supported on the given system
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
+===== 2026-03-20T19:56:50+09:00 =====
+
+
+============================ ROCm System Management Interface ============================
+====================================== Temperature =======================================
+GPU[0]		: Temperature (Sensor edge) (C): 27.0
+GPU[0]		: Temperature (Sensor junction) (C): 29.0
+GPU[0]		: Temperature (Sensor memory) (C): 28.0
+GPU[1]		: Temperature (Sensor edge) (C): 40.0
+==========================================================================================
+=============================== Current clock frequencies ================================
+GPU[0]		: mclk clock level: 3: (945Mhz)
+GPU[0]		: sclk clock level: 0: (852Mhz)
+GPU[0]		: socclk clock level: 3: (960Mhz)
+GPU[1]		: mclk clock level: 1: (933Mhz)
+GPU[1]		: sclk clock level: 0: (200Mhz)
+==========================================================================================
+=================================== Power Consumption ====================================
+GPU[0]		: Current Socket Graphics Package Power (W): 17.0
+energy_count_secondary_die_check, Unexpected data received
+==========================================================================================
+=================================== % time GPU is busy ===================================
+GPU[0]		: GPU use (%): 0
+GPU[1]		: GPU use (%): 0
+==========================================================================================
+=================================== Current Memory Use ===================================
+GPU[0]		: GPU Memory Allocated (VRAM%): 5
+GPU[0]		: Memory Activity: N/A
+GPU[0]		: Not supported on the given system
+GPU[1]		: GPU Memory Allocated (VRAM%): 1
+GPU[1]		: Memory Activity: N/A
+GPU[1]		: Not supported on the given system
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
+===== 2026-03-20T19:56:51+09:00 =====
+
+
+============================ ROCm System Management Interface ============================
+====================================== Temperature =======================================
+GPU[0]		: Temperature (Sensor edge) (C): 27.0
+GPU[0]		: Temperature (Sensor junction) (C): 29.0
+GPU[0]		: Temperature (Sensor memory) (C): 28.0
+GPU[1]		: Temperature (Sensor edge) (C): 39.0
+==========================================================================================
+=============================== Current clock frequencies ================================
+GPU[0]		: mclk clock level: 3: (945Mhz)
+GPU[0]		: sclk clock level: 0: (852Mhz)
+GPU[0]		: socclk clock level: 3: (960Mhz)
+GPU[1]		: mclk clock level: 1: (933Mhz)
+GPU[1]		: sclk clock level: 0: (200Mhz)
+==========================================================================================
+=================================== Power Consumption ====================================
+GPU[0]		: Current Socket Graphics Package Power (W): 17.0
+energy_count_secondary_die_check, Unexpected data received
+==========================================================================================
+=================================== % time GPU is busy ===================================
+GPU[0]		: GPU use (%): 0
+GPU[1]		: GPU use (%): 0
+==========================================================================================
+=================================== Current Memory Use ===================================
+GPU[0]		: GPU Memory Allocated (VRAM%): 5
+GPU[0]		: Memory Activity: N/A
+GPU[0]		: Not supported on the given system
+GPU[1]		: GPU Memory Allocated (VRAM%): 1
+GPU[1]		: Memory Activity: N/A
+GPU[1]		: Not supported on the given system
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
+===== 2026-03-20T19:56:52+09:00 =====
+
+
+============================ ROCm System Management Interface ============================
+====================================== Temperature =======================================
+GPU[0]		: Temperature (Sensor edge) (C): 27.0
+GPU[0]		: Temperature (Sensor junction) (C): 29.0
+GPU[0]		: Temperature (Sensor memory) (C): 28.0
+GPU[1]		: Temperature (Sensor edge) (C): 37.0
+==========================================================================================
+=============================== Current clock frequencies ================================
+GPU[0]		: mclk clock level: 3: (945Mhz)
+GPU[0]		: sclk clock level: 0: (852Mhz)
+GPU[0]		: socclk clock level: 3: (960Mhz)
+GPU[1]		: mclk clock level: 1: (933Mhz)
+GPU[1]		: sclk clock level: 0: (200Mhz)
+==========================================================================================
+=================================== Power Consumption ====================================
+GPU[0]		: Current Socket Graphics Package Power (W): 17.0
+energy_count_secondary_die_check, Unexpected data received
+==========================================================================================
+=================================== % time GPU is busy ===================================
+GPU[0]		: GPU use (%): 0
+GPU[1]		: GPU use (%): 0
+==========================================================================================
+=================================== Current Memory Use ===================================
+GPU[0]		: GPU Memory Allocated (VRAM%): 5
+GPU[0]		: Memory Activity: N/A
+GPU[0]		: Not supported on the given system
+GPU[1]		: GPU Memory Allocated (VRAM%): 1
+GPU[1]		: Memory Activity: N/A
+GPU[1]		: Not supported on the given system
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
+===== 2026-03-20T19:56:53+09:00 =====
+
+
+============================ ROCm System Management Interface ============================
+====================================== Temperature =======================================
+GPU[0]		: Temperature (Sensor edge) (C): 27.0
+GPU[0]		: Temperature (Sensor junction) (C): 30.0
+GPU[0]		: Temperature (Sensor memory) (C): 28.0
+GPU[1]		: Temperature (Sensor edge) (C): 36.0
+==========================================================================================
+=============================== Current clock frequencies ================================
+GPU[0]		: mclk clock level: 3: (945Mhz)
+GPU[0]		: sclk clock level: 0: (852Mhz)
+GPU[0]		: socclk clock level: 3: (960Mhz)
+GPU[1]		: mclk clock level: 1: (933Mhz)
+GPU[1]		: sclk clock level: 0: (200Mhz)
+==========================================================================================
+=================================== Power Consumption ====================================
+GPU[0]		: Current Socket Graphics Package Power (W): 17.0
+energy_count_secondary_die_check, Unexpected data received
+==========================================================================================
+=================================== % time GPU is busy ===================================
+GPU[0]		: GPU use (%): 0
+GPU[1]		: GPU use (%): 0
+==========================================================================================
+=================================== Current Memory Use ===================================
+GPU[0]		: GPU Memory Allocated (VRAM%): 5
+GPU[0]		: Memory Activity: N/A
+GPU[0]		: Not supported on the given system
+GPU[1]		: GPU Memory Allocated (VRAM%): 1
+GPU[1]		: Memory Activity: N/A
+GPU[1]		: Not supported on the given system
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
+===== 2026-03-20T19:56:55+09:00 =====
+
+
+============================ ROCm System Management Interface ============================
+====================================== Temperature =======================================
+GPU[0]		: Temperature (Sensor edge) (C): 27.0
+GPU[0]		: Temperature (Sensor junction) (C): 29.0
+GPU[0]		: Temperature (Sensor memory) (C): 28.0
+GPU[1]		: Temperature (Sensor edge) (C): 35.0
+==========================================================================================
+=============================== Current clock frequencies ================================
+GPU[0]		: mclk clock level: 3: (945Mhz)
+GPU[0]		: sclk clock level: 0: (852Mhz)
+GPU[0]		: socclk clock level: 3: (960Mhz)
+GPU[1]		: mclk clock level: 1: (933Mhz)
+GPU[1]		: sclk clock level: 0: (200Mhz)
+==========================================================================================
+=================================== Power Consumption ====================================
+GPU[0]		: Current Socket Graphics Package Power (W): 17.0
+energy_count_secondary_die_check, Unexpected data received
+==========================================================================================
+=================================== % time GPU is busy ===================================
+GPU[0]		: GPU use (%): 0
+GPU[1]		: GPU use (%): 0
+==========================================================================================
+=================================== Current Memory Use ===================================
+GPU[0]		: GPU Memory Allocated (VRAM%): 5
+GPU[0]		: Memory Activity: N/A
+GPU[0]		: Not supported on the given system
+GPU[1]		: GPU Memory Allocated (VRAM%): 1
+GPU[1]		: Memory Activity: N/A
+GPU[1]		: Not supported on the given system
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
+===== 2026-03-20T19:56:56+09:00 =====
+
+
+============================ ROCm System Management Interface ============================
+====================================== Temperature =======================================
+GPU[0]		: Temperature (Sensor edge) (C): 27.0
+GPU[0]		: Temperature (Sensor junction) (C): 29.0
+GPU[0]		: Temperature (Sensor memory) (C): 28.0
+GPU[1]		: Temperature (Sensor edge) (C): 44.0
+==========================================================================================
+=============================== Current clock frequencies ================================
+GPU[0]		: mclk clock level: 3: (945Mhz)
+GPU[0]		: sclk clock level: 0: (852Mhz)
+GPU[0]		: socclk clock level: 3: (960Mhz)
+GPU[1]		: mclk clock level: 1: (933Mhz)
+GPU[1]		: sclk clock level: 0: (200Mhz)
+==========================================================================================
+=================================== Power Consumption ====================================
+GPU[0]		: Current Socket Graphics Package Power (W): 17.0
+energy_count_secondary_die_check, Unexpected data received
+==========================================================================================
+=================================== % time GPU is busy ===================================
+GPU[0]		: GPU use (%): 0
+GPU[1]		: GPU use (%): 0
+==========================================================================================
+=================================== Current Memory Use ===================================
+GPU[0]		: GPU Memory Allocated (VRAM%): 5
+GPU[0]		: Memory Activity: N/A
+GPU[0]		: Not supported on the given system
+GPU[1]		: GPU Memory Allocated (VRAM%): 1
+GPU[1]		: Memory Activity: N/A
+GPU[1]		: Not supported on the given system
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
+===== 2026-03-20T19:56:57+09:00 =====
+
+
+============================ ROCm System Management Interface ============================
+====================================== Temperature =======================================
+GPU[0]		: Temperature (Sensor edge) (C): 27.0
+GPU[0]		: Temperature (Sensor junction) (C): 29.0
+GPU[0]		: Temperature (Sensor memory) (C): 28.0
+GPU[1]		: Temperature (Sensor edge) (C): 43.0
+==========================================================================================
+=============================== Current clock frequencies ================================
+GPU[0]		: mclk clock level: 3: (945Mhz)
+GPU[0]		: sclk clock level: 0: (852Mhz)
+GPU[0]		: socclk clock level: 3: (960Mhz)
+GPU[1]		: mclk clock level: 2: (1200Mhz)
+GPU[1]		: sclk clock level: 0: (200Mhz)
+==========================================================================================
+=================================== Power Consumption ====================================
+GPU[0]		: Current Socket Graphics Package Power (W): 17.0
+energy_count_secondary_die_check, Unexpected data received
+==========================================================================================
+=================================== % time GPU is busy ===================================
+GPU[0]		: GPU use (%): 0
+GPU[1]		: GPU use (%): 0
+==========================================================================================
+=================================== Current Memory Use ===================================
+GPU[0]		: GPU Memory Allocated (VRAM%): 5
+GPU[0]		: Memory Activity: N/A
+GPU[0]		: Not supported on the given system
+GPU[1]		: GPU Memory Allocated (VRAM%): 1
+GPU[1]		: Memory Activity: N/A
+GPU[1]		: Not supported on the given system
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
+===== 2026-03-20T19:56:58+09:00 =====
+
+
+============================ ROCm System Management Interface ============================
+====================================== Temperature =======================================
+GPU[1]		: Temperature (Sensor edge) (C): 41.0
+==========================================================================================
+=============================== Current clock frequencies ================================
+GPU[1]		: mclk clock level: 1: (933Mhz)
+GPU[1]		: sclk clock level: 0: (200Mhz)
+==========================================================================================
+=================================== Power Consumption ====================================
+energy_count_secondary_die_check, Not supported on the given system
+energy_count_secondary_die_check, Unexpected data received
+==========================================================================================
+=================================== % time GPU is busy ===================================
+GPU[0]		: GPU use (%): 0
+GPU[1]		: GPU use (%): 0
+==========================================================================================
+=================================== Current Memory Use ===================================
+GPU[0]		: GPU Memory Allocated (VRAM%): 5
+GPU[0]		: Memory Activity: N/A
+GPU[0]		: Not supported on the given system
+GPU[1]		: GPU Memory Allocated (VRAM%): 1
+GPU[1]		: Memory Activity: N/A
+GPU[1]		: Not supported on the given system
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
+===== 2026-03-20T19:56:59+09:00 =====
+
+
+============================ ROCm System Management Interface ============================
+====================================== Temperature =======================================
+GPU[1]		: Temperature (Sensor edge) (C): 40.0
+==========================================================================================
+=============================== Current clock frequencies ================================
+GPU[1]		: mclk clock level: 2: (1200Mhz)
+GPU[1]		: sclk clock level: 0: (200Mhz)
+==========================================================================================
+=================================== Power Consumption ====================================
+energy_count_secondary_die_check, Not supported on the given system
+energy_count_secondary_die_check, Unexpected data received
+==========================================================================================
+=================================== % time GPU is busy ===================================
+GPU[0]		: GPU use (%): 0
+GPU[1]		: GPU use (%): 0
+==========================================================================================
+=================================== Current Memory Use ===================================
+GPU[0]		: GPU Memory Allocated (VRAM%): 5
+GPU[0]		: Memory Activity: N/A
+GPU[0]		: Not supported on the given system
+GPU[1]		: GPU Memory Allocated (VRAM%): 1
+GPU[1]		: Memory Activity: N/A
+GPU[1]		: Not supported on the given system
+==========================================================================================
+================================== End of ROCm SMI Log ===================================
+
