@@ -417,3 +417,82 @@ length
 30:GPU[1]		: GPU Memory Allocated (VRAM%): 1
 31:GPU[1]		: Memory Activity: N/A
 32:GPU[1]		: Not supported on the given system
+
+== case=r1_w1_k1 phase=second keep_alive=10m ==
+verdict=GPU
+max_gpu_use=59
+inference_library=unknown
+inference_compute=unknown
+gpulayers=unknown
+generate_json=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_generate_r1_w1_k1_second_20260320_195741.json
+rocm_smi_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_rocm_smi_r1_w1_k1_second_20260320_195741.log
+journal_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_journal_r1_w1_k1_second_20260320_195741.log
+-- generate --
+tinyllama:latest
+true
+length
+625198367
+122254281
+61
+96
+-- journal key lines --
+-- rocm-smi key lines --
+5:====================================== Temperature =======================================
+6:GPU[0]		: Temperature (Sensor edge) (C): 36.0
+7:GPU[0]		: Temperature (Sensor junction) (C): 40.0
+8:GPU[0]		: Temperature (Sensor memory) (C): 35.0
+9:GPU[1]		: Temperature (Sensor edge) (C): 39.0
+12:GPU[0]		: mclk clock level: 3: (945Mhz)
+13:GPU[0]		: sclk clock level: 0: (852Mhz)
+14:GPU[0]		: socclk clock level: 3: (960Mhz)
+15:GPU[1]		: mclk clock level: 3: (1333Mhz)
+16:GPU[1]		: sclk clock level: 0: (200Mhz)
+19:GPU[0]		: Current Socket Graphics Package Power (W): 57.0
+23:GPU[0]		: GPU use (%): 59
+24:GPU[1]		: GPU use (%): 0
+27:GPU[0]		: GPU Memory Allocated (VRAM%): 6
+28:GPU[0]		: Memory Activity: N/A
+29:GPU[0]		: Not supported on the given system
+30:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+31:GPU[1]		: Memory Activity: N/A
+32:GPU[1]		: Not supported on the given system
+[case r0_w0_k0] restart=0 warmup=0 keep_alive=0s
+
+== case=r0_w0_k0 phase=first keep_alive=0s ==
+verdict=GPU
+max_gpu_use=85
+inference_library=unknown
+inference_compute=unknown
+gpulayers=unknown
+generate_json=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_generate_r0_w0_k0_first_20260320_195741.json
+rocm_smi_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_rocm_smi_r0_w0_k0_first_20260320_195741.log
+journal_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_journal_r0_w0_k0_first_20260320_195741.log
+-- generate --
+tinyllama:latest
+true
+length
+593382664
+103475165
+61
+96
+-- journal key lines --
+-- rocm-smi key lines --
+5:====================================== Temperature =======================================
+6:GPU[0]		: Temperature (Sensor edge) (C): 37.0
+7:GPU[0]		: Temperature (Sensor junction) (C): 43.0
+8:GPU[0]		: Temperature (Sensor memory) (C): 36.0
+9:GPU[1]		: Temperature (Sensor edge) (C): 38.0
+12:GPU[0]		: mclk clock level: 3: (945Mhz)
+13:GPU[0]		: sclk clock level: 1: (991Mhz)
+14:GPU[0]		: socclk clock level: 3: (960Mhz)
+15:GPU[1]		: mclk clock level: 3: (1333Mhz)
+16:GPU[1]		: sclk clock level: 0: (200Mhz)
+19:GPU[0]		: Current Socket Graphics Package Power (W): 90.0
+23:GPU[0]		: GPU use (%): 85
+24:GPU[1]		: GPU use (%): 0
+27:GPU[0]		: GPU Memory Allocated (VRAM%): 6
+28:GPU[0]		: Memory Activity: N/A
+29:GPU[0]		: Not supported on the given system
+30:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+31:GPU[1]		: Memory Activity: N/A
+32:GPU[1]		: Not supported on the given system
