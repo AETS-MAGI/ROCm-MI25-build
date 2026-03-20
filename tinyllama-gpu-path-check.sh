@@ -21,7 +21,7 @@ PROMPT_WARMUP="warmup"
 
 echo "timestamp=$TS" | tee "$SUMMARY"
 echo "model=$MODEL" | tee -a "$SUMMARY"
-echo -e "case\tphase\tverdict\tmax_gpu_use\tjson\tjournal\trocm_smi" > "$INDEX_TSV"
+echo -e "case\tphase\tverdict\tmax_gpu_use\tinference_library\tinference_compute\tgpulayers\tjson\tjournal\trocm_smi" > "$INDEX_TSV"
 
 wait_for_ollama() {
   local i
@@ -45,6 +45,9 @@ run_generate() {
   local j_log
   local max_gpu_use
   local verdict
+  local inference_library
+  local inference_compute
+  local gpulayers
 
   gen_json="$LOG_DIR/tinyllama_generate_${case_name}_${phase}_${TS}.json"
   smi_log="$LOG_DIR/tinyllama_rocm_smi_${case_name}_${phase}_${TS}.log"
@@ -70,14 +73,20 @@ run_generate() {
   max_gpu_use="$(rg -o "GPU use \(%\): [0-9]+" "$smi_log" | awk '{print $4}' | sort -nr | head -n 1)"
   max_gpu_use="${max_gpu_use:-0}"
   verdict="$(judge_path "$j_log" "$smi_log")"
+  inference_library="$(extract_inference_library "$j_log")"
+  inference_compute="$(extract_inference_compute "$j_log")"
+  gpulayers="$(extract_gpulayers "$j_log")"
 
-  echo -e "${case_name}\t${phase}\t${verdict}\t${max_gpu_use}\t${gen_json}\t${j_log}\t${smi_log}" >> "$INDEX_TSV"
+  echo -e "${case_name}\t${phase}\t${verdict}\t${max_gpu_use}\t${inference_library}\t${inference_compute}\t${gpulayers}\t${gen_json}\t${j_log}\t${smi_log}" >> "$INDEX_TSV"
 
   {
     echo
     echo "== case=${case_name} phase=${phase} keep_alive=${keep_alive} =="
     echo "verdict=${verdict}"
     echo "max_gpu_use=${max_gpu_use}"
+    echo "inference_library=${inference_library}"
+    echo "inference_compute=${inference_compute}"
+    echo "gpulayers=${gpulayers}"
     echo "generate_json=$gen_json"
     echo "rocm_smi_log=$smi_log"
     echo "journal_log=$j_log"
@@ -88,6 +97,39 @@ run_generate() {
     echo "-- rocm-smi key lines --"
     rg -n "GPU\[|GPU use|Mem use|Socket Power|Temperature|VRAM" "$smi_log" | head -n 40 || true
   } | tee -a "$SUMMARY"
+}
+
+extract_inference_library() {
+  local j_log="$1"
+  local line
+  line="$(rg -o "library=[^ ]+" "$j_log" | head -n 1 || true)"
+  if [[ -n "$line" ]]; then
+    echo "${line#library=}"
+  else
+    echo "unknown"
+  fi
+}
+
+extract_inference_compute() {
+  local j_log="$1"
+  local line
+  line="$(rg -o "compute=[^ ]*" "$j_log" | head -n 1 || true)"
+  if [[ -n "$line" ]]; then
+    echo "${line#compute=}"
+  else
+    echo "unknown"
+  fi
+}
+
+extract_gpulayers() {
+  local j_log="$1"
+  local line
+  line="$(rg -o "GPULayers:[^}]*(]|\})" "$j_log" | head -n 1 || true)"
+  if [[ -n "$line" ]]; then
+    echo "$line"
+  else
+    echo "unknown"
+  fi
 }
 
 judge_path() {
@@ -161,6 +203,15 @@ print_index_summary() {
     echo
     echo "== index summary (verdict count) =="
     awk -F'\t' 'NR>1 { key=$3; c[key]++ } END { for (k in c) printf("%s\t%d\n", k, c[k]) }' "$INDEX_TSV" | sort
+    echo
+    echo "== per-case compact view =="
+    awk -F'\t' 'NR==1 {next} {k=$1; phase=$2; verdict[k,phase]=$3; gpu[k,phase]=$4; lib[k,phase]=$5; comp[k,phase]=$6; gl[k,phase]=$7; seen[k]=1}
+      END {
+        printf("case\tfirst\tsecond\tfirst_gpu\tsecond_gpu\tfirst_lib\tsecond_lib\tfirst_comp\tsecond_comp\tfirst_gpulayers\tsecond_gpulayers\n");
+        for (k in seen) {
+          printf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n", k, verdict[k,"first"], verdict[k,"second"], gpu[k,"first"], gpu[k,"second"], lib[k,"first"], lib[k,"second"], comp[k,"first"], comp[k,"second"], gl[k,"first"], gl[k,"second"]);
+        }
+      }' "$INDEX_TSV" | sort
     echo
     echo "index_tsv=$INDEX_TSV"
   } | tee -a "$SUMMARY"

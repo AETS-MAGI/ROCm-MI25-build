@@ -1,0 +1,4 @@
+timestamp=20260320_193844
+model=tinyllama:latest
+[case r1_w0_k0] restart=1 warmup=0 keep_alive=0s
+[case r1_w0_k0] restarting user ollama service
