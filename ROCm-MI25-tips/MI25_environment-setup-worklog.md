@@ -413,3 +413,42 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - `vega_path_check_logs/model_generate_qwen2.5_7b_20260321_020642.json`
 - `vega_path_check_logs/model_journal_qwen2.5_7b_20260321_020642.log`
 - `vega_path_check_logs/model_rocm_smi_qwen2.5_7b_20260321_020642.log`
+
+---
+
+## 15. gpt-oss:latest（20.9B）検証（2026-03-21）[main-node confirmed]
+
+### 15.1 実施内容
+
+- `ollama show gpt-oss:latest` で `parameters=20.9B` を確認。
+- 共通チェッカーで `generate / journal / rocm-smi` を同時採取。
+- 追加で `think=false` API 呼び出しを実施し、出力形状を確認。
+
+### 15.2 GPU 経路の確認結果
+
+- journal:
+  - `library=ROCm`
+  - `Radeon Instinct MI25 (gfx900)`
+  - `GPULayers:25`
+  - `offloaded 25/25 layers to GPU`
+- rocm-smi:
+  - `GPU use`: 最大 100%
+  - `Socket Power`: 最大 220W
+  - `VRAM`: 最大 77%
+
+### 15.3 生成挙動の観測
+
+- `stream=false` 実行で `done=true`, `done_reason=length`, `eval_count=180` を確認。
+- ただし `response` が空文字で、`thinking` のみ返る回を再現（`think=false` 指定時も同様）。
+- よって現時点では「GPU 推論経路は成立」だが「最終テキスト応答の安定取得」は要追加確認。
+
+### 15.4 暫定評価
+
+- MI25 16GB で 20B 級モデルのロードと GPU offload は可能。
+- 一方で出力制御はモデルテンプレート/ランタイム実装依存の挙動差があり、運用前に応答取り出し条件の固定が必要。
+
+### 15.5 この更新の主証跡
+
+- `vega_path_check_logs/model_generate_gpt-oss_latest_20260321_031355.json`
+- `vega_path_check_logs/model_journal_gpt-oss_latest_20260321_031355.log`
+- `vega_path_check_logs/model_rocm_smi_gpt-oss_latest_20260321_031355.log`
