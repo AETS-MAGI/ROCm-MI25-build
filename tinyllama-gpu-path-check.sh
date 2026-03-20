@@ -40,7 +40,6 @@ run_generate() {
   local keep_alive="$3"
   local since="$4"
   local prompt="$5"
-  local since
   local gen_json
   local smi_log
   local j_log
