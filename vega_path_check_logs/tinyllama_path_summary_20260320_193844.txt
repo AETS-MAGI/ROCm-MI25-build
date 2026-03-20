@@ -2,3 +2,67 @@ timestamp=20260320_193844
 model=tinyllama:latest
 [case r1_w0_k0] restart=1 warmup=0 keep_alive=0s
 [case r1_w0_k0] restarting user ollama service
+
+== case=r1_w0_k0 phase=first keep_alive=0s ==
+verdict=CPU
+max_gpu_use=0
+inference_library=unknown
+inference_compute=unknown
+gpulayers=GPULayers:[] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}
+generate_json=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_generate_r1_w0_k0_first_20260320_193844.json
+rocm_smi_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_rocm_smi_r1_w0_k0_first_20260320_193844.log
+journal_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/tinyllama_journal_r1_w0_k0_first_20260320_193844.log
+-- generate --
+tinyllama:latest
+true
+length
+51808876593
+733585871
+61
+420
+-- journal key lines --
+59: 3月 20 19:38:46 hbmx-mi25 ollama[290324]: time=2026-03-20T19:38:46.041+09:00 level=INFO source=device.go:245 msg="model weights" device=CPU size="571.4 MiB"
+60: 3月 20 19:38:46 hbmx-mi25 ollama[290324]: time=2026-03-20T19:38:46.041+09:00 level=INFO source=device.go:256 msg="kv cache" device=CPU size="44.0 MiB"
+65: 3月 20 19:38:46 hbmx-mi25 ollama[290324]: time=2026-03-20T19:38:46.074+09:00 level=INFO source=runner.go:895 msg=load request="{Operation:commit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Auto KvSize:2048 KvCacheType: NumThreads:4 GPULayers:[] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:false}"
+155: 3月 20 19:38:46 hbmx-mi25 ollama[290324]: load_tensors:          CPU model buffer size =   606.53 MiB
+-- rocm-smi key lines --
+5:====================================== Temperature =======================================
+6:GPU[0]		: Temperature (Sensor edge) (C): 25.0
+7:GPU[0]		: Temperature (Sensor junction) (C): 26.0
+8:GPU[0]		: Temperature (Sensor memory) (C): 26.0
+9:GPU[1]		: Temperature (Sensor edge) (C): 26.0
+12:GPU[0]		: mclk clock level: 0: (167Mhz)
+13:GPU[0]		: sclk clock level: 0: (852Mhz)
+14:GPU[0]		: socclk clock level: 0: (600Mhz)
+15:GPU[1]		: mclk clock level: 2: (1200Mhz)
+16:GPU[1]		: sclk clock level: 0: (200Mhz)
+19:GPU[0]		: Current Socket Graphics Package Power (W): 7.0
+23:GPU[0]		: GPU use (%): 0
+24:GPU[1]		: GPU use (%): 0
+27:GPU[0]		: GPU Memory Allocated (VRAM%): 0
+28:GPU[0]		: Memory Activity: N/A
+29:GPU[0]		: Not supported on the given system
+30:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+31:GPU[1]		: Memory Activity: N/A
+32:GPU[1]		: Not supported on the given system
+40:====================================== Temperature =======================================
+41:GPU[0]		: Temperature (Sensor edge) (C): 25.0
+42:GPU[0]		: Temperature (Sensor junction) (C): 27.0
+43:GPU[0]		: Temperature (Sensor memory) (C): 26.0
+44:GPU[1]		: Temperature (Sensor edge) (C): 50.0
+47:GPU[0]		: mclk clock level: 0: (167Mhz)
+48:GPU[0]		: sclk clock level: 0: (852Mhz)
+49:GPU[0]		: socclk clock level: 0: (600Mhz)
+50:GPU[1]		: mclk clock level: 2: (1200Mhz)
+51:GPU[1]		: sclk clock level: 0: (200Mhz)
+54:GPU[0]		: Current Socket Graphics Package Power (W): 7.0
+58:GPU[0]		: GPU use (%): 0
+59:GPU[1]		: GPU use (%): 0
+62:GPU[0]		: GPU Memory Allocated (VRAM%): 0
+63:GPU[0]		: Memory Activity: N/A
+64:GPU[0]		: Not supported on the given system
+65:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+66:GPU[1]		: Memory Activity: N/A
+67:GPU[1]		: Not supported on the given system
+75:====================================== Temperature =======================================
+76:GPU[0]		: Temperature (Sensor edge) (C): 25.0
