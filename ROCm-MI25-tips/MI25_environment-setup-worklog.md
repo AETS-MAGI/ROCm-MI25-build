@@ -108,12 +108,12 @@ curl -sv http://127.0.0.1:12601/info
   - `ROCm-vega/tools/open_wdblack_rocm_shell.sh`
   - `ROCm-vega/tools/bootstrap_rocm_repos_wdblack.sh`
   - `ROCm-vega/tools/sync_rocm_repo_to_wdblack.sh`
-  以上 3 本の `DST_ROOT` / `WD_REPO_ROOT` 既定値を `/home/limonene/ROCm-project/ROCm-repos_AETS` 側へ更新。
+    以上 3 本の `DST_ROOT` / `WD_REPO_ROOT` 既定値を `/home/$USER/ROCm-project/ROCm-repos_AETS` 側へ更新。
 
 確認コマンド:
 
 ```bash
-cd /home/limonene/ROCm-project
+cd /home/$USER/ROCm-project
 ls -d ROCm-repos_AETS/rocBLAS ROCm-repos_AETS/Tensile
 bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 ```

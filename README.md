@@ -27,6 +27,47 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
 - `ROCm-MI25-tips/MI25_build-dependencies-map.md`
   - Dependency map used during Ubuntu 24.04 bring-up.
 
+## Expected directory layout
+
+The scripts assume this workspace layout:
+
+```text
+/home/$USER/ROCm-project/
+  ROCm-MI25-build/
+  ollama-src/
+  ROCm-repos_AETS/
+    rocBLAS/
+    Tensile/
+```
+
+If you place this repository elsewhere, pass explicit paths to each script using their CLI options (for example `--src-dir`, `--tensile-dir`, `--models-dir`) or bootstrap the standard layout.
+
+## Bootstrap workspace automatically
+
+Use the helper script to clone and place required repositories into the expected layout:
+
+```bash
+cd /path/to/ROCm-MI25-build
+./bootstrap-workspace.sh
+```
+
+Optional examples:
+
+```bash
+# preview actions only
+./bootstrap-workspace.sh --dry-run
+
+# choose a custom root
+./bootstrap-workspace.sh --root-dir /data/ROCm-project
+```
+
+The script prepares:
+
+- `ROCm-MI25-build`
+- `ollama-src`
+- `ROCm-repos_AETS/rocBLAS`
+- `ROCm-repos_AETS/Tensile`
+
 ## Scope and non-goals
 
 - This repository is for experimental lab validation, not an official compatibility statement.

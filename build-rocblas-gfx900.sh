@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="/home/limonene/ROCm-project"
+ROOT_DIR="${HOME:-/home/$USER}/ROCm-project"
 ROCBLAS_SRC_DIR="$ROOT_DIR/ROCm-repos_AETS/rocBLAS"
 TENSILE_SRC_DIR="$ROOT_DIR/ROCm-repos_AETS/Tensile"
 BUILD_DIR="$ROCBLAS_SRC_DIR/build-mi25-gfx900"

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-MODELS_DIR="/home/limonene/ROCm-project/ollama-models"
+MODELS_DIR="${HOME:-/home/$USER}/ROCm-project/ollama-models"
 SERVICE_MODE="auto"   # auto | user | system
 INSTALL_IF_MISSING=1
 NO_START=0

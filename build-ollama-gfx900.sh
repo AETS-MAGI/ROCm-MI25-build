@@ -4,7 +4,7 @@ set -euo pipefail
 # Build Ollama from source with gfx900 HIP target support.
 # This script does not install system service automatically.
 
-ROOT_DIR="/home/limonene/ROCm-project"
+ROOT_DIR="${HOME:-/home/$USER}/ROCm-project"
 SRC_DIR="$ROOT_DIR/ollama-src"
 BUILD_DIR="$SRC_DIR/build-gfx900"
 INSTALL_DIR="$ROOT_DIR/ollama-gfx900-install"
