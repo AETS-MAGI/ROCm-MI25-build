@@ -215,3 +215,40 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 1. `tinyllama` で restart 後も GPU 経路を安定再現できる条件を固定。
 2. その固定条件で `deepseek-r1:14b` を検証。
 3. 失敗原因を「モデル由来」と「経路不安定由来」に分離して記録。
+
+---
+
+## 10. A/B 実行モード追加（2026-03-20 夜）
+
+### 10.1 実装内容
+
+- `tinyllama-gpu-path-check.sh` を `ROCm-MI25-build` 配下へ配置。
+- 3軸比較の A/B モードを追加:
+  - restart あり/なし
+  - warm-up あり/なし
+  - keep_alive `0s` / `10m`
+- 各ケースで `first` / `second` を採取し、以下を自動出力:
+  - JSON
+  - journal 抜粋
+  - `rocm-smi` 抜粋
+  - 判定 (`GPU` / `CPU` / `MIXED` / `UNSURE`)
+  - index TSV
+
+### 10.2 スモーク実行（baseline 1ケース）
+
+- 実行条件: `AB_ENABLE=0 NUM_PREDICT=64`
+- 結果:
+  - `baseline:first` -> `CPU`, `max_gpu_use=0`
+  - `baseline:second` -> `CPU`, `max_gpu_use=0`
+- journal 上でも `GPULayers:[]` と `device=CPU` が確認され、判定と整合。
+
+### 10.3 追加証跡（ファイル名）
+
+- `tinyllama_path_summary_20260320_193549.txt`
+- `tinyllama_path_index_20260320_193549.tsv`
+- `tinyllama_generate_baseline_first_20260320_193549.json`
+- `tinyllama_generate_baseline_second_20260320_193549.json`
+- `tinyllama_journal_baseline_first_20260320_193549.log`
+- `tinyllama_journal_baseline_second_20260320_193549.log`
+- `tinyllama_rocm_smi_baseline_first_20260320_193549.log`
+- `tinyllama_rocm_smi_baseline_second_20260320_193549.log`
