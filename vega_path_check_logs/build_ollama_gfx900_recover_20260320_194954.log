@@ -175,3 +175,5 @@ Fetching upstream
 [124/242] Building C object ml/backend/ggml/ggml/src/CMakeFiles/ggml-cpu-alderlake.dir/ggml-cpu/arch/x86/quants.c.o
 [125/242] Building CXX object ml/backend/ggml/ggml/src/CMakeFiles/ggml-cpu-alderlake.dir/ggml-cpu/binary-ops.cpp.o
 [126/242] Building CXX object ml/backend/ggml/ggml/src/CMakeFiles/ggml-cpu-alderlake.dir/ggml-cpu/arch/x86/repack.cpp.o
+[127/242] Building CXX object ml/backend/ggml/ggml/src/CMakeFiles/ggml-cpu-alderlake.dir/ggml-cpu/llamafile/sgemm.cpp.o
+[128/242] Building CXX object ml/backend/ggml/ggml/src/CMakeFiles/ggml-cpu-alderlake.dir/ggml-cpu/unary-ops.cpp.o
