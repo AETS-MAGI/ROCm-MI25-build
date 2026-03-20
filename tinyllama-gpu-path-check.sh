@@ -11,6 +11,7 @@ TEMPERATURE="${TEMPERATURE:-0.1}"
 LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
 AB_ENABLE="${AB_ENABLE:-1}"
 BACKEND_DIR="${BACKEND_DIR:-/home/limonene/ROCm-project/ollama-src/build/lib/ollama}"
+CASE_FILTER="${CASE_FILTER:-}"
 
 mkdir -p "$LOG_DIR"
 
@@ -229,6 +230,17 @@ run_case() {
   run_generate "$case_name" "second" "$keep_alive" "$phase_since" "$PROMPT_MAIN"
 }
 
+should_run_case() {
+  local case_name="$1"
+  if [[ -z "$CASE_FILTER" ]]; then
+    return 0
+  fi
+  if printf '%s' "$CASE_FILTER" | tr ',' '\n' | rg -x "$case_name" >/dev/null 2>&1; then
+    return 0
+  fi
+  return 1
+}
+
 print_index_summary() {
   {
     echo
@@ -262,14 +274,14 @@ fi
 
 if [[ "$AB_ENABLE" == "1" ]]; then
   # A/B matrix focused on restart, warm-up, keep_alive.
-  run_case "r1_w0_k0" "1" "0" "0s"
-  run_case "r1_w1_k0" "1" "1" "0s"
-  run_case "r1_w0_k1" "1" "0" "10m"
-  run_case "r1_w1_k1" "1" "1" "10m"
-  run_case "r0_w0_k0" "0" "0" "0s"
-  run_case "r0_w1_k0" "0" "1" "0s"
-  run_case "r0_w0_k1" "0" "0" "10m"
-  run_case "r0_w1_k1" "0" "1" "10m"
+  if should_run_case "r1_w0_k0"; then run_case "r1_w0_k0" "1" "0" "0s"; fi
+  if should_run_case "r1_w1_k0"; then run_case "r1_w1_k0" "1" "1" "0s"; fi
+  if should_run_case "r1_w0_k1"; then run_case "r1_w0_k1" "1" "0" "10m"; fi
+  if should_run_case "r1_w1_k1"; then run_case "r1_w1_k1" "1" "1" "10m"; fi
+  if should_run_case "r0_w0_k0"; then run_case "r0_w0_k0" "0" "0" "0s"; fi
+  if should_run_case "r0_w1_k0"; then run_case "r0_w1_k0" "0" "1" "0s"; fi
+  if should_run_case "r0_w0_k1"; then run_case "r0_w0_k1" "0" "0" "10m"; fi
+  if should_run_case "r0_w1_k1"; then run_case "r0_w1_k1" "0" "1" "10m"; fi
 else
   run_case "baseline" "1" "0" "0s"
 fi
