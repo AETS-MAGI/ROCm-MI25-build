@@ -177,3 +177,25 @@ Fetching upstream
 [126/242] Building CXX object ml/backend/ggml/ggml/src/CMakeFiles/ggml-cpu-alderlake.dir/ggml-cpu/arch/x86/repack.cpp.o
 [127/242] Building CXX object ml/backend/ggml/ggml/src/CMakeFiles/ggml-cpu-alderlake.dir/ggml-cpu/llamafile/sgemm.cpp.o
 [128/242] Building CXX object ml/backend/ggml/ggml/src/CMakeFiles/ggml-cpu-alderlake.dir/ggml-cpu/unary-ops.cpp.o
+[129/242] Building CXX object ml/backend/ggml/ggml/src/CMakeFiles/ggml-cpu-icelake.dir/ggml-cpu/ops.cpp.o
+[130/242] Linking CXX shared module lib/ollama/libggml-cpu-icelake.so
+[131/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/add-id.cu.o
+[132/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/acc.cu.o
+[133/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/arange.cu.o
+[134/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/argmax.cu.o
+[135/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/argsort.cu.o
+[136/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/concat.cu.o
+[137/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/clamp.cu.o
+[138/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/conv-transpose-1d.cu.o
+[139/242] Building CXX object ml/backend/ggml/ggml/src/CMakeFiles/ggml-cpu-alderlake.dir/ggml-cpu/ops.cpp.o
+[140/242] Linking CXX shared module lib/ollama/libggml-cpu-alderlake.so
+[141/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/conv2d-dw.cu.o
+[142/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/conv2d-transpose.cu.o
+[143/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/conv2d.cu.o
+[144/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/count-equal.cu.o
+[145/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/cross-entropy-loss.cu.o
+[146/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/convert.cu.o
+[147/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/cumsum.cu.o
+[148/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/diag.cu.o
+[149/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/diagmask.cu.o
+[150/242] Building HIP object ml/backend/ggml/ggml/src/ggml-hip/CMakeFiles/ggml-hip.dir/__/ggml-cuda/cpy.cu.o
