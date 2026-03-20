@@ -73,6 +73,11 @@ The script prepares:
 - This repository is for experimental lab validation, not an official compatibility statement.
 - Results are environment-dependent and should be revalidated on each target machine.
 
+## Branch policy
+
+- `main` is the baseline branch.
+- Ongoing experiment work is tracked on `vega-int8-probe`.
+
 ## Relationship to other repos
 
 - Code forks for component-level modifications live in separate repositories:
