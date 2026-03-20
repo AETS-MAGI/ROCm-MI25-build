@@ -30,6 +30,10 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - One-page public summary of root cause, fix, and validation result.
 - `ROCm-MI25-tips/MI25_logging-and-benchmark-notes.md`
   - Log naming rules, TSV column definitions, and benchmark baselines.
+- `ROCm-MI25-tips/MI25_community-outreach-kit.md`
+  - Draft posts and link-routing plan for community/forum/pages sharing.
+- `ROCm-MI25-tips/MI25_companion-repo-positioning.md`
+  - Companion repository scope and public-facing positioning policy.
 
 ## Expected directory layout
 

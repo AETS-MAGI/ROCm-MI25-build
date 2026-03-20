@@ -367,3 +367,49 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 
 - `build_ollama_gfx900_recover_20260320_194954.log`
 - `rocblas_gfx900_build_retry_20260320_171312.log`
+
+---
+
+## 14. モデル評価メモ（2026-03-21）[main-node confirmed]
+
+### 14.1 deepseek-r1:14b の template / reasoning 表示確認
+
+- `ollama show --modelfile deepseek-r1:14b` で `<think>...</think>` を含む TEMPLATE を確認。
+- `/api/generate` で `think=true` の場合は `thinking` フィールドが返る。
+- `/api/generate` で `think=false` の場合は `thinking` が返らず、`response` のみ返る。
+- 以上より、`Thinking...` 表示はモデルテンプレートと API 側の think 設定に依存する挙動と判断。
+
+### 14.2 日本語出力の簡易品質確認
+
+- deepseek (`think=false`) は日本語2文の技術説明を生成可能。
+- ただし軽微な語彙崩れ（例: `ibraries`）が混ざる回があり、最終用途では整文または後処理が必要。
+- qwen2.5:7b は短文日本語の自然さは良好で、要約用途に使いやすい。
+
+### 14.3 追加モデル試験（qwen2.5:7b）
+
+- 実施: `ollama pull qwen2.5:7b` 後、共通チェッカーで generate / journal / rocm-smi を採取。
+- journal:
+  - `library=ROCm`
+  - `compute=gfx900`
+  - `GPULayers:29`
+  - `offloaded 29/29 layers to GPU`
+- rocm-smi:
+  - `GPU use`: 最大 100%
+  - `Socket Power`: 最大 216W
+  - `VRAM`: 最大 31%
+
+### 14.4 モデル帯の暫定整理（MI25 16GB）
+
+- 軽量帯（~1B）: `tinyllama` は高速（約 61 tok/s 目安）で動作確認向け。
+- 中量帯（~7B）: `qwen2.5:7b` は VRAM 31% 前後、約 13 tok/s で実用候補。
+- 上位帯（~14B）: `deepseek-r1:14b` は VRAM 58% 前後、約 15 tok/s、ROCm/gfx900 で実運用可能。
+- 16GB 前提では、まず 7B〜14B を主運用帯として扱うのが妥当。
+
+### 14.5 この更新の主証跡
+
+- `vega_path_check_logs/model_generate_deepseek-r1_14b_20260321_012715.json`
+- `vega_path_check_logs/model_journal_deepseek-r1_14b_20260321_012715.log`
+- `vega_path_check_logs/model_rocm_smi_deepseek-r1_14b_20260321_012715.log`
+- `vega_path_check_logs/model_generate_qwen2.5_7b_20260321_020642.json`
+- `vega_path_check_logs/model_journal_qwen2.5_7b_20260321_020642.log`
+- `vega_path_check_logs/model_rocm_smi_qwen2.5_7b_20260321_020642.log`

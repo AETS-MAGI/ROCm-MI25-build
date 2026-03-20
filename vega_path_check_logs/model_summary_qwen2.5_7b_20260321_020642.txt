@@ -1,0 +1,72 @@
+model=qwen2.5:7b
+timestamp=20260321_020642
+GEN_LOG=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/model_generate_qwen2.5_7b_20260321_020642.json
+SMI_LOG=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/model_rocm_smi_qwen2.5_7b_20260321_020642.log
+J_LOG=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/model_journal_qwen2.5_7b_20260321_020642.log
+--- generate result ---
+qwen2.5:7b
+true
+stop
+5486928862
+3366751620
+78
+72
+
+--- journal key lines ---
+81: 3月 21 02:06:43 hbmx-mi25 ollama[358115]: time=2026-03-21T02:06:43.706+09:00 level=INFO source=sched.go:491 msg="gpu memory" id=GPU-021501917da22884 library=ROCm available="15.5 GiB" free="16.0 GiB" minimum="457.0 MiB" overhead="0 B"
+91: 3月 21 02:06:43 hbmx-mi25 ollama[358115]:   Device 0: Radeon Instinct MI25, gfx900:xnack- (0x900), VMM: no, Wave Size: 64, ID: GPU-021501917da22884
+96: 3月 21 02:06:43 hbmx-mi25 ollama[358115]: time=2026-03-21T02:06:43.812+09:00 level=INFO source=runner.go:895 msg=load request="{Operation:commit LoraPath:[] Parallel:1 BatchSize:512 FlashAttention:Auto KvSize:4096 KvCacheType: NumThreads:4 GPULayers:29[ID:GPU-021501917da22884 Layers:29(0..28)] MultiUserCache:false ProjectorPath: MainGPU:0 UseMmap:true}"
+101: 3月 21 02:06:43 hbmx-mi25 ollama[358115]: llama_model_load_from_file_impl: using device ROCm0 (Radeon Instinct MI25) (0000:03:00.0) - 16360 MiB free
+215: 3月 21 02:06:44 hbmx-mi25 ollama[358115]: load_tensors: offloaded 29/29 layers to GPU
+
+--- rocm-smi key lines ---
+5:====================================== Temperature =======================================
+6:GPU[0]		: Temperature (Sensor edge) (C): 24.0
+7:GPU[0]		: Temperature (Sensor junction) (C): 25.0
+8:GPU[0]		: Temperature (Sensor memory) (C): 25.0
+9:GPU[1]		: Temperature (Sensor edge) (C): 31.0
+19:GPU[0]		: Current Socket Graphics Package Power (W): 8.0
+23:GPU[0]		: GPU use (%): 0
+24:GPU[1]		: GPU use (%): 0
+27:GPU[0]		: GPU Memory Allocated (VRAM%): 0
+30:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+40:====================================== Temperature =======================================
+41:GPU[0]		: Temperature (Sensor edge) (C): 24.0
+42:GPU[0]		: Temperature (Sensor junction) (C): 26.0
+43:GPU[0]		: Temperature (Sensor memory) (C): 26.0
+44:GPU[1]		: Temperature (Sensor edge) (C): 30.0
+54:GPU[0]		: Current Socket Graphics Package Power (W): 8.0
+58:GPU[0]		: GPU use (%): 0
+59:GPU[1]		: GPU use (%): 0
+62:GPU[0]		: GPU Memory Allocated (VRAM%): 0
+65:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+75:====================================== Temperature =======================================
+76:GPU[0]		: Temperature (Sensor edge) (C): 25.0
+77:GPU[0]		: Temperature (Sensor junction) (C): 27.0
+78:GPU[0]		: Temperature (Sensor memory) (C): 26.0
+79:GPU[1]		: Temperature (Sensor edge) (C): 30.0
+89:GPU[0]		: Current Socket Graphics Package Power (W): 20.0
+93:GPU[0]		: GPU use (%): 0
+94:GPU[1]		: GPU use (%): 0
+97:GPU[0]		: GPU Memory Allocated (VRAM%): 26
+100:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+110:====================================== Temperature =======================================
+111:GPU[0]		: Temperature (Sensor edge) (C): 28.0
+112:GPU[0]		: Temperature (Sensor junction) (C): 45.0
+113:GPU[0]		: Temperature (Sensor memory) (C): 28.0
+114:GPU[1]		: Temperature (Sensor edge) (C): 31.0
+124:GPU[0]		: Current Socket Graphics Package Power (W): 197.0
+128:GPU[0]		: GPU use (%): 100
+129:GPU[1]		: GPU use (%): 0
+132:GPU[0]		: GPU Memory Allocated (VRAM%): 31
+135:GPU[1]		: GPU Memory Allocated (VRAM%): 1
+145:====================================== Temperature =======================================
+146:GPU[0]		: Temperature (Sensor edge) (C): 38.0
+147:GPU[0]		: Temperature (Sensor junction) (C): 62.0
+148:GPU[0]		: Temperature (Sensor memory) (C): 41.0
+149:GPU[1]		: Temperature (Sensor edge) (C): 31.0
+159:GPU[0]		: Current Socket Graphics Package Power (W): 216.0
+163:GPU[0]		: GPU use (%): 95
+164:GPU[1]		: GPU use (%): 0
+167:GPU[0]		: GPU Memory Allocated (VRAM%): 31
+170:GPU[1]		: GPU Memory Allocated (VRAM%): 1

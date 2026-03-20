@@ -43,18 +43,22 @@
 - [x] 生成ログ・journal・rocm-smi の3点セットを1ユニットとして扱う説明を書く
 
 ## 5. 残務: モデル評価
-- [ ] `deepseek-r1:14b` の出力テンプレート調整可否を確認する
-- [ ] reasoning 表示 (`Thinking...`) が Ollama テンプレート由来か確認する
-- [ ] 日本語の自然さ・技術説明品質を簡単に確認する
-- [ ] 実用候補モデルを 1〜2 個追加で試す
-- [ ] MI25 16GB で現実的に運用できそうなモデル帯を整理する
+- [x] `deepseek-r1:14b` の出力テンプレート調整可否を確認する
+- [x] reasoning 表示 (`Thinking...`) が Ollama テンプレート由来か確認する
+- [x] 日本語の自然さ・技術説明品質を簡単に確認する
+- [x] 実用候補モデルを 1〜2 個追加で試す
+- [x] MI25 16GB で現実的に運用できそうなモデル帯を整理する
+- [ ] `gpt-oss:20b` の DL 完了後、同一手順（generate/journal/rocm-smi）で検証する
 
 ## 6. 残務: 共有・公開
-- [ ] AMD Developer Community / Discord に続報を書く
-- [ ] 日本語 forum に「MI25 / gfx900 / ROCm 7.2 / Ollama bring-up まとめ」を立てる
-- [ ] forum に固定スレ候補を数本立てる
-- [ ] GitHub / forum / pages の導線を整理する
-- [ ] `ROCm-MI25-build` を companion repo としてどう見せるか決める
+- [x] AMD Developer Community / Discord に続報を書く（下書き作成）
+- [ ] AMD Developer Community / Discord に続報を実投稿する
+- [x] 日本語 forum に「MI25 / gfx900 / ROCm 7.2 / Ollama bring-up まとめ」を立てる（下書き作成）
+- [ ] 日本語 forum に「MI25 / gfx900 / ROCm 7.2 / Ollama bring-up まとめ」を実投稿する
+- [x] forum に固定スレ候補を数本立てる
+- [x] GitHub / forum / pages の導線を整理する（設計案作成）
+- [ ] GitHub / forum / pages の導線を公開リンクで確定する
+- [x] `ROCm-MI25-build` を companion repo としてどう見せるか決める（方針文書化）
 - [x] 必要なら英語版の短い成果要約を作る
 
 ## 7. 低優先だけどやるとよさそう
@@ -65,4 +69,4 @@
 
 ## 8. ひとこと結論
 - [x] 大きな山は越えた
-- [ ] 残りは「仕上げ・整理・共有」
+- [x] 残りは「仕上げ・整理・共有」
