@@ -22,6 +22,8 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - Source build helper for Ollama with gfx900 target configuration.
 - `build-rocblas-gfx900.sh`
   - rocBLAS/Tensile(gfx900) local build helper.
+- `mcp-rocm-ops/`
+  - Minimal MCP server for ROCm/Ollama operational tools in this workspace.
 - `ROCm-MI25-tips/MI25_environment-setup.md`
   - Current setup guide (validated path focused).
 - `ROCm-MI25-tips/MI25_environment-setup-worklog.md`
