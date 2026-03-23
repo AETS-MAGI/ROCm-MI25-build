@@ -1162,3 +1162,49 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
   baseline512 の dispatch 可視性・上位3shape頻度を動かさなかった。
 - 次の単独ノブ候補:
   - `num_predict` の拡張レンジ
+
+---
+
+## 29. baseline512 で `num_predict` 拡張レンジ単独スイープ（2026-03-24）[main-node confirmed]
+
+### 29.1 目的
+
+- baseline (`num_batch=512`) を固定し、`num_predict` を拡張して
+  長い decode で dispatch/shape 観測が変化するか確認。
+
+### 29.2 条件
+
+- `MODEL=gpt-oss:latest`
+- `NUM_CTX=8192`
+- `NUM_BATCH=512`
+- `KEEP_ALIVE=5m`
+- `NUM_PREDICT={64,128,256,512,1024}`
+- `TARGET_SHAPES=512x512x2880,2880x512x4096,4096x512x2880`
+
+実行:
+
+- `MODEL=gpt-oss:latest NUM_PREDICT_LIST=64,128,256,512,1024 NUM_CTX_LIST=8192 NUM_BATCH_LIST=512 TARGET_SHAPES='512x512x2880,2880x512x4096,4096x512x2880' KEEP_ALIVE_LIST=5m RUNS_PER_CASE=1 ./g4-gptoss-anchor-shape-sweep.sh`
+- summary:
+  - `vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_043140.txt`
+- comparison notes:
+  - `vega_path_check_logs/g4_baseline512_numpredict_sweep_compare_20260324_043625.txt`
+  - `vega_path_check_logs/g4_baseline512_numpredict_sweep_table_20260324_043625.tsv`
+
+### 29.3 結果
+
+- 5ケースすべて `direct_rocblas_or_tensile_dispatch=1`
+- 5ケースすべて `rocblas_trace_gemm_lines=1002`
+- 5ケースすべて shape ヒット数が同一:
+  - `512x512x2880=192`
+  - `2880x512x4096=96`
+  - `4096x512x2880=96`
+- `eval_count` は `num_predict` に応じて増加:
+  - `64->64`, `128->128`, `256->256`, `512->512`, `1024->797`
+  - `1024` は `done_reason=stop` で上限到達前に終了
+
+### 29.4 判定
+
+- 拡張レンジでも baseline512 の「観測された rocBLAS GEMM 署名」は変化しなかった。
+- 現在の trace では、観測署名が prefill 優位で固定化されている可能性が高い。
+- 次段候補:
+  - prefill / decode の観測窓を分離して再計測
