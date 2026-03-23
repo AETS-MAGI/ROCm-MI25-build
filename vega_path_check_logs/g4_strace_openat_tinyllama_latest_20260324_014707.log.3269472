@@ -1,0 +1,5 @@
+01:47:09.991888 openat(AT_FDCWD, "/sys/class/drm", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 8
+01:47:09.992841 openat(AT_FDCWD, "/sys/class/drm/card1/device/uevent", O_RDONLY) = 8
+01:47:09.992980 openat(AT_FDCWD, "/sys/class/drm/card1/device/mem_info_vram_total", O_RDONLY) = 11
+01:47:09.993088 openat(AT_FDCWD, "/sys/class/drm/card1/device/mem_info_vram_used", O_RDONLY) = 12
+01:47:09.994243 +++ killed by SIGKILL +++
