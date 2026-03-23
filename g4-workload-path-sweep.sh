@@ -16,6 +16,10 @@ TEMPERATURE="${TEMPERATURE:-0.1}"
 RUNS_PER_CASE="${RUNS_PER_CASE:-1}"
 HOST_STRACE="${HOST_STRACE:-127.0.0.1:11534}"
 HOST_ROCPROF="${HOST_ROCPROF:-127.0.0.1:11634}"
+NUM_CTX="${NUM_CTX:-}"
+NUM_BATCH="${NUM_BATCH:-}"
+NUM_THREAD="${NUM_THREAD:-}"
+KEEP_ALIVE="${KEEP_ALIVE:-}"
 
 # Keep defaults aligned with current observability baseline.
 ROCBLAS_LAYER="${ROCBLAS_LAYER:-9}"
@@ -128,6 +132,10 @@ for model in "${models[@]}"; do
           NUM_PREDICT="$predict" \
           PROMPT="$prompt" \
           TEMPERATURE="$TEMPERATURE" \
+          NUM_CTX="$NUM_CTX" \
+          NUM_BATCH="$NUM_BATCH" \
+          NUM_THREAD="$NUM_THREAD" \
+          KEEP_ALIVE="$KEEP_ALIVE" \
           RAW_LOG_DIR="$RAW_LOG_DIR" \
           STRACE_HOST="$HOST_STRACE" \
           ROCPROF_HOST="$HOST_ROCPROF" \
@@ -209,6 +217,10 @@ best_row="$(awk -F'\t' '
   echo "prompt_profile_list=$PROMPT_PROFILE_LIST"
   echo "runs_per_case=$RUNS_PER_CASE"
   echo "temperature=$TEMPERATURE"
+  echo "num_ctx=$NUM_CTX"
+  echo "num_batch=$NUM_BATCH"
+  echo "num_thread=$NUM_THREAD"
+  echo "keep_alive=$KEEP_ALIVE"
   echo "raw_log_dir=$RAW_LOG_DIR"
   echo "rocblas_layer=$ROCBLAS_LAYER"
   echo "rocblas_verbose_tensile_error=$ROCBLAS_VERBOSE_TENSILE_ERROR"

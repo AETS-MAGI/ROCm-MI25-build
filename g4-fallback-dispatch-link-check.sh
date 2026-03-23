@@ -13,6 +13,10 @@ MODEL="${MODEL:-${1:-tinyllama:latest}}"
 PROMPT="${PROMPT:-Generate a concise note about fallback and kernel dispatch on gfx900.}"
 NUM_PREDICT="${NUM_PREDICT:-160}"
 TEMPERATURE="${TEMPERATURE:-0.1}"
+NUM_CTX="${NUM_CTX:-}"
+NUM_BATCH="${NUM_BATCH:-}"
+NUM_THREAD="${NUM_THREAD:-}"
+KEEP_ALIVE="${KEEP_ALIVE:-}"
 
 LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
 RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
@@ -23,6 +27,9 @@ RUN_ROCPROF="${RUN_ROCPROF:-1}"
 
 STRACE_HOST="${STRACE_HOST:-127.0.0.1:11534}"
 ROCPROF_HOST="${ROCPROF_HOST:-127.0.0.1:11634}"
+ROCBLAS_LAYER="${ROCBLAS_LAYER:-9}"
+ROCBLAS_VERBOSE_TENSILE_ERROR="${ROCBLAS_VERBOSE_TENSILE_ERROR:-0}"
+ROCBLAS_VERBOSE_HIPBLASLT_ERROR="${ROCBLAS_VERBOSE_HIPBLASLT_ERROR:-0}"
 
 STRACE_SUMMARY_INPUT="${STRACE_SUMMARY:-}"
 ROCPROF_SUMMARY_INPUT="${ROCPROF_SUMMARY:-}"
@@ -71,9 +78,16 @@ run_strace_probe() {
     PROMPT="$PROMPT" \
     NUM_PREDICT="$NUM_PREDICT" \
     TEMPERATURE="$TEMPERATURE" \
+    NUM_CTX="$NUM_CTX" \
+    NUM_BATCH="$NUM_BATCH" \
+    NUM_THREAD="$NUM_THREAD" \
+    KEEP_ALIVE="$KEEP_ALIVE" \
     RAW_LOG_DIR="$RAW_LOG_DIR" \
     STRACE_TIMESTAMP=1 \
     PROBE_ROCBLAS_LOG=1 \
+    ROCBLAS_LAYER="$ROCBLAS_LAYER" \
+    ROCBLAS_VERBOSE_TENSILE_ERROR="$ROCBLAS_VERBOSE_TENSILE_ERROR" \
+    ROCBLAS_VERBOSE_HIPBLASLT_ERROR="$ROCBLAS_VERBOSE_HIPBLASLT_ERROR" \
     "$SCRIPT_DIR/g4-fallback-strace-check.sh"
   )"
 
@@ -104,6 +118,10 @@ run_rocprof_probe() {
     PROMPT="$PROMPT" \
     NUM_PREDICT="$NUM_PREDICT" \
     TEMPERATURE="$TEMPERATURE" \
+    NUM_CTX="$NUM_CTX" \
+    NUM_BATCH="$NUM_BATCH" \
+    NUM_THREAD="$NUM_THREAD" \
+    KEEP_ALIVE="$KEEP_ALIVE" \
     RAW_LOG_DIR="$RAW_LOG_DIR" \
     "$SCRIPT_DIR/g4-rocprofv3-dispatch-check.sh"
   )"
@@ -164,11 +182,18 @@ fi
   echo "prompt=$PROMPT"
   echo "num_predict=$NUM_PREDICT"
   echo "temperature=$TEMPERATURE"
+  echo "num_ctx=$NUM_CTX"
+  echo "num_batch=$NUM_BATCH"
+  echo "num_thread=$NUM_THREAD"
+  echo "keep_alive=$KEEP_ALIVE"
   echo "raw_log_dir=$RAW_LOG_DIR"
   echo "run_strace=$RUN_STRACE"
   echo "run_rocprof=$RUN_ROCPROF"
   echo "strace_host=$STRACE_HOST"
   echo "rocprof_host=$ROCPROF_HOST"
+  echo "rocblas_layer=$ROCBLAS_LAYER"
+  echo "rocblas_verbose_tensile_error=$ROCBLAS_VERBOSE_TENSILE_ERROR"
+  echo "rocblas_verbose_hipblaslt_error=$ROCBLAS_VERBOSE_HIPBLASLT_ERROR"
   echo "strace_summary=$STRACE_SUMMARY_PATH"
   echo "rocprof_summary=$ROCPROF_SUMMARY_PATH"
   echo

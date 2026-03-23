@@ -17,6 +17,10 @@ MODEL="${MODEL:-${1:-tinyllama:latest}}"
 PROMPT="${PROMPT:-Generate a short plain-text note about rocprof dispatch tracing on gfx900.}"
 NUM_PREDICT="${NUM_PREDICT:-64}"
 TEMPERATURE="${TEMPERATURE:-0.1}"
+NUM_CTX="${NUM_CTX:-}"
+NUM_BATCH="${NUM_BATCH:-}"
+NUM_THREAD="${NUM_THREAD:-}"
+KEEP_ALIVE="${KEEP_ALIVE:-}"
 
 HOST="${HOST:-127.0.0.1:11634}"
 BASE_URL="http://${HOST}"
@@ -111,7 +115,19 @@ if ! curl -sS --max-time "$CURL_MAX_TIME" "$BASE_URL/api/generate" \
       --arg prompt "$PROMPT" \
       --arg np "$NUM_PREDICT" \
       --arg temp "$TEMPERATURE" \
-      '{model:$model,prompt:$prompt,stream:false,options:{num_predict:($np|tonumber),temperature:($temp|tonumber)}}'
+      --arg num_ctx "$NUM_CTX" \
+      --arg num_batch "$NUM_BATCH" \
+      --arg num_thread "$NUM_THREAD" \
+      --arg keep_alive "$KEEP_ALIVE" \
+      '{model:$model,prompt:$prompt,stream:false}
+      + (if $keep_alive != "" then {keep_alive:$keep_alive} else {} end)
+      + {options:
+          ({num_predict:($np|tonumber),temperature:($temp|tonumber)}
+           + (if $num_ctx != "" then {num_ctx:($num_ctx|tonumber)} else {} end)
+           + (if $num_batch != "" then {num_batch:($num_batch|tonumber)} else {} end)
+           + (if $num_thread != "" then {num_thread:($num_thread|tonumber)} else {} end)
+          )
+        }'
   )" \
   > "$GEN_LOG"; then
   {
@@ -161,6 +177,12 @@ fi
   echo "timestamp=$TS"
   echo "host=$HOST"
   echo "model=$MODEL"
+  echo "num_predict=$NUM_PREDICT"
+  echo "temperature=$TEMPERATURE"
+  echo "num_ctx=$NUM_CTX"
+  echo "num_batch=$NUM_BATCH"
+  echo "num_thread=$NUM_THREAD"
+  echo "keep_alive=$KEEP_ALIVE"
   echo "RAW_LOG_DIR=$RAW_LOG_DIR"
   echo "OLLAMA_LIBRARY_PATH=$OLLAMA_LIBRARY_PATH"
   echo "ROCBLAS_TENSILE_LIBPATH=$ROCBLAS_TENSILE_LIBPATH"
