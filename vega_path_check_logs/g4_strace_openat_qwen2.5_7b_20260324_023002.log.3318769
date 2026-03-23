@@ -1,0 +1,161 @@
+02:30:02.987072 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/glibc-hwcaps/x86-64-v3/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.987453 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/glibc-hwcaps/x86-64-v2/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.987656 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.987839 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.987959 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.988132 openat(AT_FDCWD, "libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.988287 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+02:30:02.988649 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = 3
+02:30:02.989354 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.989524 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.989656 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.989781 openat(AT_FDCWD, "libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.989909 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+02:30:02.990523 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.990674 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.990800 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.990925 openat(AT_FDCWD, "libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.991053 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+02:30:02.991706 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.991852 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.991972 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.992090 openat(AT_FDCWD, "libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:02.992211 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+02:30:02.996745 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY|O_CLOEXEC) = 3
+02:30:02.997911 openat(AT_FDCWD, "/sys/kernel/mm/transparent_hugepage/hpage_pmd_size", O_RDONLY) = 3
+02:30:03.008939 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/ollama", O_RDONLY|O_CLOEXEC) = 3
+02:30:03.011456 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama", O_RDONLY|O_CLOEXEC) = 3
+02:30:03.012283 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/.", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+02:30:03.012548 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama", O_RDONLY|O_CLOEXEC) = 3
+02:30:03.012911 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.012996 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.013079 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.013183 openat(AT_FDCWD, "libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.013269 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+02:30:03.013467 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/glibc-hwcaps/x86-64-v3/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.013594 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/glibc-hwcaps/x86-64-v2/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.013709 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.013813 openat(AT_FDCWD, "/usr/lib/x86_64-linux-gnu/glibc-hwcaps/x86-64-v3/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.013934 openat(AT_FDCWD, "/usr/lib/x86_64-linux-gnu/glibc-hwcaps/x86-64-v2/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.014052 openat(AT_FDCWD, "/usr/lib/x86_64-linux-gnu/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.014174 openat(AT_FDCWD, "/lib/glibc-hwcaps/x86-64-v3/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.014299 openat(AT_FDCWD, "/lib/glibc-hwcaps/x86-64-v2/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.014420 openat(AT_FDCWD, "/lib/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.014555 openat(AT_FDCWD, "/usr/lib/glibc-hwcaps/x86-64-v3/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.014671 openat(AT_FDCWD, "/usr/lib/glibc-hwcaps/x86-64-v2/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.014789 openat(AT_FDCWD, "/usr/lib/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.015421 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src", O_RDONLY|O_CLOEXEC) = 3
+02:30:03.015874 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/.", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+02:30:03.016115 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-MI25-build/build/lib/ollama/.", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = -1 ENOENT (No such file or directory)
+02:30:03.019180 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:03.020902 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:03.021204 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:03.021491 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:03.021779 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:03.022136 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:03.024728 openat(AT_FDCWD, "/home/limonene/.ollama/server.json", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:30:03.025500 openat(AT_FDCWD, "/proc/sys/net/core/somaxconn", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.026154 openat(AT_FDCWD, "/etc/localtime", O_RDONLY) = 6
+02:30:03.026654 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.027927 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.028317 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.028705 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.029091 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-coder", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.029495 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-r1", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.029881 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/gpt-oss", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.030260 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/qwen2.5", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.030659 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/tinyllama", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.031078 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-coder/33b", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.031603 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-r1/14b", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.032058 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/gpt-oss/latest", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.032523 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/qwen2.5/7b", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.032880 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/tinyllama/latest", O_RDONLY|O_CLOEXEC) = 6
+02:30:03.033217 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:30:03.034715 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:03.035115 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:03.035437 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:03.035692 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:03.035900 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:03.072914 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:03.372011 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 7
+02:30:03.372340 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
+02:30:03.372658 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 9
+02:30:05.138436 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.139391 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.140256 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.141088 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-coder", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.141897 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-r1", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.142718 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/gpt-oss", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.143536 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/qwen2.5", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.144333 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/tinyllama", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.145232 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-coder/33b", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.146348 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-r1/14b", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.147429 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/gpt-oss/latest", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.148424 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/qwen2.5/7b", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.149343 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/tinyllama/latest", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.150197 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/qwen2.5/7b", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.150894 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.151434 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2f15b3218f0552c60647ce60ada83632d2c09755b16259b13e3e4458e9ae419d", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.152459 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-66b9ea09bd5b7099cbb4fc820f31b575c0366fa439b08245566692c6784e281e", O_RDONLY|O_CLOEXEC) = 9
+02:30:05.153359 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175", O_RDONLY|O_CLOEXEC) = 9
+02:30:05.154792 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e", O_RDONLY|O_CLOEXEC) = 9
+02:30:05.155661 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2bada8a7450677000f678be90653b85d364de7db25eb5ea54136ada5f3933730", O_RDONLY|O_CLOEXEC) = 8
+02:30:05.157239 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.157461 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.157599 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.157702 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.157798 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.157905 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.158001 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.158097 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.158189 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.158408 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.158676 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.158777 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.158890 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.158989 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.159073 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.159145 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.159226 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.159310 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.159392 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.159482 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.159588 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.159673 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.159757 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.159843 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.159915 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.159998 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.160081 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.160163 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.160249 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.160332 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.160404 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.160494 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.160643 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.161761 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.161925 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.162179 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.176503 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.186442 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.187657 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.188492 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.189302 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3318791, si_uid=1000, si_status=SIGKILL, si_utime=69 /* 0.69 s */, si_stime=78 /* 0.78 s */} ---
+02:30:05.192277 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.224260 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.353371 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.353879 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.401601 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.490610 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.490881 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.491350 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:06.804765 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:06.827194 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:06.850048 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:06.850420 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:06.919965 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:06.931510 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:09.116505 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:09.367576 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:13.707645 --- SIGTERM {si_signo=SIGTERM, si_code=SI_USER, si_pid=3318754, si_uid=1000} ---
+02:30:13.840446 +++ exited with 0 +++

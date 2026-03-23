@@ -104,7 +104,14 @@ if ! wait_for_api; then
 fi
 
 if ! curl -sS --max-time "$CURL_MAX_TIME" "$BASE_URL/api/generate" \
-  -d "{\"model\":\"${MODEL}\",\"prompt\":\"${PROMPT}\",\"stream\":false,\"options\":{\"num_predict\":${NUM_PREDICT},\"temperature\":${TEMPERATURE}}}" \
+  -d "$(
+    jq -nc \
+      --arg model "$MODEL" \
+      --arg prompt "$PROMPT" \
+      --arg np "$NUM_PREDICT" \
+      --arg temp "$TEMPERATURE" \
+      '{model:$model,prompt:$prompt,stream:false,options:{num_predict:($np|tonumber),temperature:($temp|tonumber)}}'
+  )" \
   > "$GEN_LOG"; then
   {
     echo "timestamp=$TS"

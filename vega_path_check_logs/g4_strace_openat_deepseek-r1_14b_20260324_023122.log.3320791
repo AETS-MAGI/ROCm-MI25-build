@@ -1,0 +1,5 @@
+02:31:23.439022 openat(AT_FDCWD, "/tmp/1969851158.bin", O_RDWR|O_CREAT|O_EXCL|O_CLOEXEC, 0600) = 7
+02:31:23.439691 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3320784, si_uid=1000} ---
+02:31:23.440276 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3320784, si_uid=1000} ---
+02:31:23.440877 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3320784, si_uid=1000} ---
+02:31:25.201236 +++ killed by SIGKILL +++

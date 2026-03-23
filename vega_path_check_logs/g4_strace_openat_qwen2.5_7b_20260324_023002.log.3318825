@@ -1,0 +1,11 @@
+02:30:05.157319 openat(AT_FDCWD, "/sys/devices/system/cpu/online", O_RDONLY|O_CLOEXEC) = 9
+02:30:05.188299 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.220697 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2bada8a7450677000f678be90653b85d364de7db25eb5ea54136ada5f3933730", O_RDONLY|O_CLOEXEC) = 6
+02:30:05.221130 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.221268 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.280159 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.280569 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.353388 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.353969 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:06.007468 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:13.820093 +++ exited with 0 +++

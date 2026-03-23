@@ -1,0 +1,18 @@
+02:29:47.046913 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.086343 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.089373 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.090674 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.096032 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816", O_RDONLY|O_CLOEXEC) = 6
+02:29:47.108599 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.123853 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 6
+02:29:47.124048 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
+02:29:47.124200 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 9
+02:29:47.461368 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3318135, si_uid=1000, si_status=SIGKILL, si_utime=5 /* 0.05 s */, si_stime=11 /* 0.11 s */} ---
+02:29:47.499943 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.541235 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.699568 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.699997 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.779739 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:48.073275 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:48.328211 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:52.466865 +++ exited with 0 +++

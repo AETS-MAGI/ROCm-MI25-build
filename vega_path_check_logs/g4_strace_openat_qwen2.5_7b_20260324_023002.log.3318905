@@ -1,0 +1,18 @@
+02:30:11.096038 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.122595 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.190041 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.235940 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.258348 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.280937 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.303360 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.327652 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.348863 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.372980 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.420659 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.466417 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.513037 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.535620 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.558128 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.579178 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:11.603642 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318863, si_uid=1000} ---
+02:30:13.709780 +++ killed by SIGTERM +++

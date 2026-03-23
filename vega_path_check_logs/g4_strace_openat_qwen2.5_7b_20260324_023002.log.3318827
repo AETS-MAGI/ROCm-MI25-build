@@ -1,0 +1,20 @@
+02:30:05.187961 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.353144 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.353566 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.948543 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.959174 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.977470 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:05.998092 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:06.006512 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:06.026557 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:06.030294 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2bada8a7450677000f678be90653b85d364de7db25eb5ea54136ada5f3933730", O_RDONLY|O_CLOEXEC) = 6
+02:30:06.046920 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:06.075849 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:06.861738 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:06.886016 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:06.954204 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:07.353797 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:07.857046 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:08.360985 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:10.492656 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318769, si_uid=1000} ---
+02:30:13.820027 +++ exited with 0 +++

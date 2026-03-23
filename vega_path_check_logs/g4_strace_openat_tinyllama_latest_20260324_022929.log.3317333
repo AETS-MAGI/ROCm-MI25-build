@@ -1,0 +1,13 @@
+02:29:29.917737 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 7
+02:29:29.918156 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
+02:29:29.918523 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 9
+02:29:31.810028 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3317364, si_uid=1000, si_status=SIGKILL, si_utime=75 /* 0.75 s */, si_stime=76 /* 0.76 s */} ---
+02:29:31.852723 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3317328, si_uid=1000} ---
+02:29:32.173021 openat(AT_FDCWD, "/proc/meminfo", O_RDONLY|O_CLOEXEC) = 8
+02:29:32.173327 openat(AT_FDCWD, "/sys/fs/cgroup/memory.max", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:29:32.173398 openat(AT_FDCWD, "/sys/fs/cgroup/memory.current", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:29:32.173456 openat(AT_FDCWD, "/proc/cpuinfo", O_RDONLY|O_CLOEXEC) = 8
+02:29:32.174325 openat(AT_FDCWD, "/sys/fs/cgroup/cpu.max", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:29:32.174454 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816", O_RDONLY|O_CLOEXEC) = 8
+02:29:32.175108 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3317328, si_uid=1000} ---
+02:29:36.006393 +++ exited with 0 +++

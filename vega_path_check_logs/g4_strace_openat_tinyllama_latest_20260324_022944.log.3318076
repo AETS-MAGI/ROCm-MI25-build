@@ -1,0 +1,15 @@
+02:29:44.881145 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.016736 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.017038 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.017428 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.029397 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816", O_RDONLY|O_CLOEXEC) = 6
+02:29:47.037279 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.044187 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.044819 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.045775 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.047094 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.047283 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.047731 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:47.449181 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3318071, si_uid=1000} ---
+02:29:52.465949 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3318149, si_uid=1000, si_status=SIGTERM, si_utime=261 /* 2.61 s */, si_stime=66 /* 0.66 s */} ---
+02:29:52.467089 +++ exited with 0 +++
