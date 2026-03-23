@@ -3,6 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+PRECHECK_LIB="$SCRIPT_DIR/lib/backend-preflight.sh"
 
 OLLAMA_BIN_DEFAULT="$PROJECT_ROOT/ollama-src/ollama"
 MODELS_DIR_DEFAULT="$PROJECT_ROOT/ollama-models"
@@ -53,6 +54,11 @@ require_file() {
     exit 1
   fi
 }
+
+if [[ -f "$PRECHECK_LIB" ]]; then
+  # shellcheck source=/dev/null
+  source "$PRECHECK_LIB"
+fi
 
 running_pid() {
   if [[ -f "$PID_FILE" ]]; then
@@ -105,7 +111,14 @@ start_server() {
 
   require_file "$OLLAMA_BIN" "ollama binary"
   require_file "$MODELS_DIR" "models directory"
-  require_file "$LIB_DIR/libggml-hip.so" "backend library"
+  if declare -F backend_preflight_check >/dev/null 2>&1; then
+    if ! backend_preflight_check "$LIB_DIR"; then
+      echo "backend preflight failed: $LIB_DIR" >&2
+      exit 1
+    fi
+  else
+    require_file "$LIB_DIR/libggml-hip.so" "backend library"
+  fi
 
   mkdir -p "$(dirname "$LOG_FILE")"
 

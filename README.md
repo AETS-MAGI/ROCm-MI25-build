@@ -10,6 +10,10 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
 - Track validated configuration paths separately from chronological investigation logs.
 - Keep experiment evidence and setup documentation close to the scripts used in practice.
 
+## Task tracking
+
+- Consolidated TODO: `../MI25_TODO/ROCm-MI25-build_TODO.md`
+
 ## Contents
 
 - `rocm-install.sh`
@@ -22,6 +26,8 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - Source build helper for Ollama with gfx900 target configuration.
 - `build-rocblas-gfx900.sh`
   - rocBLAS/Tensile(gfx900) local build helper.
+- `lib/backend-preflight.sh`
+  - Shared backend integrity preflight used by validation and manual-run scripts.
 - `mcp-rocm-ops/`
   - Minimal MCP server for ROCm/Ollama operational tools in this workspace.
 - `ROCm-MI25-tips/MI25_environment-setup.md`
@@ -103,6 +109,14 @@ The script prepares:
   - `Tensile-gfx900_aets-lab`
   - `ollama-gfx900_aets-lab`
 - This repository focuses on setup scripts, documentation, and evidence organization.
+
+## Public links
+
+- ROCm-MI25-build: https://github.com/AETS-MAGI/ROCm-MI25-build
+- ollama-gfx900_aets-lab: https://github.com/AETS-MAGI/ollama-gfx900_aets-lab
+- ollama-gfx900-starter-kit: https://github.com/AETS-MAGI/ollama-gfx900-starter-kit
+- vega-hbmx-pages: https://github.com/AETS-MAGI/vega-hbmx-pages
+- vega-hbmx-pages (GitHub Pages): https://aets-magi.github.io/vega-hbmx-pages/
 
 ## License
 

@@ -5,12 +5,22 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 
+WORKSPACE_ROOT="${WORKSPACE_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 MODEL="${MODEL:-${1:-tinyllama:latest}}"
 PROMPT="${PROMPT:-Generate a 180-word plain-text technical note about validating ROCm on gfx900.}"
 NUM_PREDICT="${NUM_PREDICT:-220}"
 TEMPERATURE="${TEMPERATURE:-0.1}"
 KEEP_ALIVE="${KEEP_ALIVE:-0s}"
 LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+BACKEND_DIR="${BACKEND_DIR:-$WORKSPACE_ROOT/ollama-src/build/lib/ollama}"
+
+PRECHECK_LIB="$SCRIPT_DIR/lib/backend-preflight.sh"
+if [[ ! -f "$PRECHECK_LIB" ]]; then
+  echo "ERROR: missing backend preflight helper: $PRECHECK_LIB" >&2
+  exit 1
+fi
+# shellcheck source=/dev/null
+source "$PRECHECK_LIB"
 
 mkdir -p "$LOG_DIR"
 
@@ -25,6 +35,11 @@ SUMMARY="$LOG_DIR/model_summary_${MODEL_TAG}_${TS}.txt"
 
 echo "model=$MODEL" | tee "$SUMMARY"
 echo "timestamp=$TS" | tee -a "$SUMMARY"
+
+if ! backend_preflight_check "$BACKEND_DIR" "$SUMMARY"; then
+  echo "ERROR: backend preflight failed" | tee -a "$SUMMARY"
+  exit 1
+fi
 
 curl -s http://127.0.0.1:11434/api/generate \
   -d "{\"model\":\"${MODEL}\",\"prompt\":\"${PROMPT}\",\"stream\":false,\"keep_alive\":\"${KEEP_ALIVE}\",\"options\":{\"num_predict\":${NUM_PREDICT},\"temperature\":${TEMPERATURE}}}" \

@@ -62,6 +62,20 @@ backend を再配置した後は、journal の `library=ROCm`, `compute=gfx900`,
 2. GitHub (`ROCm-MI25-build`): 再現手順とスクリプト
 3. forum: 経緯とQ&A（更新ログ）
 
+公開リンク（確定済み）:
+
+- ROCm-MI25-build: https://github.com/AETS-MAGI/ROCm-MI25-build
+- ollama-gfx900_aets-lab: https://github.com/AETS-MAGI/ollama-gfx900_aets-lab
+- ollama-gfx900-starter-kit: https://github.com/AETS-MAGI/ollama-gfx900-starter-kit
+- vega-hbmx-pages (repo): https://github.com/AETS-MAGI/vega-hbmx-pages
+- vega-hbmx-pages (site): https://aets-magi.github.io/vega-hbmx-pages/
+
+forum / community 投稿先（URL確定は実投稿後）:
+
+- AMD Developer Community thread URL: TBD
+- Discord thread/message URL: TBD
+- Japanese forum thread URL: TBD
+
 リンク配置の推奨:
 
 - pages には以下 4 リンクを固定配置
