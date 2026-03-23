@@ -2,22 +2,26 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-LOG_DIR="${1:-$SCRIPT_DIR/vega_path_check_logs}"
-GLOB="${2:-g4_strace_openat_tinyllama_latest_20260324_005717.log.*}"
-OUT="${3:-$LOG_DIR/fallback_type_summary_$(date +%Y%m%d_%H%M%S).txt}"
+WORKSPACE_ROOT="${WORKSPACE_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
+RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
+SUMMARY_DIR="${SUMMARY_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+INPUT_LOG_DIR="${1:-$RAW_LOG_DIR}"
+GLOB="${2:-g4_strace_openat_*.log.*}"
+OUT="${3:-$SUMMARY_DIR/fallback_type_summary_$(date +%Y%m%d_%H%M%S).txt}"
 
-if [[ ! -d "$LOG_DIR" ]]; then
-  echo "[error] log dir not found: $LOG_DIR" >&2
+if [[ ! -d "$INPUT_LOG_DIR" ]]; then
+  echo "[error] input log dir not found: $INPUT_LOG_DIR" >&2
   exit 1
 fi
+mkdir -p "$SUMMARY_DIR"
 
-mapfile -t FILES < <(cd "$LOG_DIR" && compgen -G "$GLOB" || true)
+mapfile -t FILES < <(cd "$INPUT_LOG_DIR" && compgen -G "$GLOB" || true)
 if [[ ${#FILES[@]} -eq 0 ]]; then
-  echo "[error] no files matched: $LOG_DIR/$GLOB" >&2
+  echo "[error] no files matched: $INPUT_LOG_DIR/$GLOB" >&2
   exit 1
 fi
 
-python3 - "$LOG_DIR" "$OUT" "${FILES[@]}" <<'PY'
+python3 - "$INPUT_LOG_DIR" "$OUT" "${FILES[@]}" <<'PY'
 import re
 import sys
 from collections import Counter

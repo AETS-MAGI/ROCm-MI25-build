@@ -1,5 +1,0 @@
-profile	direct	gemm_lines	shape_512x512x2880	shape_2880x512x4096	shape_4096x512x2880	summary
-short	1	1002	192	96	96	/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_042122.txt
-long	1	1002	192	96	96	/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_042207.txt
-code	1	1002	192	96	96	/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_042241.txt
-math	1	1002	192	96	96	/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_042314.txt

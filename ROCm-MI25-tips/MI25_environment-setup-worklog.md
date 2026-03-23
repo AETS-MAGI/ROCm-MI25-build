@@ -1208,3 +1208,66 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - 現在の trace では、観測署名が prefill 優位で固定化されている可能性が高い。
 - 次段候補:
   - prefill / decode の観測窓を分離して再計測
+
+---
+
+## 30. prefill/decode 分離（2-pass 差分法）を導入（2026-03-24）[main-node confirmed]
+
+### 30.1 目的
+
+- `baseline512` の固定署名が prefill 起因か、decode でも同署名が継続するかを切り分ける。
+- 同一条件で `prefill_proxy` と `full` を連続実行し、`full - prefill_proxy` を decode proxy として比較。
+
+### 30.2 実装
+
+- 追加スクリプト:
+  - `g4-prefill-decode-split.sh`
+- 実行方式:
+  - prefill proxy: `PREFILL_NUM_PREDICT=1`
+  - full: `FULL_NUM_PREDICT=128`
+  - そのほかは baseline 固定（`gpt-oss`, `num_ctx=8192`, `num_batch=512`, `ROCBLAS_LAYER=9`）
+- 生成物:
+  - summary: `vega_path_check_logs/g4_prefill_decode_split_gpt-oss_latest_20260324_045227.txt`
+  - shape compare: `vega_path_check_logs/g4_prefill_decode_shape_compare_gpt-oss_latest_20260324_045227.tsv`
+
+### 30.3 結果
+
+- prefill proxy / full ともに:
+  - `direct=1`
+  - `rocblas_trace_gemm_lines=1002`
+  - target shape hits `384`（`192/96/96`）
+- 差分:
+  - `decode_delta_eval_count=127`
+  - `decode_delta_gemm_lines=0`
+  - `decode_delta_target_shape_hits=0`
+  - `phase_split_status=prefill_dominant_signature`
+
+### 30.4 判定
+
+- 現行 anchor で見えている GEMM/shape 署名は prefill 優位である可能性が高い。
+- ここでの decode 判定は proxy（`full - prefill_proxy`）であり、厳密な token-level attribution ではない点は保持。
+
+---
+
+## 31. raw ログの既定出力先を `vega_path_check_logs_raw` に統一（2026-03-24）[main-node confirmed]
+
+### 31.1 実施内容
+
+- 既定を外部 raw ディレクトリへ統一:
+  - `model-gpu-path-check.sh`
+  - `tinyllama-gpu-path-check.sh`
+- 集計系の既定入力先を raw 側へ更新:
+  - `summarize-fallback-phases.sh`
+  - `summarize-fallback-types.sh`
+  - `summarize-rocblas-gemm-shapes.sh`
+- `README.md` / `README.ja.md` の log policy 記述を更新。
+
+### 31.2 目的
+
+- in-repo (`vega_path_check_logs`) への生ログ滞留を防止。
+- 事故要因（巨大差分・broken pipe・一覧過多）を継続的に抑える。
+
+### 31.3 補足
+
+- summary/TSV は引き続き `vega_path_check_logs` に保存。
+- raw/probe (`strace`, `rocprof`, `generate json`, `journal`, `rocm-smi`) は `vega_path_check_logs_raw` を既定とする。

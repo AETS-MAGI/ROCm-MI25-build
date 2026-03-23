@@ -9,13 +9,15 @@ set -euo pipefail
 #   summarize-fallback-phases.sh [glob-pattern]
 #
 # Example:
-#   summarize-fallback-phases.sh "vega_path_check_logs/g4_strace_openat_tinyllama_latest_20260324_014707.log.*"
+#   summarize-fallback-phases.sh "/home/$USER/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_tinyllama_latest_20260324_014707.log.*"
 #
 # Output columns (TSV):
 # file dat_count dat_first_line dat_last_line dat_first_time dat_last_time dat_span_s hsaco_count hsaco_first_line hsaco_last_line hsaco_first_time hsaco_last_time hsaco_span_s
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-DEFAULT_PATTERN="$SCRIPT_DIR/vega_path_check_logs/g4_strace_openat_*.log.*"
+WORKSPACE_ROOT="${WORKSPACE_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
+RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
+DEFAULT_PATTERN="$RAW_LOG_DIR/g4_strace_openat_*.log.*"
 PATTERN="${1:-$DEFAULT_PATTERN}"
 INCLUDE_ZERO="${INCLUDE_ZERO:-0}"
 

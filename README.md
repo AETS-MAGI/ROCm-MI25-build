@@ -58,7 +58,7 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - `${WORKSPACE_ROOT}/vega_path_check_logs_raw`
   - typical files: `strace` splits, serve stdout/stderr, generate JSON, rocprof probe trees
 
-Current g4 scripts write:
+Current probe scripts (g4 + legacy model/tinyllama checks) write:
 
 - summary outputs -> `LOG_DIR` (default: `ROCm-MI25-build/vega_path_check_logs`)
 - raw outputs -> `RAW_LOG_DIR` (default: `${WORKSPACE_ROOT}/vega_path_check_logs_raw`)

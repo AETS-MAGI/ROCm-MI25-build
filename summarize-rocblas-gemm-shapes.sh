@@ -3,10 +3,16 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+WORKSPACE_ROOT="${WORKSPACE_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
 
 TRACE_LOG="${TRACE_LOG:-${1:-}}"
 if [[ -z "$TRACE_LOG" ]]; then
+  TRACE_LOG="$(ls -1t "$RAW_LOG_DIR"/g4_rocblas_trace_*.log 2>/dev/null | head -n 1 || true)"
+fi
+if [[ -z "$TRACE_LOG" ]]; then
+  # Backward-compat fallback for older in-repo layouts.
   TRACE_LOG="$(ls -1t "$LOG_DIR"/g4_rocblas_trace_*.log 2>/dev/null | head -n 1 || true)"
 fi
 

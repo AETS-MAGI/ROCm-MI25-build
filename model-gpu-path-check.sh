@@ -12,6 +12,7 @@ NUM_PREDICT="${NUM_PREDICT:-220}"
 TEMPERATURE="${TEMPERATURE:-0.1}"
 KEEP_ALIVE="${KEEP_ALIVE:-0s}"
 LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
 BACKEND_DIR="${BACKEND_DIR:-$WORKSPACE_ROOT/ollama-src/build/lib/ollama}"
 
 PRECHECK_LIB="$SCRIPT_DIR/lib/backend-preflight.sh"
@@ -22,15 +23,15 @@ fi
 # shellcheck source=/dev/null
 source "$PRECHECK_LIB"
 
-mkdir -p "$LOG_DIR"
+mkdir -p "$LOG_DIR" "$RAW_LOG_DIR"
 
 TS="$(date +%Y%m%d_%H%M%S)"
 START_ISO="$(date -Iseconds)"
 MODEL_TAG="$(printf '%s' "$MODEL" | tr '/:' '__')"
 
-GEN_LOG="$LOG_DIR/model_generate_${MODEL_TAG}_${TS}.json"
-SMI_LOG="$LOG_DIR/model_rocm_smi_${MODEL_TAG}_${TS}.log"
-J_LOG="$LOG_DIR/model_journal_${MODEL_TAG}_${TS}.log"
+GEN_LOG="$RAW_LOG_DIR/model_generate_${MODEL_TAG}_${TS}.json"
+SMI_LOG="$RAW_LOG_DIR/model_rocm_smi_${MODEL_TAG}_${TS}.log"
+J_LOG="$RAW_LOG_DIR/model_journal_${MODEL_TAG}_${TS}.log"
 SUMMARY="$LOG_DIR/model_summary_${MODEL_TAG}_${TS}.txt"
 
 echo "model=$MODEL" | tee "$SUMMARY"
@@ -60,6 +61,7 @@ wait "$CURL_PID" || true
 journalctl --user -u ollama --since "$START_ISO" --no-pager > "$J_LOG"
 
 {
+  echo "RAW_LOG_DIR=$RAW_LOG_DIR"
   echo "GEN_LOG=$GEN_LOG"
   echo "SMI_LOG=$SMI_LOG"
   echo "J_LOG=$J_LOG"

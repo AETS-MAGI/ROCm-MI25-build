@@ -1,3 +1,0 @@
-file	dat_count	dat_first_line	dat_last_line	dat_first_time	dat_last_time	dat_span_s	hsaco_count	hsaco_first_line	hsaco_last_line	hsaco_first_time	hsaco_last_time	hsaco_span_s
-vega_path_check_logs/g4_strace_openat_tinyllama_latest_20260324_014707.log.3269468	0	0	0	n/a	n/a	n/a	54	910	1750	01:47:08.670021	01:47:09.972815	1.302794
-vega_path_check_logs/g4_strace_openat_tinyllama_latest_20260324_014707.log.3269480	54	30	83	01:47:08.892897	01:47:08.928083	0.035186	0	0	0	n/a	n/a	n/a

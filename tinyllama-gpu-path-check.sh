@@ -13,11 +13,12 @@ MODEL="${MODEL:-tinyllama:latest}"
 NUM_PREDICT="${NUM_PREDICT:-420}"
 TEMPERATURE="${TEMPERATURE:-0.1}"
 LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
 AB_ENABLE="${AB_ENABLE:-1}"
 BACKEND_DIR="${BACKEND_DIR:-$WORKSPACE_ROOT/ollama-src/build/lib/ollama}"
 CASE_FILTER="${CASE_FILTER:-}"
 
-mkdir -p "$LOG_DIR"
+mkdir -p "$LOG_DIR" "$RAW_LOG_DIR"
 
 PRECHECK_LIB="$SCRIPT_DIR/lib/backend-preflight.sh"
 if [[ ! -f "$PRECHECK_LIB" ]]; then
@@ -63,9 +64,9 @@ run_generate() {
   local inference_compute
   local gpulayers
 
-  gen_json="$LOG_DIR/tinyllama_generate_${case_name}_${phase}_${TS}.json"
-  smi_log="$LOG_DIR/tinyllama_rocm_smi_${case_name}_${phase}_${TS}.log"
-  j_log="$LOG_DIR/tinyllama_journal_${case_name}_${phase}_${TS}.log"
+  gen_json="$RAW_LOG_DIR/tinyllama_generate_${case_name}_${phase}_${TS}.json"
+  smi_log="$RAW_LOG_DIR/tinyllama_rocm_smi_${case_name}_${phase}_${TS}.log"
+  j_log="$RAW_LOG_DIR/tinyllama_journal_${case_name}_${phase}_${TS}.log"
 
   # Run request while sampling rocm-smi so each phase has a paired GPU trace.
   curl -s http://127.0.0.1:11434/api/generate \
@@ -205,7 +206,7 @@ run_case() {
     echo "[case ${case_name}] warm-up request" | tee -a "$SUMMARY"
     curl -s http://127.0.0.1:11434/api/generate \
       -d "{\"model\":\"${MODEL}\",\"prompt\":\"${PROMPT_WARMUP}\",\"stream\":false,\"keep_alive\":\"${keep_alive}\",\"options\":{\"num_predict\":16,\"temperature\":0.0}}" \
-      > "$LOG_DIR/tinyllama_warmup_${case_name}_${TS}.json" || true
+      > "$RAW_LOG_DIR/tinyllama_warmup_${case_name}_${TS}.json" || true
   fi
 
   phase_since="$case_since"
@@ -271,5 +272,12 @@ else
 fi
 
 print_index_summary
+
+{
+  echo
+  echo "raw_log_dir=$RAW_LOG_DIR"
+  echo "summary_log_dir=$LOG_DIR"
+  echo "index_tsv=$INDEX_TSV"
+} | tee -a "$SUMMARY"
 
 echo "summary=$SUMMARY"
