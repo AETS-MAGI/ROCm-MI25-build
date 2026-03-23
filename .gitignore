@@ -17,3 +17,9 @@ vega_path_check_logs/*_rocblas_profile_*
 !vega_path_check_logs/*.tsv
 !vega_path_check_logs/*.md
 !vega_path_check_logs/*.jsonl
+
+# housekeeping outputs from migration/compression helpers
+vega_path_check_logs/raw_log_migrate_manifest_*.tsv
+vega_path_check_logs/raw_log_migrate_summary_*.txt
+vega_path_check_logs/raw_log_compress_manifest_*.tsv
+vega_path_check_logs/raw_log_compress_summary_*.txt

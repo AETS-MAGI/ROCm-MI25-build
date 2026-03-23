@@ -32,7 +32,6 @@ find_args=(
   "$RAW_LOG_DIR"
   -type f
   ! -name '*.gz'
-  \( -name '*.log' -o -name '*.json' -o -name '*.csv' \)
 )
 if [[ "$OLDER_THAN_DAYS" =~ ^[0-9]+$ ]] && (( OLDER_THAN_DAYS > 0 )); then
   find_args+=( -mtime "+${OLDER_THAN_DAYS}" )
@@ -45,8 +44,14 @@ while IFS= read -r -d '' raw; do
 
   if [[ -f "$gz" ]]; then
     gz_bytes="$(stat -c%s "$gz" 2>/dev/null || echo 0)"
-    printf "%s\tskip_exists\t%s\t%s\t%s\t%s\n" "$TS" "$raw" "$raw_bytes" "$gz" "$gz_bytes" >> "$MANIFEST"
-    count_skipped_exists=$((count_skipped_exists + 1))
+    if [[ "$KEEP_ORIGINAL" == "0" ]]; then
+      rm -f "$raw"
+      printf "%s\treplaced_from_existing_gz\t%s\t%s\t%s\t%s\n" "$TS" "$raw" "$raw_bytes" "$gz" "$gz_bytes" >> "$MANIFEST"
+      count_replaced=$((count_replaced + 1))
+    else
+      printf "%s\tskip_exists\t%s\t%s\t%s\t%s\n" "$TS" "$raw" "$raw_bytes" "$gz" "$gz_bytes" >> "$MANIFEST"
+      count_skipped_exists=$((count_skipped_exists + 1))
+    fi
     continue
   fi
 

@@ -860,3 +860,19 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 
 - `.gitignore` は「新規追跡の抑止」であり、既存履歴の縮小ではない。
 - 履歴最適化（`filter-repo` 等）は、別フェーズ・別合意で実施する。
+
+### 23.4 初回移行・圧縮実行（このノード）
+
+- raw退避先:
+  - `/home/$USER/ROCm-project/vega_path_check_logs_raw`
+- 移行（copy, 非破壊）:
+  - `migrate-raw-logs.sh`
+  - `total_candidates=3738`, `done=3738`, `failed=0`
+  - summary: `vega_path_check_logs/raw_log_migrate_summary_20260324_030759.txt`
+- 圧縮（replace）:
+  - `compress-raw-logs.sh` with `KEEP_ORIGINAL=0`
+  - `total_candidates=3825`, `compressed=3756`, `replaced=3756`, `failed=0`
+  - 追圧縮置換: `total_candidates=69`, `replaced=69`
+  - summary:
+    - `vega_path_check_logs/raw_log_compress_summary_20260324_030842.txt`
+    - `vega_path_check_logs/raw_log_compress_summary_20260324_031003.txt`
