@@ -876,3 +876,103 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
   - summary:
     - `vega_path_check_logs/raw_log_compress_summary_20260324_030842.txt`
     - `vega_path_check_logs/raw_log_compress_summary_20260324_031003.txt`
+
+---
+
+## 24. gpt-oss アンカースイープ導入（2026-03-24）[main-node confirmed]
+
+### 24.1 目的
+
+- 方針を `gpt-oss:latest + ROCBLAS_LAYER=9` の観測アンカーへ固定し、
+  runtime ノブを 1 つずつ振って direct dispatch の変化を比較可能にする。
+- 上位 shape（`512x512x2880`, `4096x512x64`, `64x512x4096`,
+  `2880x512x4096`, `4096x512x2880`）をケースごとに定量化する。
+
+### 24.2 実装（スクリプト）
+
+- 新規:
+  - `g4-gptoss-anchor-shape-sweep.sh`
+    - `g4-fallback-dispatch-link-check.sh` をケース行列で実行
+    - target shape のヒット数を `rocBLAS` trace から集計
+    - `*.tsv` と `*.txt` の集約 summary を出力
+- 既存更新:
+  - `g4-fallback-strace-check.sh`
+  - `g4-rocprofv3-dispatch-check.sh`
+  - `g4-fallback-dispatch-link-check.sh`
+  - `g4-rocblas-layer-sweep.sh`
+  - `g4-workload-path-sweep.sh`
+- 追加した共通 runtime ノブ:
+  - `NUM_CTX`
+  - `NUM_BATCH`
+  - `NUM_THREAD`
+  - `KEEP_ALIVE`
+
+### 24.3 検証（最小1ケース）
+
+- コマンド:
+  - `MODEL=tinyllama:latest NUM_PREDICT_LIST=16 NUM_CTX_LIST=2048 NUM_BATCH_LIST=256 KEEP_ALIVE_LIST=2m RUNS_PER_CASE=1 ./g4-gptoss-anchor-shape-sweep.sh`
+- summary:
+  - `vega_path_check_logs/g4_gptoss_anchor_shape_sweep_tinyllama_latest_20260324_033423.txt`
+- 結果:
+  - `ok_cases=1`, `failed_cases=0`
+  - `fallback_confirmed=1`, `dispatch_confirmed=1`
+  - `direct_hits=0`（tinyllama は回帰確認用で想定どおり）
+
+### 24.4 次段
+
+- 本番観測条件:
+  - `MODEL=gpt-oss:latest`
+  - `ROCBLAS_LAYER=9`
+  - target shape 固定
+- 次に確認する指標:
+  - `direct_rocblas_or_tensile_dispatch`
+  - `rocblas_trace_gemm_lines`
+  - target shape ごとのヒット総量（ケース比較）
+
+### 24.5 gpt-oss アンカー1ケース実行（本番条件）
+
+- コマンド:
+  - `MODEL=gpt-oss:latest NUM_PREDICT_LIST=128 NUM_CTX_LIST=8192 NUM_BATCH_LIST=512 KEEP_ALIVE_LIST=5m RUNS_PER_CASE=1 ./g4-gptoss-anchor-shape-sweep.sh`
+- summary:
+  - `vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_033556.txt`
+- 結果（要約）:
+  - `ok_cases=1`, `direct_hits=1`
+  - `direct_rocblas_or_tensile_dispatch=1`
+  - `rocblas_trace_gemm_lines=1002`
+  - `kernel_tensile_like_rows=167`
+  - target shape hits:
+    - `512x512x2880 = 192`
+    - `2880x512x4096 = 96`
+    - `4096x512x2880 = 96`
+    - `4096x512x64 = 0`
+    - `64x512x4096 = 0`
+- link summary:
+  - `vega_path_check_logs/g4_link_summary_gpt-oss_latest_20260324_033556.txt`
+
+### 24.6 `num_batch` 2ケース比較（512 vs 1024）
+
+- コマンド:
+  - `MODEL=gpt-oss:latest NUM_PREDICT_LIST=128 NUM_CTX_LIST=8192 NUM_BATCH_LIST=512,1024 KEEP_ALIVE_LIST=5m RUNS_PER_CASE=1 ./g4-gptoss-anchor-shape-sweep.sh`
+- summary:
+  - `vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_033756.txt`
+- 結果（要約）:
+  - `ok_cases=2`, `direct_hits=2`
+  - case-1 (`num_batch=512`):
+    - `rocblas_trace_gemm_lines=1002`
+    - target shape hits total `384`
+  - case-2 (`num_batch=1024`):
+    - `rocblas_trace_gemm_lines=1336`
+    - 固定 target shape hits total `0`
+- 追加 shape 解析（case-2 trace）:
+  - `vega_path_check_logs/rocblas_gemm_shapes_g4_rocblas_trace_gpt-oss_latest_20260324_033849_20260324_034006.txt`
+  - 上位 shape が `*x1024x*` へ移動:
+    - `512x1024x2880`
+    - `2880x1024x4096`
+    - `4096x1024x2880`
+
+解釈:
+
+- `num_batch` 変更で direct dispatch は維持される一方、
+  観測される主要 shape は明確に移動する。
+- 次段では `target_shapes` を `num_batch` 条件ごとに分けるか、
+  `N` 次元を可変扱いにした集計へ拡張する。
