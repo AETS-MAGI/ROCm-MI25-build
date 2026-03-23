@@ -680,3 +680,20 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - `vega_path_check_logs/g4_link_summary_tinyllama_latest_20260324_020803.txt`
 - `vega_path_check_logs/g4_summary_tinyllama_latest_20260324_020804.txt`
 - `vega_path_check_logs/rocprofv3_summary_tinyllama_latest_20260324_020811.txt`
+
+### 20.6 追試（qwen2.5:7b）
+
+- 統合 summary:
+  - `vega_path_check_logs/g4_link_summary_qwen2.5_7b_20260324_021010.txt`
+- 主要値:
+  - `fallback_confirmed=1`
+  - `dispatch_confirmed=1`
+  - `direct_rocblas_or_tensile_dispatch=0`
+  - `rocblas_trace_gemm_lines=0`
+  - `kernel_tensile_like_rows=0`
+  - `link_status=indirect_link_only_same_scenario`
+
+追試判定:
+
+- tinyllama と同じ判定に収束したため、現時点の未達はモデル個別の偶然より
+  「rocBLAS/Tensile 名 dispatch を捕まえる観測粒度」の課題と判断する。
