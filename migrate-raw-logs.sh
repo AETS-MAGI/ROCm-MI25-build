@@ -9,8 +9,10 @@ SRC_DIR="${SRC_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
 DST_DIR="${DST_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
 SUMMARY_DIR="${SUMMARY_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
 
-# copy | move
-MODE="${MODE:-copy}"
+# copy | move (default move because this script is for evacuation)
+MODE="${MODE:-move}"
+# 1: when MODE=move and dst exists with identical content, remove src.
+PRUNE_DUPLICATES_ON_MOVE="${PRUNE_DUPLICATES_ON_MOVE:-1}"
 
 mkdir -p "$SRC_DIR" "$DST_DIR" "$SUMMARY_DIR"
 
@@ -23,14 +25,32 @@ printf "timestamp\tstatus\tsrc_path\tdst_path\n" > "$MANIFEST"
 count_total=0
 count_done=0
 count_skipped=0
+count_pruned=0
 count_failed=0
 
 is_raw_file() {
   local name="$1"
   case "$name" in
-    *.log|*.log.*|*.json|*.csv) return 0 ;;
+    *.log|*.log.*|*.json|*.json.*|*.csv|*.csv.*) return 0 ;;
     g4_strace_openat_*|g4_rocblas_trace_*|g4_rocblas_bench_*|g4_rocblas_profile_*|g4_serve_stdout_*|g4_serve_stderr_*|g4_generate_*|rocprofv3_serve_stdout_*|rocprofv3_serve_stderr_*|rocprofv3_generate_*) return 0 ;;
   esac
+  return 1
+}
+
+prune_if_duplicate() {
+  local src="$1"
+  local dst="$2"
+
+  if [[ "$MODE" != "move" || "$PRUNE_DUPLICATES_ON_MOVE" != "1" ]]; then
+    return 1
+  fi
+  if [[ ! -f "$src" || ! -f "$dst" ]]; then
+    return 1
+  fi
+  if cmp -s "$src" "$dst"; then
+    rm -f "$src"
+    return 0
+  fi
   return 1
 }
 
@@ -42,8 +62,13 @@ while IFS= read -r -d '' src; do
   count_total=$((count_total + 1))
   dst="$DST_DIR/$base"
   if [[ -e "$dst" ]]; then
-    printf "%s\tskip_exists\t%s\t%s\n" "$TS" "$src" "$dst" >> "$MANIFEST"
-    count_skipped=$((count_skipped + 1))
+    if prune_if_duplicate "$src" "$dst"; then
+      printf "%s\tpruned_dup\t%s\t%s\n" "$TS" "$src" "$dst" >> "$MANIFEST"
+      count_pruned=$((count_pruned + 1))
+    else
+      printf "%s\tskip_exists\t%s\t%s\n" "$TS" "$src" "$dst" >> "$MANIFEST"
+      count_skipped=$((count_skipped + 1))
+    fi
     continue
   fi
 
@@ -73,8 +98,19 @@ while IFS= read -r -d '' src_dir; do
   count_total=$((count_total + 1))
 
   if [[ -e "$dst_dir" ]]; then
-    printf "%s\tskip_exists\t%s\t%s\n" "$TS" "$src_dir" "$dst_dir" >> "$MANIFEST"
-    count_skipped=$((count_skipped + 1))
+    if [[ "$MODE" == "move" ]]; then
+      # If dst dir already exists, merge src into dst then remove src.
+      if cp -au "$src_dir"/. "$dst_dir"/ && rm -rf "$src_dir"; then
+        printf "%s\tmerged_pruned_dir\t%s\t%s\n" "$TS" "$src_dir" "$dst_dir" >> "$MANIFEST"
+        count_pruned=$((count_pruned + 1))
+      else
+        printf "%s\tskip_exists\t%s\t%s\n" "$TS" "$src_dir" "$dst_dir" >> "$MANIFEST"
+        count_skipped=$((count_skipped + 1))
+      fi
+    else
+      printf "%s\tskip_exists\t%s\t%s\n" "$TS" "$src_dir" "$dst_dir" >> "$MANIFEST"
+      count_skipped=$((count_skipped + 1))
+    fi
     continue
   fi
 
@@ -107,6 +143,7 @@ done < <(find "$SRC_DIR" -maxdepth 1 -type d -name 'rocprofv3_probe_*' -print0)
   echo "--- counts ---"
   echo "total_candidates=$count_total"
   echo "done=$count_done"
+  echo "pruned_duplicates_or_merged=$count_pruned"
   echo "skipped_exists=$count_skipped"
   echo "failed=$count_failed"
 } > "$SUMMARY"

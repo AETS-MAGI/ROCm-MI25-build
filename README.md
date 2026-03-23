@@ -66,8 +66,11 @@ Current g4 scripts write:
 Helper commands:
 
 ```bash
-# one-time migration from in-repo log dir (default: copy, non-destructive)
+# one-time migration from in-repo log dir (default: move)
 ./migrate-raw-logs.sh
+
+# optional: keep originals and copy only
+MODE=copy ./migrate-raw-logs.sh
 
 # compress external raw logs (default: keep originals)
 ./compress-raw-logs.sh
@@ -80,6 +83,7 @@ Notes:
 
 - `.gitignore` is set to avoid tracking raw/probe artifacts under `vega_path_check_logs/`.
 - Historical tracked logs already in git history are not removed by `.gitignore` alone.
+- In `MODE=move`, if destination already has identical files, source duplicates are pruned.
 
 ## Expected directory layout
 

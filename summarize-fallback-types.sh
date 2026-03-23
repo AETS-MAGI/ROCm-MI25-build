@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-LOG_DIR="${1:-vega_path_check_logs}"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+LOG_DIR="${1:-$SCRIPT_DIR/vega_path_check_logs}"
 GLOB="${2:-g4_strace_openat_tinyllama_latest_20260324_005717.log.*}"
 OUT="${3:-$LOG_DIR/fallback_type_summary_$(date +%Y%m%d_%H%M%S).txt}"
 
@@ -10,7 +11,7 @@ if [[ ! -d "$LOG_DIR" ]]; then
   exit 1
 fi
 
-mapfile -t FILES < <(cd "$LOG_DIR" && ls -1 $GLOB 2>/dev/null || true)
+mapfile -t FILES < <(cd "$LOG_DIR" && compgen -G "$GLOB" || true)
 if [[ ${#FILES[@]} -eq 0 ]]; then
   echo "[error] no files matched: $LOG_DIR/$GLOB" >&2
   exit 1
