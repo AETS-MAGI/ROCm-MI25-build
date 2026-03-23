@@ -26,6 +26,8 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - Source build helper for Ollama with gfx900 target configuration.
 - `build-rocblas-gfx900.sh`
   - rocBLAS/Tensile(gfx900) local build helper.
+- `commit-no-raw.sh`
+  - Commit helper that excludes staged raw/probe logs (`vega_path_check_logs/`, `.rocprofv3/`).
 - `lib/backend-preflight.sh`
   - Shared backend integrity preflight used by validation and manual-run scripts.
 - `mcp-rocm-ops/`

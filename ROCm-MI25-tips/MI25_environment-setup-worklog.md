@@ -1032,3 +1032,133 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - 観測アンカーは `gpt-oss + layer=9 + ctx=8192 + batch=512` で固定してよい。
 - `num_batch=1024` は direct dispatch を維持しつつ shape family を移動させる副系統として有効。
 - 次段では baseline を既定比較軸、side を shape-shift 感度軸として併用する。
+
+---
+
+## 26. baseline512 で `num_ctx` 単独スイープ（2026-03-24）[main-node confirmed]
+
+### 26.1 目的
+
+- baseline (`num_batch=512`) を固定し、`num_ctx` だけを動かして
+  上位3shapeヒット数と `rocblas_trace_gemm_lines` の感度を確認。
+
+### 26.2 条件
+
+- `MODEL=gpt-oss:latest`
+- `NUM_PREDICT=128`
+- `NUM_BATCH=512`
+- `KEEP_ALIVE=5m`
+- `NUM_CTX={4096,6144,8192,12288}`
+- `TARGET_SHAPES=512x512x2880,2880x512x4096,4096x512x2880`
+
+実行:
+
+- `MODEL=gpt-oss:latest NUM_PREDICT_LIST=128 NUM_CTX_LIST=4096,6144,8192,12288 NUM_BATCH_LIST=512 TARGET_SHAPES='512x512x2880,2880x512x4096,4096x512x2880' KEEP_ALIVE_LIST=5m RUNS_PER_CASE=1 ./g4-gptoss-anchor-shape-sweep.sh`
+- summary:
+  - `vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_040223.txt`
+- comparison note:
+  - `vega_path_check_logs/g4_baseline512_numctx_sweep_compare_20260324_040508.txt`
+
+### 26.3 結果
+
+- 4ケースすべて `direct_rocblas_or_tensile_dispatch=1`
+- 4ケースすべて `rocblas_trace_gemm_lines=1002`
+- 4ケースすべて shape ヒット数が同一:
+  - `512x512x2880=192`
+  - `2880x512x4096=96`
+  - `4096x512x2880=96`
+
+### 26.4 判定
+
+- この範囲の `num_ctx` 変更は、
+  baseline512 の dispatch 可視性・上位3shape頻度に影響を与えなかった。
+- 次の単独ノブ候補:
+  - `num_thread`
+  - `keep_alive`
+  - prompt profile
+  - `num_predict`
+
+---
+
+## 27. baseline512 で `num_thread` 単独スイープ（2026-03-24）[main-node confirmed]
+
+### 27.1 目的
+
+- baseline (`num_batch=512`) を固定し、`num_thread` だけを動かして
+  上位3shapeヒット数と `rocblas_trace_gemm_lines` の感度を確認。
+
+### 27.2 条件
+
+- `MODEL=gpt-oss:latest`
+- `NUM_PREDICT=128`
+- `NUM_CTX=8192`
+- `NUM_BATCH=512`
+- `KEEP_ALIVE=5m`
+- `NUM_THREAD={2,4,6,8}`
+- `TARGET_SHAPES=512x512x2880,2880x512x4096,4096x512x2880`
+
+実行:
+
+- `MODEL=gpt-oss:latest NUM_PREDICT_LIST=128 NUM_CTX_LIST=8192 NUM_BATCH_LIST=512 NUM_THREAD_LIST=2,4,6,8 TARGET_SHAPES='512x512x2880,2880x512x4096,4096x512x2880' KEEP_ALIVE_LIST=5m RUNS_PER_CASE=1 ./g4-gptoss-anchor-shape-sweep.sh`
+- summary:
+  - `vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_040941.txt`
+- comparison note:
+  - `vega_path_check_logs/g4_baseline512_numthread_sweep_compare_20260324_041230.txt`
+
+### 27.3 結果
+
+- 4ケースすべて `direct_rocblas_or_tensile_dispatch=1`
+- 4ケースすべて `rocblas_trace_gemm_lines=1002`
+- 4ケースすべて shape ヒット数が同一:
+  - `512x512x2880=192`
+  - `2880x512x4096=96`
+  - `4096x512x2880=96`
+
+### 27.4 判定
+
+- この範囲の `num_thread` 変更は、
+  baseline512 の dispatch 可視性・上位3shape頻度に影響を与えなかった。
+- 次の単独ノブ候補:
+  - prompt profile
+  - `num_predict`（より広いレンジ）
+
+---
+
+## 28. baseline512 で prompt profile 単独スイープ（2026-03-24）[main-node confirmed]
+
+### 28.1 目的
+
+- baseline (`num_batch=512`) を固定し、prompt profile だけを動かして
+  dispatch 可視性・上位3shapeヒット数の感度を確認。
+
+### 28.2 条件
+
+- `MODEL=gpt-oss:latest`
+- `NUM_PREDICT=128`
+- `NUM_CTX=8192`
+- `NUM_BATCH=512`
+- `KEEP_ALIVE=5m`
+- `TARGET_SHAPES=512x512x2880,2880x512x4096,4096x512x2880`
+- profiles: `short`, `long`, `code`, `math`
+
+実行:
+
+- 4 profile を順次実行（baseline 固定）
+  - map: `vega_path_check_logs/g4_baseline512_prompt_profile_map_20260324_042122.tsv`
+  - compare: `vega_path_check_logs/g4_baseline512_prompt_profile_sweep_compare_20260324_042420.txt`
+
+### 28.3 結果
+
+- 4 profile すべてで `direct_rocblas_or_tensile_dispatch=1`
+- 4 profile すべてで `rocblas_trace_gemm_lines=1002`
+- 4 profile すべてで shape ヒット数が同一:
+  - `512x512x2880=192`
+  - `2880x512x4096=96`
+  - `4096x512x2880=96`
+
+### 28.4 判定
+
+- この profile 範囲では prompt 変更は
+  baseline512 の dispatch 可視性・上位3shape頻度を動かさなかった。
+- 次の単独ノブ候補:
+  - `num_predict` の拡張レンジ
