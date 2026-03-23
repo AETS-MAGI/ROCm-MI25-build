@@ -141,3 +141,5 @@
 02:17:50.990095 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301420, si_uid=1000} ---
 02:17:52.342686 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301420, si_uid=1000} ---
 02:17:53.097511 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301420, si_uid=1000} ---
+02:17:57.833904 --- SIGTERM {si_signo=SIGTERM, si_code=SI_USER, si_pid=3301405, si_uid=1000} ---
+02:17:57.976915 +++ exited with 0 +++

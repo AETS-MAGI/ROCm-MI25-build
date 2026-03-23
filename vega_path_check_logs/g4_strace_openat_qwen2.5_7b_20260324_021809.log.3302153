@@ -1,0 +1,22 @@
+02:18:10.103265 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 7
+02:18:10.103495 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
+02:18:10.103704 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 9
+02:18:11.821609 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3302175, si_uid=1000, si_status=SIGKILL, si_utime=68 /* 0.68 s */, si_stime=68 /* 0.68 s */} ---
+02:18:11.823833 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:11.827860 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:11.901732 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:11.905303 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:11.960232 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:11.994076 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:11.994917 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:11.996494 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:11.999959 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:12.000231 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:12.000683 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:12.018398 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:12.038928 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:12.053420 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2bada8a7450677000f678be90653b85d364de7db25eb5ea54136ada5f3933730", O_RDONLY|O_CLOEXEC) = 6
+02:18:12.054758 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:12.058408 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:12.069546 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
+02:18:20.567981 +++ exited with 0 +++

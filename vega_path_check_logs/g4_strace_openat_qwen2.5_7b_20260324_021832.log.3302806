@@ -1,0 +1,22 @@
+02:18:32.406640 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:32.406937 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:32.459164 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:34.891859 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:34.892581 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:34.892732 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:34.892857 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:34.892979 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:34.893103 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:34.893220 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:34.925094 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:34.928217 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:34.968830 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:34.969526 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:35.207022 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:35.207267 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:35.659959 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:35.670703 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:35.686100 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:35.711097 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:35.741680 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302799, si_uid=1000} ---
+02:18:43.538567 +++ exited with 0 +++

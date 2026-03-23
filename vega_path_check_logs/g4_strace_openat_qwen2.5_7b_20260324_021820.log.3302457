@@ -1,0 +1,4 @@
+02:18:21.043582 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302454, si_uid=1000} ---
+02:18:31.794559 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302454, si_uid=1000} ---
+02:18:31.795864 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302454, si_uid=1000} ---
+02:18:31.919663 +++ exited with 0 +++
