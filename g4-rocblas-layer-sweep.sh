@@ -125,8 +125,34 @@ for layer in "${layers[@]}"; do
     "$summary_path" "$trace_path" "$bench_path" "$profile_path" >> "$TSV"
 done
 
-best_layer="$(awk -F'\t' 'NR>1 { score=$6*100000 + $8*1000 + $7*100 + $4; if(score>best){best=score;row=$0;layer=$3} } END{print layer}' "$TSV")"
-best_row="$(awk -F'\t' 'NR>1 { score=$6*100000 + $8*1000 + $7*100 + $4; if(score>best){best=score;row=$0} } END{print row}' "$TSV")"
+readarray -t best_calc < <(
+  awk -F'\t' '
+    NR>1 {
+      layer=$3+0
+      score=$6*100000 + $8*1000 + $7*100 + $4
+      internal=and(layer, 8) ? 1 : 0
+      if(!seen
+         || score > best_score
+         || (score == best_score && internal > best_internal)
+         || (score == best_score && internal == best_internal && layer < best_layer)) {
+        seen=1
+        best_score=score
+        best_layer=layer
+        best_internal=internal
+        best_row=$0
+      }
+    }
+    END {
+      if(seen) {
+        print best_layer
+        print best_row
+        print best_score
+      }
+    }' "$TSV"
+)
+best_layer="${best_calc[0]:-}"
+best_row="${best_calc[1]:-}"
+best_score="${best_calc[2]:-0}"
 
 {
   echo "timestamp=$TS"
@@ -148,6 +174,7 @@ best_row="$(awk -F'\t' 'NR>1 { score=$6*100000 + $8*1000 + $7*100 + $4; if(score
   echo
   echo "--- heuristic best layer (visibility score) ---"
   echo "best_layer=${best_layer:-none}"
+  echo "best_score=${best_score}"
   if [[ -n "$best_row" ]]; then
     echo "best_row=$best_row"
   fi

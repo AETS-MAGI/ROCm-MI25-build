@@ -1,0 +1,9 @@
+02:19:00.444170 openat(AT_FDCWD, "/sys/devices/system/cpu/online", O_RDONLY|O_CLOEXEC) = 7
+02:19:00.462864 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3303463, si_uid=1000} ---
+02:19:02.291271 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3303463, si_uid=1000} ---
+02:19:02.836225 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3303463, si_uid=1000} ---
+02:19:02.839797 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3303463, si_uid=1000} ---
+02:19:02.874246 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3303463, si_uid=1000} ---
+02:19:03.049738 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3303463, si_uid=1000} ---
+02:19:03.809599 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3303463, si_uid=1000} ---
+02:19:06.859056 +++ exited with 0 +++

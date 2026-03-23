@@ -24,7 +24,9 @@ OLLAMA_LIBRARY_PATH="${OLLAMA_LIBRARY_PATH:-$WORKSPACE_ROOT/ollama-src/build-gfx
 ROCBLAS_TENSILE_LIBPATH="${ROCBLAS_TENSILE_LIBPATH:-$WORKSPACE_ROOT/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library}"
 STRACE_TIMESTAMP="${STRACE_TIMESTAMP:-1}"
 PROBE_ROCBLAS_LOG="${PROBE_ROCBLAS_LOG:-0}"
-ROCBLAS_LAYER="${ROCBLAS_LAYER:-7}"
+# 9 = trace(1) + internal(8): best observability/overhead balance for
+# backend-path debugging on current GGUF runs.
+ROCBLAS_LAYER="${ROCBLAS_LAYER:-9}"
 
 mkdir -p "$LOG_DIR"
 

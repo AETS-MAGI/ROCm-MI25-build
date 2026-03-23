@@ -1,0 +1,2 @@
+02:19:00.444059 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3303475, si_uid=1000, si_status=SIGKILL, si_utime=6 /* 0.06 s */, si_stime=17 /* 0.17 s */} ---
+02:19:06.859289 +++ exited with 0 +++

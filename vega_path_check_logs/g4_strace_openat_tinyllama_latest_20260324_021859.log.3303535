@@ -1,0 +1,3 @@
+02:19:02.323617 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3303463, si_uid=1000} ---
+02:19:06.858140 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3303567, si_uid=1000, si_status=SIGTERM, si_utime=112 /* 1.12 s */, si_stime=63 /* 0.63 s */} ---
+02:19:06.858949 +++ exited with 0 +++
