@@ -153,6 +153,8 @@ fi
   echo "timestamp=$TS"
   echo "host=$HOST"
   echo "model=$MODEL"
+  echo "OLLAMA_LIBRARY_PATH=$OLLAMA_LIBRARY_PATH"
+  echo "ROCBLAS_TENSILE_LIBPATH=$ROCBLAS_TENSILE_LIBPATH"
   echo "PROBE_DIR=$PROBE_DIR"
   echo "GEN_LOG=$GEN_LOG"
   echo "SERVE_OUT=$SERVE_OUT"
