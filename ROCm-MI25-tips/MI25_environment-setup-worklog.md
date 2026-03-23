@@ -652,7 +652,7 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 ### 20.3 実測結果（tinyllama latest）
 
 - 統合 summary:
-  - `vega_path_check_logs/g4_link_summary_tinyllama_latest_20260324_020550.txt`
+  - `vega_path_check_logs/g4_link_summary_tinyllama_latest_20260324_020803.txt`
 - 主要値:
   - fallback 側:
     - `libggml_hip_openat=4`
@@ -660,7 +660,7 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
     - `fallback_hsaco_openat=54`
     - `rocblas_trace_gemm_lines=0`
   - dispatch 側:
-    - `kernel_dispatch_rows=24228`
+    - `kernel_dispatch_rows=22773`
     - `kernel_tensile_like_rows=0`
   - gate:
     - `fallback_confirmed=1`
@@ -677,6 +677,6 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 ### 20.5 主証跡
 
 - `g4-fallback-dispatch-link-check.sh`
-- `vega_path_check_logs/g4_link_summary_tinyllama_latest_20260324_020550.txt`
-- `vega_path_check_logs/g4_summary_tinyllama_latest_20260324_020550.txt`
-- `vega_path_check_logs/rocprofv3_summary_tinyllama_latest_20260324_020558.txt`
+- `vega_path_check_logs/g4_link_summary_tinyllama_latest_20260324_020803.txt`
+- `vega_path_check_logs/g4_summary_tinyllama_latest_20260324_020804.txt`
+- `vega_path_check_logs/rocprofv3_summary_tinyllama_latest_20260324_020811.txt`
