@@ -1,0 +1,19 @@
+# Raw/probe outputs (generated artifacts)
+.rocprofv3/
+vega_path_check_logs/*.log
+vega_path_check_logs/*.json
+vega_path_check_logs/*.csv
+vega_path_check_logs/rocprofv3_probe_*/
+vega_path_check_logs/*_serve_stdout_*
+vega_path_check_logs/*_serve_stderr_*
+vega_path_check_logs/*_strace_openat_*
+vega_path_check_logs/*_generate_*
+vega_path_check_logs/*_rocblas_trace_*
+vega_path_check_logs/*_rocblas_bench_*
+vega_path_check_logs/*_rocblas_profile_*
+
+# Keep curated summaries and compact tables in-repo
+!vega_path_check_logs/*.txt
+!vega_path_check_logs/*.tsv
+!vega_path_check_logs/*.md
+!vega_path_check_logs/*.jsonl
