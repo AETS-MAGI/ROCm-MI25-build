@@ -1,0 +1,14 @@
+timestamp=20260324_024605
+trace_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_trace_gpt-oss_latest_20260324_024249.log
+tsv=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/rocblas_gemm_shapes_g4_rocblas_trace_gpt-oss_latest_20260324_024249_20260324_024605.tsv
+total_lines=1504
+handle_lines=1
+gemm_api_lines=501
+internal_tensile_lines=501
+
+--- top_5_by_count ---
+internal	rocblas_gemm_tensile_backend	T	N	512	512	2880						96
+gemm	rocblas_gemm_ex	T	N	512	512	2880	bf16_r	bf16_r	0x7ea11e400000	0x7ea11e400000	512	48
+gemm	rocblas_gemm_ex	T	N	512	512	2880	bf16_r	bf16_r	0x80	0x80	512	48
+gemm	rocblas_gemm_ex	T	N	512	78	2880	bf16_r	bf16_r	0x7ea11e400000	0x7ea11e400000	512	48
+internal	rocblas_gemm_tensile_backend	T	N	2880	512	4096						48

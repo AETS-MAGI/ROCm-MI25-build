@@ -1,0 +1,10 @@
+timestamp=20260324_024642
+trace_log=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_trace_qwen2.5_7b_20260324_023751.log
+tsv=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/rocblas_gemm_shapes_g4_rocblas_trace_qwen2.5_7b_20260324_023751_20260324_024642.tsv
+total_lines=1
+handle_lines=1
+gemm_api_lines=0
+internal_tensile_lines=0
+
+--- top_5_by_count ---
+none

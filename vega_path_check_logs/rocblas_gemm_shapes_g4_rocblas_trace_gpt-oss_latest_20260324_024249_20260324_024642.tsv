@@ -1,0 +1,30 @@
+kind	api_or_backend	transA	transB	m	n	k	a_type	b_type	c_type	d_type	compute_type	count
+internal	rocblas_gemm_tensile_backend	T	N	512	512	2880						96
+gemm	rocblas_gemm_ex	T	N	512	512	2880	bf16_r	bf16_r	0x7ea11e400000	0x7ea11e400000	512	48
+gemm	rocblas_gemm_ex	T	N	512	512	2880	bf16_r	bf16_r	0x80	0x80	512	48
+gemm	rocblas_gemm_ex	T	N	512	78	2880	bf16_r	bf16_r	0x7ea11e400000	0x7ea11e400000	512	48
+internal	rocblas_gemm_tensile_backend	T	N	2880	512	4096						48
+internal	rocblas_gemm_tensile_backend	T	N	4096	512	2880						48
+internal	rocblas_gemm_tensile_backend	T	N	4096	512	64						48
+internal	rocblas_gemm_tensile_backend	T	N	512	78	2880						48
+internal	rocblas_gemm_tensile_backend	T	N	64	512	4096						48
+gemm	rocblas_sgemm	T	N	32	512	2880	f32_r	f32_r	f32_r	f32_r	f32_r	46
+internal	rocblas_gemm_tensile_backend	T	N	32	512	2880						46
+gemm	rocblas_gemm_batched_ex	T	N	256	78	64	f16_r	f16_r	0x7ea11e000000	0x7ea11e000000	256	24
+gemm	rocblas_gemm_batched_ex	T	N	4096	512	64	f16_r	f16_r	0x7ea11e000000	0x7ea11e000000	4096	24
+gemm	rocblas_gemm_batched_ex	T	N	4096	512	64	f16_r	f16_r	0x80	0x80	4096	24
+gemm	rocblas_gemm_batched_ex	T	N	64	512	4096	f16_r	f16_r	0x7ea11e000000	0x7ea11e000000	64	24
+gemm	rocblas_gemm_batched_ex	T	N	64	512	4096	f16_r	f16_r	0x80	0x80	64	24
+gemm	rocblas_gemm_batched_ex	T	N	64	78	256	f16_r	f16_r	0x7ea11e000000	0x7ea11e000000	64	24
+gemm	rocblas_gemm_ex	T	N	2880	512	4096	bf16_r	bf16_r	0x7ea11ec00000	0x7ea11ec00000	2880	24
+gemm	rocblas_gemm_ex	T	N	2880	512	4096	bf16_r	bf16_r	0x80	0x80	2880	24
+gemm	rocblas_gemm_ex	T	N	2880	78	4096	bf16_r	bf16_r	0x7ea11e400000	0x7ea11e400000	2880	24
+gemm	rocblas_gemm_ex	T	N	4096	512	2880	bf16_r	bf16_r	0x7ea11e400000	0x7ea11e400000	4096	24
+gemm	rocblas_gemm_ex	T	N	4096	512	2880	bf16_r	bf16_r	0x80	0x80	4096	24
+gemm	rocblas_gemm_ex	T	N	4096	78	2880	bf16_r	bf16_r	0x7ea11e400000	0x7ea11e400000	4096	24
+internal	rocblas_gemm_tensile_backend	T	N	256	78	64						24
+internal	rocblas_gemm_tensile_backend	T	N	2880	78	4096						24
+internal	rocblas_gemm_tensile_backend	T	N	4096	78	2880						24
+internal	rocblas_gemm_tensile_backend	T	N	64	78	256						24
+gemm	rocblas_sgemm	T	N	32	78	2880	f32_r	f32_r	f32_r	f32_r	f32_r	23
+internal	rocblas_gemm_tensile_backend	T	N	32	78	2880						23
