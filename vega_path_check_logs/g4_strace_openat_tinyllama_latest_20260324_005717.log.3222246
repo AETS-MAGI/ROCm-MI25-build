@@ -1,7 +1,0 @@
---- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3222242, si_uid=1000} ---
---- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3222242, si_uid=1000} ---
-openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/tinyllama/latest", O_RDONLY|O_CLOEXEC) = 6
-openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-6331358be52a6ebc2fd0755a51ad1175734fd17a628ab5ea6897109396245362", O_RDONLY|O_CLOEXEC) = 6
---- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3222242, si_uid=1000} ---
---- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3222242, si_uid=1000} ---
-+++ exited with 0 +++

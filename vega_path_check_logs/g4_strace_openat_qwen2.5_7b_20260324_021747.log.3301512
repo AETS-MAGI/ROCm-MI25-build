@@ -1,4 +1,0 @@
-02:17:49.808974 openat(AT_FDCWD, "/tmp/1272754296.bin", O_RDWR|O_CREAT|O_EXCL|O_CLOEXEC, 0600) = 7
-02:17:49.809673 openat(AT_FDCWD, "/tmp/1272754296.bin", O_RDONLY|O_CLOEXEC) = 8
-02:17:49.810169 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301508, si_uid=1000} ---
-02:17:50.164043 +++ killed by SIGKILL +++

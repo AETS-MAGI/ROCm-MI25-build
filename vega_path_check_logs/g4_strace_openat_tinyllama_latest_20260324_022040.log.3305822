@@ -1,2 +1,0 @@
-02:20:43.383832 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3305819, si_uid=1000} ---
-02:20:46.815108 +++ killed by SIGTERM +++

@@ -1,4 +1,0 @@
-openat(AT_FDCWD, "/tmp/3388295320.bin", O_RDWR|O_CREAT|O_EXCL|O_CLOEXEC, 0600) = 7
---- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3220884, si_uid=1000} ---
---- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3220884, si_uid=1000} ---
-+++ killed by SIGKILL +++

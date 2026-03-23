@@ -1,3 +1,0 @@
-time=2026-03-20T16:16:00.159+09:00 level=INFO source=runner.go:1411 msg="starting ollama engine"
-Listen error: listen tcp 127.0.0.1:11601: bind: address already in use
-Error: listen tcp 127.0.0.1:11601: bind: address already in use

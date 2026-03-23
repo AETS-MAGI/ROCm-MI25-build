@@ -1,9 +1,0 @@
-02:33:54.178719 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 7
-02:33:54.179289 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
-02:33:54.179757 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 9
-02:33:56.119856 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3324425, si_uid=1000, si_status=SIGKILL, si_utime=72 /* 0.72 s */, si_stime=74 /* 0.74 s */} ---
-02:33:56.182820 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3324397, si_uid=1000} ---
-02:33:56.189658 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3324397, si_uid=1000} ---
-02:33:56.360962 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3324397, si_uid=1000} ---
-02:33:56.362671 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3324397, si_uid=1000} ---
-02:34:07.730943 +++ exited with 0 +++

@@ -1,6 +1,0 @@
-01:46:42.156985 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 7
-01:46:42.157243 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
-01:46:42.157511 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 9
-01:46:44.029404 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3268956, si_uid=1000} ---
-01:46:44.030076 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3268956, si_uid=1000} ---
-01:46:48.102539 +++ exited with 0 +++

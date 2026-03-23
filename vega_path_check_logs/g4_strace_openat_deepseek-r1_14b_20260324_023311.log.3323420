@@ -1,2 +1,0 @@
-02:33:11.311431 openat(AT_FDCWD, "/sys/devices/system/cpu/online", O_RDONLY|O_CLOEXEC) = 6
-02:33:25.213330 +++ exited with 0 +++

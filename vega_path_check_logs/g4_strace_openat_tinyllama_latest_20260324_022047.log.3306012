@@ -1,6 +1,0 @@
-02:20:47.460941 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3306005, si_uid=1000} ---
-02:20:47.797944 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 7
-02:20:47.798425 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
-02:20:47.798896 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 9
-02:20:49.700402 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3306027, si_uid=1000, si_status=SIGKILL, si_utime=69 /* 0.69 s */, si_stime=75 /* 0.75 s */} ---
-02:20:54.015998 +++ exited with 0 +++

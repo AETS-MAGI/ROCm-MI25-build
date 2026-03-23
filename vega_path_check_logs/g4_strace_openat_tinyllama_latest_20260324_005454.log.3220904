@@ -1,3 +1,0 @@
---- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3220899, si_uid=1000} ---
---- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3220899, si_uid=1000} ---
-+++ killed by SIGTERM +++

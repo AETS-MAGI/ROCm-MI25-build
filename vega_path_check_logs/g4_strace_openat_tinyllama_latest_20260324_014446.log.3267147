@@ -1,7 +1,0 @@
---- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3267078, si_uid=1000} ---
-openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816", O_RDONLY|O_CLOEXEC) = 6
---- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3267078, si_uid=1000} ---
---- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3267078, si_uid=1000} ---
---- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3267078, si_uid=1000} ---
---- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3267078, si_uid=1000} ---
-+++ exited with 0 +++

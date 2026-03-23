@@ -1,3 +1,0 @@
-02:18:11.995590 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
-02:18:11.996230 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3302144, si_uid=1000} ---
-02:18:20.567831 +++ exited with 0 +++

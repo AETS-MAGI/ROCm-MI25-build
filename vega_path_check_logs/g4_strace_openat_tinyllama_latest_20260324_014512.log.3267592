@@ -1,2 +1,0 @@
-openat(AT_FDCWD, "/sys/devices/system/cpu/online", O_RDONLY|O_CLOEXEC) = 8
-+++ killed by SIGKILL +++

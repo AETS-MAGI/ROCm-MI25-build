@@ -1,9 +1,0 @@
-02:27:00.052406 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama", O_RDONLY|O_CLOEXEC) = 6
-02:27:00.053855 openat(AT_FDCWD, "/etc/resolv.conf", O_RDONLY|O_CLOEXEC) = 6
-02:27:00.054322 openat(AT_FDCWD, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 6
-02:27:00.054811 openat(AT_FDCWD, "/etc/hosts", O_RDONLY|O_CLOEXEC) = 6
-02:27:00.055680 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 6
-02:27:00.055885 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 7
-02:27:00.056075 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
-02:27:00.420469 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3312273, si_uid=1000, si_status=SIGKILL, si_utime=6 /* 0.06 s */, si_stime=13 /* 0.13 s */} ---
-02:27:04.032272 +++ exited with 0 +++
