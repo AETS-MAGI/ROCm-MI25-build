@@ -74,3 +74,6 @@
 02:31:23.029811 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
 02:31:23.031910 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3320762, si_uid=1000} ---
 02:31:23.032137 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3320762, si_uid=1000} ---
+02:31:49.957056 --- SIGTERM {si_signo=SIGTERM, si_code=SI_USER, si_pid=3320747, si_uid=1000} ---
+02:31:49.957779 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3320762, si_uid=1000} ---
+02:31:50.097090 +++ exited with 0 +++

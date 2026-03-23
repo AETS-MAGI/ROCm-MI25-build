@@ -21,3 +21,5 @@
 02:31:25.900490 openat(AT_FDCWD, "/sys/fs/cgroup/cpu.max", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
 02:31:25.900703 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-6e9f90f02bb3b39b59e81916e8cfce9deb45aeaeb9a54a5be4414486b907dc1e", O_RDONLY|O_CLOEXEC) = 8
 02:31:25.908937 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3320762, si_uid=1000} ---
+02:31:50.072273 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3320878, si_uid=1000, si_status=SIGTERM, si_utime=1337 /* 13.37 s */, si_stime=804 /* 8.04 s */} ---
+02:31:50.073595 +++ exited with 0 +++
