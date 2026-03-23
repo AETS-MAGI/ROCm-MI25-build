@@ -36,3 +36,5 @@
 02:17:50.978691 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301420, si_uid=1000} ---
 02:17:51.789467 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301420, si_uid=1000} ---
 02:17:52.594041 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301420, si_uid=1000} ---
+02:17:53.600968 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301420, si_uid=1000} ---
+02:17:54.331466 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301420, si_uid=1000} ---

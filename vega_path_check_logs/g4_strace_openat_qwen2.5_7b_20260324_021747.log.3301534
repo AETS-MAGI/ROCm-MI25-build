@@ -68,3 +68,58 @@
 02:17:52.755374 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
 02:17:52.837496 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
 02:17:52.991405 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
+02:17:53.407443 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
+02:17:53.437941 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
+02:17:53.480601 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_trace_qwen2.5_7b_20260324_021747.log", O_WRONLY|O_CREAT|O_TRUNC|O_APPEND|O_CLOEXEC, 0644) = 11
+02:17:53.482103 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+02:17:53.484006 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.484211 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.485857 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+02:17:53.486762 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.486958 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.487987 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+02:17:53.497571 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.497801 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.502052 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+02:17:53.513288 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.513567 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.516117 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+02:17:53.520750 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.521025 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.523917 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+02:17:53.534962 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.535225 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.538959 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+02:17:53.542300 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.542446 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.543536 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+02:17:53.546859 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.547022 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.548521 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+02:17:53.560611 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.560762 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.564185 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+02:17:53.568990 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.569199 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.572358 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+02:17:53.576036 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.576266 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.578401 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
+02:17:53.579517 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+02:17:53.594352 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.594615 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.597789 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+02:17:53.600820 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.601077 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.604811 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+02:17:53.609286 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:53.609439 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+02:17:54.397898 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
+02:17:54.530486 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
+02:17:54.554866 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
+02:17:54.577809 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
+02:17:54.599129 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
+02:17:54.621593 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
+02:17:54.690564 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
+02:17:54.735575 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
+02:17:54.813288 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301527, si_uid=1000} ---
