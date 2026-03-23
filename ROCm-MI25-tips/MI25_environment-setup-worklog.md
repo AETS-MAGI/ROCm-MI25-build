@@ -528,3 +528,49 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 
 - 上記は **catalog read の型分布** であり、dispatch の直接証跡ではない。
 - ただし、`fallback` 資産が `dat/hsaco` の両方で型別に読み込まれていることは確認できた。
+
+---
+
+## 18. fallback 時系列分解 + rocBLAS trace 追加（2026-03-24）[main-node confirmed]
+
+### 18.1 目的
+
+- `fallback_confirmed`（catalog read）から一歩進めて、`catalog` と `dispatch` の境界を観測する。
+- 「いつ読まれたか」を定量化し、初期化バーストと実行中アクセスを切り分ける。
+
+### 18.2 実施
+
+- `g4-fallback-strace-check.sh` を拡張:
+  - `STRACE_TIMESTAMP=1`（既定）で `strace -tt` を有効化
+  - `PROBE_ROCBLAS_LOG=1` で `ROCBLAS_LOG_TRACE_PATH` 等を有効化
+  - summary に `rocblas_trace_*` カウンタを追記
+- 追加スクリプト:
+  - `summarize-fallback-phases.sh`
+  - `.dat/.hsaco` の `first/last time` と span を pid単位で集計
+
+### 18.3 観測結果（tinyllama latest）
+
+- summary:
+  - `vega_path_check_logs/g4_summary_tinyllama_latest_20260324_014707.txt`
+  - `rocblas_trace_lines=1`
+  - `rocblas_trace_handle_lines=1`
+  - `rocblas_trace_gemm_lines=0`
+- phase summary:
+  - `vega_path_check_logs/fallback_phase_summary_tinyllama_latest_20260324_014707.tsv`
+  - `.dat` 読み込み: span `0.035186s`（短いバースト）
+  - `.hsaco` 読み込み: span `1.302794s`（より長い分布）
+
+### 18.4 判定
+
+- 時系列上、`.dat` は初期化寄りの集中読み込みとして整合。
+- `.hsaco` はより広い時間帯に分布し、実行段での関与可能性は上がった。
+- ただし `rocBLAS` trace は現時点で `create_handle` のみで、GEMM 呼び出し行は未観測。
+- よって、dispatch 直接証跡の最終確定は **継続タスク**。
+
+### 18.5 主証跡
+
+- `g4-fallback-strace-check.sh`
+- `summarize-fallback-phases.sh`
+- `vega_path_check_logs/g4_summary_tinyllama_latest_20260324_014707.txt`
+- `vega_path_check_logs/fallback_phase_summary_tinyllama_latest_20260324_014707.tsv`
+- `vega_path_check_logs/g4_rocblas_trace_tinyllama_latest_20260324_014707.log`
