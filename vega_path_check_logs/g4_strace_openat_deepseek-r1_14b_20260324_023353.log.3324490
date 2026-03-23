@@ -1,0 +1,2 @@
+02:33:58.027493 openat(AT_FDCWD, "/proc/sys/net/core/somaxconn", O_RDONLY|O_CLOEXEC) = 8
+02:34:07.605316 +++ killed by SIGTERM +++

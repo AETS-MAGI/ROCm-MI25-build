@@ -1,0 +1,35 @@
+timestamp=20260324_023208
+model=deepseek-r1:14b
+prompt=You are writing a detailed technical note. Explain fallback path evidence, kernel dispatch evidence,
+and why direct rocBLAS/Tensile dispatch naming can remain hidden in quantized GGUF workloads.
+Include at least five concrete points with concise wording.
+num_predict=128
+temperature=0.1
+run_strace=1
+run_rocprof=1
+strace_host=127.0.0.1:11534
+rocprof_host=127.0.0.1:11634
+strace_summary=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_summary_deepseek-r1_14b_20260324_023208.txt
+rocprof_summary=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/rocprofv3_summary_deepseek-r1_14b_20260324_023225.txt
+
+--- fallback evidence ---
+libggml_hip_openat=4
+fallback_dat_openat=54
+fallback_hsaco_openat=54
+rocblas_trace_lines=1
+rocblas_trace_handle_lines=1
+rocblas_trace_gemm_lines=0
+
+--- dispatch evidence ---
+kernel_dispatch_rows=24228
+kernel_mul_mat_q_rows=333
+kernel_mul_mat_vec_rows=7143
+kernel_flash_attn_rows=2468
+kernel_quantize_rows=7476
+kernel_tensile_like_rows=0
+
+--- gate ---
+fallback_confirmed=1
+dispatch_confirmed=1
+direct_rocblas_or_tensile_dispatch=0
+link_status=indirect_link_only_same_scenario

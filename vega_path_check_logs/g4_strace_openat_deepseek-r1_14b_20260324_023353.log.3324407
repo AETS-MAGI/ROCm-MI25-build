@@ -1,0 +1,34 @@
+02:33:53.738100 openat(AT_FDCWD, "/sys/devices/system/cpu/online", O_RDONLY|O_CLOEXEC) = 7
+02:33:53.742768 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama", O_RDONLY|O_CLOEXEC) = 6
+02:33:53.744513 openat(AT_FDCWD, "/etc/resolv.conf", O_RDONLY|O_CLOEXEC) = 6
+02:33:53.744995 openat(AT_FDCWD, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 6
+02:33:53.745566 openat(AT_FDCWD, "/etc/hosts", O_RDONLY|O_CLOEXEC) = 6
+02:33:53.746642 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 6
+02:33:53.746894 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 7
+02:33:53.747139 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
+02:33:54.204882 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3324409, si_uid=1000, si_status=SIGKILL, si_utime=6 /* 0.06 s */, si_stime=16 /* 0.16 s */} ---
+02:33:54.216106 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3324397, si_uid=1000} ---
+02:33:54.235474 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3324397, si_uid=1000} ---
+02:33:54.235973 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3324397, si_uid=1000} ---
+02:33:56.058998 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.059852 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.060580 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.061319 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-coder", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.062058 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-r1", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.062828 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/gpt-oss", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.063654 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/qwen2.5", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.064409 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/tinyllama", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.065116 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-coder/33b", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.065905 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-r1/14b", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.066666 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/gpt-oss/latest", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.067414 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/qwen2.5/7b", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.068165 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/tinyllama/latest", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.068865 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-r1/14b", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.069666 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-3c24b0c80794f0eb6e0de0033f8e3203075db1c4640e837e097712a4b88d393b", O_RDONLY|O_CLOEXEC) = 8
+02:33:56.070464 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-c5ad996bda6eed4df6e3b605a9869647624851ac248209d22fd5e2c0cc1121d3", O_RDONLY|O_CLOEXEC) = 9
+02:33:56.071448 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3324397, si_uid=1000} ---
+02:33:56.077675 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3324397, si_uid=1000} ---
+02:33:56.189428 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3324397, si_uid=1000} ---
+02:33:57.052428 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3324397, si_uid=1000} ---
+02:34:07.729621 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3324484, si_uid=1000, si_status=SIGTERM, si_utime=875 /* 8.75 s */, si_stime=261 /* 2.61 s */} ---
+02:34:07.730850 +++ exited with 0 +++

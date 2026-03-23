@@ -39,3 +39,4 @@
 [GIN-debug] POST   /v1/images/edits          --> github.com/ollama/ollama/server.(*Server).GenerateHandler-fm (7 handlers)
 [GIN-debug] POST   /v1/messages              --> github.com/ollama/ollama/server.(*Server).ChatHandler-fm (7 handlers)
 [GIN] 2026/03/24 - 02:31:52 | 200 |      116.41µs |       127.0.0.1 | GET      "/api/version"
+[GIN] 2026/03/24 - 02:32:04 | 200 | 11.411838121s |       127.0.0.1 | POST     "/api/generate"
