@@ -17,6 +17,7 @@ TEMPERATURE="${TEMPERATURE:-0.1}"
 HOST="${HOST:-127.0.0.1:11534}"
 BASE_URL="http://${HOST}"
 LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
 
 OLLAMA_BIN="${OLLAMA_BIN:-$WORKSPACE_ROOT/ollama-src/ollama}"
 OLLAMA_MODELS="${OLLAMA_MODELS:-$WORKSPACE_ROOT/ollama-models}"
@@ -28,18 +29,18 @@ PROBE_ROCBLAS_LOG="${PROBE_ROCBLAS_LOG:-0}"
 # backend-path debugging on current GGUF runs.
 ROCBLAS_LAYER="${ROCBLAS_LAYER:-9}"
 
-mkdir -p "$LOG_DIR"
+mkdir -p "$LOG_DIR" "$RAW_LOG_DIR"
 
 TS="$(date +%Y%m%d_%H%M%S)"
 MODEL_TAG="$(printf '%s' "$MODEL" | tr '/:' '__')"
-STRACE_PREFIX="$LOG_DIR/g4_strace_openat_${MODEL_TAG}_${TS}.log"
-SERVE_OUT="$LOG_DIR/g4_serve_stdout_${MODEL_TAG}_${TS}.log"
-SERVE_ERR="$LOG_DIR/g4_serve_stderr_${MODEL_TAG}_${TS}.log"
-GEN_LOG="$LOG_DIR/g4_generate_${MODEL_TAG}_${TS}.json"
+STRACE_PREFIX="$RAW_LOG_DIR/g4_strace_openat_${MODEL_TAG}_${TS}.log"
+SERVE_OUT="$RAW_LOG_DIR/g4_serve_stdout_${MODEL_TAG}_${TS}.log"
+SERVE_ERR="$RAW_LOG_DIR/g4_serve_stderr_${MODEL_TAG}_${TS}.log"
+GEN_LOG="$RAW_LOG_DIR/g4_generate_${MODEL_TAG}_${TS}.json"
 SUMMARY="$LOG_DIR/g4_summary_${MODEL_TAG}_${TS}.txt"
-ROCBLAS_TRACE_LOG="${ROCBLAS_LOG_TRACE_PATH:-$LOG_DIR/g4_rocblas_trace_${MODEL_TAG}_${TS}.log}"
-ROCBLAS_BENCH_LOG="${ROCBLAS_LOG_BENCH_PATH:-$LOG_DIR/g4_rocblas_bench_${MODEL_TAG}_${TS}.log}"
-ROCBLAS_PROFILE_LOG="${ROCBLAS_LOG_PROFILE_PATH:-$LOG_DIR/g4_rocblas_profile_${MODEL_TAG}_${TS}.log}"
+ROCBLAS_TRACE_LOG="${ROCBLAS_LOG_TRACE_PATH:-$RAW_LOG_DIR/g4_rocblas_trace_${MODEL_TAG}_${TS}.log}"
+ROCBLAS_BENCH_LOG="${ROCBLAS_LOG_BENCH_PATH:-$RAW_LOG_DIR/g4_rocblas_bench_${MODEL_TAG}_${TS}.log}"
+ROCBLAS_PROFILE_LOG="${ROCBLAS_LOG_PROFILE_PATH:-$RAW_LOG_DIR/g4_rocblas_profile_${MODEL_TAG}_${TS}.log}"
 
 if ! command -v strace >/dev/null 2>&1; then
   echo "ERROR: strace is required but not found" >&2
@@ -149,6 +150,7 @@ fi
   echo "timestamp=$TS"
   echo "host=$HOST"
   echo "model=$MODEL"
+  echo "RAW_LOG_DIR=$RAW_LOG_DIR"
   echo "OLLAMA_LIBRARY_PATH=$OLLAMA_LIBRARY_PATH"
   echo "ROCBLAS_TENSILE_LIBPATH=$ROCBLAS_TENSILE_LIBPATH"
   echo "GEN_LOG=$GEN_LOG"

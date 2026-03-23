@@ -15,6 +15,7 @@ NUM_PREDICT="${NUM_PREDICT:-160}"
 TEMPERATURE="${TEMPERATURE:-0.1}"
 
 LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
 mkdir -p "$LOG_DIR"
 
 RUN_STRACE="${RUN_STRACE:-1}"
@@ -70,6 +71,7 @@ run_strace_probe() {
     PROMPT="$PROMPT" \
     NUM_PREDICT="$NUM_PREDICT" \
     TEMPERATURE="$TEMPERATURE" \
+    RAW_LOG_DIR="$RAW_LOG_DIR" \
     STRACE_TIMESTAMP=1 \
     PROBE_ROCBLAS_LOG=1 \
     "$SCRIPT_DIR/g4-fallback-strace-check.sh"
@@ -102,6 +104,7 @@ run_rocprof_probe() {
     PROMPT="$PROMPT" \
     NUM_PREDICT="$NUM_PREDICT" \
     TEMPERATURE="$TEMPERATURE" \
+    RAW_LOG_DIR="$RAW_LOG_DIR" \
     "$SCRIPT_DIR/g4-rocprofv3-dispatch-check.sh"
   )"
 
@@ -161,6 +164,7 @@ fi
   echo "prompt=$PROMPT"
   echo "num_predict=$NUM_PREDICT"
   echo "temperature=$TEMPERATURE"
+  echo "raw_log_dir=$RAW_LOG_DIR"
   echo "run_strace=$RUN_STRACE"
   echo "run_rocprof=$RUN_ROCPROF"
   echo "strace_host=$STRACE_HOST"

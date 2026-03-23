@@ -23,6 +23,7 @@ ROCBLAS_VERBOSE_TENSILE_ERROR="${ROCBLAS_VERBOSE_TENSILE_ERROR:-0}"
 ROCBLAS_VERBOSE_HIPBLASLT_ERROR="${ROCBLAS_VERBOSE_HIPBLASLT_ERROR:-0}"
 
 LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
 mkdir -p "$LOG_DIR"
 
 TS="$(date +%Y%m%d_%H%M%S)"
@@ -127,6 +128,7 @@ for model in "${models[@]}"; do
           NUM_PREDICT="$predict" \
           PROMPT="$prompt" \
           TEMPERATURE="$TEMPERATURE" \
+          RAW_LOG_DIR="$RAW_LOG_DIR" \
           STRACE_HOST="$HOST_STRACE" \
           ROCPROF_HOST="$HOST_ROCPROF" \
           ROCBLAS_LAYER="$ROCBLAS_LAYER" \
@@ -207,6 +209,7 @@ best_row="$(awk -F'\t' '
   echo "prompt_profile_list=$PROMPT_PROFILE_LIST"
   echo "runs_per_case=$RUNS_PER_CASE"
   echo "temperature=$TEMPERATURE"
+  echo "raw_log_dir=$RAW_LOG_DIR"
   echo "rocblas_layer=$ROCBLAS_LAYER"
   echo "rocblas_verbose_tensile_error=$ROCBLAS_VERBOSE_TENSILE_ERROR"
   echo "rocblas_verbose_hipblaslt_error=$ROCBLAS_VERBOSE_HIPBLASLT_ERROR"

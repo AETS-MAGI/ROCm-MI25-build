@@ -16,6 +16,7 @@ HOST="${HOST:-127.0.0.1:11534}"
 
 LAYER_LIST="${LAYER_LIST:-1,8,9,15,63}"
 LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
 
 # Optional verbose backend hints for ROCm docs troubleshooting.
 ROCBLAS_VERBOSE_TENSILE_ERROR="${ROCBLAS_VERBOSE_TENSILE_ERROR:-0}"
@@ -79,6 +80,7 @@ for layer in "${layers[@]}"; do
     PROMPT="$PROMPT" \
     NUM_PREDICT="$NUM_PREDICT" \
     TEMPERATURE="$TEMPERATURE" \
+    RAW_LOG_DIR="$RAW_LOG_DIR" \
     PROBE_ROCBLAS_LOG=1 \
     STRACE_TIMESTAMP=1 \
     ROCBLAS_LAYER="$layer" \
@@ -157,6 +159,7 @@ best_score="${best_calc[2]:-0}"
   echo "host=$HOST"
   echo "num_predict=$NUM_PREDICT"
   echo "temperature=$TEMPERATURE"
+  echo "raw_log_dir=$RAW_LOG_DIR"
   echo "layer_list=$LAYER_LIST"
   echo "rocblas_verbose_tensile_error=$ROCBLAS_VERBOSE_TENSILE_ERROR"
   echo "rocblas_verbose_hipblaslt_error=$ROCBLAS_VERBOSE_HIPBLASLT_ERROR"

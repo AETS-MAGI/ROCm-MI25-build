@@ -744,3 +744,119 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - 現行 GGUF run では、`ROCBLAS_LAYER` を変えても GEMM 呼び出し行は増えなかった。
 - よって次段は「layer 値の探索」ではなく、
   **rocBLAS を実際に呼ぶ workload/演算経路を作ること**が主課題。
+
+---
+
+## 22. workload 条件スイープで direct dispatch を確定（2026-03-24）[main-node confirmed]
+
+### 22.1 目的
+
+- `ROCBLAS_LAYER=9` 固定後、model / prompt / `NUM_PREDICT` 側を振って
+  `direct_rocblas_or_tensile_dispatch=1` を狙う。
+
+### 22.2 実施
+
+- スイープ（高演算密度）:
+  - `g4-workload-path-sweep.sh`
+  - `MODEL_LIST=qwen2.5:7b,deepseek-r1:14b`
+  - `NUM_PREDICT_LIST=512`
+  - `PROMPT_PROFILE_LIST=long,math,code`
+- 追加単発検証:
+  - `g4-fallback-dispatch-link-check.sh`
+  - `MODEL=gpt-oss:latest`
+  - `NUM_PREDICT=256`
+  - `ROCBLAS_LAYER=9`
+
+### 22.3 結果（要約）
+
+- qwen/deepseek スイープ:
+  - `vega_path_check_logs/g4_workload_path_sweep_20260324_023631.txt`
+  - `ok_cases=6`, `failed_cases=0`, `direct_hits=0`
+  - 全ケース `link_status=indirect_link_only_same_scenario`
+- gpt-oss 単発:
+  - `vega_path_check_logs/g4_link_summary_gpt-oss_latest_20260324_024249.txt`
+  - `fallback_confirmed=1`
+  - `dispatch_confirmed=1`
+  - `direct_rocblas_or_tensile_dispatch=1`
+  - `link_status=direct_rocblas_or_tensile_dispatch_observed`
+  - `rocblas_trace_gemm_lines=1002`
+  - `kernel_tensile_like_rows=167`
+
+### 22.4 追加解析（shape 集計）
+
+- 追加スクリプト:
+  - `summarize-rocblas-gemm-shapes.sh`
+- gpt-oss trace 集計:
+  - `vega_path_check_logs/rocblas_gemm_shapes_g4_rocblas_trace_gpt-oss_latest_20260324_024249_20260324_024704.txt`
+  - `gemm_api_lines=501`
+  - `internal_tensile_lines=501`
+  - 上位 shape:
+    - `512x512x2880` (`rocblas_gemm_ex`, `rocblas_gemm_tensile_backend`)
+    - `4096x512x64` / `64x512x4096` (`rocblas_gemm_batched_ex`)
+    - `2880x512x4096`, `4096x512x2880` (`rocblas_gemm_ex`)
+
+### 22.5 判定
+
+- `ROCBLAS_LAYER` の問題ではなく workload 条件が分岐点だったことを確認。
+- G4 の direct dispatch ゲートは **gpt-oss 条件で達成**。
+- 次段は、この条件を基準ケースとして
+  `rocblas_gemm_ex` / `rocblas_gemm_tensile_backend` の shape 分布を固定観測し、
+  Tensile/rocBLAS 側の優先チューニング候補を絞る。
+
+### 22.6 主証跡
+
+- `vega_path_check_logs/g4_workload_path_sweep_20260324_023631.txt`
+- `vega_path_check_logs/g4_link_summary_gpt-oss_latest_20260324_024249.txt`
+- `vega_path_check_logs/g4_summary_gpt-oss_latest_20260324_024249.txt`
+- `vega_path_check_logs/rocprofv3_summary_gpt-oss_latest_20260324_024321.txt`
+- `vega_path_check_logs/rocblas_gemm_shapes_g4_rocblas_trace_gpt-oss_latest_20260324_024249_20260324_024704.tsv`
+
+### 22.7 正式反映（事実 / 解釈 / 含意）
+
+1. 事実
+   - `gpt-oss:latest` 条件で `rocblas_gemm_ex` と
+     `rocblas_gemm_tensile_backend` を多数観測。
+   - `direct_rocblas_or_tensile_dispatch=1` を同一シナリオで確認。
+
+2. 解釈
+   - tinyllama / qwen2.5:7b では未観測だった direct dispatch 名が、
+     workload を変えると観測された。
+   - 未観測の主因は layer 設定より workload/path 条件である可能性が高い。
+
+3. 含意
+   - rocBLAS / Tensile direct dispatch を観測可能な probe 条件が確立した。
+   - 今後はこの条件を基準ケースにして、
+     model / precision / path 差分を比較可能。
+
+---
+
+## 23. rawログ分離と圧縮運用の導入（2026-03-24）[main-node confirmed]
+
+### 23.1 背景
+
+- `vega_path_check_logs/` のファイル件数増加により、
+  git 操作と GitHub 上の閲覧が重くなってきた。
+- 方針:
+  - summary は repo 内 (`vega_path_check_logs/`)
+  - raw/probe は repo 外 (`${WORKSPACE_ROOT}/vega_path_check_logs_raw`)
+
+### 23.2 実施
+
+- g4系スクリプトに `RAW_LOG_DIR` 既定値を追加し、
+  raw 出力先を `${WORKSPACE_ROOT}/vega_path_check_logs_raw` へ分離:
+  - `g4-fallback-strace-check.sh`
+  - `g4-rocprofv3-dispatch-check.sh`
+  - `g4-fallback-dispatch-link-check.sh`
+  - `g4-workload-path-sweep.sh`
+  - `g4-rocblas-layer-sweep.sh`
+- 補助スクリプト追加:
+  - `migrate-raw-logs.sh`（既存 raw の copy/move）
+  - `compress-raw-logs.sh`（raw の gzip 管理）
+- `.gitignore` 追加:
+  - `vega_path_check_logs/` 配下の raw/probe 拡張子を追跡除外
+  - summary (`*.txt`, `*.tsv`, `*.md`, `*.jsonl`) は追跡対象
+
+### 23.3 運用上の注意
+
+- `.gitignore` は「新規追跡の抑止」であり、既存履歴の縮小ではない。
+- 履歴最適化（`filter-repo` 等）は、別フェーズ・別合意で実施する。

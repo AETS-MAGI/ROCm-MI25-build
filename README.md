@@ -45,6 +45,38 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
 - `ROCm-MI25-tips/MI25_companion-repo-positioning.md`
   - Companion repository scope and public-facing positioning policy.
 
+## Log storage policy (raw vs summary)
+
+- `vega_path_check_logs/` is for compact evidence that is review-friendly:
+  - summaries (`*.txt`)
+  - compact tables (`*.tsv`, `*.jsonl`)
+- Raw/probe-heavy artifacts are stored outside this repository by default:
+  - `${WORKSPACE_ROOT}/vega_path_check_logs_raw`
+  - typical files: `strace` splits, serve stdout/stderr, generate JSON, rocprof probe trees
+
+Current g4 scripts write:
+
+- summary outputs -> `LOG_DIR` (default: `ROCm-MI25-build/vega_path_check_logs`)
+- raw outputs -> `RAW_LOG_DIR` (default: `${WORKSPACE_ROOT}/vega_path_check_logs_raw`)
+
+Helper commands:
+
+```bash
+# one-time migration from in-repo log dir (default: copy, non-destructive)
+./migrate-raw-logs.sh
+
+# compress external raw logs (default: keep originals)
+./compress-raw-logs.sh
+
+# compress and replace originals
+KEEP_ORIGINAL=0 ./compress-raw-logs.sh
+```
+
+Notes:
+
+- `.gitignore` is set to avoid tracking raw/probe artifacts under `vega_path_check_logs/`.
+- Historical tracked logs already in git history are not removed by `.gitignore` alone.
+
 ## Expected directory layout
 
 The scripts assume this workspace layout:
