@@ -1,0 +1,1 @@
+02:16:24.402765 openat(AT_FDCWD, "/sys/devices/system/cpu/online", O_RDONLY|O_CLOEXEC) = 7

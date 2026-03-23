@@ -1,0 +1,45 @@
+02:15:42.468648 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:42.480137 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama", O_RDONLY|O_CLOEXEC) = 6
+02:15:42.481412 openat(AT_FDCWD, "/etc/resolv.conf", O_RDONLY|O_CLOEXEC) = 6
+02:15:42.481836 openat(AT_FDCWD, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 6
+02:15:42.482314 openat(AT_FDCWD, "/etc/hosts", O_RDONLY|O_CLOEXEC) = 6
+02:15:42.483112 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 6
+02:15:42.483272 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 7
+02:15:42.483427 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
+02:15:42.838440 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3298020, si_uid=1000, si_status=SIGKILL, si_utime=7 /* 0.07 s */, si_stime=13 /* 0.13 s */} ---
+02:15:42.864820 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:42.865287 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:44.762446 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:44.800538 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:44.800821 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:44.820342 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:44.821953 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:44.877444 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.164016 openat(AT_FDCWD, "/proc/meminfo", O_RDONLY|O_CLOEXEC) = 8
+02:15:45.164648 openat(AT_FDCWD, "/sys/fs/cgroup/memory.max", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:15:45.164799 openat(AT_FDCWD, "/sys/fs/cgroup/memory.current", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:15:45.164923 openat(AT_FDCWD, "/proc/cpuinfo", O_RDONLY|O_CLOEXEC) = 8
+02:15:45.166771 openat(AT_FDCWD, "/sys/fs/cgroup/cpu.max", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:15:45.167036 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816", O_RDONLY|O_CLOEXEC) = 8
+02:15:45.175800 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.187573 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.188155 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.189845 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.201582 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.210031 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816", O_RDONLY|O_CLOEXEC) = 6
+02:15:45.222109 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.258441 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.427984 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.450535 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.450805 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.461637 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.462052 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.484162 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.507218 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.554305 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.577998 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.612148 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.612381 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.634347 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:45.667252 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298009, si_uid=1000} ---
+02:15:49.075819 +++ exited with 0 +++

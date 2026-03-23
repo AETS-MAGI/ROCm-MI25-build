@@ -1,0 +1,7 @@
+02:15:29.947725 openat(AT_FDCWD, "/sys/devices/system/cpu/online", O_RDONLY|O_CLOEXEC) = 8
+02:15:29.948831 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3297654, si_uid=1000} ---
+02:15:29.949569 openat(AT_FDCWD, "/sys/class/drm", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 8
+02:15:29.950399 openat(AT_FDCWD, "/sys/class/drm/card1/device/uevent", O_RDONLY) = 8
+02:15:29.950538 openat(AT_FDCWD, "/sys/class/drm/card1/device/mem_info_vram_total", O_RDONLY) = 11
+02:15:29.950636 openat(AT_FDCWD, "/sys/class/drm/card1/device/mem_info_vram_used", O_RDONLY) = 12
+02:15:29.951578 +++ killed by SIGKILL +++

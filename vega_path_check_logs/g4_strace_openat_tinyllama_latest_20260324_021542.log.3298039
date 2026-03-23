@@ -1,0 +1,5 @@
+02:15:42.866205 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298032, si_uid=1000} ---
+02:15:42.867672 openat(AT_FDCWD, "/tmp/3701434230.bin", O_RDWR|O_CREAT|O_EXCL|O_CLOEXEC, 0600) = 8
+02:15:42.868080 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298032, si_uid=1000} ---
+02:15:42.868287 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298032, si_uid=1000} ---
+02:15:44.719598 +++ killed by SIGKILL +++
