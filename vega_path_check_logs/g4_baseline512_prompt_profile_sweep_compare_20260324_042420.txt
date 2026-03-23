@@ -1,0 +1,20 @@
+timestamp=20260324_042420
+purpose=baseline_512_prompt_profile_single_knob_sweep
+map=vega_path_check_logs/g4_baseline512_prompt_profile_map_20260324_042122.tsv
+table=vega_path_check_logs/g4_baseline512_prompt_profile_sweep_table_20260324_042420.tsv
+model=gpt-oss:latest
+num_predict=128
+num_ctx=8192
+num_batch=512
+keep_alive=5m
+target_shapes=512x512x2880,2880x512x4096,4096x512x2880
+
+--- table ---
+profile  direct  gemm_lines  shape_512x512x2880  shape_2880x512x4096  shape_4096x512x2880  summary
+short    1       1002        192                 96                   96                   /home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_042122.txt
+long     1       1002        192                 96                   96                   /home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_042207.txt
+code     1       1002        192                 96                   96                   /home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_042241.txt
+math     1       1002        192                 96                   96                   /home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_042314.txt
+
+[inference / unvalidated]
+interpretation=prompt_profile_sweep_did_not_shift_dispatch_visibility_or_top3_shape_frequency_under_baseline_512

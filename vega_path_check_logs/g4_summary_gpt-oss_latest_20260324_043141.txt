@@ -1,0 +1,146 @@
+timestamp=20260324_043141
+host=127.0.0.1:11534
+model=gpt-oss:latest
+num_predict=64
+temperature=0.1
+num_ctx=8192
+num_batch=512
+num_thread=
+keep_alive=5m
+RAW_LOG_DIR=/home/limonene/ROCm-project/vega_path_check_logs_raw
+OLLAMA_LIBRARY_PATH=/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama
+ROCBLAS_TENSILE_LIBPATH=/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library
+GEN_LOG=/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_generate_gpt-oss_latest_20260324_043141.json
+STRACE_PREFIX=/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log
+SERVE_OUT=/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_serve_stdout_gpt-oss_latest_20260324_043141.log
+SERVE_ERR=/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_serve_stderr_gpt-oss_latest_20260324_043141.log
+strace_timestamp=1
+probe_rocblas_log=1
+ROCBLAS_TRACE_LOG=/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_rocblas_trace_gpt-oss_latest_20260324_043141.log
+ROCBLAS_BENCH_LOG=/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_rocblas_bench_gpt-oss_latest_20260324_043141.log
+ROCBLAS_PROFILE_LOG=/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_rocblas_profile_gpt-oss_latest_20260324_043141.log
+
+--- generate result ---
+gpt-oss:latest
+true
+length
+9889001361
+7653409142
+93
+64
+
+--- evidence counts ---
+libggml_hip_openat=4
+fallback_dat_openat=57
+fallback_hsaco_openat=57
+rocblas_trace_lines=1504
+rocblas_trace_handle_lines=1
+rocblas_trace_gemm_lines=1002
+
+--- evidence sample: backend load ---
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488336:24:04:31:45.270080 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/libggml-hip.so", O_RDONLY|O_CLOEXEC) = 8
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488336:37:04:31:45.273750 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488336:38:04:31:45.273897 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488336:39:04:31:45.274027 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488336:40:04:31:45.274159 openat(AT_FDCWD, "librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488336:41:04:31:45.274287 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488336:42:04:31:45.274419 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488336:43:04:31:45.274610 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488336:44:04:31:45.274765 openat(AT_FDCWD, "librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488336:45:04:31:45.274904 openat(AT_FDCWD, "/opt/rocm-7.2.0/lib/librocblas.so.5", O_RDONLY|O_CLOEXEC) = 8
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488304:12:04:31:44.101165 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/libggml-hip.so", O_RDONLY|O_CLOEXEC) = 9
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488304:25:04:31:44.102496 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488304:26:04:31:44.102548 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488304:27:04:31:44.102596 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488304:28:04:31:44.102639 openat(AT_FDCWD, "librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488304:29:04:31:44.102686 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488304:30:04:31:44.102734 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488304:31:04:31:44.102780 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488304:32:04:31:44.102826 openat(AT_FDCWD, "librocblas.so.5", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488304:33:04:31:44.102889 openat(AT_FDCWD, "/opt/rocm-7.2.0/lib/librocblas.so.5", O_RDONLY|O_CLOEXEC) = 9
+
+--- evidence sample: fallback .dat ---
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488357:52:04:31:51.402095 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_HH_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback.dat", O_RDONLY) = 7
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:30:04:31:42.252552 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_SS_Contraction_l_Alik_Bjlk_Cijk_Dijk_fallback.dat", O_RDONLY) = 15
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:31:04:31:42.252947 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_DD_Contraction_l_Alik_Bjlk_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:32:04:31:42.253360 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_CC_Contraction_l_Alik_Bjlk_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:33:04:31:42.253779 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_ZZ_Contraction_l_Alik_Bjlk_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:34:04:31:42.254169 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_HS_HPA_Contraction_l_Alik_Bjlk_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:35:04:31:42.254775 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_HH_Contraction_l_Alik_Bjlk_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:36:04:31:42.255405 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_HH_HPA_Contraction_l_Alik_Bjlk_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:37:04:31:42.256383 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_4xi8I_HPA_Contraction_l_Alik_Bjlk_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:38:04:31:42.257393 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_BS_HPA_Contraction_l_Alik_Bjlk_Cijk_Dijk_fallback.dat", O_RDONLY) = 15
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:39:04:31:42.257941 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_BB_HPA_Contraction_l_Alik_Bjlk_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:40:04:31:42.258886 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_I8I_HPA_Contraction_l_Alik_Bjlk_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:41:04:31:42.260215 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_CC_Contraction_l_Alik_BjlkC_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:42:04:31:42.260625 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_ZZ_Contraction_l_Alik_BjlkC_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:43:04:31:42.261017 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_CC_Contraction_l_AlikC_Bjlk_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:44:04:31:42.261398 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_ZZ_Contraction_l_AlikC_Bjlk_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:45:04:31:42.261799 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_SS_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:46:04:31:42.262207 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_DD_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback.dat", O_RDONLY) = 15
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:47:04:31:42.262581 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_CC_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback.dat", O_RDONLY) = 15
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488248:48:04:31:42.262949 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library//TensileLibrary_Type_ZZ_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback.dat", O_RDONLY) = 12
+
+--- evidence sample: fallback .hsaco ---
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488357:53:04:31:51.402945 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_HH_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 7
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488330:67:04:31:45.810887 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_BB_HPA_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 7
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488330:85:04:31:45.883016 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_HS_HPA_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 7
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:830:04:31:42.044941 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_4xi8I_HPA_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:834:04:31:42.063227 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_ZZ_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:838:04:31:42.067192 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_HS_HPA_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:847:04:31:42.088308 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_BB_HPA_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:851:04:31:42.096401 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_I8I_HPA_Contraction_l_Alik_Bjlk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:855:04:31:42.106321 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_I8I_HPA_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:1459:04:31:43.174132 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_CC_Contraction_l_Ailk_BjlkC_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:1463:04:31:43.176708 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_ZZ_Contraction_l_Ailk_BjlkC_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:1479:04:31:43.202520 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_CC_Contraction_l_Ailk_Bjlk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:1483:04:31:43.205058 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_DD_Contraction_l_Ailk_Bjlk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:1487:04:31:43.207165 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_4xi8I_HPA_Contraction_l_Ailk_Bjlk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:1491:04:31:43.211497 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_HH_Contraction_l_Ailk_Bjlk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:1499:04:31:43.227961 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_SS_Contraction_l_Ailk_Bjlk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:1503:04:31:43.230469 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_BB_HPA_Contraction_l_Ailk_Bjlk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:1507:04:31:43.237612 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_HH_HPA_Contraction_l_Ailk_Bjlk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:1515:04:31:43.258773 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_BS_HPA_Contraction_l_Ailk_Bjlk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260324_043141.log.3488238:1519:04:31:43.265656 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library/TensileLibrary_Type_ZZ_Contraction_l_Ailk_Bjlk_Cijk_Dijk_fallback_gfx900.hsaco", O_RDONLY) = 11
+
+--- evidence sample: rocBLAS trace ---
+rocblas_create_handle,atomics_not_allowed
+rocblas_set_stream,0x7763cc009760,atomics_not_allowed
+rocblas_gemm_ex,T,N,4096,512,2880,1,0x195a280,bf16_r,2880,0x80,bf16_r,2880,0,0x80,bf16_r,4096,0x80,bf16_r,4096,f32_r,0,0,none,atomics_not_allowed
+rocblas_internal,rocblas_gemm_tensile_backend,T,N,4096,512,2880,1,0x195a280,2880,0x80,2880,0,0x80,4096,0x80,4096,atomics_not_allowed
+rocblas_set_stream,0x7763cc009760,atomics_not_allowed
+rocblas_gemm_ex,T,N,512,512,2880,1,0x880,bf16_r,2880,0x80,bf16_r,2880,0,0x80,bf16_r,512,0x80,bf16_r,512,f32_r,0,0,none,atomics_not_allowed
+rocblas_internal,rocblas_gemm_tensile_backend,T,N,512,512,2880,1,0x880,2880,0x80,2880,0,0x80,512,0x80,512,atomics_not_allowed
+rocblas_set_stream,0x7763cc009760,atomics_not_allowed
+rocblas_gemm_ex,T,N,512,512,2880,1,0x2fdab80,bf16_r,2880,0x80,bf16_r,2880,0,0x80,bf16_r,512,0x80,bf16_r,512,f32_r,0,0,none,atomics_not_allowed
+rocblas_internal,rocblas_gemm_tensile_backend,T,N,512,512,2880,1,0x2fdab80,2880,0x80,2880,0,0x80,512,0x80,512,atomics_not_allowed
+rocblas_set_stream,0x7763cc009760,atomics_not_allowed
+rocblas_gemm_batched_ex,T,N,4608,512,64,1,0x80,f16_r,512,0x280,f16_r,64,0,0x80,f32_r,4608,0x80,f32_r,4608,64,f32_r,0,0,none,atomics_not_allowed
+rocblas_internal,rocblas_gemm_tensile_backend,T,N,4608,512,64,1,0,512,0,64,0,0,4608,0,4608,atomics_not_allowed
+rocblas_set_stream,0x7763cc009760,atomics_not_allowed
+rocblas_gemm_batched_ex,T,N,64,512,4608,1,0x80,f16_r,4608,0x280,f16_r,4608,0,0x80,f16_r,64,0x80,f16_r,64,64,f16_r,0,0,none,atomics_not_allowed
+rocblas_internal,rocblas_gemm_tensile_backend,T,N,64,512,4608,1,0,4608,0,4608,0,0,64,0,64,atomics_not_allowed
+rocblas_set_stream,0x7763cc009760,atomics_not_allowed
+rocblas_gemm_ex,T,N,2880,512,4096,1,0x2d6280,bf16_r,4096,0x80,bf16_r,4096,0,0x80,bf16_r,2880,0x80,bf16_r,2880,f32_r,0,0,none,atomics_not_allowed
+rocblas_internal,rocblas_gemm_tensile_backend,T,N,2880,512,4096,1,0x2d6280,4096,0x80,4096,0,0x80,2880,0x80,2880,atomics_not_allowed
+rocblas_set_stream,0x7763cc009760,atomics_not_allowed
+rocblas_sgemm,T,N,32,512,2880,1,0x14050d00,2880,0x80,2880,0,0x2441900,32,atomics_not_allowed
+rocblas_internal,rocblas_gemm_tensile_backend,T,N,32,512,2880,1,0x14050d00,2880,0x80,2880,0,0x2441900,32,0x2441900,32,atomics_not_allowed
+rocblas_set_stream,0x7763cc009760,atomics_not_allowed
+rocblas_gemm_ex,T,N,4096,512,2880,1,0x1e0dac80,bf16_r,2880,0x80,bf16_r,2880,0,0x80,bf16_r,4096,0x80,bf16_r,4096,f32_r,0,0,none,atomics_not_allowed
+rocblas_internal,rocblas_gemm_tensile_backend,T,N,4096,512,2880,1,0x1e0dac80,2880,0x80,2880,0,0x80,4096,0x80,4096,atomics_not_allowed
+rocblas_set_stream,0x7763cc009760,atomics_not_allowed
+rocblas_gemm_ex,T,N,512,512,2880,1,0x1c781280,bf16_r,2880,0x80,bf16_r,2880,0,0x80,bf16_r,512,0x80,bf16_r,512,f32_r,0,0,none,atomics_not_allowed
+rocblas_internal,rocblas_gemm_tensile_backend,T,N,512,512,2880,1,0x1c781280,2880,0x80,2880,0,0x80,512,0x80,512,atomics_not_allowed
+rocblas_set_stream,0x7763cc009760,atomics_not_allowed
+rocblas_gemm_ex,T,N,512,512,2880,1,0x1f75b580,bf16_r,2880,0x80,bf16_r,2880,0,0x80,bf16_r,512,0x80,bf16_r,512,f32_r,0,0,none,atomics_not_allowed
+rocblas_internal,rocblas_gemm_tensile_backend,T,N,512,512,2880,1,0x1f75b580,2880,0x80,2880,0,0x80,512,0x80,512,atomics_not_allowed
+rocblas_set_stream,0x7763cc009760,atomics_not_allowed
+rocblas_gemm_batched_ex,T,N,8192,512,64,1,0x80,f16_r,512,0x280,f16_r,64,0,0x80,f32_r,8192,0x80,f32_r,8192,64,f32_r,0,0,none,atomics_not_allowed
+rocblas_internal,rocblas_gemm_tensile_backend,T,N,8192,512,64,1,0,512,0,64,0,0,8192,0,8192,atomics_not_allowed
+rocblas_set_stream,0x7763cc009760,atomics_not_allowed
+rocblas_gemm_batched_ex,T,N,64,512,8192,1,0x80,f16_r,8192,0x280,f16_r,8192,0,0x80,f16_r,64,0x80,f16_r,64,64,f16_r,0,0,none,atomics_not_allowed
+rocblas_internal,rocblas_gemm_tensile_backend,T,N,64,512,8192,1,0,8192,0,8192,0,0,64,0,64,atomics_not_allowed
+rocblas_set_stream,0x7763cc009760,atomics_not_allowed
+rocblas_gemm_ex,T,N,2880,512,4096,1,0x1ca56c80,bf16_r,4096,0x80,bf16_r,4096,0,0x80,bf16_r,2880,0x80,bf16_r,2880,f32_r,0,0,none,atomics_not_allowed
+rocblas_internal,rocblas_gemm_tensile_backend,T,N,2880,512,4096,1,0x1ca56c80,4096,0x80,4096,0,0x80,2880,0x80,2880,atomics_not_allowed

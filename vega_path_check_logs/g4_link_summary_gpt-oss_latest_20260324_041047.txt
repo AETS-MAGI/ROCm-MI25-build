@@ -1,0 +1,41 @@
+timestamp=20260324_041047
+model=gpt-oss:latest
+prompt=Write a concise technical note about fallback and direct dispatch verification on gfx900 MI25. Include short bullet-like lines in plain text.
+num_predict=128
+temperature=0.1
+num_ctx=8192
+num_batch=512
+num_thread=6
+keep_alive=5m
+raw_log_dir=/home/limonene/ROCm-project/vega_path_check_logs_raw
+run_strace=1
+run_rocprof=1
+strace_host=127.0.0.1:11534
+rocprof_host=127.0.0.1:11634
+rocblas_layer=9
+rocblas_verbose_tensile_error=0
+rocblas_verbose_hipblaslt_error=0
+strace_summary=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_summary_gpt-oss_latest_20260324_041047.txt
+rocprof_summary=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/rocprofv3_summary_gpt-oss_latest_20260324_041103.txt
+
+--- fallback evidence ---
+libggml_hip_openat=4
+fallback_dat_openat=57
+fallback_hsaco_openat=57
+rocblas_trace_lines=1504
+rocblas_trace_handle_lines=1
+rocblas_trace_gemm_lines=1002
+
+--- dispatch evidence ---
+kernel_dispatch_rows=22275
+kernel_mul_mat_q_rows=69
+kernel_mul_mat_vec_rows=1450
+kernel_flash_attn_rows=0
+kernel_quantize_rows=1519
+kernel_tensile_like_rows=167
+
+--- gate ---
+fallback_confirmed=1
+dispatch_confirmed=1
+direct_rocblas_or_tensile_dispatch=1
+link_status=direct_rocblas_or_tensile_dispatch_observed
