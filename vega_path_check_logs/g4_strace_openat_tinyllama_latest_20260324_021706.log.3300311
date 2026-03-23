@@ -1,0 +1,20 @@
+02:17:09.051627 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300214, si_uid=1000} ---
+02:17:09.051970 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300214, si_uid=1000} ---
+02:17:09.052431 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300214, si_uid=1000} ---
+02:17:09.062573 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816", O_RDONLY|O_CLOEXEC) = 6
+02:17:09.067627 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300214, si_uid=1000} ---
+02:17:09.085389 openat(AT_FDCWD, "/proc/cpuinfo", O_RDONLY) = 6
+02:17:09.085633 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816", O_RDONLY) = 6
+02:17:09.110850 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816", O_RDONLY) = 6
+02:17:09.114692 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300214, si_uid=1000} ---
+02:17:09.165381 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300214, si_uid=1000} ---
+02:17:09.173763 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 11
+02:17:09.190624 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300214, si_uid=1000} ---
+02:17:09.202112 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300214, si_uid=1000} ---
+02:17:09.213341 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300214, si_uid=1000} ---
+02:17:09.225151 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300214, si_uid=1000} ---
+02:17:09.246438 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300214, si_uid=1000} ---
+02:17:09.257803 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300214, si_uid=1000} ---
+02:17:09.383172 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300214, si_uid=1000} ---
+02:17:10.951271 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300214, si_uid=1000} ---
+02:17:13.041750 +++ exited with 0 +++

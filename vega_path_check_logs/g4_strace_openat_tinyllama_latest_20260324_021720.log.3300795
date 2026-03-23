@@ -1,0 +1,11 @@
+02:17:20.659621 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300792, si_uid=1000} ---
+02:17:20.736167 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300792, si_uid=1000} ---
+02:17:21.172542 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 7
+02:17:21.173026 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
+02:17:21.173514 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 9
+02:17:23.077949 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816", O_RDONLY|O_CLOEXEC) = 6
+02:17:23.079241 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300792, si_uid=1000} ---
+02:17:23.605963 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300792, si_uid=1000} ---
+02:17:23.607615 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300792, si_uid=1000} ---
+02:17:23.611603 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300792, si_uid=1000} ---
+02:17:27.610198 +++ exited with 0 +++

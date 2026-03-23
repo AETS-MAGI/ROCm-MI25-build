@@ -7,3 +7,4 @@
 02:16:23.464715 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298742, si_uid=1000} ---
 02:16:23.534038 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298742, si_uid=1000} ---
 02:16:23.534714 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298742, si_uid=1000} ---
+02:16:27.819720 +++ exited with 0 +++

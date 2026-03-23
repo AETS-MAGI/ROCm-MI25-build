@@ -51,7 +51,11 @@ count_patterns() {
   local file="$1"
   local pattern="$2"
   if [[ -f "$file" ]]; then
-    rg -n -i "$pattern" "$file" | wc -l | tr -d ' '
+    {
+      set +o pipefail
+      rg -n -i "$pattern" "$file" | wc -l | tr -d ' '
+      set -o pipefail
+    }
   else
     echo "0"
   fi

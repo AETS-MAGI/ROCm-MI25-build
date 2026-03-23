@@ -8,3 +8,4 @@
 02:16:21.548736 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3298753, si_uid=1000, si_status=SIGKILL, si_utime=8 /* 0.08 s */, si_stime=16 /* 0.16 s */} ---
 02:16:23.560644 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298742, si_uid=1000} ---
 02:16:23.561010 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3298742, si_uid=1000} ---
+02:16:27.819889 +++ exited with 0 +++

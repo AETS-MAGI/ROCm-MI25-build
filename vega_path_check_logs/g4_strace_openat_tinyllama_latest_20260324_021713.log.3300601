@@ -1,0 +1,11 @@
+02:17:17.151372 openat(AT_FDCWD, "/sys/devices/system/cpu/online", O_RDONLY|O_CLOEXEC) = 11
+02:17:17.701278 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300590, si_uid=1000} ---
+02:17:17.744856 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300590, si_uid=1000} ---
+02:17:17.765649 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300590, si_uid=1000} ---
+02:17:17.824941 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300590, si_uid=1000} ---
+02:17:17.903570 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300590, si_uid=1000} ---
+02:17:17.923929 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300590, si_uid=1000} ---
+02:17:17.981631 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300590, si_uid=1000} ---
+02:17:18.038825 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300590, si_uid=1000} ---
+02:17:18.039109 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3300590, si_uid=1000} ---
+02:17:20.048385 +++ killed by SIGTERM +++

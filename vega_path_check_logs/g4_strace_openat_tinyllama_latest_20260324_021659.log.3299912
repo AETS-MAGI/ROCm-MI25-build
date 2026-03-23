@@ -1,0 +1,22 @@
+02:16:59.243878 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3299907, si_uid=1000} ---
+02:16:59.255397 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3299907, si_uid=1000} ---
+02:16:59.266481 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama", O_RDONLY|O_CLOEXEC) = 6
+02:16:59.267801 openat(AT_FDCWD, "/etc/resolv.conf", O_RDONLY|O_CLOEXEC) = 6
+02:16:59.268266 openat(AT_FDCWD, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 6
+02:16:59.268751 openat(AT_FDCWD, "/etc/hosts", O_RDONLY|O_CLOEXEC) = 6
+02:16:59.269622 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 6
+02:16:59.269840 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 7
+02:16:59.270066 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
+02:16:59.606612 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3299918, si_uid=1000, si_status=SIGKILL, si_utime=5 /* 0.05 s */, si_stime=12 /* 0.12 s */} ---
+02:17:01.344187 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3299907, si_uid=1000} ---
+02:17:01.345315 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3299907, si_uid=1000} ---
+02:17:01.345563 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3299907, si_uid=1000} ---
+02:17:01.471589 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3299907, si_uid=1000} ---
+02:17:02.130719 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3299907, si_uid=1000} ---
+02:17:02.155535 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3299907, si_uid=1000} ---
+02:17:02.199918 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3299907, si_uid=1000} ---
+02:17:02.211259 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3299907, si_uid=1000} ---
+02:17:02.211453 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3299907, si_uid=1000} ---
+02:17:02.579683 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3299907, si_uid=1000} ---
+02:17:02.832217 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3299907, si_uid=1000} ---
+02:17:05.840177 +++ exited with 0 +++

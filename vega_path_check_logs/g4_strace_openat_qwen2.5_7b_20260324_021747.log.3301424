@@ -1,0 +1,17 @@
+02:17:47.231447 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301420, si_uid=1000} ---
+02:17:47.256923 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3301420, si_uid=1000} ---
+02:17:47.258631 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:17:47.258940 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:17:47.259240 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-coder", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:17:47.259403 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-coder", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:17:47.259557 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-r1", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:17:47.259708 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/deepseek-r1", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:17:47.259854 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/gpt-oss", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:17:47.259996 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/gpt-oss", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:17:47.260139 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/qwen2.5", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:17:47.260283 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/qwen2.5", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:17:47.260429 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/tinyllama", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:17:47.260588 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library/tinyllama", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:17:47.260722 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:17:47.260850 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:17:47.260975 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6

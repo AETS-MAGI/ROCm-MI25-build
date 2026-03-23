@@ -104,3 +104,5 @@
 02:16:21.056715 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai/library", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
 02:16:21.056935 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
 02:16:21.057146 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
+02:16:27.747874 --- SIGTERM {si_signo=SIGTERM, si_code=SI_USER, si_pid=3298727, si_uid=1000} ---
+02:16:27.824950 +++ exited with 0 +++
