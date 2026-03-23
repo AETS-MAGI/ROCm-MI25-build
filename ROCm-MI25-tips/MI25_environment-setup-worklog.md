@@ -452,3 +452,46 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - `vega_path_check_logs/model_generate_gpt-oss_latest_20260321_031355.json`
 - `vega_path_check_logs/model_journal_gpt-oss_latest_20260321_031355.log`
 - `vega_path_check_logs/model_rocm_smi_gpt-oss_latest_20260321_031355.log`
+
+---
+
+## 16. G4 fallback_confirmed 達成（2026-03-24）[main-node confirmed]
+
+### 16.1 目的
+
+- `safe` 基準固定後の最終ゲートとして、実機 runtime で fallback 経路を最低1件確定する。
+- 文字列ベース（`falling back`）だけに依存せず、実際の runtime 資産アクセスで判定する。
+
+### 16.2 実施
+
+- 追加スクリプト:
+  - `g4-fallback-strace-check.sh`
+- 手順:
+  - `ollama serve` を別ポート（`127.0.0.1:11534`）で一時起動
+  - `strace -ff -e trace=openat,openat2` で file open を採取
+  - `tinyllama:latest` を non-stream 実行
+  - `TensileLibrary_*_fallback.dat/.hsaco` の openat 件数を集計
+
+### 16.3 判定
+
+- `fallback_dat_openat=54`
+- `fallback_hsaco_openat=54`
+- よって、`fallback_confirmed` を **達成** と判定。
+
+補足:
+- 現行 Ollama journal に `falling back` 明示文字列は未観測。
+- ただし gate 判定は runtime fallback 資産アクセスにより満たした。
+
+### 16.4 主証跡
+
+- `vega_path_check_logs/g4_summary_tinyllama_latest_20260324_005717.txt`
+- `vega_path_check_logs/g4_generate_tinyllama_latest_20260324_005717.json`
+- `vega_path_check_logs/g4_serve_stderr_tinyllama_latest_20260324_005717.log`
+- `vega_path_check_logs/g4_strace_openat_tinyllama_latest_20260324_005717.log*`
+
+### 16.5 観測メモ
+
+- `libggml-hip.so` の openat を確認（HIP backend）。
+- `librocblas.so.5` は `/opt/rocm-7.2.0/lib` から解決。
+- `ROCBLAS_TENSILE_LIBPATH` はローカル fork（`ROCm-repos_AETS/rocBLAS/.../rocblas/library`）を参照し、
+  `TensileLibrary_*_fallback.dat/.hsaco` の実アクセスを確認。
