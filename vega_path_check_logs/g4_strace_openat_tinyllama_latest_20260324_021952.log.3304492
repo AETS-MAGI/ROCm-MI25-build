@@ -1,0 +1,12 @@
+02:19:52.597486 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama", O_RDONLY|O_CLOEXEC) = 6
+02:19:52.598516 openat(AT_FDCWD, "/etc/resolv.conf", O_RDONLY|O_CLOEXEC) = 6
+02:19:52.598836 openat(AT_FDCWD, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 6
+02:19:52.599137 openat(AT_FDCWD, "/etc/hosts", O_RDONLY|O_CLOEXEC) = 6
+02:19:52.599771 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 6
+02:19:52.600058 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 7
+02:19:52.600308 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
+02:19:53.032252 --- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3304495, si_uid=1000, si_status=SIGKILL, si_utime=6 /* 0.06 s */, si_stime=14 /* 0.14 s */} ---
+02:19:54.821421 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3304482, si_uid=1000} ---
+02:19:54.858092 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3304482, si_uid=1000} ---
+02:19:56.599118 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3304482, si_uid=1000} ---
+02:19:59.141970 +++ exited with 0 +++
