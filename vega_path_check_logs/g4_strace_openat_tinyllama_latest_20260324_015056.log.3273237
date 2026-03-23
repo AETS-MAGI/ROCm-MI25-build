@@ -1,0 +1,9 @@
+01:50:58.671540 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:58.753154 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:58.770242 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:58.826500 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:59.162334 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:59.162863 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:59.374827 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:59.386904 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:51:02.577915 +++ exited with 0 +++

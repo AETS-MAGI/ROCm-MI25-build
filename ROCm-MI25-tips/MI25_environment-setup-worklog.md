@@ -567,10 +567,15 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - ただし `rocBLAS` trace は現時点で `create_handle` のみで、GEMM 呼び出し行は未観測。
 - よって、dispatch 直接証跡の最終確定は **継続タスク**。
 
+追試:
+
+- `ROCBLAS_LAYER=63` でも `rocblas_trace_gemm_lines=0`（`g4_summary_tinyllama_latest_20260324_015056.txt`）。
+
 ### 18.5 主証跡
 
 - `g4-fallback-strace-check.sh`
 - `summarize-fallback-phases.sh`
 - `vega_path_check_logs/g4_summary_tinyllama_latest_20260324_014707.txt`
+- `vega_path_check_logs/g4_summary_tinyllama_latest_20260324_015056.txt`
 - `vega_path_check_logs/fallback_phase_summary_tinyllama_latest_20260324_014707.tsv`
 - `vega_path_check_logs/g4_rocblas_trace_tinyllama_latest_20260324_014707.log`

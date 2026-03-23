@@ -1,0 +1,107 @@
+01:50:59.630246 openat(AT_FDCWD, "/proc/sys/net/core/somaxconn", O_RDONLY|O_CLOEXEC) = 8
+01:50:59.632066 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273262, si_uid=1000} ---
+01:50:59.635960 openat(AT_FDCWD, "/sys/class/drm", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 11
+01:50:59.637290 openat(AT_FDCWD, "/sys/class/drm/card1/device/uevent", O_RDONLY) = 11
+01:50:59.637513 openat(AT_FDCWD, "/sys/class/drm/card1/device/mem_info_vram_total", O_RDONLY) = 12
+01:50:59.637683 openat(AT_FDCWD, "/sys/class/drm/card1/device/mem_info_vram_used", O_RDONLY) = 13
+01:50:59.638095 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816", O_RDONLY) = 11
+01:50:59.671175 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81862c6be03c769683af18efdadb2c33f60ff32ab6f83e42c043d6c7816", O_RDONLY) = 11
+01:50:59.674987 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273262, si_uid=1000} ---
+01:50:59.703384 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273262, si_uid=1000} ---
+01:50:59.736582 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273262, si_uid=1000} ---
+01:50:59.843727 openat(AT_FDCWD, "/tmp/comgr-3273262-0-88c974/include/opencl-c-base.h", O_WRONLY|O_CREAT|O_TRUNC|O_CLOEXEC, 0666) = 12
+01:50:59.845618 openat(AT_FDCWD, "/tmp/comgr-3273262-0-88c974/input/CompileSource", O_WRONLY|O_CREAT|O_TRUNC|O_CLOEXEC, 0666) = 12
+01:50:59.847122 openat(AT_FDCWD, "/tmp/comgr-3273262-0-88c974/rocm/share/hip/version", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+01:50:59.847287 openat(AT_FDCWD, "/tmp/comgr-3273262-0-88c974/share/hip/version", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+01:50:59.847434 openat(AT_FDCWD, "/tmp/comgr-3273262-0-88c974/rocm/bin/.hipVersion", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+01:50:59.847649 openat(AT_FDCWD, "/tmp/comgr-3273262-0-88c974/rocm/amdgcn/bitcode", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = -1 ENOENT (No such file or directory)
+01:50:59.848844 openat(AT_FDCWD, "/tmp/CompileSource-54782e.cli", O_RDWR|O_CREAT|O_EXCL|O_CLOEXEC, 0666) = 12
+01:50:59.852222 openat(AT_FDCWD, "/tmp/comgr-3273262-0-88c974/input/CompileSource", O_RDONLY|O_CLOEXEC) = 12
+01:50:59.854587 openat(AT_FDCWD, "/tmp/CompileSource-54782e-fa2c510e.cli.tmp", O_RDWR|O_CREAT|O_EXCL|O_CLOEXEC, 0666) = 13
+01:50:59.857811 openat(AT_FDCWD, "/tmp/comgr-3273262-0-88c974/include/opencl-c-base.h", O_RDONLY|O_CLOEXEC) = 12
+01:50:59.860142 openat(AT_FDCWD, "/tmp/CompileSource-54782e.cli", O_RDONLY|O_CLOEXEC) = 12
+01:50:59.860685 openat(AT_FDCWD, "/home/limonene/.cache/comgr/llvmcache-64728efd4de65e36b60cc8128e713440ae8372f0e8611d059be6011e4e1815ef", O_RDONLY|O_CLOEXEC) = 12
+01:50:59.861047 openat(AT_FDCWD, "/tmp/comgr-3273262-0-88c974/output/CompileSource.bc", O_WRONLY|O_CREAT|O_TRUNC|O_CLOEXEC, 0666) = 12
+01:50:59.861925 openat(AT_FDCWD, "/tmp/comgr-3273262-0-88c974/output/CompileSource.bc", O_RDONLY|O_CLOEXEC) = 12
+01:50:59.862301 openat(AT_FDCWD, "/tmp/comgr-3273262-0-88c974", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 12
+01:50:59.862540 openat(AT_FDCWD, "/tmp/comgr-3273262-0-88c974/input", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 13
+01:50:59.863159 openat(AT_FDCWD, "/tmp/comgr-3273262-0-88c974/output", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 13
+01:50:59.863791 openat(AT_FDCWD, "/tmp/comgr-3273262-0-88c974/include", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 13
+01:50:59.872589 openat(AT_FDCWD, "/tmp/comgr-3273262-1-d2117f", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 12
+01:50:59.872917 openat(AT_FDCWD, "/tmp/comgr-3273262-1-d2117f/input", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 13
+01:50:59.873414 openat(AT_FDCWD, "/tmp/comgr-3273262-1-d2117f/output", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 13
+01:50:59.873895 openat(AT_FDCWD, "/tmp/comgr-3273262-1-d2117f/include", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 13
+01:50:59.876565 openat(AT_FDCWD, "/tmp/comgr-3273262-2-fd3827/input/linked.bc", O_WRONLY|O_CREAT|O_TRUNC|O_CLOEXEC, 0666) = 12
+01:50:59.877809 openat(AT_FDCWD, "/opt", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 12
+01:50:59.878178 openat(AT_FDCWD, "/share/hip/version", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+01:50:59.878291 openat(AT_FDCWD, "share/hip/version", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+01:50:59.878391 openat(AT_FDCWD, "/bin/.hipVersion", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+01:50:59.878543 openat(AT_FDCWD, "/share/hip/version", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+01:50:59.878646 openat(AT_FDCWD, "share/hip/version", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+01:50:59.878744 openat(AT_FDCWD, "/bin/.hipVersion", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+01:50:59.878931 openat(AT_FDCWD, "/opt/rocm/share/hip/version", O_RDONLY|O_CLOEXEC) = 12
+01:50:59.879585 openat(AT_FDCWD, "/opt/rocm/amdgcn/bitcode", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 12
+01:50:59.880311 openat(AT_FDCWD, "/tmp/comgr-3273262-2-fd3827/input/linked.bc", O_RDONLY|O_CLOEXEC) = 12
+01:50:59.880982 openat(AT_FDCWD, "/home/limonene/.cache/comgr/llvmcache-0a2bcd17fe71f7d77d3d67dabd8ab1947bd87f6fc35b3653bb87c29dfb599a37", O_RDONLY|O_CLOEXEC) = 12
+01:50:59.881344 openat(AT_FDCWD, "/tmp/comgr-3273262-2-fd3827/output/linked.o", O_WRONLY|O_CREAT|O_TRUNC|O_CLOEXEC, 0666) = 12
+01:50:59.882024 openat(AT_FDCWD, "/tmp/comgr-3273262-2-fd3827/output/linked.o", O_RDONLY|O_CLOEXEC) = 12
+01:50:59.882406 openat(AT_FDCWD, "/tmp/comgr-3273262-2-fd3827", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 12
+01:50:59.882651 openat(AT_FDCWD, "/tmp/comgr-3273262-2-fd3827/input", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 13
+01:50:59.883295 openat(AT_FDCWD, "/tmp/comgr-3273262-2-fd3827/output", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 13
+01:50:59.883927 openat(AT_FDCWD, "/tmp/comgr-3273262-2-fd3827/include", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 13
+01:50:59.886666 openat(AT_FDCWD, "/tmp/comgr-3273262-3-4a78db/input/linked.o", O_WRONLY|O_CREAT|O_TRUNC|O_CLOEXEC, 0666) = 12
+01:50:59.890899 openat(AT_FDCWD, "/tmp/comgr-3273262-3-4a78db/input/linked.o", O_RDONLY|O_CLOEXEC) = 12
+01:50:59.892166 openat(AT_FDCWD, "/home/limonene/.cache/comgr/llvmcache-651ffe45df148b4e2fc01e37fde84c6c2dddd81f6a2a64bc270624403ab7d09e", O_RDONLY|O_CLOEXEC) = 12
+01:50:59.892746 openat(AT_FDCWD, "/tmp/comgr-3273262-3-4a78db/output/a.so", O_WRONLY|O_CREAT|O_TRUNC|O_CLOEXEC, 0666) = 12
+01:50:59.893684 openat(AT_FDCWD, "/tmp/comgr-3273262-3-4a78db/output/a.so", O_RDONLY|O_CLOEXEC) = 12
+01:50:59.894179 openat(AT_FDCWD, "/tmp/comgr-3273262-3-4a78db", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 12
+01:50:59.894498 openat(AT_FDCWD, "/tmp/comgr-3273262-3-4a78db/input", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 13
+01:50:59.895430 openat(AT_FDCWD, "/tmp/comgr-3273262-3-4a78db/output", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 13
+01:50:59.896285 openat(AT_FDCWD, "/tmp/comgr-3273262-3-4a78db/include", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 13
+01:50:59.899979 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 12
+01:50:59.900229 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 12
+01:51:00.125152 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273262, si_uid=1000} ---
+01:51:00.161187 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_trace_tinyllama_latest_20260324_015056.log", O_WRONLY|O_CREAT|O_TRUNC|O_APPEND|O_CLOEXEC, 0644) = 11
+01:51:00.162119 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_bench_tinyllama_latest_20260324_015056.log", O_WRONLY|O_CREAT|O_TRUNC|O_APPEND|O_CLOEXEC, 0644) = 11
+01:51:00.162976 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_profile_tinyllama_latest_20260324_015056.log", O_WRONLY|O_CREAT|O_TRUNC|O_APPEND|O_CLOEXEC, 0644) = 11
+01:51:00.164453 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+01:51:00.166916 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.167143 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.168864 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+01:51:00.170247 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.170470 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.171584 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+01:51:00.180144 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.180412 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.184447 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+01:51:00.188639 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.188889 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.191168 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+01:51:00.193606 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.193840 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.195220 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+01:51:00.200067 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.200305 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.202359 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+01:51:00.212353 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.212651 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.217108 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+01:51:00.241996 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.242280 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.245734 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+01:51:00.255408 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.255725 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.265158 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+01:51:00.272326 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.272578 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.274564 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+01:51:00.283958 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.284218 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.287971 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY) = 11
+01:51:00.290832 openat(AT_FDCWD, "/proc/sys/vm/overcommit_memory", O_RDONLY|O_CLOEXEC) = 11
+01:51:00.306488 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.306865 openat(AT_FDCWD, "/dev/random", O_WRONLY) = 11
+01:51:00.315073 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273262, si_uid=1000} ---
+01:51:00.487424 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273262, si_uid=1000} ---
+01:51:00.508282 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273262, si_uid=1000} ---
+01:51:02.532625 +++ killed by SIGTERM +++

@@ -1,0 +1,16 @@
+01:50:58.668636 openat(AT_FDCWD, "/sys/devices/system/cpu/online", O_RDONLY|O_CLOEXEC) = 9
+01:50:58.670175 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:58.670588 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:58.671822 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:58.683692 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:58.684582 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:58.750609 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:58.780583 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:58.780986 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 6
+01:50:58.781298 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
+01:50:58.781756 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 9
+01:50:59.164169 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:59.176077 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:59.374395 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:50:59.375024 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3273169, si_uid=1000} ---
+01:51:02.577946 +++ exited with 0 +++
