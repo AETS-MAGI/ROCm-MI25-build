@@ -45,7 +45,15 @@ fi
 
 cleanup() {
   if [[ -n "${SERVE_PID:-}" ]] && kill -0 "$SERVE_PID" >/dev/null 2>&1; then
-    kill "$SERVE_PID" >/dev/null 2>&1 || true
+    # Kill the whole process group (strace + traced ollama serve + runner children).
+    kill -TERM -- "-${SERVE_PID}" >/dev/null 2>&1 || true
+    for _ in $(seq 1 40); do
+      if ! kill -0 "$SERVE_PID" >/dev/null 2>&1; then
+        break
+      fi
+      sleep 0.25
+    done
+    kill -KILL -- "-${SERVE_PID}" >/dev/null 2>&1 || true
     wait "$SERVE_PID" >/dev/null 2>&1 || true
   fi
 }
@@ -70,7 +78,8 @@ export ROCBLAS_TENSILE_LIBPATH
 export HSA_OVERRIDE_GFX_VERSION="${HSA_OVERRIDE_GFX_VERSION:-9.0.0}"
 export HIP_VISIBLE_DEVICES="${HIP_VISIBLE_DEVICES:-0}"
 
-strace -ff -s 300 -e trace=openat,openat2 -o "$STRACE_PREFIX" \
+# Run probe server in a dedicated process group so cleanup is deterministic.
+setsid strace -ff -s 300 -e trace=openat,openat2 -o "$STRACE_PREFIX" \
   "$OLLAMA_BIN" serve >"$SERVE_OUT" 2>"$SERVE_ERR" &
 SERVE_PID=$!
 
@@ -91,10 +100,7 @@ curl -s "$BASE_URL/api/generate" \
 
 sleep 2
 
-if kill -0 "$SERVE_PID" >/dev/null 2>&1; then
-  kill "$SERVE_PID" >/dev/null 2>&1 || true
-  wait "$SERVE_PID" >/dev/null 2>&1 || true
-fi
+cleanup
 
 fallback_dat_count="$(rg -n "TensileLibrary_.*_fallback\\.dat" "${STRACE_PREFIX}"* | wc -l | tr -d ' ')"
 fallback_hsaco_count="$(rg -n "TensileLibrary_.*_fallback_gfx900\\.hsaco" "${STRACE_PREFIX}"* | wc -l | tr -d ' ')"
@@ -118,13 +124,25 @@ hip_backend_count="$(rg -n "libggml-hip\\.so" "${STRACE_PREFIX}"* | wc -l | tr -
   echo "fallback_hsaco_openat=${fallback_hsaco_count}"
   echo
   echo "--- evidence sample: backend load ---"
-  rg -n "libggml-hip\\.so|librocblas\\.so\\.5" "${STRACE_PREFIX}"* | head -n 20 || true
+  {
+    set +o pipefail
+    rg -n "libggml-hip\\.so|librocblas\\.so\\.5" "${STRACE_PREFIX}"* | head -n 20 || true
+    set -o pipefail
+  }
   echo
   echo "--- evidence sample: fallback .dat ---"
-  rg -n "TensileLibrary_.*_fallback\\.dat" "${STRACE_PREFIX}"* | head -n 20 || true
+  {
+    set +o pipefail
+    rg -n "TensileLibrary_.*_fallback\\.dat" "${STRACE_PREFIX}"* | head -n 20 || true
+    set -o pipefail
+  }
   echo
   echo "--- evidence sample: fallback .hsaco ---"
-  rg -n "TensileLibrary_.*_fallback_gfx900\\.hsaco" "${STRACE_PREFIX}"* | head -n 20 || true
+  {
+    set +o pipefail
+    rg -n "TensileLibrary_.*_fallback_gfx900\\.hsaco" "${STRACE_PREFIX}"* | head -n 20 || true
+    set -o pipefail
+  }
 } > "$SUMMARY"
 
 echo "summary=$SUMMARY"

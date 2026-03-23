@@ -7,3 +7,6 @@ openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/blobs/sha256-2af3b81
 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3220830, si_uid=1000} ---
 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 11
 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3220830, si_uid=1000} ---
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_KILLED, si_pid=3220899, si_uid=1000, si_status=SIGTERM, si_utime=213 /* 2.13 s */, si_stime=64 /* 0.64 s */} ---
+--- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3220830, si_uid=1000} ---
++++ exited with 0 +++

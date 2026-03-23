@@ -927,3 +927,7 @@ openat(AT_FDCWD, "/proc/sys/net/core/somaxconn", O_RDONLY|O_CLOEXEC) = 8
 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3220899, si_uid=1000} ---
 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3220899, si_uid=1000} ---
 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3220899, si_uid=1000} ---
+--- SIGTERM {si_signo=SIGTERM, si_code=SI_USER, si_pid=3221868, si_uid=1000} ---
+--- SIGTERM {si_signo=SIGTERM, si_code=SI_TKILL, si_pid=3220899, si_uid=1000} ---
+--- SIGTERM {si_signo=SIGTERM, si_code=SI_TKILL, si_pid=3220899, si_uid=1000} ---
++++ killed by SIGTERM +++
