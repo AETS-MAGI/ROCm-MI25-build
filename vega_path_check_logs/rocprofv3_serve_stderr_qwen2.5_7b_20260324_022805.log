@@ -1,0 +1,21 @@
+W20260324 02:28:05.567137 123557663827328 simple_timer.cpp:55] [rocprofv3] tool initialization ::     0.006516 sec
+W20260324 02:28:05.567612 123557663827328 simple_timer.cpp:55] [rocprofv3] '/home/limonene/ROCm-project/ollama-src/ollama serve' ::     0.000000 sec
+time=2026-03-24T02:28:05.580+09:00 level=INFO source=routes.go:1728 msg="server config" env="map[CUDA_VISIBLE_DEVICES: GGML_VK_VISIBLE_DEVICES: GPU_DEVICE_ORDINAL: HIP_VISIBLE_DEVICES:0 HSA_OVERRIDE_GFX_VERSION:9.0.0 HTTPS_PROXY: HTTP_PROXY: NO_PROXY: OLLAMA_CONTEXT_LENGTH:0 OLLAMA_DEBUG:INFO OLLAMA_DEBUG_LOG_REQUESTS:false OLLAMA_EDITOR: OLLAMA_FLASH_ATTENTION:false OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://127.0.0.1:11634 OLLAMA_KEEP_ALIVE:5m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:5m0s OLLAMA_MAX_LOADED_MODELS:0 OLLAMA_MAX_QUEUE:512 OLLAMA_MODELS:/home/limonene/ROCm-project/ollama-models OLLAMA_MULTIUSER_CACHE:false OLLAMA_NEW_ENGINE:false OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NO_CLOUD:false OLLAMA_NUM_PARALLEL:1 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://* vscode-file://*] OLLAMA_REMOTES:[ollama.com] OLLAMA_SCHED_SPREAD:false OLLAMA_VULKAN:false ROCR_VISIBLE_DEVICES: http_proxy: https_proxy: no_proxy:]"
+time=2026-03-24T02:28:05.580+09:00 level=INFO source=routes.go:1730 msg="Ollama cloud disabled: false"
+time=2026-03-24T02:28:05.582+09:00 level=INFO source=images.go:477 msg="total blobs: 25"
+time=2026-03-24T02:28:05.583+09:00 level=INFO source=images.go:484 msg="total unused blobs removed: 0"
+time=2026-03-24T02:28:05.584+09:00 level=INFO source=routes.go:1786 msg="Listening on 127.0.0.1:11634 (version 0.0.0)"
+time=2026-03-24T02:28:05.584+09:00 level=INFO source=runner.go:67 msg="discovering available GPUs..."
+time=2026-03-24T02:28:05.584+09:00 level=WARN source=runner.go:485 msg="user overrode visible devices" HIP_VISIBLE_DEVICES=0
+time=2026-03-24T02:28:05.584+09:00 level=WARN source=runner.go:485 msg="user overrode visible devices" HSA_OVERRIDE_GFX_VERSION=9.0.0
+time=2026-03-24T02:28:05.584+09:00 level=WARN source=runner.go:489 msg="if GPUs are not correctly discovered, unset and try again"
+time=2026-03-24T02:28:05.585+09:00 level=INFO source=server.go:432 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 35553"
+time=2026-03-24T02:28:06.021+09:00 level=INFO source=server.go:432 msg="starting runner" cmd="/home/limonene/ROCm-project/ollama-src/ollama runner --ollama-engine --port 41403"
+time=2026-03-24T02:28:07.441+09:00 level=INFO source=types.go:42 msg="inference compute" id=GPU-021501917da22884 filter_id="" library=ROCm compute=gfx900 name=ROCm0 description="Radeon Instinct MI25" libdirs=ollama driver=70226.1 pci_id=0000:03:00.0 type=discrete total="16.0 GiB" available="16.0 GiB"
+time=2026-03-24T02:28:07.441+09:00 level=INFO source=routes.go:1845 msg="vram-based default context" total_vram="16.0 GiB" default_num_ctx=4096
+W20260324 02:28:09.466886 123557663827328 tool.cpp:3104] [PPID=3314916][PID=3314926][TID=3314926][rocprofv3_error_signal_handler] rocprofv3 caught signal 15...
+W20260324 02:28:09.466985 123557663827328 tool.cpp:3127] [PPID=3314916][PID=3314926][TID=3314926][rocprofv3_error_signal_handler] rocprofv3 will wait for 0 children to exit
+W20260324 02:28:09.467000 123557663827328 tool.cpp:3142] [PPID=3314916][PID=3314926][TID=3314926][rocprofv3_error_signal_handler] rocprofv3 finalizing after signal 15...
+W20260324 02:28:09.478575 123557663827328 simple_timer.cpp:55] [rocprofv3] output generation ::     0.009781 sec
+W20260324 02:28:09.478637 123557663827328 simple_timer.cpp:55] [rocprofv3] tool finalization ::     0.011548 sec
+W20260324 02:28:09.479115 123557663827328 tool.cpp:3184] [PPID=3314916][PID=3314926][TID=3314926][rocprofv3_error_signal_handler] rocprofv3 found chained signal handler for 15... executing chained sigaction (SIGINFO)

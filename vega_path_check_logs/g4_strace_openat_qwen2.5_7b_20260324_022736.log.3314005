@@ -900,3 +900,14 @@
 02:27:41.119825 openat(AT_FDCWD, "/proc/sys/net/core/somaxconn", O_RDONLY|O_CLOEXEC) = 8
 02:27:41.128805 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3314005, si_uid=1000} ---
 02:27:41.129314 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3314005, si_uid=1000} ---
+02:27:44.467577 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3314005, si_uid=1000} ---
+02:27:44.647898 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3314005, si_uid=1000} ---
+02:27:44.742077 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3314005, si_uid=1000} ---
+02:27:45.638018 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3314005, si_uid=1000} ---
+02:27:45.686423 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3314005, si_uid=1000} ---
+02:27:45.734527 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3314005, si_uid=1000} ---
+02:27:45.780037 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3314005, si_uid=1000} ---
+02:27:47.952081 --- SIGTERM {si_signo=SIGTERM, si_code=SI_USER, si_pid=3313846, si_uid=1000} ---
+02:27:47.952517 --- SIGTERM {si_signo=SIGTERM, si_code=SI_TKILL, si_pid=3314005, si_uid=1000} ---
+02:27:47.953283 --- SIGTERM {si_signo=SIGTERM, si_code=SI_TKILL, si_pid=3314005, si_uid=1000} ---
+02:27:48.087525 +++ killed by SIGTERM +++

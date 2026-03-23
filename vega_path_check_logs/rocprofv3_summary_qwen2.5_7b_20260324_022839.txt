@@ -1,0 +1,28 @@
+timestamp=20260324_022839
+host=127.0.0.1:11634
+model=qwen2.5:7b
+OLLAMA_LIBRARY_PATH=/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama
+ROCBLAS_TENSILE_LIBPATH=/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library
+PROBE_DIR=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/rocprofv3_probe_qwen2.5_7b_20260324_022839
+GEN_LOG=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/rocprofv3_generate_qwen2.5_7b_20260324_022839.json
+SERVE_OUT=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/rocprofv3_serve_stdout_qwen2.5_7b_20260324_022839.log
+SERVE_ERR=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/rocprofv3_serve_stderr_qwen2.5_7b_20260324_022839.log
+
+--- generate result ---
+null
+null
+null
+null
+null
+null
+null
+
+--- rocprof output counts ---
+trace_file_count=0
+csv_file_count=0
+dispatch_rows=0
+tensile_or_gemm_rows=0
+
+--- rocprof files ---
+
+--- sample matches (dispatch/tensile/gemm) ---

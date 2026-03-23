@@ -100,3 +100,5 @@
 02:27:36.894913 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests/registry.ollama.ai", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
 02:27:36.895033 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-models/manifests", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 6
 02:27:36.896391 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3313861, si_uid=1000} ---
+02:27:47.951976 --- SIGTERM {si_signo=SIGTERM, si_code=SI_USER, si_pid=3313846, si_uid=1000} ---
+02:27:48.107653 +++ exited with 0 +++

@@ -1,0 +1,6 @@
+02:28:36.700760 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3316030, si_uid=1000} ---
+02:28:36.700996 openat(AT_FDCWD, "/sys/class/drm", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 8
+02:28:36.701740 openat(AT_FDCWD, "/sys/class/drm/card1/device/uevent", O_RDONLY) = 8
+02:28:36.701866 openat(AT_FDCWD, "/sys/class/drm/card1/device/mem_info_vram_total", O_RDONLY) = 11
+02:28:36.702033 openat(AT_FDCWD, "/sys/class/drm/card1/device/mem_info_vram_used", O_RDONLY) = 12
+02:28:36.783494 +++ killed by SIGKILL +++
