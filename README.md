@@ -34,6 +34,8 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - Current setup guide (validated path focused).
 - `ROCm-MI25-tips/MI25_environment-setup-worklog.md`
   - Chronological worklog and collected evidence.
+- `ROCm-MI25-tips/G4_gptoss_anchor_profile.md`
+  - Canonical G4 dispatch-observable anchor profile (baseline/side lanes).
 - `ROCm-MI25-tips/MI25_build-dependencies-map.md`
   - Dependency map used during Ubuntu 24.04 bring-up.
 - `ROCm-MI25-tips/MI25_gfx900_inference-success-summary_20260320.md`

@@ -976,3 +976,59 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
   観測される主要 shape は明確に移動する。
 - 次段では `target_shapes` を `num_batch` 条件ごとに分けるか、
   `N` 次元を可変扱いにした集計へ拡張する。
+
+---
+
+## 25. Anchor条件の正本化と baseline/side 分離（2026-03-24）[main-node confirmed]
+
+### 25.1 正本化（Canonical profile）
+
+- 新規: `ROCm-MI25-tips/G4_gptoss_anchor_profile.md`
+- 目的:
+  - `gpt-oss` 観測アンカー条件を正本化
+  - baseline (`num_batch=512`) と side (`num_batch=1024`) を役割分離
+
+正本 baseline:
+
+- `MODEL=gpt-oss:latest`
+- `ROCBLAS_LAYER=9`
+- `NUM_CTX=8192`
+- `NUM_BATCH=512`
+- `NUM_PREDICT={64,128,256}`
+- `KEEP_ALIVE=5m`
+
+### 25.2 baseline sweep（`num_batch=512`）
+
+- コマンド:
+  - `MODEL=gpt-oss:latest NUM_PREDICT_LIST=64,128,256 NUM_CTX_LIST=8192 NUM_BATCH_LIST=512 KEEP_ALIVE_LIST=5m RUNS_PER_CASE=1 ./g4-gptoss-anchor-shape-sweep.sh`
+- summary:
+  - `vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_034636.txt`
+- 結果:
+  - `ok_cases=3`, `direct_hits=3`
+  - `rocblas_trace_gemm_lines=1002`（全3ケースで同値）
+  - shape totals:
+    - `512x512x2880=576`
+    - `2880x512x4096=288`
+    - `4096x512x2880=288`
+
+### 25.3 side sweep（`num_batch=1024`）
+
+- 旧 target（`*x512x*`）での確認:
+  - `vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_034917.txt`
+  - `direct_hits=3` だが target hits は 0（shape 定義ミスマッチ）
+- 1024-target へ切替して再実行:
+  - `MODEL=gpt-oss:latest NUM_PREDICT_LIST=64,128,256 NUM_CTX_LIST=8192 NUM_BATCH_LIST=1024 TARGET_SHAPES='512x1024x2880,4096x1024x64,64x1024x4096,2880x1024x4096,4096x1024x2880' KEEP_ALIVE_LIST=5m RUNS_PER_CASE=1 ./g4-gptoss-anchor-shape-sweep.sh`
+  - summary: `vega_path_check_logs/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260324_035250.txt`
+- 結果:
+  - `ok_cases=3`, `direct_hits=3`
+  - `rocblas_trace_gemm_lines=1336`（全3ケースで同値）
+  - shape totals:
+    - `512x1024x2880=864`
+    - `2880x1024x4096=432`
+    - `4096x1024x2880=432`
+
+### 25.4 判定
+
+- 観測アンカーは `gpt-oss + layer=9 + ctx=8192 + batch=512` で固定してよい。
+- `num_batch=1024` は direct dispatch を維持しつつ shape family を移動させる副系統として有効。
+- 次段では baseline を既定比較軸、side を shape-shift 感度軸として併用する。

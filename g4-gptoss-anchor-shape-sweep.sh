@@ -17,7 +17,9 @@ PROMPT="${PROMPT:-Write a concise technical note about fallback and direct dispa
 
 NUM_PREDICT_LIST="${NUM_PREDICT_LIST:-192}"
 NUM_CTX_LIST="${NUM_CTX_LIST:-8192}"
-NUM_BATCH_LIST="${NUM_BATCH_LIST:-512,1024}"
+# Baseline anchor batch is fixed to 512.
+# Use 1024 explicitly for side-channel shape-shift observations.
+NUM_BATCH_LIST="${NUM_BATCH_LIST:-512}"
 NUM_THREAD_LIST="${NUM_THREAD_LIST:-}"
 KEEP_ALIVE_LIST="${KEEP_ALIVE_LIST:-5m}"
 TEMPERATURE="${TEMPERATURE:-0.1}"
