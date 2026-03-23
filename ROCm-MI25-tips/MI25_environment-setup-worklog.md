@@ -495,3 +495,36 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - `librocblas.so.5` は `/opt/rocm-7.2.0/lib` から解決。
 - `ROCBLAS_TENSILE_LIBPATH` はローカル fork（`ROCm-repos_AETS/rocBLAS/.../rocblas/library`）を参照し、
   `TensileLibrary_*_fallback.dat/.hsaco` の実アクセスを確認。
+
+---
+
+## 17. fallback 型別集計の追加（2026-03-24）[main-node confirmed]
+
+### 17.1 目的
+
+- G4 で確認した `fallback_confirmed` を、型別（`Type_HH` など）に分解して記録する。
+- 次段の dispatch 切り分けの土台を作る。
+
+### 17.2 実施
+
+- 追加スクリプト:
+  - `summarize-fallback-types.sh`
+- 対象ログ:
+  - `vega_path_check_logs/g4_strace_openat_tinyllama_latest_20260324_005717.log.*`
+- 出力:
+  - `vega_path_check_logs/fallback_type_summary_tinyllama_20260324.txt`
+
+### 17.3 集計結果（抜粋）
+
+- `matched_lines=108`（`.dat` 54 + `.hsaco` 54）
+- 型別上位:
+  - `Type_CC: 18`
+  - `Type_ZZ: 18`
+  - `Type_HH: 8`
+  - `Type_HS_HPA: 8`
+  - `Type_HH_HPA: 8`
+
+### 17.4 注意点
+
+- 上記は **catalog read の型分布** であり、dispatch の直接証跡ではない。
+- ただし、`fallback` 資産が `dat/hsaco` の両方で型別に読み込まれていることは確認できた。
