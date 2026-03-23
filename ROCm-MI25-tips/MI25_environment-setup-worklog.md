@@ -697,3 +697,50 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 
 - tinyllama と同じ判定に収束したため、現時点の未達はモデル個別の偶然より
   「rocBLAS/Tensile 名 dispatch を捕まえる観測粒度」の課題と判断する。
+
+---
+
+## 21. ROCBLAS_LAYER / trace 粒度スイープ（2026-03-24）[main-node confirmed]
+
+### 21.1 目的
+
+- `direct_rocblas_or_tensile_dispatch` 未達の原因を切り分けるため、
+  `ROCBLAS_LAYER` の観測粒度を先に確定する。
+- 同時に「どの layer が最も情報を出すか」を runbook 化する。
+
+### 21.2 実施
+
+- 追加スクリプト:
+  - `g4-rocblas-layer-sweep.sh`
+- 実施条件:
+  - `LAYER_LIST=1,8,9,15,63`
+  - model: `tinyllama:latest`, `qwen2.5:7b`
+  - `PROBE_ROCBLAS_LOG=1`（内部で有効化）
+
+### 21.3 結果（要約）
+
+- tinyllama:
+  - `g4_rocblas_layer_sweep_tinyllama_latest_20260324_021652.txt`
+- qwen:
+  - `g4_rocblas_layer_sweep_qwen2.5_7b_20260324_021747.txt`
+
+共通結果:
+
+- `layer=8` 単体は trace 行が 0（内部 API ログ単体では有効行なし）
+- `layer=1/9/15/63` は `rocblas_create_handle` 1 行のみ
+- `trace_gemm_lines=0`、`bench_lines=0`、`profile_lines=0`（両モデル共通）
+
+### 21.4 暫定確定設定
+
+- 観測既定値: `ROCBLAS_LAYER=9`（trace + internal）
+  - 理由:
+    - `layer=1` と同等の可視性を維持
+    - かつ内部 API ログ経路（bit 8）を常時有効にできる
+    - `63` より過剰なビットを避け、runbook を単純化できる
+- これに合わせて `g4-fallback-strace-check.sh` の既定値を `9` に更新。
+
+### 21.5 解釈
+
+- 現行 GGUF run では、`ROCBLAS_LAYER` を変えても GEMM 呼び出し行は増えなかった。
+- よって次段は「layer 値の探索」ではなく、
+  **rocBLAS を実際に呼ぶ workload/演算経路を作ること**が主課題。

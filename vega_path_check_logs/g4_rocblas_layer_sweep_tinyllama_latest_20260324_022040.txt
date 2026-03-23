@@ -1,0 +1,22 @@
+timestamp=20260324_022040
+model=tinyllama:latest
+host=127.0.0.1:11534
+num_predict=32
+temperature=0.1
+layer_list=1,9
+rocblas_verbose_tensile_error=0
+rocblas_verbose_hipblaslt_error=0
+tsv=/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_layer_sweep_tinyllama_latest_20260324_022040.tsv
+
+--- per-layer table ---
+timestamp        model             layer  trace_lines  trace_handle_lines  trace_gemm_lines  trace_internal_like_lines  trace_backend_like_lines  bench_lines  profile_lines  fallback_dat_openat  fallback_hsaco_openat  libggml_hip_openat  summary_path                                                                                                      trace_path                                                                                                              bench_path                                                                                                              profile_path
+20260324_022040  tinyllama:latest  1      1            1                   0                 1                          0                         0            0              54                   54                     4                   /home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_summary_tinyllama_latest_20260324_022040.txt  /home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_trace_tinyllama_latest_20260324_022040.log  /home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_bench_tinyllama_latest_20260324_022040.log  /home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_profile_tinyllama_latest_20260324_022040.log
+20260324_022040  tinyllama:latest  9      1            1                   0                 1                          0                         0            0              54                   54                     4                   /home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_summary_tinyllama_latest_20260324_022047.txt  /home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_trace_tinyllama_latest_20260324_022047.log  /home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_bench_tinyllama_latest_20260324_022047.log  /home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_profile_tinyllama_latest_20260324_022047.log
+
+--- heuristic best layer (visibility score) ---
+best_layer=9
+best_score=101
+best_row=20260324_022040	tinyllama:latest	9	1	1	0	1	0	0	0	54	54	4	/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_summary_tinyllama_latest_20260324_022047.txt	/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_trace_tinyllama_latest_20260324_022047.log	/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_bench_tinyllama_latest_20260324_022047.log	/home/limonene/ROCm-project/ROCm-MI25-build/vega_path_check_logs/g4_rocblas_profile_tinyllama_latest_20260324_022047.log
+
+score formula:
+  trace_gemm_lines*100000 + trace_backend_like_lines*1000 + trace_internal_like_lines*100 + trace_lines

@@ -1,0 +1,2 @@
+02:20:41.093324 openat(AT_FDCWD, "/sys/devices/system/cpu/online", O_RDONLY|O_CLOEXEC) = 10
+02:20:42.504933 +++ killed by SIGKILL +++

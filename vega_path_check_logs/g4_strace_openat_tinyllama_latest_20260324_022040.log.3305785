@@ -1,0 +1,64 @@
+02:20:42.641801 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/glibc-hwcaps/x86-64-v3/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.642052 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/glibc-hwcaps/x86-64-v2/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.642249 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.642443 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.642590 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.642716 openat(AT_FDCWD, "libstdc++.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.642834 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+02:20:42.643150 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libstdc++.so.6", O_RDONLY|O_CLOEXEC) = 3
+02:20:42.643817 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.643958 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.644093 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.644226 openat(AT_FDCWD, "libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.644363 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+02:20:42.644940 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.645085 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.645219 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.645352 openat(AT_FDCWD, "libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.645500 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+02:20:42.646080 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.646219 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.646353 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.646496 openat(AT_FDCWD, "libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.646636 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+02:20:42.650225 openat(AT_FDCWD, "/proc/self/maps", O_RDONLY|O_CLOEXEC) = 3
+02:20:42.651084 openat(AT_FDCWD, "/sys/kernel/mm/transparent_hugepage/hpage_pmd_size", O_RDONLY) = 3
+02:20:42.664240 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/ollama", O_RDONLY|O_CLOEXEC) = 3
+02:20:42.666808 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama", O_RDONLY|O_CLOEXEC) = 3
+02:20:42.667341 openat(AT_FDCWD, ".", O_RDONLY|O_CLOEXEC) = 3
+02:20:42.668269 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/.", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+02:20:42.668548 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama", O_RDONLY|O_CLOEXEC) = 3
+02:20:42.668990 openat(AT_FDCWD, ".", O_RDONLY|O_CLOEXEC) = 3
+02:20:42.669413 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.669533 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.669665 openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.669769 openat(AT_FDCWD, "libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.669867 openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+02:20:42.670101 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/glibc-hwcaps/x86-64-v3/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.670243 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/glibc-hwcaps/x86-64-v2/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.670381 openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.670532 openat(AT_FDCWD, "/usr/lib/x86_64-linux-gnu/glibc-hwcaps/x86-64-v3/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.670674 openat(AT_FDCWD, "/usr/lib/x86_64-linux-gnu/glibc-hwcaps/x86-64-v2/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.670799 openat(AT_FDCWD, "/usr/lib/x86_64-linux-gnu/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.670936 openat(AT_FDCWD, "/lib/glibc-hwcaps/x86-64-v3/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.671073 openat(AT_FDCWD, "/lib/glibc-hwcaps/x86-64-v2/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.671218 openat(AT_FDCWD, "/lib/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.671362 openat(AT_FDCWD, "/usr/lib/glibc-hwcaps/x86-64-v3/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.671508 openat(AT_FDCWD, "/usr/lib/glibc-hwcaps/x86-64-v2/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.671650 openat(AT_FDCWD, "/usr/lib/libmlxc.so", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.672395 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src", O_RDONLY|O_CLOEXEC) = 3
+02:20:42.672906 openat(AT_FDCWD, "/home/limonene/ROCm-project/ollama-src/.", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = 3
+02:20:42.673188 openat(AT_FDCWD, "/home/limonene/ROCm-project/ROCm-MI25-build/build/lib/ollama/.", O_RDONLY|O_CLOEXEC|O_DIRECTORY) = -1 ENOENT (No such file or directory)
+02:20:42.673611 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3305785, si_uid=1000} ---
+02:20:42.679036 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3305785, si_uid=1000} ---
+02:20:42.679412 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3305785, si_uid=1000} ---
+02:20:42.679930 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3305785, si_uid=1000} ---
+02:20:42.680419 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3305785, si_uid=1000} ---
+02:20:42.680923 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3305785, si_uid=1000} ---
+02:20:42.684104 openat(AT_FDCWD, "/home/limonene/.ollama/server.json", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+02:20:42.684425 openat(AT_FDCWD, "/etc/localtime", O_RDONLY) = 3
+02:20:42.685432 openat(AT_FDCWD, "/proc/sys/net/core/somaxconn", O_RDONLY|O_CLOEXEC) = 6
+02:20:42.693584 openat(AT_FDCWD, "/tmp/1781553495.bin", O_RDWR|O_CREAT|O_EXCL|O_CLOEXEC, 0600) = 7
+02:20:42.695101 openat(AT_FDCWD, "/tmp/1781553495.bin", O_RDONLY|O_CLOEXEC) = 8
+02:20:42.695337 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3305785, si_uid=1000} ---
+02:20:43.175001 +++ killed by SIGKILL +++

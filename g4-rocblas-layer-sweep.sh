@@ -130,11 +130,8 @@ readarray -t best_calc < <(
     NR>1 {
       layer=$3+0
       score=$6*100000 + $8*1000 + $7*100 + $4
-      internal=and(layer, 8) ? 1 : 0
-      if(!seen
-         || score > best_score
-         || (score == best_score && internal > best_internal)
-         || (score == best_score && internal == best_internal && layer < best_layer)) {
+      internal=((int(layer / 8) % 2) == 1) ? 1 : 0
+      if(!seen || score > best_score || (score == best_score && internal > best_internal) || (score == best_score && internal == best_internal && layer < best_layer)) {
         seen=1
         best_score=score
         best_layer=layer
