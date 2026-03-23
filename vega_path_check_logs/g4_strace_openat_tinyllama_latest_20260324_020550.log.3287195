@@ -1,0 +1,4 @@
+02:05:53.069529 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3287192, si_uid=1000} ---
+02:05:53.075459 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3287192, si_uid=1000} ---
+02:05:53.077138 openat(AT_FDCWD, "/proc/sys/net/core/somaxconn", O_RDONLY|O_CLOEXEC) = 6
+02:05:53.520494 +++ killed by SIGKILL +++

@@ -629,3 +629,54 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - `vega_path_check_logs/rocprofv3_summary_tinyllama_latest_20260324_020034.txt`
 - `vega_path_check_logs/rocprofv3_probe_tinyllama_latest_20260324_020034/`
 - `vega_path_check_logs/rocprofv3_generate_tinyllama_latest_20260324_020034.json`
+
+---
+
+## 20. fallback+dispatch 統合判定スクリプト追加（2026-03-24）[main-node confirmed]
+
+### 20.1 目的
+
+- `strace` 側（fallback 資産アクセス）と `rocprofv3` 側（kernel dispatch）を
+  **同一条件で連続実行**し、1つの判定ファイルで管理する。
+- 「証跡はあるが別 run」という分断を減らし、Phase 2 の残務を機械的に回せる形にする。
+
+### 20.2 実施
+
+- 追加スクリプト:
+  - `g4-fallback-dispatch-link-check.sh`
+- 実行内容:
+  1. `g4-fallback-strace-check.sh`（`PROBE_ROCBLAS_LOG=1`）
+  2. `g4-rocprofv3-dispatch-check.sh`
+  3. 上記2本の summary を統合し、`g4_link_summary_*` を生成
+
+### 20.3 実測結果（tinyllama latest）
+
+- 統合 summary:
+  - `vega_path_check_logs/g4_link_summary_tinyllama_latest_20260324_020550.txt`
+- 主要値:
+  - fallback 側:
+    - `libggml_hip_openat=4`
+    - `fallback_dat_openat=54`
+    - `fallback_hsaco_openat=54`
+    - `rocblas_trace_gemm_lines=0`
+  - dispatch 側:
+    - `kernel_dispatch_rows=24228`
+    - `kernel_tensile_like_rows=0`
+  - gate:
+    - `fallback_confirmed=1`
+    - `dispatch_confirmed=1`
+    - `direct_rocblas_or_tensile_dispatch=0`
+    - `link_status=indirect_link_only_same_scenario`
+
+### 20.4 判定
+
+- fallback 証跡と dispatch 証跡を同一条件 run として束ねるところまでは達成。
+- ただし現時点では `rocBLAS/Tensile` 名の dispatch は未観測で、direct link は未達。
+- 次段は、同スクリプトを使ってモデル/問題サイズ条件を振り、`direct_rocblas_or_tensile_dispatch=1` を狙う。
+
+### 20.5 主証跡
+
+- `g4-fallback-dispatch-link-check.sh`
+- `vega_path_check_logs/g4_link_summary_tinyllama_latest_20260324_020550.txt`
+- `vega_path_check_logs/g4_summary_tinyllama_latest_20260324_020550.txt`
+- `vega_path_check_logs/rocprofv3_summary_tinyllama_latest_20260324_020558.txt`
