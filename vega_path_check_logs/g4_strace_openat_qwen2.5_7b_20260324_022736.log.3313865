@@ -1,0 +1,8 @@
+02:27:36.896039 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3313861, si_uid=1000} ---
+02:27:37.386287 openat(AT_FDCWD, "/dev/null", O_RDONLY|O_CLOEXEC) = 7
+02:27:37.386598 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 8
+02:27:37.386859 openat(AT_FDCWD, "/dev/null", O_WRONLY|O_CLOEXEC) = 9
+02:27:39.458818 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3313861, si_uid=1000} ---
+02:27:39.541363 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3313861, si_uid=1000} ---
+02:27:40.069950 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3313861, si_uid=1000} ---
+02:27:40.088048 --- SIGURG {si_signo=SIGURG, si_code=SI_TKILL, si_pid=3313861, si_uid=1000} ---

@@ -1,0 +1,3 @@
+02:26:46.679260 openat(AT_FDCWD, "/etc/localtime", O_RDONLY) = 3
+02:26:46.680733 openat(AT_FDCWD, "/proc/sys/net/core/somaxconn", O_RDONLY|O_CLOEXEC) = 6
+02:26:46.964209 +++ killed by SIGKILL +++
