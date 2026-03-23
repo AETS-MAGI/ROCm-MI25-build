@@ -579,3 +579,53 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - `vega_path_check_logs/g4_summary_tinyllama_latest_20260324_015056.txt`
 - `vega_path_check_logs/fallback_phase_summary_tinyllama_latest_20260324_014707.tsv`
 - `vega_path_check_logs/g4_rocblas_trace_tinyllama_latest_20260324_014707.log`
+
+---
+
+## 19. rocprofv3 dispatch probe 追加（2026-03-24）[main-node confirmed]
+
+### 19.1 目的
+
+- `strace(openat)` では見えない「実際に dispatch された GPU kernel」を取得する。
+- `catalog read` と `dispatch` を分離し、dispatch 側の直接証跡を補強する。
+
+### 19.2 実施
+
+- 追加スクリプト:
+  - `g4-rocprofv3-dispatch-check.sh`
+- 手順:
+  - 専用ポート（`127.0.0.1:11634`）で `ollama serve` を一時起動
+  - `rocprofv3 --runtime-trace --kernel-trace -f csv` で trace 採取
+  - `tinyllama:latest` を短い non-stream 生成で 1 回実行
+  - `kernel_trace.csv` を集計し、top kernel とカウンタを summary 化
+
+### 19.3 観測結果（tinyllama latest）
+
+- summary:
+  - `vega_path_check_logs/rocprofv3_summary_tinyllama_latest_20260324_020034.txt`
+- 主なカウンタ:
+  - `kernel_dispatch_rows=3605`
+  - `kernel_mul_mat_q_rows=151`
+  - `kernel_mul_mat_vec_rows=934`
+  - `kernel_flash_attn_rows=352`
+  - `kernel_quantize_rows=1085`
+  - `kernel_tensile_like_rows=0`
+- 代表 kernel（抜粋）:
+  - `mul_mat_q<(ggml_type)2,...>`
+  - `mul_mat_vec_q<(ggml_type)2,...>`
+  - `flash_attn_tile<...>`
+  - `quantize_q8_1(...)`
+
+### 19.4 判定
+
+- dispatch 直接証跡（kernel trace）は取得に成功。
+- ただし今回の trace は **ggml-hip 側 kernel が中心** で、`rocBLAS/Tensile` 名を含む dispatch は未観測。
+- よって「dispatch 証跡ゼロ」状態は解消されたが、
+  「fallback 資産（Tensile）と同一 run での dispatch 直結」は継続課題。
+
+### 19.5 主証跡
+
+- `g4-rocprofv3-dispatch-check.sh`
+- `vega_path_check_logs/rocprofv3_summary_tinyllama_latest_20260324_020034.txt`
+- `vega_path_check_logs/rocprofv3_probe_tinyllama_latest_20260324_020034/`
+- `vega_path_check_logs/rocprofv3_generate_tinyllama_latest_20260324_020034.json`

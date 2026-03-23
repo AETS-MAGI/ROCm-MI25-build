@@ -126,6 +126,28 @@ trace_file_count="$(find "$PROBE_DIR" -type f | wc -l | tr -d ' ')"
 csv_file_count="$(find "$PROBE_DIR" -type f -name '*.csv' | wc -l | tr -d ' ')"
 dispatch_rows="$(rg -n -i "KERNEL_DISPATCH|dispatch" "$PROBE_DIR" --glob '*.csv' | wc -l | tr -d ' ' || true)"
 tensile_rows="$(rg -n -i "tensile|gemm|rocblas|hipblas" "$PROBE_DIR" --glob '*.csv' | wc -l | tr -d ' ' || true)"
+kernel_trace_file="$(find "$PROBE_DIR" -type f -name '*kernel_trace.csv' | head -n 1 || true)"
+
+kernel_dispatch_rows=0
+kernel_mul_mat_q_rows=0
+kernel_mul_mat_vec_rows=0
+kernel_flash_attn_rows=0
+kernel_quantize_rows=0
+kernel_copy_rows=0
+kernel_tensile_like_rows=0
+if [[ -n "$kernel_trace_file" && -f "$kernel_trace_file" ]]; then
+  {
+    set +o pipefail
+    kernel_dispatch_rows="$(rg -n "\"KERNEL_DISPATCH\"" "$kernel_trace_file" | wc -l | tr -d ' ')"
+    kernel_mul_mat_q_rows="$(rg -n "mul_mat_q<" "$kernel_trace_file" | wc -l | tr -d ' ')"
+    kernel_mul_mat_vec_rows="$(rg -n "mul_mat_vec_q<" "$kernel_trace_file" | wc -l | tr -d ' ')"
+    kernel_flash_attn_rows="$(rg -n "flash_attn" "$kernel_trace_file" | wc -l | tr -d ' ')"
+    kernel_quantize_rows="$(rg -n "quantize_" "$kernel_trace_file" | wc -l | tr -d ' ')"
+    kernel_copy_rows="$(rg -n "__amd_rocclr_copyBuffer|fillBufferAligned" "$kernel_trace_file" | wc -l | tr -d ' ')"
+    kernel_tensile_like_rows="$(rg -n -i "tensile|contraction|cijk|rocblas|gemm_ex|gemm" "$kernel_trace_file" | wc -l | tr -d ' ')"
+    set -o pipefail
+  }
+fi
 
 {
   echo "timestamp=$TS"
@@ -144,9 +166,24 @@ tensile_rows="$(rg -n -i "tensile|gemm|rocblas|hipblas" "$PROBE_DIR" --glob '*.c
   echo "csv_file_count=${csv_file_count}"
   echo "dispatch_rows=${dispatch_rows}"
   echo "tensile_or_gemm_rows=${tensile_rows}"
+  if [[ -n "$kernel_trace_file" ]]; then
+    echo "kernel_trace_file=${kernel_trace_file}"
+    echo "kernel_dispatch_rows=${kernel_dispatch_rows}"
+    echo "kernel_mul_mat_q_rows=${kernel_mul_mat_q_rows}"
+    echo "kernel_mul_mat_vec_rows=${kernel_mul_mat_vec_rows}"
+    echo "kernel_flash_attn_rows=${kernel_flash_attn_rows}"
+    echo "kernel_quantize_rows=${kernel_quantize_rows}"
+    echo "kernel_copy_rows=${kernel_copy_rows}"
+    echo "kernel_tensile_like_rows=${kernel_tensile_like_rows}"
+  fi
   echo
   echo "--- rocprof files ---"
   find "$PROBE_DIR" -maxdepth 4 -type f | sort
+  if [[ -n "$kernel_trace_file" && -f "$kernel_trace_file" ]]; then
+    echo
+    echo "--- top kernel names (dispatch rows) ---"
+    awk 'NR>1 && /"KERNEL_DISPATCH"/ { if (match($0, /,[0-9]+,"([^"]+)",[0-9]+,/, a)) c[a[1]]++ } END { for (k in c) print c[k] "\t" k }' "$kernel_trace_file" | sort -nr | head -n 30
+  fi
   echo
   echo "--- sample matches (dispatch/tensile/gemm) ---"
   {
