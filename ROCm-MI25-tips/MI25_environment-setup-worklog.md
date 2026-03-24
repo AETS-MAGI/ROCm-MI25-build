@@ -1648,3 +1648,255 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 
 - 退避運用で summary/manifest が repo 内へ逆流しにくくなった。
 - 今後は raw/summary を `vega_path_check_logs_raw` 側で完結させる運用を継続できる。
+
+---
+
+## 41. Tier-1 shape 観測メモを分割（2026-03-25）[main-node confirmed]
+
+### 41.1 目的
+
+- TODO「上位 shape ごとに観測メモを分ける」に対応し、
+  Queue-A (`512x512x2880`, `2880x512x4096`, `4096x512x2880`) を個別管理にする。
+
+### 41.2 追加証跡（同日再計測）
+
+- baseline512 prefill/decode split:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_split_gpt-oss_latest_20260325_011553.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_shape_compare_gpt-oss_latest_20260325_011553.tsv`
+- side1024 prefill/decode split:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_split_gpt-oss_latest_20260325_011411.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_shape_compare_gpt-oss_latest_20260325_011411.tsv`
+
+### 41.3 要点
+
+- baseline512 / side1024 の両方で:
+  - `direct=1`, `fallback=1`, `dispatch=1`
+  - `kernel_tensile_like_rows=167`
+  - `phase_split_status=prefill_dominant_signature`
+- Queue-A 3shapeの decode proxy は全て `decode_delta=0`（現行 proxy 分離では差分未検出）。
+
+### 41.4 メモ分割先
+
+- `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/README.md`
+- `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_512x512x2880.md`
+- `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_2880x512x4096.md`
+- `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_4096x512x2880.md`
+
+### 41.5 判定
+
+- Queue-A の「shapeごと比較（dispatch/gemm/Tensile/prefill-decode）」は分割済み。
+- Queue-B/C も分割済み（Section 43 参照）。
+
+---
+
+## 42. 全shape prefill/full 比較テーブルを追加（2026-03-25）[main-node confirmed]
+
+### 42.1 目的
+
+- Queue-A だけでなく Queue-B/C も同じ基準で観測できるよう、
+  `rocblas_trace` 2本（prefill/full）から全shape差分を自動比較する。
+
+### 42.2 実装
+
+- 追加スクリプト:
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/compare-rocblas-shape-counts.sh`
+- 入力:
+  - prefill/fill 各 `g4_rocblas_trace_*.log`
+- 出力:
+  - `rocblas_shape_prefill_full_compare_<prefill>__<full>_<ts>.txt/.tsv`
+  - 保存先: `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/`
+
+### 42.3 実行と結果
+
+- baseline512:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/rocblas_shape_prefill_full_compare_g4_rocblas_trace_gpt-oss_latest_20260325_011553__g4_rocblas_trace_gpt-oss_latest_20260325_011629_20260325_012104.tsv`
+  - `__TOTAL__`: `501 -> 501`, `delta=0`
+- side1024:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/rocblas_shape_prefill_full_compare_g4_rocblas_trace_gpt-oss_latest_20260325_011411__g4_rocblas_trace_gpt-oss_latest_20260325_011439_20260325_012104.tsv`
+  - `__TOTAL__`: `668 -> 668`, `delta=0`
+
+Queue-B/C 可視化（抜粋）:
+
+- baseline:
+  - `512x93x2880=48`, `32x512x2880=46`
+  - `4608x512x64`, `64x512x4608`, `8192x512x64`, `64x512x8192` は各 `24`
+- side:
+  - `32x1024x2880=69`
+  - `5120x1024x64`, `64x1024x5120`, `8192x1024x64`, `64x1024x8192` は各 `36`
+
+### 42.4 判定
+
+- Queue-B/C も含めた全shapeが prefill/full 比較テーブルで参照可能になった。
+- 現行 anchor では、全体として `prefill_count == full_count`（proxy 差分 0）が継続。
+
+---
+
+## 43. Queue-B/C の shape個別メモを追加（2026-03-25）[main-node confirmed]
+
+### 43.1 目的
+
+- Queue-A に続き、Queue-B/C も shape単位で比較メモを揃える。
+- TODO の「shapeごと比較（dispatch/gemm/Tensile/prefill-decode）」を
+  Queue-A/B/C 全体で同一粒度にする。
+
+### 43.2 追加
+
+- index:
+  - `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/README.md`
+- Queue-B:
+  - `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_512x93x2880.md`
+  - `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_32x512x2880.md`
+- Queue-C:
+  - `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_4608x512x64.md`
+  - `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_64x512x4608.md`
+  - `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_8192x512x64.md`
+  - `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_64x512x8192.md`
+
+### 43.3 比較基準
+
+- 参照 split:
+  - baseline: `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_split_gpt-oss_latest_20260325_011553.txt`
+  - side: `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_split_gpt-oss_latest_20260325_011411.txt`
+- 全shape compare:
+  - baseline: `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/rocblas_shape_prefill_full_compare_g4_rocblas_trace_gpt-oss_latest_20260325_011553__g4_rocblas_trace_gpt-oss_latest_20260325_011629_20260325_012104.tsv`
+  - side: `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/rocblas_shape_prefill_full_compare_g4_rocblas_trace_gpt-oss_latest_20260325_011411__g4_rocblas_trace_gpt-oss_latest_20260325_011439_20260325_012104.tsv`
+
+### 43.4 判定
+
+- Queue-A/B/C で shape個別メモ化を完了。
+- 以後は「効果が見えた shape から低レイヤーへ刺す」フェーズへ移行可能。
+
+---
+
+## 44. kernel 候補の自動抽出を追加（2026-03-25）[main-node confirmed]
+
+### 44.1 目的
+
+- TODO「上位 shape に対応する kernel 候補を絞る」に対応し、
+  rocprof prefill/full 2本から kernel 候補を同一形式で抽出する。
+
+### 44.2 実装
+
+- 追加スクリプト:
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/summarize-kernel-candidates.sh`
+- 入力:
+  - prefill/full の `rocprofv3_summary_*.txt`（`kernel_trace_file` を内部参照）
+- 出力:
+  - `kernel_candidates_<prefill>__<full>_<ts>.txt/.tsv`
+  - 保存先: `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/`
+
+### 44.3 実行結果（baseline/side）
+
+- baseline (`num_batch=512`):
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_011606__rocprofv3_summary_gpt-oss_latest_20260325_011645_20260325_013150.tsv`
+  - dispatch rows: `2384 -> 25204` (`delta=22820`)
+- side (`num_batch=1024`):
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_011425__rocprofv3_summary_gpt-oss_latest_20260325_011502_20260325_013150.tsv`
+  - dispatch rows: `2383 -> 25021` (`delta=22638`)
+
+両laneで上位に出る候補（抜粋）:
+
+- `mul_mat_vec_f<__hip_bfloat16, float, ...>`
+- `mul_mat_vec_q<(ggml_type)39, ...>`
+- `mul_mat_q<(ggml_type)39, ...>`
+- `Cijk_*` 系（Tensile kernel name）
+
+### 44.4 判定
+
+- 「上位 shape に対応する kernel 候補を絞る」は最低限の自動化と証跡整理まで完了。
+- 次段は `Cijk_*` を起点に HSACO 抽出と逆アセンブル対象の最小化へ進む。
+
+---
+
+## 45. HSACO 対応付けと抽出（2026-03-25）[main-node confirmed]
+
+### 45.1 目的
+
+- `Cijk_*` 候補を実ファイルへ対応付けし、逆アセンブル対象を最小化する。
+
+### 45.2 実装
+
+- 対応付けスクリプト:
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/map-kernel-candidates-to-hsaco.sh`
+- 抽出スクリプト:
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/extract-hsaco-targets.sh`
+
+### 45.3 対応付け結果
+
+- baseline map:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_011606__rocprofv3_summary_gpt-oss_latest_20260325_011645_20260325_013150_20260325_013452.tsv`
+- side map:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_011425__rocprofv3_summary_gpt-oss_latest_20260325_011502_20260325_013150_20260325_013439.tsv`
+
+一致状況:
+
+- `Cijk_*` 4候補のうち 3候補が `*_fallback_gfx900.hsaco` と1:1で一致。
+- 1候補（`...ISA900...`）は現行 `*gfx900*.hsaco` では未一致。
+
+### 45.4 抽出結果
+
+- manifest:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/hsaco_targets_hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_011606__rocprofv3_summary_gpt-oss_latest_20260325_011645_20260325_013150_20260325_013452_20260325_013541.txt`
+- extracted dir:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/hsaco_targets_hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_011606__rocprofv3_summary_gpt-oss_latest_20260325_011645_20260325_013150_20260325_013452_20260325_013541`
+
+抽出3件（合計 876KB）:
+
+- `TensileLibrary_Type_BB_HPA_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback_gfx900.hsaco`
+- `TensileLibrary_Type_HH_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback_gfx900.hsaco`
+- `TensileLibrary_Type_HS_HPA_Contraction_l_Alik_Bljk_Cijk_Dijk_fallback_gfx900.hsaco`
+
+### 45.5 判定
+
+- TODO の「対象 HSACO を抜き出す」「逆アセンブル対象を最小限にする」に対応完了。
+- 次段はこの3件を対象に命令列観察（dot4/packed/memory傾向）へ進む。
+
+---
+
+## 46. 抽出HSACOの逆アセンブル信号集計（2026-03-25）[main-node confirmed]
+
+### 46.1 実装
+
+- 追加スクリプト:
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/summarize-hsaco-disasm-signals.sh`
+- 入力:
+  - Section 45で抽出した 3HSACO ディレクトリ
+- 出力:
+  - signal summary:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/disasm_signal_summary_hsaco_targets_hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_011606__rocprofv3_summary_gpt-oss_latest_20260325_011645_20260325_013150_20260325_013452_20260325_013541_20260325_013821.txt`
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/disasm_signal_summary_hsaco_targets_hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_011606__rocprofv3_summary_gpt-oss_latest_20260325_011645_20260325_013150_20260325_013452_20260325_013541_20260325_013821.tsv`
+  - disasm files:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/disasm_hsaco_targets_hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_011606__rocprofv3_summary_gpt-oss_latest_20260325_011645_20260325_013150_20260325_013452_20260325_013541_20260325_013821/`
+
+### 46.2 確認済み（facts）
+
+- `total_files=3`
+- `dot4_positive_files=0`
+- `packed_positive_files=1`
+- `mfma_positive_files=0`
+- `memory_positive_files=3`
+
+per-file（抜粋）:
+
+- `Type_BB_HPA ... fallback_gfx900.hsaco`
+  - `dot4=0`, `packed=0`, `mfma=0`, `fma/mac/mad=8372`, `memory=5429`
+- `Type_HH ... fallback_gfx900.hsaco`
+  - `dot4=0`, `packed=720`, `mfma=0`, `fma/mac/mad=500`, `memory=893`
+- `Type_HS_HPA ... fallback_gfx900.hsaco`
+  - `dot4=0`, `packed=0`, `mfma=0`, `fma/mac/mad=5770`, `memory=3393`
+
+### 46.3 確認済みの命令例（facts）
+
+- packed系（HH fallback）:
+  - `v_pk_fma_f16 ...`
+- memory系:
+  - `global_load_dword ...`
+  - `ds_read2_b32 ...`
+  - `ds_write_b16 ...`
+
+### 46.4 推測（inference）
+
+- 現行3対象では、dot4/mfmaよりも FMA系 + LDS/Global メモリアクセス中心の
+  署名が優勢。
+- `Type_HH` fallback に packed (`v_pk_fma_f16`) が集中しており、
+  次の詳細読解はこのファイル優先が効率的。
