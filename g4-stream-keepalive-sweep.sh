@@ -10,7 +10,7 @@ WORKSPACE_ROOT="${WORKSPACE_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 
 MODEL="${MODEL:-gpt-oss:latest}"
 PROMPT="${PROMPT:-Write a concise technical note about fallback and direct dispatch verification on gfx900 MI25. Include short bullet-like lines in plain text.}"
-KEEP_ALIVE_LIST="${KEEP_ALIVE_LIST:-0s,5m,30m}"
+KEEP_ALIVE_LIST="${KEEP_ALIVE_LIST:-10s,30s,5m}"
 NUM_PREDICT_LIST="${NUM_PREDICT_LIST:-128}"
 TEMPERATURE="${TEMPERATURE:-0.1}"
 NUM_CTX="${NUM_CTX:-8192}"
@@ -102,6 +102,7 @@ ok_cases="$(awk -F'\t' 'NR>1 && $5=="ok" { c++ } END { print c+0 }' "$OUT_TSV")"
 failed_cases="$(awk -F'\t' 'NR>1 && $5!="ok" { c++ } END { print c+0 }' "$OUT_TSV")"
 decode_sig_cases="$(awk -F'\t' 'NR>1 && $12=="decode_signature_detected" { c++ } END { print c+0 }' "$OUT_TSV")"
 prefill_sig_cases="$(awk -F'\t' 'NR>1 && $12=="prefill_dominant_signature" { c++ } END { print c+0 }' "$OUT_TSV")"
+unavailable_cases="$(awk -F'\t' 'NR>1 && $12=="unavailable" { c++ } END { print c+0 }' "$OUT_TSV")"
 
 {
   echo "timestamp=$TS"
@@ -123,6 +124,7 @@ prefill_sig_cases="$(awk -F'\t' 'NR>1 && $12=="prefill_dominant_signature" { c++
   echo "failed_cases=$failed_cases"
   echo "decode_signature_cases=$decode_sig_cases"
   echo "prefill_dominant_cases=$prefill_sig_cases"
+  echo "unavailable_cases=$unavailable_cases"
   echo
   echo "--- rows ---"
   cat "$OUT_TSV"

@@ -1430,3 +1430,95 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - `num_batch` を 512 -> 1024 に上げても、stream-phase proxy の署名そのものは変化しなかった。
 - つまり現時点では、batch変更は「可視化署名の種類」より「実行時間スケール」へ強く効いている。
 - 観測アンカーとしては baseline512 を正本、side1024 を時間感度比較レーンとして維持する方針が妥当。
+
+---
+
+## 36. keep_alive 単独スイープ（stream phase-window, baseline512）（2026-03-24）[main-node confirmed]
+
+### 36.1 目的
+
+- baseline512 で `keep_alive` のみを動かし、stream-phase proxy の安定性を評価する。
+- 特に `dispatch_confirmed` / rocprof CSV 出力可否の感度を確認する。
+
+### 36.2 実装
+
+- 追加ランナー:
+  - `g4-stream-keepalive-sweep.sh`
+- 既定値（安定運用向け）:
+  - `KEEP_ALIVE_LIST=10s,30s,5m`
+- 比較テーブル:
+  - `timestamp, keep_alive, ttft_ms, total_ms, phase_split_status_proxy, dispatch_confirmed` などを1表に統合。
+
+### 36.3 実測 A（0s,5m,30m）
+
+- 実行:
+  - `MODEL=gpt-oss:latest NUM_BATCH=512 NUM_PREDICT_LIST=128 KEEP_ALIVE_LIST=0s,5m,30m ./g4-stream-keepalive-sweep.sh`
+- 出力:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_keepalive_sweep_gpt-oss_latest_20260324_123600.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_keepalive_sweep_gpt-oss_latest_20260324_123600.tsv`
+- 結果:
+  - `keep_alive=0s`: `dispatch_confirmed=0`, `phase_split_status_proxy=unavailable`, `decode_rows=0`
+  - `keep_alive=5m`: `dispatch_confirmed=1`, `phase_split_status_proxy=decode_signature_detected`, `decode_rows=167`
+  - `keep_alive=30m`: `dispatch_confirmed=1`, `phase_split_status_proxy=decode_signature_detected`, `decode_rows=167`
+
+### 36.4 実測 B（0s 再現確認）
+
+- 実行:
+  - 0s 条件を2回再試行
+- 出力:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_keepalive_0s_recheck_20260324_123825.tsv`
+- 結果（2/2一致）:
+  - `dispatch_confirmed=0`
+  - `phase_split_status_proxy=unavailable`
+  - `trace_file_count=0`, `csv_file_count=0`
+
+### 36.5 実測 C（1s,10s,30s,5m）
+
+- 実行:
+  - `MODEL=gpt-oss:latest NUM_BATCH=512 NUM_PREDICT_LIST=128 KEEP_ALIVE_LIST=1s,10s,30s,5m ./g4-stream-keepalive-sweep.sh`
+- 出力:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_keepalive_sweep_gpt-oss_latest_20260324_123938.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_keepalive_sweep_gpt-oss_latest_20260324_123938.tsv`
+- 結果:
+  - `1s`: `dispatch_confirmed=0`, `phase=unavailable`, `decode_rows=0`
+  - `10s/30s/5m`: すべて `dispatch_confirmed=1`, `phase=decode_signature_detected`, `decode_rows=167`
+
+### 36.6 判定
+
+- stream+rocprof 観測で `keep_alive` が短すぎると（今回の観測では `0s` と `1s`）、
+  rocprof CSV が空になり phase proxy が `unavailable` になる再現性がある。
+- `keep_alive>=10s` では、dispatch/phase 観測が安定して成立した。
+- よって、観測運用の推奨下限を `keep_alive>=10s` に設定する。
+
+---
+
+## 37. keep_alive 閾値の side1024 再検証（2026-03-24）[main-node confirmed]
+
+### 37.1 目的
+
+- 36章で得た `keep_alive>=10s` の閾値が、side1024（`num_batch=1024`）でも成立するか確認。
+
+### 37.2 実行
+
+- 実行:
+  - `MODEL=gpt-oss:latest NUM_BATCH=1024 NUM_PREDICT_LIST=128 KEEP_ALIVE_LIST=1s,10s,30s ./g4-stream-keepalive-sweep.sh`
+- 出力:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_keepalive_sweep_gpt-oss_latest_20260324_124412.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_keepalive_sweep_gpt-oss_latest_20260324_124412.tsv`
+- batch横断比較:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_keepalive_batch_compare_gpt-oss_latest_20260324_124713.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_keepalive_batch_compare_gpt-oss_latest_20260324_124713.txt`
+
+### 37.3 結果
+
+- `num_batch=1024` でも:
+  - `keep_alive=1s` は `dispatch_confirmed=0`, `phase=unavailable`, `decode_rows=0`
+  - `keep_alive=10s/30s` は `dispatch_confirmed=1`, `phase=decode_signature_detected`, `decode_rows=167`
+- baseline512 と side1024 の両レーンで、閾値パターンが一致:
+  - `1s` は不安定（rocprof CSV が空）
+  - `10s+` は安定観測
+
+### 37.4 判定
+
+- `keep_alive>=10s` の推奨下限は、baseline512 だけでなく side1024 でも再現した。
+- 以後の stream-phase 観測では、再現性確保のため `keep_alive=10s` 以上を既定運用にする。

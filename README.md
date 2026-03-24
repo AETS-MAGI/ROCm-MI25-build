@@ -30,6 +30,8 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - Stream-mode (`stream=true`) phase window probe with TTFT capture and prefill/decode proxy summary.
 - `g4-stream-phase-window-sweep.sh`
   - Batch runner for `num_predict` sweep on the stream probe (default: `64,128,256,512,1024`) with unified TSV summary.
+- `g4-stream-keepalive-sweep.sh`
+  - `keep_alive` sweep runner (default stable set: `10s,30s,5m`) for stream probe robustness checks.
 - `commit-no-raw.sh`
   - Commit helper that excludes staged raw/probe logs (`vega_path_check_logs/`, `.rocprofv3/`).
 - `lib/backend-preflight.sh`
@@ -94,6 +96,9 @@ Notes:
 - `.gitignore` is set to avoid tracking raw/probe artifacts under `vega_path_check_logs/`.
 - Historical tracked logs already in git history are not removed by `.gitignore` alone.
 - In `MODE=move`, if destination already has identical files, source duplicates are pruned.
+- For stream+rocprof phase-window probes, `keep_alive=0s` and very short values can yield
+  `phase_split_status_proxy=unavailable` with empty rocprof CSV. Prefer `keep_alive>=10s`
+  for stable dispatch/phase observability.
 
 ## Expected directory layout
 
