@@ -34,6 +34,8 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - `keep_alive` sweep runner (default stable set: `10s,30s,5m`) for stream probe robustness checks.
 - `commit-no-raw.sh`
   - Commit helper that excludes staged raw/probe logs (`vega_path_check_logs/`, `.rocprofv3/`).
+- `raw-log-one-line-index.sh`
+  - Generates a compact one-line TSV index for raw log categories (for dispatch-boundary style log bookkeeping).
 - `lib/backend-preflight.sh`
   - Shared backend integrity preflight used by validation and manual-run scripts.
 - `mcp-rocm-ops/`
@@ -89,6 +91,9 @@ MODE=copy ./migrate-raw-logs.sh
 
 # compress and replace originals
 KEEP_ORIGINAL=0 ./compress-raw-logs.sh
+
+# generate one-line index for raw log inventory (default label: dispatch-boundary)
+./raw-log-one-line-index.sh
 ```
 
 Notes:
