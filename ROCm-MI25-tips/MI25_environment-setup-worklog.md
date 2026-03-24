@@ -2005,3 +2005,60 @@ per-file（抜粋）:
 判定:
 
 - ここまでの作業は観測・比較・記録のみで、低レイヤ改造は未実施。
+
+---
+
+## 49. Queue-B/C shape別 kernel-priority memo 追加（2026-03-25）[main-node confirmed]
+
+目的:
+
+- Tier-1 で作成した shape別 memo 形式を Queue-B/C に展開し、
+  「本命shape以外の候補列」も同じ粒度で比較可能にする。
+
+追加ファイル:
+
+- Queue-B:
+  - `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_512x93x2880_kernel_priority.md`
+  - `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_32x512x2880_kernel_priority.md`
+- Queue-C:
+  - `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_4608x512x64_kernel_priority.md`
+  - `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_64x512x4608_kernel_priority.md`
+  - `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_8192x512x64_kernel_priority.md`
+  - `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_64x512x8192_kernel_priority.md`
+
+共通構成:
+
+- baseline/side shape観測値
+- stream-window decode署名
+- lane-level `Cijk_*` 優先順
+- HSACO対応（`3 matched + 1 unmatched`）
+- Mermaid 可視化（`shape -> candidate -> hsaco`）
+
+判定:
+
+- Queue-B/C も観測-onlyテンプレートで揃った。
+- 低レイヤ改造は未着手のまま維持。
+
+---
+
+## 50. 全9shapeの優先順位サマリ1枚化（2026-03-25）[main-node confirmed]
+
+目的:
+
+- Tier-1 + Queue-B/C を1枚で俯瞰できる導線を用意する。
+
+追加:
+
+- `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_priority_overview.md`
+
+内容:
+
+- queue map（Tier-1 / Queue-B / Queue-C）
+- baseline/side 観測カウント表
+- shared candidate/hsaco layer（`K1..K4`, `3 matched + 1 unmatched`）
+- Mermaid 可視化
+
+判定:
+
+- 「どこから刺すか」の見通しが、単一ファイルで追える状態になった。
+- ここまでの作業は引き続き観測・比較・記録のみ。
