@@ -34,7 +34,7 @@ HOST_ROCPROF="${HOST_ROCPROF:-127.0.0.1:11634}"
 
 TARGET_SHAPES="${TARGET_SHAPES:-512x512x2880,4096x512x64,64x512x4096,2880x512x4096,4096x512x2880}"
 
-LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+LOG_DIR="${LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw/summaries}"
 RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
 mkdir -p "$LOG_DIR"
 

@@ -11,7 +11,7 @@ PROMPT="${PROMPT:-Generate a 180-word plain-text technical note about validating
 NUM_PREDICT="${NUM_PREDICT:-220}"
 TEMPERATURE="${TEMPERATURE:-0.1}"
 KEEP_ALIVE="${KEEP_ALIVE:-0s}"
-LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+LOG_DIR="${LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw/summaries}"
 RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
 BACKEND_DIR="${BACKEND_DIR:-$WORKSPACE_ROOT/ollama-src/build/lib/ollama}"
 

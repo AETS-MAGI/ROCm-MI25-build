@@ -22,7 +22,7 @@ CURL_MAX_TIME="${CURL_MAX_TIME:-300}"
 
 HOST="${HOST:-127.0.0.1:11534}"
 BASE_URL="http://${HOST}"
-LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+LOG_DIR="${LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw/summaries}"
 RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
 
 OLLAMA_BIN="${OLLAMA_BIN:-$WORKSPACE_ROOT/ollama-src/ollama}"

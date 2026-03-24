@@ -19,7 +19,7 @@ NUM_THREAD="${NUM_THREAD:-}"
 KEEP_ALIVE="${KEEP_ALIVE:-}"
 
 LAYER_LIST="${LAYER_LIST:-1,8,9,15,63}"
-LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+LOG_DIR="${LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw/summaries}"
 RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
 
 # Optional verbose backend hints for ROCm docs troubleshooting.

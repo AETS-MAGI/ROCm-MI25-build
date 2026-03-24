@@ -4,7 +4,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 WORKSPACE_ROOT="${WORKSPACE_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
-SUMMARY_DIR="${SUMMARY_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+SUMMARY_DIR="${SUMMARY_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw/summaries}"
 INPUT_LOG_DIR="${1:-$RAW_LOG_DIR}"
 GLOB="${2:-g4_strace_openat_*.log.*}"
 OUT="${3:-$SUMMARY_DIR/fallback_type_summary_$(date +%Y%m%d_%H%M%S).txt}"

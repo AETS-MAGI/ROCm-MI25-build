@@ -19,7 +19,7 @@ NUM_THREAD="${NUM_THREAD:-}"
 KEEP_ALIVE="${KEEP_ALIVE:-}"
 STREAM="${STREAM:-0}"
 
-LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+LOG_DIR="${LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw/summaries}"
 RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
 mkdir -p "$LOG_DIR"
 

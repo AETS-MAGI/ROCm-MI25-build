@@ -64,8 +64,14 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
 
 Current probe scripts (g4 + legacy model/tinyllama checks) write:
 
-- summary outputs -> `LOG_DIR` (default: `ROCm-MI25-build/vega_path_check_logs`)
+- summary outputs -> `LOG_DIR` (default: `${WORKSPACE_ROOT}/vega_path_check_logs_raw/summaries`)
 - raw outputs -> `RAW_LOG_DIR` (default: `${WORKSPACE_ROOT}/vega_path_check_logs_raw`)
+
+If you want to intentionally place compact summaries under this repository, set:
+
+```bash
+LOG_DIR=/path/to/ROCm-MI25-build/vega_path_check_logs ./<probe-script>.sh
+```
 
 Helper commands:
 

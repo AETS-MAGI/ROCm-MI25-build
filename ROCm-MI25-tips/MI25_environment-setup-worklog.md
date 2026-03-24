@@ -1357,3 +1357,35 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
   stream-phase proxy の判定が一貫して `decode_signature_detected` となった。
 - これにより、`num_predict` 拡張時の観測窓でも direct-dispatch gate が安定して維持されることを確認。
 - ただし本判定は引き続き proxy 分割ベースのため、厳密な token-level attribution は別途課題として残る。
+
+---
+
+## 34. probe/sweep の summary 既定出力先を repo 外へ変更（2026-03-24）[main-node confirmed]
+
+### 34.1 背景
+
+- `vega_path_check_logs/` に未追跡の summary/TSV が継続的に生成され、
+  作業差分が肥大化しやすい状態になっていた。
+
+### 34.2 変更
+
+- probe/sweep スクリプトの `LOG_DIR` 既定を次へ統一:
+  - `${WORKSPACE_ROOT}/vega_path_check_logs_raw/summaries`
+- `RAW_LOG_DIR` は従来通り:
+  - `${WORKSPACE_ROOT}/vega_path_check_logs_raw`
+
+対象（例）:
+
+- `g4-fallback-strace-check.sh`
+- `g4-rocprofv3-dispatch-check.sh`
+- `g4-fallback-dispatch-link-check.sh`
+- `g4-stream-phase-window-check.sh`
+- `g4-stream-phase-window-sweep.sh`
+- `g4-gptoss-anchor-shape-sweep.sh`
+- `model-gpu-path-check.sh`
+- `tinyllama-gpu-path-check.sh`
+
+### 34.3 運用
+
+- 既定では summary も raw も repo 外に出るため、`git status` のノイズを抑制できる。
+- レビュー用に repo 内へ置きたい場合のみ、`LOG_DIR` を明示指定して出力する。
