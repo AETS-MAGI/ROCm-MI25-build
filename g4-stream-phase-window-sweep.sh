@@ -9,7 +9,7 @@ WORKSPACE_ROOT="${WORKSPACE_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 
 MODEL="${MODEL:-gpt-oss:latest}"
 PROMPT="${PROMPT:-Write a concise technical note about fallback and direct dispatch verification on gfx900 MI25. Include short bullet-like lines in plain text.}"
-NUM_PREDICT_LIST="${NUM_PREDICT_LIST:-64,128,256}"
+NUM_PREDICT_LIST="${NUM_PREDICT_LIST:-64,128,256,512,1024}"
 TEMPERATURE="${TEMPERATURE:-0.1}"
 NUM_CTX="${NUM_CTX:-8192}"
 NUM_BATCH="${NUM_BATCH:-512}"

@@ -28,6 +28,8 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - rocBLAS/Tensile(gfx900) local build helper.
 - `g4-stream-phase-window-check.sh`
   - Stream-mode (`stream=true`) phase window probe with TTFT capture and prefill/decode proxy summary.
+- `g4-stream-phase-window-sweep.sh`
+  - Batch runner for `num_predict` sweep on the stream probe (default: `64,128,256,512,1024`) with unified TSV summary.
 - `commit-no-raw.sh`
   - Commit helper that excludes staged raw/probe logs (`vega_path_check_logs/`, `.rocprofv3/`).
 - `lib/backend-preflight.sh`

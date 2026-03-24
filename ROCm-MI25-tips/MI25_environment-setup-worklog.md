@@ -1316,3 +1316,44 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 - gpt-oss の stream では first token を `thinking` 側で取る必要があるため、TTFT 判定を response 専用から拡張した。
 - phase split は現時点では `kernel_start_min + prompt_eval_duration` による proxy 分割であり、
   厳密な token-level attribution そのものではない点は継続留保とする。
+
+---
+
+## 33. stream phase window を `num_predict=64..1024` で拡張スイープ（2026-03-24）[main-node confirmed]
+
+### 33.1 目的
+
+- 32章で導入した stream window 観測を `num_predict` 拡張レンジで再現し、
+  `decode_signature_detected` が長尺でも維持されるか確認する。
+
+### 33.2 実行
+
+- 追加ランナー:
+  - `g4-stream-phase-window-sweep.sh`
+- 実行コマンド:
+  - `NUM_PREDICT_LIST=64,128,256,512,1024 ./g4-stream-phase-window-sweep.sh`
+- summary:
+  - `vega_path_check_logs/g4_stream_phase_window_sweep_gpt-oss_latest_20260324_105527.txt`
+- table:
+  - `vega_path_check_logs/g4_stream_phase_window_sweep_gpt-oss_latest_20260324_105527.tsv`
+
+### 33.3 結果
+
+- 5ケースすべて `status=ok`
+- 5ケースすべて:
+  - `direct_rocblas_or_tensile_dispatch=1`
+  - `fallback_confirmed=1`
+  - `dispatch_confirmed=1`
+  - `phase_split_status_proxy=decode_signature_detected`
+  - `prefill_kernel_tensile_like_rows=0`
+  - `decode_kernel_tensile_like_rows=167`
+  - `stream_first_token_channel=thinking`
+- `stream_total_ms_wall` は `num_predict` 増加に伴って増加（64 -> 1024 で大幅増加）。
+- TTFT (`ttft_ms_wall`) はおおむね 7.6s-8.5s 帯で推移。
+
+### 33.4 判定
+
+- baseline512 + gpt-oss anchor では、`num_predict=64..1024` の範囲でも
+  stream-phase proxy の判定が一貫して `decode_signature_detected` となった。
+- これにより、`num_predict` 拡張時の観測窓でも direct-dispatch gate が安定して維持されることを確認。
+- ただし本判定は引き続き proxy 分割ベースのため、厳密な token-level attribution は別途課題として残る。
