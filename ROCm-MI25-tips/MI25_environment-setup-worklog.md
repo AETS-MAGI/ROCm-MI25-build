@@ -1271,3 +1271,48 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 
 - summary/TSV は引き続き `vega_path_check_logs` に保存。
 - raw/probe (`strace`, `rocprof`, `generate json`, `journal`, `rocm-smi`) は `vega_path_check_logs_raw` を既定とする。
+
+---
+
+## 32. stream=true で TTFT 境界を取得し、phase window を記録（2026-03-24）[main-node confirmed]
+
+### 32.1 目的
+
+- `stream=true` 実行で first-token 境界（TTFT）を明示的に取得する。
+- `prefill/decode` の窓分離を、従来の 2-pass 差分に加えて stream 時刻付きで補強する。
+
+### 32.2 実装
+
+- 追加:
+  - `g4-stream-phase-window-check.sh`
+- 拡張:
+  - `g4-fallback-strace-check.sh`（`STREAM=1` 対応、TTFT 計測）
+  - `g4-rocprofv3-dispatch-check.sh`（`STREAM=1` 対応、TTFT + phase split proxy）
+  - `g4-fallback-dispatch-link-check.sh`（stream/phase 指標を集約）
+- 出力項目（抜粋）:
+  - `ttft_ms_wall`
+  - `stream_total_ms_wall`
+  - `stream_first_token_channel`（`response` or `thinking`）
+  - `phase_split_status_proxy`
+  - `prefill_kernel_tensile_like_rows`
+  - `decode_kernel_tensile_like_rows`
+
+### 32.3 実測（gpt-oss anchor, num_predict=64）
+
+- 実行:
+  - `NUM_PREDICT=64 ./g4-stream-phase-window-check.sh`
+- summary:
+  - `vega_path_check_logs/g4_stream_phase_window_gpt-oss_latest_20260324_050710.txt`
+- 観測:
+  - `ttft_ms_wall_strace=8121.994`
+  - `ttft_ms_wall_rocprof=7646.015`
+  - `stream_first_token_channel=thinking`（gpt-oss は response 空で thinking を先行出力）
+  - `phase_split_status_proxy=decode_signature_detected`
+  - `prefill_kernel_tensile_like_rows=0`
+  - `decode_kernel_tensile_like_rows=167`
+
+### 32.4 判定
+
+- gpt-oss の stream では first token を `thinking` 側で取る必要があるため、TTFT 判定を response 専用から拡張した。
+- phase split は現時点では `kernel_start_min + prompt_eval_duration` による proxy 分割であり、
+  厳密な token-level attribution そのものではない点は継続留保とする。

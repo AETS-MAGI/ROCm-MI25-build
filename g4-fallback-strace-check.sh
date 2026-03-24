@@ -17,6 +17,8 @@ NUM_CTX="${NUM_CTX:-}"
 NUM_BATCH="${NUM_BATCH:-}"
 NUM_THREAD="${NUM_THREAD:-}"
 KEEP_ALIVE="${KEEP_ALIVE:-}"
+STREAM="${STREAM:-0}"
+CURL_MAX_TIME="${CURL_MAX_TIME:-300}"
 
 HOST="${HOST:-127.0.0.1:11534}"
 BASE_URL="http://${HOST}"
@@ -41,6 +43,7 @@ STRACE_PREFIX="$RAW_LOG_DIR/g4_strace_openat_${MODEL_TAG}_${TS}.log"
 SERVE_OUT="$RAW_LOG_DIR/g4_serve_stdout_${MODEL_TAG}_${TS}.log"
 SERVE_ERR="$RAW_LOG_DIR/g4_serve_stderr_${MODEL_TAG}_${TS}.log"
 GEN_LOG="$RAW_LOG_DIR/g4_generate_${MODEL_TAG}_${TS}.json"
+STREAM_LOG="$RAW_LOG_DIR/g4_stream_${MODEL_TAG}_${TS}.jsonl"
 SUMMARY="$LOG_DIR/g4_summary_${MODEL_TAG}_${TS}.txt"
 ROCBLAS_TRACE_LOG="${ROCBLAS_LOG_TRACE_PATH:-$RAW_LOG_DIR/g4_rocblas_trace_${MODEL_TAG}_${TS}.log}"
 ROCBLAS_BENCH_LOG="${ROCBLAS_LOG_BENCH_PATH:-$RAW_LOG_DIR/g4_rocblas_bench_${MODEL_TAG}_${TS}.log}"
@@ -119,28 +122,153 @@ if ! wait_for_api; then
   exit 2
 fi
 
-curl -s "$BASE_URL/api/generate" \
-  -d "$(
-    jq -nc \
-      --arg model "$MODEL" \
-      --arg prompt "$PROMPT" \
-      --arg np "$NUM_PREDICT" \
-      --arg temp "$TEMPERATURE" \
-      --arg num_ctx "$NUM_CTX" \
-      --arg num_batch "$NUM_BATCH" \
-      --arg num_thread "$NUM_THREAD" \
-      --arg keep_alive "$KEEP_ALIVE" \
-      '{model:$model,prompt:$prompt,stream:false}
-      + (if $keep_alive != "" then {keep_alive:$keep_alive} else {} end)
-      + {options:
-          ({num_predict:($np|tonumber),temperature:($temp|tonumber)}
-           + (if $num_ctx != "" then {num_ctx:($num_ctx|tonumber)} else {} end)
-           + (if $num_batch != "" then {num_batch:($num_batch|tonumber)} else {} end)
-           + (if $num_thread != "" then {num_thread:($num_thread|tonumber)} else {} end)
-          )
-        }'
-  )" \
-  > "$GEN_LOG"
+stream_chunks=0
+stream_response_chunks=0
+stream_thinking_chunks=0
+stream_json_rows=0
+stream_first_token_ns=0
+stream_first_token_channel="none"
+stream_done_ns=0
+ttft_ms_wall=0
+stream_total_ms_wall=0
+stream_done_reason="unknown"
+request_start_ns=0
+
+payload="$(
+  jq -nc \
+    --arg model "$MODEL" \
+    --arg prompt "$PROMPT" \
+    --arg np "$NUM_PREDICT" \
+    --arg temp "$TEMPERATURE" \
+    --arg num_ctx "$NUM_CTX" \
+    --arg num_batch "$NUM_BATCH" \
+    --arg num_thread "$NUM_THREAD" \
+    --arg keep_alive "$KEEP_ALIVE" \
+    --arg stream "$STREAM" \
+    '{model:$model,prompt:$prompt,stream:($stream=="1")}
+    + (if $keep_alive != "" then {keep_alive:$keep_alive} else {} end)
+    + {options:
+        ({num_predict:($np|tonumber),temperature:($temp|tonumber)}
+         + (if $num_ctx != "" then {num_ctx:($num_ctx|tonumber)} else {} end)
+         + (if $num_batch != "" then {num_batch:($num_batch|tonumber)} else {} end)
+         + (if $num_thread != "" then {num_thread:($num_thread|tonumber)} else {} end)
+        )
+      }'
+)"
+
+if [[ "$STREAM" == "1" ]]; then
+  request_start_ns="$(date +%s%N)"
+  : > "$STREAM_LOG"
+  if ! curl -sS -N --max-time "$CURL_MAX_TIME" "$BASE_URL/api/generate" -d "$payload" \
+    | while IFS= read -r line; do
+        now_ns="$(date +%s%N)"
+        printf '%s\t%s\n' "$now_ns" "$line" >> "$STREAM_LOG"
+      done; then
+    {
+      echo "timestamp=$TS"
+      echo "result=generate_failed"
+      echo "host=$HOST"
+      echo "GEN_LOG=$GEN_LOG"
+      echo "STREAM_LOG=$STREAM_LOG"
+      echo "SERVE_ERR=$SERVE_ERR"
+    } > "$SUMMARY"
+    echo "summary=$SUMMARY"
+    exit 3
+  fi
+
+  stream_metrics_file="$(mktemp)"
+  python3 - "$STREAM_LOG" "$GEN_LOG" "$request_start_ns" > "$stream_metrics_file" <<'PY'
+import json
+import sys
+
+stream_log = sys.argv[1]
+gen_log = sys.argv[2]
+request_start_ns = int(sys.argv[3])
+
+chunks = 0
+response_chunks = 0
+thinking_chunks = 0
+json_rows = 0
+first_token_ns = 0
+first_token_channel = "none"
+done_ns = 0
+done_reason = "unknown"
+last_obj = {}
+
+with open(stream_log, "r", encoding="utf-8", errors="replace") as f:
+    for row in f:
+        row = row.rstrip("\n")
+        if not row:
+            continue
+        if "\t" not in row:
+            continue
+        ts_s, payload = row.split("\t", 1)
+        try:
+            ts_ns = int(ts_s)
+        except ValueError:
+            continue
+        try:
+            obj = json.loads(payload)
+        except Exception:
+            continue
+
+        json_rows += 1
+        response = obj.get("response")
+        thinking = obj.get("thinking")
+        response_nonempty = isinstance(response, str) and response != ""
+        thinking_nonempty = isinstance(thinking, str) and thinking != ""
+
+        if response_nonempty:
+            response_chunks += 1
+            chunks += 1
+        if thinking_nonempty:
+            thinking_chunks += 1
+            chunks += 1
+        if first_token_ns == 0 and (response_nonempty or thinking_nonempty):
+            first_token_ns = ts_ns
+            first_token_channel = "response" if response_nonempty else "thinking"
+
+        if obj.get("done") is True:
+            done_ns = ts_ns
+            done_reason = str(obj.get("done_reason", "unknown"))
+            last_obj = obj
+        elif not last_obj:
+            last_obj = obj
+
+if not last_obj:
+    last_obj = {"done": False}
+
+with open(gen_log, "w", encoding="utf-8") as f:
+    json.dump(last_obj, f, ensure_ascii=False)
+    f.write("\n")
+
+def ms(delta_ns: int) -> str:
+    if delta_ns <= 0:
+        return "0"
+    return f"{delta_ns / 1_000_000.0:.3f}"
+
+ttft_ms = ms(first_token_ns - request_start_ns) if first_token_ns > 0 else "0"
+total_ms = ms(done_ns - request_start_ns) if done_ns > 0 else "0"
+
+print(f"stream_chunks={chunks}")
+print(f"stream_response_chunks={response_chunks}")
+print(f"stream_thinking_chunks={thinking_chunks}")
+print(f"stream_json_rows={json_rows}")
+print(f"stream_first_token_ns={first_token_ns}")
+print(f"stream_first_token_channel={first_token_channel}")
+print(f"stream_done_ns={done_ns}")
+print(f"ttft_ms_wall={ttft_ms}")
+print(f"stream_total_ms_wall={total_ms}")
+print(f"stream_done_reason={done_reason}")
+PY
+  # shellcheck disable=SC1090
+  source "$stream_metrics_file"
+  rm -f "$stream_metrics_file"
+else
+  curl -sS --max-time "$CURL_MAX_TIME" "$BASE_URL/api/generate" \
+    -d "$payload" \
+    > "$GEN_LOG"
+fi
 
 sleep 2
 
@@ -176,9 +304,24 @@ fi
   echo "OLLAMA_LIBRARY_PATH=$OLLAMA_LIBRARY_PATH"
   echo "ROCBLAS_TENSILE_LIBPATH=$ROCBLAS_TENSILE_LIBPATH"
   echo "GEN_LOG=$GEN_LOG"
+  echo "STREAM=$STREAM"
+  if [[ "$STREAM" == "1" ]]; then
+    echo "STREAM_LOG=$STREAM_LOG"
+  fi
   echo "STRACE_PREFIX=$STRACE_PREFIX"
   echo "SERVE_OUT=$SERVE_OUT"
   echo "SERVE_ERR=$SERVE_ERR"
+  echo "request_start_ns=$request_start_ns"
+  echo "stream_chunks=$stream_chunks"
+  echo "stream_response_chunks=$stream_response_chunks"
+  echo "stream_thinking_chunks=$stream_thinking_chunks"
+  echo "stream_json_rows=$stream_json_rows"
+  echo "stream_first_token_ns=$stream_first_token_ns"
+  echo "stream_first_token_channel=$stream_first_token_channel"
+  echo "stream_done_ns=$stream_done_ns"
+  echo "ttft_ms_wall=$ttft_ms_wall"
+  echo "stream_total_ms_wall=$stream_total_ms_wall"
+  echo "stream_done_reason=$stream_done_reason"
   echo "strace_timestamp=$STRACE_TIMESTAMP"
   echo "probe_rocblas_log=$PROBE_ROCBLAS_LOG"
   if [[ "$PROBE_ROCBLAS_LOG" == "1" ]]; then

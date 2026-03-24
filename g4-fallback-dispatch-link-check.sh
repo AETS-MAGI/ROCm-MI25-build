@@ -17,6 +17,7 @@ NUM_CTX="${NUM_CTX:-}"
 NUM_BATCH="${NUM_BATCH:-}"
 NUM_THREAD="${NUM_THREAD:-}"
 KEEP_ALIVE="${KEEP_ALIVE:-}"
+STREAM="${STREAM:-0}"
 
 LOG_DIR="${LOG_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
 RAW_LOG_DIR="${RAW_LOG_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
@@ -82,6 +83,7 @@ run_strace_probe() {
     NUM_BATCH="$NUM_BATCH" \
     NUM_THREAD="$NUM_THREAD" \
     KEEP_ALIVE="$KEEP_ALIVE" \
+    STREAM="$STREAM" \
     RAW_LOG_DIR="$RAW_LOG_DIR" \
     STRACE_TIMESTAMP=1 \
     PROBE_ROCBLAS_LOG=1 \
@@ -122,6 +124,7 @@ run_rocprof_probe() {
     NUM_BATCH="$NUM_BATCH" \
     NUM_THREAD="$NUM_THREAD" \
     KEEP_ALIVE="$KEEP_ALIVE" \
+    STREAM="$STREAM" \
     RAW_LOG_DIR="$RAW_LOG_DIR" \
     "$SCRIPT_DIR/g4-rocprofv3-dispatch-check.sh"
   )"
@@ -152,6 +155,14 @@ kernel_mul_mat_vec_rows="$(to_int_or_zero "$(read_kv "$ROCPROF_SUMMARY_PATH" "ke
 kernel_flash_attn_rows="$(to_int_or_zero "$(read_kv "$ROCPROF_SUMMARY_PATH" "kernel_flash_attn_rows")")"
 kernel_quantize_rows="$(to_int_or_zero "$(read_kv "$ROCPROF_SUMMARY_PATH" "kernel_quantize_rows")")"
 kernel_tensile_like_rows="$(to_int_or_zero "$(read_kv "$ROCPROF_SUMMARY_PATH" "kernel_tensile_like_rows")")"
+ttft_ms_wall_strace="$(read_kv "$STRACE_SUMMARY_PATH" "ttft_ms_wall")"
+stream_total_ms_wall_strace="$(read_kv "$STRACE_SUMMARY_PATH" "stream_total_ms_wall")"
+ttft_ms_wall_rocprof="$(read_kv "$ROCPROF_SUMMARY_PATH" "ttft_ms_wall")"
+stream_total_ms_wall_rocprof="$(read_kv "$ROCPROF_SUMMARY_PATH" "stream_total_ms_wall")"
+phase_split_status_proxy="$(read_kv "$ROCPROF_SUMMARY_PATH" "phase_split_status_proxy")"
+phase_split_method="$(read_kv "$ROCPROF_SUMMARY_PATH" "phase_split_method")"
+prefill_kernel_tensile_like_rows="$(to_int_or_zero "$(read_kv "$ROCPROF_SUMMARY_PATH" "prefill_kernel_tensile_like_rows")")"
+decode_kernel_tensile_like_rows="$(to_int_or_zero "$(read_kv "$ROCPROF_SUMMARY_PATH" "decode_kernel_tensile_like_rows")")"
 
 fallback_confirmed=0
 dispatch_confirmed=0
@@ -186,6 +197,7 @@ fi
   echo "num_batch=$NUM_BATCH"
   echo "num_thread=$NUM_THREAD"
   echo "keep_alive=$KEEP_ALIVE"
+  echo "stream=$STREAM"
   echo "raw_log_dir=$RAW_LOG_DIR"
   echo "run_strace=$RUN_STRACE"
   echo "run_rocprof=$RUN_ROCPROF"
@@ -212,6 +224,14 @@ fi
   echo "kernel_flash_attn_rows=$kernel_flash_attn_rows"
   echo "kernel_quantize_rows=$kernel_quantize_rows"
   echo "kernel_tensile_like_rows=$kernel_tensile_like_rows"
+  echo "ttft_ms_wall_strace=$ttft_ms_wall_strace"
+  echo "stream_total_ms_wall_strace=$stream_total_ms_wall_strace"
+  echo "ttft_ms_wall_rocprof=$ttft_ms_wall_rocprof"
+  echo "stream_total_ms_wall_rocprof=$stream_total_ms_wall_rocprof"
+  echo "phase_split_status_proxy=$phase_split_status_proxy"
+  echo "phase_split_method=$phase_split_method"
+  echo "prefill_kernel_tensile_like_rows=$prefill_kernel_tensile_like_rows"
+  echo "decode_kernel_tensile_like_rows=$decode_kernel_tensile_like_rows"
   echo
   echo "--- gate ---"
   echo "fallback_confirmed=$fallback_confirmed"

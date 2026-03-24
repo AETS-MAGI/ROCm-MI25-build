@@ -1,0 +1,178 @@
+timestamp=20260324_050725
+host=127.0.0.1:11634
+model=gpt-oss:latest
+num_predict=64
+temperature=0.1
+num_ctx=8192
+num_batch=512
+num_thread=
+keep_alive=5m
+RAW_LOG_DIR=/home/limonene/ROCm-project/vega_path_check_logs_raw
+STREAM=1
+OLLAMA_LIBRARY_PATH=/home/limonene/ROCm-project/ollama-src/build-gfx900/lib/ollama
+ROCBLAS_TENSILE_LIBPATH=/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library
+PROBE_DIR=/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725
+GEN_LOG=/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_generate_gpt-oss_latest_20260324_050725.json
+STREAM_LOG=/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_stream_gpt-oss_latest_20260324_050725.jsonl
+SERVE_OUT=/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_serve_stdout_gpt-oss_latest_20260324_050725.log
+SERVE_ERR=/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_serve_stderr_gpt-oss_latest_20260324_050725.log
+request_start_ns=1774296447396749800
+stream_chunks=61
+stream_response_chunks=0
+stream_thinking_chunks=61
+stream_json_rows=62
+stream_first_token_ns=1774296455042765171
+stream_first_token_channel=thinking
+stream_done_ns=1774296456397193269
+ttft_ms_wall=7646.015
+stream_total_ms_wall=9000.443
+stream_done_reason=length
+prompt_eval_duration_ns=701082075
+eval_duration_ns=1365165168
+phase_split_status_proxy=decode_signature_detected
+phase_split_method=kernel_start_min_plus_prompt_eval_duration
+phase_boundary_ts_proxy=348662252705726
+prefill_kernel_dispatch_rows=236
+decode_kernel_dispatch_rows=21020
+prefill_kernel_tensile_like_rows=0
+decode_kernel_tensile_like_rows=167
+
+--- generate result ---
+gpt-oss:latest
+true
+length
+8974430168
+6622997479
+93
+64
+
+--- rocprof output counts ---
+trace_file_count=1
+csv_file_count=1
+dispatch_rows=21257
+tensile_or_gemm_rows=0
+kernel_trace_file=/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv
+kernel_dispatch_rows=21256
+kernel_mul_mat_q_rows=69
+kernel_mul_mat_vec_rows=1378
+kernel_flash_attn_rows=0
+kernel_quantize_rows=1447
+kernel_copy_rows=1280
+kernel_tensile_like_rows=167
+
+--- rocprof files ---
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv
+
+--- top kernel names (dispatch rows) ---
+3679	void k_bin_bcast<&(op_add(float, float)), float, float, float, float const*>(float const*, float const*, float*, int, int, int, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, int, int, int, int, int, int, int, int, int, float const*)
+2753	void mul_mat_vec_f<__hip_bfloat16, float, 1, 128, true>(__hip_bfloat16 const*, float const*, int const*, ggml_cuda_mm_fusion_args_device, float*, int, int, int, int, int, HIP_vector_type<unsigned int, 3u>, int, int, int, HIP_vector_type<unsigned int, 3u>, int, int, int)
+1454	void rms_norm_f32<1024, true, false>(float const*, float*, int, long, long, long, float, float const*, long, long, long, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, float const*, long, long, long, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>)
+1425	void rope_neox<true, false, float, float>(float const*, float*, int, int, int, int, int, int const*, float, float, float, rope_corr_dims, float, float const*, long const*, int)
+1424	void k_set_rows<float, int, __half>(float const*, int const*, __half*, long, long, long, long, long, long, long, long, long, long, long, long, long, long, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>)
+1378	void mul_mat_vec_q<(ggml_type)39, 1, true>(void const*, void const*, int const*, ggml_cuda_mm_fusion_args_device, float*, unsigned int, HIP_vector_type<unsigned int, 3u>, unsigned int, unsigned int, unsigned int, HIP_vector_type<unsigned int, 3u>, unsigned int, unsigned int, unsigned int, HIP_vector_type<unsigned int, 3u>, unsigned int, unsigned int, unsigned int)
+1378	quantize_q8_1(float const*, void*, long, long, long, long, long, unsigned int, HIP_vector_type<unsigned int, 3u>)
+1088	__amd_rocclr_copyBuffer
+741	void k_get_rows_float<float, float>(float const*, int const*, float*, long, long, long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long)
+712	void soft_max_f32<true, 256, 256, float>(float const*, float const*, float const*, float*, soft_max_params)
+712	void soft_max_f32<true, 0, 0, float>(float const*, float const*, float const*, float*, soft_max_params)
+712	void k_bin_bcast<&(op_mul(float, float)), float, float, float, float const*>(float const*, float const*, float*, int, int, int, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, HIP_vector_type<unsigned int, 3u>, int, int, int, int, int, int, int, int, int, float const*)
+712	void k_argsort_f32_i32<(ggml_sort_order)1>(float const*, int*, int, int)
+689	void mul_mat_vec_f<float, float, 1, 128, true>(float const*, float const*, int const*, ggml_cuda_mm_fusion_args_device, float*, int, int, int, int, int, HIP_vector_type<unsigned int, 3u>, int, int, int, HIP_vector_type<unsigned int, 3u>, int, int, int)
+688	void mul_mat_vec_f<__half, float, 1, 64, false>(__half const*, float const*, int const*, ggml_cuda_mm_fusion_args_device, float*, int, int, int, int, int, HIP_vector_type<unsigned int, 3u>, int, int, int, HIP_vector_type<unsigned int, 3u>, int, int, int)
+688	void mul_mat_vec_f<__half, __half, 1, 128, false>(__half const*, float const*, int const*, ggml_cuda_mm_fusion_args_device, float*, int, int, int, int, int, HIP_vector_type<unsigned int, 3u>, int, int, int, HIP_vector_type<unsigned int, 3u>, int, int, int)
+192	__amd_rocclr_fillBufferAligned
+96	void convert_unary<float, __hip_bfloat16>(void const*, __hip_bfloat16*, long, long, long, long, long, long)
+96	void convert_unary<__hip_bfloat16, float>(void const*, float*, long, long, long, long, long, long)
+96	Cijk_Alik_Bljk_BBS_BH_MT64x32x8_SN_AF0EM1_AF1EM1_AMAS2_ASAE01_ASCE01_ASEM1_BL0_BS1_DTLA0_DTLB0_EPS0_FL0_GLVWA2_GLVWB1_GRVW2_GSU1_GSUASB_ISA000_K1_KLS_LPA0_LPB0_LRVW2_MMFSC_NLCA1_NLCB1_PGR0_PLR1_SIA1_SU32_SUM0_SUS256_SVW4_TT4_2_USFGRO0_VAW1_VS1_VW2_VWB2_WG16_16_1_WGM8
+69	void quantize_mmq_q8_1<(mmq_q8_1_ds_layout)0>(float const*, int const*, void*, long, long, long, long, long, int, int)
+69	void mul_mat_q<(ggml_type)39, 48, true>(char const*, int const*, int const*, int const*, float*, float*, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)
+69	void mm_ids_helper<4>(int const*, int*, int*, int*, int, int, int, int, int)
+69	add_id_kernel(float const*, float const*, int const*, float*, long, long, unsigned long, unsigned long, unsigned long, unsigned long)
+48	void convert_unary<float, __half>(void const*, __half*, long, long, long, long, long, long)
+48	k_compute_batched_ptrs(void const*, void const*, char*, void const**, void**, long, long, long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, long, long)
+29	void mul_mat_vec_f<__hip_bfloat16, float, 1, 128, false>(__hip_bfloat16 const*, float const*, int const*, ggml_cuda_mm_fusion_args_device, float*, int, int, int, int, int, HIP_vector_type<unsigned int, 3u>, int, int, int, HIP_vector_type<unsigned int, 3u>, int, int, int)
+24	void cpy_scalar<&(void cpy_1_scalar<float, float>(char const*, char*))>(char const*, char*, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int)
+24	void convert_unary<__half, float>(void const*, float*, long, long, long, long, long, long)
+24	Cijk_Alik_Bljk_HSS_BH_GB_MT64x32x8_SE_AF0EM1_AF1EM1_AMAS2_ASAE01_ASCE01_ASEM1_BL1_BS1_DTLA0_DTLB0_EPS0_FL0_GLVWA2_GLVWB1_GRVW2_GSU1_GSUASB_ISA000_K1_KLS_LPA0_LPB0_LRVW2_MMFSC_NLCA1_NLCB1_PGR0_PLR1_SIA1_SU32_SUM0_SUS256_SVW4_TT4_2_USFGROn1_VAW2_VSn1_VW2_VWB2_WG16_16_1_WGM8
+
+--- sample matches (dispatch/tensile/gemm) ---
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:1:"Kind","Agent_Id","Queue_Id","Stream_Id","Thread_Id","Dispatch_Id","Kernel_Id","Kernel_Name","Correlation_Id","Start_Timestamp","End_Timestamp","LDS_Block_Size","Scratch_Size","VGPR_Count","Accum_VGPR_Count","SGPR_Count","Workgroup_Size_X","Workgroup_Size_Y","Workgroup_Size_Z","Grid_Size_X","Grid_Size_Y","Grid_Size_Z"
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:2:"KERNEL_DISPATCH","Agent 1",2,0,3534385,1,9,"__amd_rocclr_fillBufferAligned",4947,348661551623651,348661551632392,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:3:"KERNEL_DISPATCH","Agent 1",2,0,3534385,2,9,"__amd_rocclr_fillBufferAligned",4947,348661551632392,348661551644244,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:4:"KERNEL_DISPATCH","Agent 1",2,0,3534385,3,9,"__amd_rocclr_fillBufferAligned",4949,348661551702467,348661551709282,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:5:"KERNEL_DISPATCH","Agent 1",2,0,3534385,4,9,"__amd_rocclr_fillBufferAligned",4949,348661551709282,348661551715504,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:6:"KERNEL_DISPATCH","Agent 1",2,0,3534385,5,9,"__amd_rocclr_fillBufferAligned",4951,348661551746024,348661551751653,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:7:"KERNEL_DISPATCH","Agent 1",2,0,3534385,6,9,"__amd_rocclr_fillBufferAligned",4951,348661551751653,348661551757431,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:8:"KERNEL_DISPATCH","Agent 1",2,0,3534385,7,9,"__amd_rocclr_fillBufferAligned",4953,348661551781136,348661551786469,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:9:"KERNEL_DISPATCH","Agent 1",2,0,3534385,8,9,"__amd_rocclr_fillBufferAligned",4953,348661551786469,348661551792247,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:10:"KERNEL_DISPATCH","Agent 1",2,0,3534385,9,9,"__amd_rocclr_fillBufferAligned",4955,348661551814618,348661551820988,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:11:"KERNEL_DISPATCH","Agent 1",2,0,3534385,10,9,"__amd_rocclr_fillBufferAligned",4955,348661551820988,348661551826618,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:12:"KERNEL_DISPATCH","Agent 1",2,0,3534385,11,9,"__amd_rocclr_fillBufferAligned",4957,348661551849137,348661551854471,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:13:"KERNEL_DISPATCH","Agent 1",2,0,3534385,12,9,"__amd_rocclr_fillBufferAligned",4957,348661551854471,348661551860249,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:14:"KERNEL_DISPATCH","Agent 1",2,0,3534385,13,9,"__amd_rocclr_fillBufferAligned",4959,348661551882916,348661551888249,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:15:"KERNEL_DISPATCH","Agent 1",2,0,3534385,14,9,"__amd_rocclr_fillBufferAligned",4959,348661551888249,348661551893879,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:16:"KERNEL_DISPATCH","Agent 1",2,0,3534385,15,9,"__amd_rocclr_fillBufferAligned",4961,348661551916250,348661551922176,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:17:"KERNEL_DISPATCH","Agent 1",2,0,3534385,16,9,"__amd_rocclr_fillBufferAligned",4961,348661551928102,348661551932547,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:18:"KERNEL_DISPATCH","Agent 1",2,0,3534385,17,9,"__amd_rocclr_fillBufferAligned",4963,348661551955807,348661551961140,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:19:"KERNEL_DISPATCH","Agent 1",2,0,3534385,18,9,"__amd_rocclr_fillBufferAligned",4963,348661551961140,348661551966770,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:20:"KERNEL_DISPATCH","Agent 1",2,0,3534385,19,9,"__amd_rocclr_fillBufferAligned",4965,348661551989585,348661551995067,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:21:"KERNEL_DISPATCH","Agent 1",2,0,3534385,20,9,"__amd_rocclr_fillBufferAligned",4965,348661551995067,348661552000697,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:22:"KERNEL_DISPATCH","Agent 1",2,0,3534385,21,9,"__amd_rocclr_fillBufferAligned",4967,348661552023512,348661552029883,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:23:"KERNEL_DISPATCH","Agent 1",2,0,3534385,22,9,"__amd_rocclr_fillBufferAligned",4967,348661552029883,348661552035661,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:24:"KERNEL_DISPATCH","Agent 1",2,0,3534385,23,9,"__amd_rocclr_fillBufferAligned",4969,348661552058328,348661552065143,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:25:"KERNEL_DISPATCH","Agent 1",2,0,3534385,24,9,"__amd_rocclr_fillBufferAligned",4969,348661552065143,348661552070773,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:26:"KERNEL_DISPATCH","Agent 1",2,0,3534385,25,9,"__amd_rocclr_fillBufferAligned",4971,348661552093884,348661552099218,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:27:"KERNEL_DISPATCH","Agent 1",2,0,3534385,26,9,"__amd_rocclr_fillBufferAligned",4971,348661552099218,348661552104996,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:28:"KERNEL_DISPATCH","Agent 1",2,0,3534385,27,9,"__amd_rocclr_fillBufferAligned",4973,348661552126774,348661552132404,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:29:"KERNEL_DISPATCH","Agent 1",2,0,3534385,28,9,"__amd_rocclr_fillBufferAligned",4973,348661552132404,348661552138034,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:30:"KERNEL_DISPATCH","Agent 1",2,0,3534385,29,9,"__amd_rocclr_fillBufferAligned",4975,348661552160849,348661552167368,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:31:"KERNEL_DISPATCH","Agent 1",2,0,3534385,30,9,"__amd_rocclr_fillBufferAligned",4975,348661552167368,348661552172998,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:32:"KERNEL_DISPATCH","Agent 1",2,0,3534385,31,9,"__amd_rocclr_fillBufferAligned",4977,348661552195220,348661552200702,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:33:"KERNEL_DISPATCH","Agent 1",2,0,3534385,32,9,"__amd_rocclr_fillBufferAligned",4977,348661552200702,348661552206480,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:34:"KERNEL_DISPATCH","Agent 1",2,0,3534385,33,9,"__amd_rocclr_fillBufferAligned",4979,348661552228258,348661552233888,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:35:"KERNEL_DISPATCH","Agent 1",2,0,3534385,34,9,"__amd_rocclr_fillBufferAligned",4979,348661552233888,348661552239518,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:36:"KERNEL_DISPATCH","Agent 1",2,0,3534385,35,9,"__amd_rocclr_fillBufferAligned",4981,348661552262037,348661552268408,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:37:"KERNEL_DISPATCH","Agent 1",2,0,3534385,36,9,"__amd_rocclr_fillBufferAligned",4981,348661552268408,348661552274185,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:38:"KERNEL_DISPATCH","Agent 1",2,0,3534385,37,9,"__amd_rocclr_fillBufferAligned",4983,348661552296853,348661552302334,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:39:"KERNEL_DISPATCH","Agent 1",2,0,3534385,38,9,"__amd_rocclr_fillBufferAligned",4983,348661552302334,348661552308112,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:40:"KERNEL_DISPATCH","Agent 1",2,0,3534385,39,9,"__amd_rocclr_fillBufferAligned",4985,348661552330039,348661552335520,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:41:"KERNEL_DISPATCH","Agent 1",2,0,3534385,40,9,"__amd_rocclr_fillBufferAligned",4985,348661552335520,348661552341446,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:42:"KERNEL_DISPATCH","Agent 1",2,0,3534385,41,9,"__amd_rocclr_fillBufferAligned",4987,348661552363521,348661552370040,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:43:"KERNEL_DISPATCH","Agent 1",2,0,3534385,42,9,"__amd_rocclr_fillBufferAligned",4987,348661552370040,348661552375670,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:44:"KERNEL_DISPATCH","Agent 1",2,0,3534385,43,9,"__amd_rocclr_fillBufferAligned",4989,348661552398485,348661552403967,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:45:"KERNEL_DISPATCH","Agent 1",2,0,3534385,44,9,"__amd_rocclr_fillBufferAligned",4989,348661552403967,348661552409596,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:46:"KERNEL_DISPATCH","Agent 1",2,0,3534385,45,9,"__amd_rocclr_fillBufferAligned",4991,348661552431227,348661552436856,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:47:"KERNEL_DISPATCH","Agent 1",2,0,3534385,46,9,"__amd_rocclr_fillBufferAligned",4991,348661552436856,348661552442486,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:48:"KERNEL_DISPATCH","Agent 1",2,0,3534385,47,9,"__amd_rocclr_fillBufferAligned",4993,348661552466042,348661552472265,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:49:"KERNEL_DISPATCH","Agent 1",2,0,3534385,48,9,"__amd_rocclr_fillBufferAligned",4993,348661552478191,348661552482635,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:50:"KERNEL_DISPATCH","Agent 1",2,0,3534385,49,9,"__amd_rocclr_fillBufferAligned",4995,348661552506043,348661552511377,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:51:"KERNEL_DISPATCH","Agent 1",2,0,3534385,50,9,"__amd_rocclr_fillBufferAligned",4995,348661552511377,348661552517007,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:52:"KERNEL_DISPATCH","Agent 1",2,0,3534385,51,9,"__amd_rocclr_fillBufferAligned",4997,348661552539378,348661552544859,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:53:"KERNEL_DISPATCH","Agent 1",2,0,3534385,52,9,"__amd_rocclr_fillBufferAligned",4997,348661552544859,348661552550933,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:54:"KERNEL_DISPATCH","Agent 1",2,0,3534385,53,9,"__amd_rocclr_fillBufferAligned",4999,348661552573008,348661552579379,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:55:"KERNEL_DISPATCH","Agent 1",2,0,3534385,54,9,"__amd_rocclr_fillBufferAligned",4999,348661552579379,348661552585008,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:56:"KERNEL_DISPATCH","Agent 1",2,0,3534385,55,9,"__amd_rocclr_fillBufferAligned",5001,348661552607824,348661552614194,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:57:"KERNEL_DISPATCH","Agent 1",2,0,3534385,56,9,"__amd_rocclr_fillBufferAligned",5001,348661552614194,348661552619824,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:58:"KERNEL_DISPATCH","Agent 1",2,0,3534385,57,9,"__amd_rocclr_fillBufferAligned",5003,348661552641899,348661552647529,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:59:"KERNEL_DISPATCH","Agent 1",2,0,3534385,58,9,"__amd_rocclr_fillBufferAligned",5003,348661552647529,348661552653158,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:60:"KERNEL_DISPATCH","Agent 1",2,0,3534385,59,9,"__amd_rocclr_fillBufferAligned",5005,348661552675826,348661552681307,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:61:"KERNEL_DISPATCH","Agent 1",2,0,3534385,60,9,"__amd_rocclr_fillBufferAligned",5005,348661552681307,348661552686937,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:62:"KERNEL_DISPATCH","Agent 1",2,0,3534385,61,9,"__amd_rocclr_fillBufferAligned",5007,348661552709604,348661552714938,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:63:"KERNEL_DISPATCH","Agent 1",2,0,3534385,62,9,"__amd_rocclr_fillBufferAligned",5007,348661552714938,348661552720567,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:64:"KERNEL_DISPATCH","Agent 1",2,0,3534385,63,9,"__amd_rocclr_fillBufferAligned",5009,348661552742642,348661552748124,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:65:"KERNEL_DISPATCH","Agent 1",2,0,3534385,64,9,"__amd_rocclr_fillBufferAligned",5009,348661552748124,348661552753754,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:66:"KERNEL_DISPATCH","Agent 1",2,0,3534385,65,9,"__amd_rocclr_fillBufferAligned",5011,348661552775976,348661552781310,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:67:"KERNEL_DISPATCH","Agent 1",2,0,3534385,66,9,"__amd_rocclr_fillBufferAligned",5011,348661552781310,348661552787236,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:68:"KERNEL_DISPATCH","Agent 1",2,0,3534385,67,9,"__amd_rocclr_fillBufferAligned",5013,348661552810199,348661552815681,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:69:"KERNEL_DISPATCH","Agent 1",2,0,3534385,68,9,"__amd_rocclr_fillBufferAligned",5013,348661552815681,348661552821311,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:70:"KERNEL_DISPATCH","Agent 1",2,0,3534385,69,9,"__amd_rocclr_fillBufferAligned",5015,348661552843534,348661552849312,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:71:"KERNEL_DISPATCH","Agent 1",2,0,3534385,70,9,"__amd_rocclr_fillBufferAligned",5015,348661552849312,348661552854941,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:72:"KERNEL_DISPATCH","Agent 1",2,0,3534385,71,9,"__amd_rocclr_fillBufferAligned",5017,348661552877164,348661552882498,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:73:"KERNEL_DISPATCH","Agent 1",2,0,3534385,72,9,"__amd_rocclr_fillBufferAligned",5017,348661552882498,348661552888127,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:74:"KERNEL_DISPATCH","Agent 1",2,0,3534385,73,9,"__amd_rocclr_fillBufferAligned",5019,348661552910647,348661552916128,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:75:"KERNEL_DISPATCH","Agent 1",2,0,3534385,74,9,"__amd_rocclr_fillBufferAligned",5019,348661552916128,348661552921906,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:76:"KERNEL_DISPATCH","Agent 1",2,0,3534385,75,9,"__amd_rocclr_fillBufferAligned",5021,348661552943833,348661552949018,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:77:"KERNEL_DISPATCH","Agent 1",2,0,3534385,76,9,"__amd_rocclr_fillBufferAligned",5021,348661552949018,348661552954796,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:78:"KERNEL_DISPATCH","Agent 1",2,0,3534385,77,9,"__amd_rocclr_fillBufferAligned",5023,348661552977019,348661552982352,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:79:"KERNEL_DISPATCH","Agent 1",2,0,3534385,78,9,"__amd_rocclr_fillBufferAligned",5023,348661552982352,348661552987982,0,0,12,0,32,256,1,1,256,1,1
+/home/limonene/ROCm-project/vega_path_check_logs_raw/rocprofv3_probe_gpt-oss_latest_20260324_050725/hbmx-mi25/3534373_kernel_trace.csv:80:"KERNEL_DISPATCH","Agent 1",2,0,3534385,79,9,"__amd_rocclr_fillBufferAligned",5025,348661553016427,348661553022205,0,0,12,0,32,256,1,1,256,1,1
