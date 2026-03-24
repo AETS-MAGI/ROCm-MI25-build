@@ -1979,3 +1979,29 @@ per-file（抜粋）:
 
 - このサイクルは「観測・比較・記録」の深掘りとして完了。
 - 低レイヤ改造は未着手のまま維持し、次段は shape 優先で証拠粒度をさらに上げる。
+
+---
+
+## 48. Tier-1 shape別 kernel-priority memo 作成（2026-03-25）[main-node confirmed]
+
+目的:
+
+- 「本命shapeを1個ずつ深く見る」を、改造なしで文書化しやすい単位に固定する。
+
+追加ファイル:
+
+- `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_512x512x2880_kernel_priority.md`
+- `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_2880x512x4096_kernel_priority.md`
+- `/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/shape-observations/shape_4096x512x2880_kernel_priority.md`
+
+内容:
+
+- shape別 baseline/side 安定性
+- stream-window decode 署名
+- lane-level `Cijk_*` 候補優先順
+- HSACO map (`3 matched + 1 unmatched`) との対応
+- Mermaid による `shape -> candidate -> hsaco` 可視化
+
+判定:
+
+- ここまでの作業は観測・比較・記録のみで、低レイヤ改造は未実施。
