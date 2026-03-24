@@ -1900,3 +1900,82 @@ per-file（抜粋）:
   署名が優勢。
 - `Type_HH` fallback に packed (`v_pk_fma_f16`) が集中しており、
   次の詳細読解はこのファイル優先が効率的。
+
+---
+
+## 47. 観測深掘りサイクル（改造なし）(2026-03-25 02:23 JST) [main-node confirmed]
+
+意図:
+
+- 「深く見る」をコード改造ではなく観測粒度向上として実施。
+- 対象は以下のみ:
+  - top shape 再観測
+  - baseline/side 安定性確認
+  - prefill/full proxy と stream window の比較
+  - candidate/hsaco/note 反映更新
+
+### 47.1 top shape 再観測（anchor lane）
+
+- baseline (`num_batch=512`):
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260325_022355.txt`
+  - `shape_512x512x2880=192`
+  - `shape_2880x512x4096=96`
+  - `shape_4096x512x2880=96`
+  - `direct/fallback/dispatch=1`, `gemm_lines=1002`
+- side (`num_batch=1024`):
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260325_022435.txt`
+  - `shape_512x1024x2880=288`
+  - `shape_2880x1024x4096=144`
+  - `shape_4096x1024x2880=144`
+  - `direct/fallback/dispatch=1`, `gemm_lines=1336`
+
+### 47.2 prefill/full proxy 比較
+
+- baseline split:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_split_gpt-oss_latest_20260325_022531.txt`
+- side split:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_split_gpt-oss_latest_20260325_022637.txt`
+- 両lane共通:
+  - `decode_delta_gemm_lines=0`
+  - `decode_delta_target_shape_hits=0`
+  - `phase_split_status=prefill_dominant_signature`
+
+### 47.3 stream phase-window 比較（prefill/decode 別レイヤ）
+
+- baseline:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_phase_window_sweep_gpt-oss_latest_20260325_022802.txt`
+- side:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_phase_window_sweep_gpt-oss_latest_20260325_022953.txt`
+- 両lane共通:
+  - `ok_cases=3`
+  - `decode_signature_cases=3`
+  - 全行 `direct/fallback/dispatch=1`
+  - `decode_kernel_tensile_like_rows=167`
+
+### 47.4 candidate -> hsaco 更新
+
+- kernel candidates:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_022545__rocprofv3_summary_gpt-oss_latest_20260325_022614_20260325_023311.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_022651__rocprofv3_summary_gpt-oss_latest_20260325_022727_20260325_023315.txt`
+- hsaco map:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_022545__rocprofv3_summary_gpt-oss_latest_20260325_022614_20260325_023311_20260325_023331.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_022651__rocprofv3_summary_gpt-oss_latest_20260325_022727_20260325_023315_20260325_023336.txt`
+- map 結果（両lane同じ）:
+  - `total_candidates=4`
+  - `matched_candidates=3`
+  - unmatched `...ISA900...` 1件は継続
+- extract/disasm:
+  - extract manifest:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/hsaco_targets_hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_022545__rocprofv3_summary_gpt-oss_latest_20260325_022614_20260325_023311_20260325_023331_20260325_023347.txt`
+  - disasm summary:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/disasm_signal_summary_hsaco_targets_hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_022545__rocprofv3_summary_gpt-oss_latest_20260325_022614_20260325_023311_20260325_023331_20260325_023347_20260325_023354.txt`
+  - signal:
+    - `dot4_positive_files=0`
+    - `mfma_positive_files=0`
+    - `packed_positive_files=1`
+    - `memory_positive_files=3`
+
+### 47.5 判定
+
+- このサイクルは「観測・比較・記録」の深掘りとして完了。
+- 低レイヤ改造は未着手のまま維持し、次段は shape 優先で証拠粒度をさらに上げる。
