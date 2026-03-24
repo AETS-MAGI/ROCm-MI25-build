@@ -1522,3 +1522,129 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 
 - `keep_alive>=10s` の推奨下限は、baseline512 だけでなく side1024 でも再現した。
 - 以後の stream-phase 観測では、再現性確保のため `keep_alive=10s` 以上を既定運用にする。
+
+---
+
+## 38. anchor lane status 自動集約を追加（2026-03-25）[main-node confirmed]
+
+### 38.1 目的
+
+- baseline512 / side1024 の固定観測結果を、毎回同じ形で要約する。
+- stream phase-window の gate 一貫性（direct/fallback/dispatch + decode_signature）を
+  1ファイルで確認できるようにする。
+
+### 38.2 実装
+
+- 追加スクリプト:
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/summarize-g4-anchor-lanes.sh`
+- 入力:
+  - baseline anchor summary (`num_batch_list=512` の gpt-oss anchor 集約)
+  - side anchor summary (`num_batch_list=1024` の gpt-oss anchor 集約)
+  - stream phase-window batch compare TSV
+- 出力:
+  - `g4_anchor_lane_status_gpt-oss_latest_<ts>.txt`
+  - `g4_anchor_lane_status_gpt-oss_latest_<ts>.tsv`
+  - 保存先: `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/`
+
+### 38.3 実行結果
+
+- 実行:
+  - `./summarize-g4-anchor-lanes.sh`
+- 出力:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_anchor_lane_status_gpt-oss_latest_20260325_010009.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_anchor_lane_status_gpt-oss_latest_20260325_010009.tsv`
+- 要約（抜粋）:
+  - baseline lane: `ok_cases=5`, `direct_hits=5`, shape totals `(960,480,480)`
+  - side lane: `ok_cases=3`, `direct_hits=3`, shape totals `(864,432,432)`
+  - stream compare: `rows=5`, `all_direct_gate_rows=5`, `all_decode_signature_rows=5`
+
+### 38.4 判定
+
+- baseline / side 両レーンで direct dispatch の安定性を再確認。
+- stream phase-window の decode 側署名が batch比較でも一貫していることを再確認。
+- 観測系の「固定比較フロー」は、手動確認からスクリプト再現へ移行できた。
+
+---
+
+## 39. non-dot4 候補整理用の dtype 集約を追加（2026-03-25）[main-node confirmed]
+
+### 39.1 目的
+
+- 週次残務のうち
+  - `non-dot4 側の本命候補を整理`
+  - `どの shape から先に刺すかを優先付け`
+  を、再実行可能な形で確定する。
+
+### 39.2 実装
+
+- 追加スクリプト:
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/summarize-rocblas-gemm-dtypes.sh`
+- 入力:
+  - `rocblas_gemm_shapes_*.tsv`（既存 shape 集約結果）
+- 出力:
+  - `rocblas_gemm_dtype_summary_<...>.txt/.tsv`
+  - 保存先: `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/`
+
+### 39.3 実行
+
+- コマンド:
+  - `./summarize-rocblas-gemm-dtypes.sh /home/limonene/ROCm-project/vega_path_check_logs_raw/rocblas_gemm_shapes_g4_rocblas_trace_gpt-oss_latest_20260324_045255_20260324_045658.tsv`
+- 出力:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/rocblas_gemm_dtype_summary_rocblas_gemm_shapes_g4_rocblas_trace_gpt-oss_latest_20260324_045255_20260324_045658_20260325_010632.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/rocblas_gemm_dtype_summary_rocblas_gemm_shapes_g4_rocblas_trace_gpt-oss_latest_20260324_045255_20260324_045658_20260325_010632.tsv`
+
+### 39.4 結果
+
+- `total_gemm=501`
+- `non_dot4_like=501`（100%）
+- `int8_or_i32_like=0`
+- dtype内訳:
+  - `bf16_r|bf16_r|||` = `288`（57.49%）
+  - `f16_r|f16_r|||` = `144`（28.74%）
+  - `f32_r|f32_r|f32_r|f32_r|f32_r` = `69`（13.77%）
+- 上位shape:
+  - `512x512x2880`（96）
+  - `2880x512x4096`（48）
+  - `4096x512x2880`（48）
+  - `512x93x2880`（48）
+  - `32x512x2880`（46）
+
+### 39.5 判定
+
+- 現行 anchor 条件では、dispatch 可視化された GEMM は non-dot4 系が主（この測定では 100%）。
+- 低レイヤーの次ステップは、`Tier-1: 512x512x2880 / 2880x512x4096 / 4096x512x2880` から着手する。
+- int8 系は、現時点では「catalog-read で見えるが direct dispatch で未確認」の扱いを維持する。
+
+---
+
+## 40. raw ログ退避スクリプトの出力先を repo 外に固定（2026-03-25）[main-node confirmed]
+
+### 40.1 背景
+
+- `migrate-raw-logs.sh` の既定 `SUMMARY_DIR` が repo 内
+  (`ROCm-MI25-build/vega_path_check_logs`) を向いており、
+  実行すると summary/manifest が repo 内に増える余地が残っていた。
+
+### 40.2 変更
+
+- 対象:
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/migrate-raw-logs.sh`
+- 変更点:
+  - `SUMMARY_DIR` の既定を
+    - 旧: `$SCRIPT_DIR/vega_path_check_logs`
+    - 新: `$DST_DIR/summaries`（= `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries`）
+  - `SRC_DIR` が存在しない場合は no-op で終了し、`summary=none` を返すようにした
+    （空ディレクトリを勝手に生成しない）。
+
+### 40.3 簡易確認
+
+- 構文チェック:
+  - `bash -n migrate-raw-logs.sh` -> `ok`
+- no-op 動作確認:
+  - `SRC_DIR=/tmp/rocm_no_such_dir_for_test ./migrate-raw-logs.sh`
+  - 出力: `summary=none`, `manifest=none`, `note=src_dir_not_found:...`
+
+### 40.4 判定
+
+- 退避運用で summary/manifest が repo 内へ逆流しにくくなった。
+- 今後は raw/summary を `vega_path_check_logs_raw` 側で完結させる運用を継続できる。

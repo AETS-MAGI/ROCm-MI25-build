@@ -7,14 +7,21 @@ WORKSPACE_ROOT="${WORKSPACE_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 
 SRC_DIR="${SRC_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
 DST_DIR="${DST_DIR:-$WORKSPACE_ROOT/vega_path_check_logs_raw}"
-SUMMARY_DIR="${SUMMARY_DIR:-$SCRIPT_DIR/vega_path_check_logs}"
+SUMMARY_DIR="${SUMMARY_DIR:-$DST_DIR/summaries}"
 
 # copy | move (default move because this script is for evacuation)
 MODE="${MODE:-move}"
 # 1: when MODE=move and dst exists with identical content, remove src.
 PRUNE_DUPLICATES_ON_MOVE="${PRUNE_DUPLICATES_ON_MOVE:-1}"
 
-mkdir -p "$SRC_DIR" "$DST_DIR" "$SUMMARY_DIR"
+mkdir -p "$DST_DIR" "$SUMMARY_DIR"
+
+if [[ ! -d "$SRC_DIR" ]]; then
+  echo "summary=none"
+  echo "manifest=none"
+  echo "note=src_dir_not_found:$SRC_DIR"
+  exit 0
+fi
 
 TS="$(date +%Y%m%d_%H%M%S)"
 MANIFEST="$SUMMARY_DIR/raw_log_migrate_manifest_${TS}.tsv"
