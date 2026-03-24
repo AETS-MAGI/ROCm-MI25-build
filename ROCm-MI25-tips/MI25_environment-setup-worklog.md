@@ -1389,3 +1389,44 @@ bash ROCm-vega/tools/open_wdblack_rocm_shell.sh --print
 
 - 既定では summary も raw も repo 外に出るため、`git status` のノイズを抑制できる。
 - レビュー用に repo 内へ置きたい場合のみ、`LOG_DIR` を明示指定して出力する。
+
+---
+
+## 35. baseline512 vs side1024 の stream phase-window 比較（2026-03-24）[main-node confirmed]
+
+### 35.1 目的
+
+- 既存 baseline512（`num_batch=512`）と side1024（`num_batch=1024`）で、
+  stream-phase proxy の安定性と実行時間差を比較する。
+
+### 35.2 実行
+
+- side1024 sweep:
+  - `MODEL=gpt-oss:latest NUM_BATCH=1024 NUM_PREDICT_LIST=64,128,256,512,1024 ./g4-stream-phase-window-sweep.sh`
+  - summary: `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_phase_window_sweep_gpt-oss_latest_20260324_122317.txt`
+  - tsv: `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_phase_window_sweep_gpt-oss_latest_20260324_122317.tsv`
+- baseline vs side compare:
+  - compare tsv: `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_phase_window_batch_compare_gpt-oss_latest_20260324_123206.tsv`
+  - compare txt: `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_phase_window_batch_compare_gpt-oss_latest_20260324_123206.txt`
+
+### 35.3 結果
+
+- side1024 の 5ケースすべて `ok`。
+- baseline512 / side1024 の両方で 5ケースすべて:
+  - `direct_rocblas_or_tensile_dispatch=1`
+  - `fallback_confirmed=1`
+  - `dispatch_confirmed=1`
+  - `phase_split_status_proxy=decode_signature_detected`
+  - `decode_kernel_tensile_like_rows=167`
+- 差分として、`num_batch=1024` 側は `stream_total_ms_wall_strace` が全ケースで増加:
+  - `num_predict=64`: `+5165.371 ms`
+  - `128`: `+7400.993 ms`
+  - `256`: `+13067.843 ms`
+  - `512`: `+25440.684 ms`
+  - `1024`: `+40639.563 ms`
+
+### 35.4 判定
+
+- `num_batch` を 512 -> 1024 に上げても、stream-phase proxy の署名そのものは変化しなかった。
+- つまり現時点では、batch変更は「可視化署名の種類」より「実行時間スケール」へ強く効いている。
+- 観測アンカーとしては baseline512 を正本、side1024 を時間感度比較レーンとして維持する方針が妥当。
