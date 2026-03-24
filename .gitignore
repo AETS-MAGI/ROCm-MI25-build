@@ -22,5 +22,8 @@ vega_path_check_logs/*_rocblas_profile_*
 vega_path_check_logs/raw_log_migrate_manifest_*.tsv
 vega_path_check_logs/raw_log_migrate_summary_*.txt
 vega_path_check_logs/raw_log_compress_manifest_*.tsv
-vega_path_check_logs/raw_log_compress_summary_*.tx./t
-./vega_path_check_logs/*
+vega_path_check_logs/raw_log_compress_summary_*.txt
+
+# compressed archives
+vega_path_check_logs/*.tar.gz
+vega_path_check_logs/*.gz
