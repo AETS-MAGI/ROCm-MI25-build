@@ -2638,3 +2638,64 @@ TARGET_M=512 TARGET_N=512 TARGET_K=2880 \
 - 1ノブ変更でも lane 分離（AETS=direct/shape-hitあり, system=なし）は維持された。
 - ただし AETS lane の throughput は `NUM_PREDICT=256` で微減、`total_ms` は増加。
 - 次段も shape を増やさず、単一ノブ比較を積み上げる方針を継続する。
+
+---
+
+## 62. 対照実験（1ノブ変更: `NUM_THREAD=4 -> 6`）(2026-03-25 15 JST) [main-node confirmed]
+
+目的:
+
+- 1shape 入口ループを維持したまま、1ノブ変更の影響だけを確認する。
+- 変更対象は `NUM_THREAD` のみ（`4 -> 6`）。
+
+固定条件:
+
+- `MODEL=gpt-oss:latest`
+- `NUM_BATCH=512`
+- `NUM_CTX=8192`
+- `NUM_PREDICT=128`
+- `KEEP_ALIVE=5m`
+- `STREAM=1`
+- `ROCBLAS_LAYER=9`
+- target shape: `512x512x2880`
+- lane差分は従来どおり `ROCBLAS_TENSILE_LIBPATH` のみ
+
+実施:
+
+- nt4 反復:
+  - `k1_entry_20260325_1shape_nt4`
+  - `k1_entry_20260325_1shape_nt4_rerun1`
+  - `k1_entry_20260325_1shape_nt4_rerun2`
+- nt6 反復:
+  - `k1_entry_20260325_1shape_nt6`
+  - `k1_entry_20260325_1shape_nt6_rerun1`
+  - `k1_entry_20260325_1shape_nt6_rerun2`
+- 集約:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260325_1shape_nt4_20260325_155820.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260325_1shape_nt6_20260325_155820.tsv`
+- 比較:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_num_thread_4_vs_6_20260325_1559.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_num_thread_4_vs_6_20260325_1559.tsv`
+
+確認結果（facts）:
+
+- AETS lane:
+  - phase: `decode_signature_detected` 維持
+  - shape_hits_mode: `192 -> 192`（不変）
+  - `rocblas_trace_gemm_avg`: `1002 -> 1002`（不変）
+  - `ttft_ms_avg`: `15675.346 -> 12470.038`（-3205.308）
+  - `total_ms_avg`: `18323.679 -> 15099.288`（-3224.391）
+  - `tok_s_avg`: `49.7187 -> 50.0184`（+0.2997）
+- system lane:
+  - phase: `unavailable` 維持
+  - shape_hits_mode: `0 -> 0`（不変）
+  - dispatch/gemm 系は引き続き 0
+  - `ttft_ms_avg`: `18812.277 -> 15125.903`
+  - `total_ms_avg`: `41606.893 -> 37203.510`
+  - `tok_s_avg`: `5.5442 -> 5.6925`
+
+判定:
+
+- 1ノブ変更でも lane 分離（AETS=direct/shape-hitあり, system=なし）は維持された。
+- `NUM_THREAD=6` は、現条件では AETS lane のレイテンシ改善とわずかな throughput 改善を示した。
+- ここでの結論は観測レイヤのみであり、kernel-level causal mapping は未確定のまま。
