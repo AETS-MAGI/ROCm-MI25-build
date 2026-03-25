@@ -2236,3 +2236,61 @@ LANE=side ./g4-anchor-observation-status.sh
 
 - 「安全な最小UXとしての見せ方」は EN/JA で一貫化できた。
 - kernel-level 因果は未確定として明示し、過剰一般化を回避できている。
+
+---
+
+## 54. 観測→比較→記録サイクル（shape最優先・改造なし）(2026-03-25 09 JST) [main-node confirmed]
+
+目的:
+
+- 「まず観測・比較・記録、それから最適化」の順を維持する。
+- 低レイヤ改造を入れず、Tier-1 形状の再現性を更新する。
+
+実行（固定条件）:
+
+- `MODEL=gpt-oss:latest`
+- `NUM_CTX=8192`
+- `ROCBLAS_LAYER=9`
+- `KEEP_ALIVE=5m`
+- lane:
+  - baseline: `NUM_BATCH=512`
+  - side: `NUM_BATCH=1024`
+
+観測（facts）:
+
+- anchor shape sweep:
+  - baseline:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260325_090936.txt`
+    - `direct_hits=1`, `shape=(192,96,96)`
+  - side:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_gptoss_anchor_shape_sweep_gpt-oss_latest_20260325_091016.txt`
+    - `direct_hits=1`, `shape=(288,144,144)`
+- stream phase-window sweep:
+  - baseline:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_phase_window_sweep_gpt-oss_latest_20260325_091108.txt`
+    - `ok_cases=5`, `decode_signature_cases=5`
+  - side:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_phase_window_sweep_gpt-oss_latest_20260325_091604.txt`
+    - `ok_cases=5`, `decode_signature_cases=5`
+- prefill/full split:
+  - baseline:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_split_gpt-oss_latest_20260325_092315.txt`
+    - `phase_split_status=prefill_dominant_signature`, `decode_delta_gemm_lines=0`, `decode_delta_target_shape_hits=0`
+  - side:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_split_gpt-oss_latest_20260325_092419.txt`
+    - `phase_split_status=prefill_dominant_signature`, `decode_delta_gemm_lines=0`, `decode_delta_target_shape_hits=0`
+
+比較（facts）:
+
+- lane統合サマリを生成:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_anchor_lane_status_gpt-oss_latest_20260325_092620.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_anchor_lane_status_gpt-oss_latest_20260325_092620.tsv`
+- 集計結果:
+  - baseline: `anchor_ok=1`, `direct_hits=1`, `stream_decode_signature_cases=5/5`
+  - side: `anchor_ok=1`, `direct_hits=1`, `stream_decode_signature_cases=5/5`
+  - split は両laneとも `prefill_dominant_signature`（proxy層）
+
+判定:
+
+- 本サイクルは「観測→比較→記録」の更新として完了。
+- 低レイヤ改造は未着手のまま維持。
