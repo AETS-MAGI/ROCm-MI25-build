@@ -2699,3 +2699,120 @@ TARGET_M=512 TARGET_N=512 TARGET_K=2880 \
 - 1ノブ変更でも lane 分離（AETS=direct/shape-hitあり, system=なし）は維持された。
 - `NUM_THREAD=6` は、現条件では AETS lane のレイテンシ改善とわずかな throughput 改善を示した。
 - ここでの結論は観測レイヤのみであり、kernel-level causal mapping は未確定のまま。
+
+---
+
+## 63. 対照実験（1ノブ変更: `KEEP_ALIVE=5m -> 0s`）(2026-03-25 18 JST) [main-node confirmed]
+
+目的:
+
+- 1shape 入口ループを維持したまま、`KEEP_ALIVE` のみ変更したときの観測クラス変化を確認する。
+
+固定条件:
+
+- `MODEL=gpt-oss:latest`
+- `NUM_BATCH=512`
+- `NUM_CTX=8192`
+- `NUM_PREDICT=128`
+- `NUM_THREAD=6`
+- `STREAM=1`
+- `ROCBLAS_LAYER=9`
+- target shape: `512x512x2880`
+- lane差分は従来どおり `ROCBLAS_TENSILE_LIBPATH` のみ
+
+実施:
+
+- ka5m 反復:
+  - `k1_entry_20260325_1shape_ka5m`
+  - `k1_entry_20260325_1shape_ka5m_rerun1`
+  - `k1_entry_20260325_1shape_ka5m_rerun2`
+- ka0s 反復:
+  - `k1_entry_20260325_1shape_ka0s`
+  - `k1_entry_20260325_1shape_ka0s_rerun1`
+  - `k1_entry_20260325_1shape_ka0s_rerun2`
+- 集約:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260325_1shape_ka5m_20260325_185004.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260325_1shape_ka0s_20260325_185004.tsv`
+- 比較:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_keep_alive_5m_vs_0s_20260325_1850.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_keep_alive_5m_vs_0s_20260325_1850.tsv`
+
+確認結果（facts）:
+
+- AETS lane:
+  - `shape_hits_mode`: `192 -> 192`（不変）
+  - `fallback_mode`: `1 -> 1`（不変）
+  - `direct_mode`: `1 -> 1`（不変）
+  - `dispatch_mode`: `1 -> 0`（変化）
+  - `phase_set`: `decode_signature_detected -> unavailable`（変化）
+  - `ttft_ms_avg`: `12834.804 -> 11396.224`（-1438.580）
+  - `total_ms_avg`: `15490.565 -> 14030.167`（-1460.398）
+  - `tok_s_avg`: `49.6430 -> 50.0395`（+0.3965）
+- system lane:
+  - `unavailable` / `shape_hits=0` / `dispatch=0` を維持
+
+判定:
+
+- `KEEP_ALIVE=0s` では性能値は改善方向でも、AETS lane の観測クラスに
+  `dispatch_confirmed` と `phase_set` の変化が出た。
+- よって現時点では、`KEEP_ALIVE=0s` を「観測クラス不変の安全側ノブ」とは
+  判定しない。
+- kernel-level causal mapping は引き続き未確定として扱う。
+
+---
+
+## 64. 対照実験（1ノブ変更: `NUM_CTX=8192 -> 12288`）(2026-03-25 19 JST) [main-node confirmed]
+
+目的:
+
+- 1shape 入口ループを維持したまま、`NUM_CTX` のみ変更したときの観測クラスと
+  指標変化を確認する。
+
+固定条件:
+
+- `MODEL=gpt-oss:latest`
+- `NUM_BATCH=512`
+- `NUM_PREDICT=128`
+- `NUM_THREAD=6`
+- `KEEP_ALIVE=5m`
+- `STREAM=1`
+- `ROCBLAS_LAYER=9`
+- target shape: `512x512x2880`
+- lane差分は従来どおり `ROCBLAS_TENSILE_LIBPATH` のみ
+
+実施:
+
+- ctx8192 反復:
+  - `k1_entry_20260325_1shape_ctx8192`
+  - `k1_entry_20260325_1shape_ctx8192_rerun1`
+  - `k1_entry_20260325_1shape_ctx8192_rerun2`
+- ctx12288 反復:
+  - `k1_entry_20260325_1shape_ctx12288`
+  - `k1_entry_20260325_1shape_ctx12288_rerun1`
+  - `k1_entry_20260325_1shape_ctx12288_rerun2`
+- 集約:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260325_1shape_ctx8192_20260325_191904.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260325_1shape_ctx12288_20260325_191904.tsv`
+- 比較:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_num_ctx_8192_vs_12288_20260325_1919.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_num_ctx_8192_vs_12288_20260325_1919.tsv`
+
+確認結果（facts）:
+
+- AETS lane:
+  - `phase_set`: `decode_signature_detected -> decode_signature_detected`（維持）
+  - `shape_hits_mode`: `192 -> 192`（維持）
+  - `fallback/dispatch/direct`: `1/1/1 -> 1/1/1`（維持）
+  - `rocblas_trace_gemm_avg`: `1002 -> 1002`（維持）
+  - `ttft_ms_avg`: `12810.885 -> 13306.427`（+495.542）
+  - `total_ms_avg`: `15459.284 -> 15948.243`（+488.959）
+  - `tok_s_avg`: `49.6657 -> 49.8763`（+0.2106）
+- system lane:
+  - `unavailable` / `shape_hits=0` / `dispatch=0` を維持
+
+判定:
+
+- C4 は観測クラス不変を維持し、single-knob control として成立。
+- ただし AETS lane ではレイテンシ（TTFT/total）は微増、throughput は微増で、
+  指標はトレードオフ傾向。
+- 現 anchor では `NUM_CTX=8192` を基準継続し、`12288` は side候補として保持する。
