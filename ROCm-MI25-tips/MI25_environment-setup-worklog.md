@@ -3091,3 +3091,65 @@ TARGET_M=512 TARGET_N=512 TARGET_K=2880 \
 - したがって C4 の「観測クラス不変」結果は、候補 kernel と HSACO 対応の層でも整合する。
 - ここでも strict kernel-level causal mapping は未確定のまま維持する。
 
+## 70. 対照実験（1ノブ変更: `NUM_THREAD=6 -> 7`）(2026-03-26 04 JST) [main-node confirmed]
+
+目的:
+
+- C7（`6 -> 8`）の次段として、thread ノブを `6 -> 7` へ単独変更し、
+  観測クラス不変性と指標差分を確認する。
+
+固定条件:
+
+- `MODEL=gpt-oss:latest`
+- `NUM_BATCH=512`
+- `NUM_CTX=8192`
+- `NUM_PREDICT=128`
+- `KEEP_ALIVE=5m`
+- `STREAM=1`
+- `ROCBLAS_LAYER=9`
+- target shape: `512x512x2880`
+- lane差分は従来どおり `ROCBLAS_TENSILE_LIBPATH` のみ
+
+実施:
+
+- nt6c 反復:
+  - `k1_entry_20260326_1shape_nt6c`
+  - `k1_entry_20260326_1shape_nt6c_rerun1`
+  - `k1_entry_20260326_1shape_nt6c_rerun2`
+- nt7 反復:
+  - `k1_entry_20260326_1shape_nt7`
+  - `k1_entry_20260326_1shape_nt7_rerun1`
+  - `k1_entry_20260326_1shape_nt7_rerun2`
+- 集約:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260326_1shape_nt6c_20260326_045050.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260326_1shape_nt7_20260326_045051.tsv`
+- 比較:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_num_thread_6_vs_7_20260326_0452.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_num_thread_6_vs_7_20260326_0452.txt`
+
+確認結果（facts）:
+
+- AETS lane:
+  - `phase_set`: `decode_signature_detected -> decode_signature_detected`（維持）
+  - `shape_hits_mode`: `192 -> 192`（維持）
+  - `fallback/dispatch/direct`: `1/1/1 -> 1/1/1`（維持）
+  - `rocblas_trace_gemm_avg`: `1002 -> 1002`（維持）
+  - `ttft_ms_avg`: `12415.173 -> 11449.840`（-965.333）
+  - `total_ms_avg`: `15064.971 -> 14090.656`（-974.315）
+  - `tok_s_avg`: `49.6869 -> 49.8529`（+0.1660）
+  - `kernel_dispatch_avg`: `23919.667 -> 45478.667`（+21559.000）
+    - detail で `nt7_rerun1` の `kernel_dispatch_rows=88998` を確認（外れ値）
+- system lane:
+  - `phase_set=unavailable` / `shape_hits=0` / `fallback=0` / `dispatch=0` / `direct=0` を維持
+  - `ttft_ms_avg`: `13855.261 -> 13506.398`（-348.863）
+  - `total_ms_avg`: `36084.439 -> 35941.203`（-143.236）
+  - `tok_s_avg`: `5.6568 -> 5.6094`（-0.0474）
+
+判定:
+
+- C10 は観測クラス不変の single-knob control として成立。
+- `NUM_THREAD=7` は、現 anchor 条件で `ttft/total` 改善と `tok_s` 微増を示した。
+- ただし `kernel_dispatch_rows` は nt7 の1反復に外れ値があり、
+  この指標のみで経路変化を主張しない（gemm/shape/dispatch class は不変）。
+- この結論は `gpt-oss:latest` anchor 条件に限定し、kernel-level causal mapping は未確定のまま扱う。
+
