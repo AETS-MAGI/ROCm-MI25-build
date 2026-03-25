@@ -34,6 +34,8 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - `keep_alive` sweep runner (default stable set: `10s,30s,5m`) for stream probe robustness checks.
 - `g4-anchor-observation-status.sh`
   - Anchor-limited status wrapper that reports safe observation labels (`decode/fallback/dispatch/shape`) without kernel-level causal claims.
+- `summarize-k1-entry.sh`
+  - Lane-paired (`baseline/side`) K1-entry summary wrapper: split -> candidate extraction -> hsaco mapping -> K1..K4 status table.
 - `commit-no-raw.sh`
   - Commit helper that excludes staged raw/probe logs (`vega_path_check_logs/`, `.rocprofv3/`).
 - `raw-log-one-line-index.sh`

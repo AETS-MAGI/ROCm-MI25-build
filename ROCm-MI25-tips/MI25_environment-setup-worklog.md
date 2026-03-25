@@ -2331,3 +2331,92 @@ LANE=side ./g4-anchor-observation-status.sh
 
 - 「低レイヤ最適化を始める」の入口条件は満たした。
 - ここでの着手は、対象固定と証跡更新まで（コード改変は未実施）。
+
+---
+
+## 56. K1入口の lane一括集計スクリプト追加（2026-03-25 11 JST）[main-node confirmed]
+
+目的:
+
+- 「観測→比較→記録」の繰り返しを手動手順から定型化する。
+- baseline/side を同じ手順で再評価し、K1..K4 の入口状態を1表で確認する。
+
+追加:
+
+- `/home/limonene/ROCm-project/ROCm-MI25-build/summarize-k1-entry.sh`
+
+処理内容:
+
+- input:
+  - baseline split summary
+  - side split summary
+- flow:
+  - `summarize-kernel-candidates.sh`
+  - `map-kernel-candidates-to-hsaco.sh`
+  - laneごとの `K1..K4` prefill/full/delta/match を統合TSVへ出力
+
+実行:
+
+```bash
+cd /home/limonene/ROCm-project/ROCm-MI25-build
+./summarize-k1-entry.sh \
+  /home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_split_gpt-oss_latest_20260325_092315.txt \
+  /home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_split_gpt-oss_latest_20260325_092419.txt
+```
+
+証跡:
+
+- summary:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/k1_entry_lane_check_20260325_110634.txt`
+- tsv:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/k1_entry_lane_check_20260325_110634.tsv`
+
+確認結果（facts）:
+
+- baseline/side 共通:
+  - `total_candidates=4`
+  - `matched_candidates=3`
+  - `K1_full=96`, `K1_match=1`
+  - `K4_match=0`
+
+判定:
+
+- K1入口の再確認を、毎回同一フォーマットで更新できる状態になった。
+- 低レイヤ改造に入る前の gate-check 自動化として有効。
+
+---
+
+## 57. K1入口の HSACO/disasm 再確認（baseline/side 同値）(2026-03-25 11 JST) [main-node confirmed]
+
+目的:
+
+- K1入口の lane 比較を candidate/map だけでなく、HSACO 逆アセンブル信号まで揃えて確認する。
+
+実施:
+
+- HSACO 抽出（baseline/side map それぞれ）:
+  - `extract-hsaco-targets.sh`
+- 逆アセンブル信号集計（baseline/side それぞれ）:
+  - `summarize-hsaco-disasm-signals.sh`
+
+証跡:
+
+- baseline disasm summary:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/disasm_signal_summary_hsaco_targets_hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_092328__rocprofv3_summary_gpt-oss_latest_20260325_092357_20260325_110634_20260325_110635_20260325_110812_20260325_110821.txt`
+- side disasm summary:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/disasm_signal_summary_hsaco_targets_hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_092433__rocprofv3_summary_gpt-oss_latest_20260325_092510_20260325_110636_20260325_110636_20260325_110812_20260325_110822.txt`
+
+確認結果（facts）:
+
+- baseline/side とも同一:
+  - `total_files=3`
+  - `dot4_positive_files=0`
+  - `mfma_positive_files=0`
+  - `packed_positive_files=1`
+  - `memory_positive_files=3`
+- 3ファイルの per-file 集計値（total_lines / packed / memory 系）も一致。
+
+判定:
+
+- K1入口の lane差分は、candidate/map/disasm の3層で同値を確認できた。
+- ここまでの更新は観測・比較・記録のみ（コード改変なし）。
