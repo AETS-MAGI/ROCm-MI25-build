@@ -2816,3 +2816,278 @@ TARGET_M=512 TARGET_N=512 TARGET_K=2880 \
 - ただし AETS lane ではレイテンシ（TTFT/total）は微増、throughput は微増で、
   指標はトレードオフ傾向。
 - 現 anchor では `NUM_CTX=8192` を基準継続し、`12288` は side候補として保持する。
+
+---
+
+## 65. 対照実験（1ノブ変更: prompt profile `short/math/code`）(2026-03-26 03 JST) [main-node confirmed]
+
+目的:
+
+- 1shape 入口ループを維持したまま、prompt profile（入力ワークロード）のみ変更し、
+  観測クラス不変性と指標差分を確認する。
+
+固定条件:
+
+- `MODEL=gpt-oss:latest`
+- `NUM_BATCH=512`
+- `NUM_CTX=8192`
+- `NUM_PREDICT=128`
+- `NUM_THREAD=6`
+- `KEEP_ALIVE=5m`
+- `STREAM=1`
+- `ROCBLAS_LAYER=9`
+- target shape: `512x512x2880`
+- lane差分は従来どおり `ROCBLAS_TENSILE_LIBPATH` のみ
+
+実施:
+
+- short 反復:
+  - `k1_entry_20260326_1shape_prompt_short`
+  - `k1_entry_20260326_1shape_prompt_short_rerun1`
+  - `k1_entry_20260326_1shape_prompt_short_rerun2`
+- math 反復:
+  - `k1_entry_20260326_1shape_prompt_math`
+  - `k1_entry_20260326_1shape_prompt_math_rerun1`
+  - `k1_entry_20260326_1shape_prompt_math_rerun2`
+- code 反復:
+  - `k1_entry_20260326_1shape_prompt_code`
+  - `k1_entry_20260326_1shape_prompt_code_rerun1`
+  - `k1_entry_20260326_1shape_prompt_code_rerun2`
+- 集約:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260326_1shape_prompt_short_20260326_032542.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260326_1shape_prompt_math_20260326_033152.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260326_1shape_prompt_code_20260326_033800.tsv`
+- 比較:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_prompt_profile_overview_20260326_0340.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_prompt_short_vs_math_20260326_0340.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_prompt_short_vs_code_20260326_0340.tsv`
+
+確認結果（facts）:
+
+- AETS lane:
+  - `phase_set`: 全 profile で `decode_signature_detected`
+  - `shape_hits_mode`: 全 profile で `192`
+  - `fallback/dispatch/direct`: 全 profile で `1/1/1`
+  - `rocblas_trace_gemm_avg`: 全 profile で `1002`
+  - 指標差分（short基準）:
+    - short -> math:
+      - `ttft_ms_avg`: `12304.882 -> 11392.830`（-912.052）
+      - `total_ms_avg`: `14946.368 -> 13619.581`（-1326.787）
+      - `tok_s_avg`: `49.7819 -> 49.9860`（+0.2041）
+    - short -> code:
+      - `ttft_ms_avg`: `12304.882 -> 10837.344`（-1467.538）
+      - `total_ms_avg`: `14946.368 -> 13482.570`（-1463.798）
+      - `tok_s_avg`: `49.7819 -> 49.6511`（-0.1308）
+- system lane:
+  - `phase_set=unavailable` / `shape_hits=0` / `fallback=0` / `dispatch=0` / `direct=0` を維持
+
+判定:
+
+- C5 は、AETS lane の観測クラス不変（decode signature / shape hit / dispatch class 維持）
+  を確認しつつ、prompt profile による性能指標差分が生じることを示した。
+- この結論は `gpt-oss:latest` anchor 条件に限定して扱い、他 workload への一般化はしない。
+- catalog read と dispatch evidence を混同せず、kernel-level causal mapping は未確定のまま。
+
+---
+
+## 66. 対照実験（1ノブ変更: `NUM_PREDICT=128 -> 512` with `NUM_THREAD=6`）(2026-03-26 04 JST) [main-node confirmed]
+
+目的:
+
+- C2/C4/C5 と同じ anchor 条件を維持したまま decode 長のみを伸ばし、
+  観測クラス不変性と指標差分を確認する。
+
+固定条件:
+
+- `MODEL=gpt-oss:latest`
+- `NUM_BATCH=512`
+- `NUM_CTX=8192`
+- `NUM_THREAD=6`
+- `KEEP_ALIVE=5m`
+- `STREAM=1`
+- `ROCBLAS_LAYER=9`
+- target shape: `512x512x2880`
+- lane差分は従来どおり `ROCBLAS_TENSILE_LIBPATH` のみ
+
+実施:
+
+- np128_t6 反復:
+  - `k1_entry_20260326_1shape_np128_t6`
+  - `k1_entry_20260326_1shape_np128_t6_rerun1`
+  - `k1_entry_20260326_1shape_np128_t6_rerun2`
+- np512_t6 反復:
+  - `k1_entry_20260326_1shape_np512_t6`
+  - `k1_entry_20260326_1shape_np512_t6_rerun1`
+  - `k1_entry_20260326_1shape_np512_t6_rerun2`
+- 集約:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260326_1shape_np128_t6_20260326_040402.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260326_1shape_np512_t6_20260326_040402.tsv`
+- 比較:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_num_predict_128_vs_512_t6_20260326_0404.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_num_predict_128_vs_512_t6_20260326_0404.txt`
+
+確認結果（facts）:
+
+- AETS lane:
+  - `phase_set`: `decode_signature_detected -> decode_signature_detected`（維持）
+  - `shape_hits_mode`: `192 -> 192`（維持）
+  - `fallback/dispatch/direct`: `1/1/1 -> 1/1/1`（維持）
+  - `rocblas_trace_gemm_avg`: `1002 -> 1002`（維持）
+  - `ttft_ms_avg`: `11242.267 -> 12622.351`（+1380.084）
+  - `total_ms_avg`: `13891.683 -> 23715.642`（+9823.959）
+  - `tok_s_avg`: `49.7057 -> 47.7211`（-1.9846）
+- system lane:
+  - `phase_set=unavailable` / `shape_hits=0` / `fallback=0` / `dispatch=0` / `direct=0` を維持
+  - `total_ms_avg`: `35781.729 -> 111957.395`（+76175.666）
+
+判定:
+
+- C6 は観測クラス不変のまま、decode 長増加に伴う runtime cost 増（と throughput 低下）
+  を確認した。
+- C1（過去条件）と同様に、`NUM_PREDICT` 拡張は観測クラスを変えない一方で
+  実行コストを押し上げる傾向を再確認した。
+- この結論は `gpt-oss:latest` anchor 条件に限定し、kernel-level causal mapping は未確定のまま扱う。
+
+---
+
+## 67. 対照実験（1ノブ変更: `NUM_THREAD=6 -> 8`）(2026-03-26 04 JST) [main-node confirmed]
+
+目的:
+
+- C2 の再確認として thread ノブを `6 -> 8` へ単独変更し、
+  観測クラス不変性と指標差分を確認する。
+
+固定条件:
+
+- `MODEL=gpt-oss:latest`
+- `NUM_BATCH=512`
+- `NUM_CTX=8192`
+- `NUM_PREDICT=128`
+- `KEEP_ALIVE=5m`
+- `STREAM=1`
+- `ROCBLAS_LAYER=9`
+- target shape: `512x512x2880`
+- lane差分は従来どおり `ROCBLAS_TENSILE_LIBPATH` のみ
+
+実施:
+
+- nt6b 反復:
+  - `k1_entry_20260326_1shape_nt6b`
+  - `k1_entry_20260326_1shape_nt6b_rerun1`
+  - `k1_entry_20260326_1shape_nt6b_rerun2`
+- nt8 反復:
+  - `k1_entry_20260326_1shape_nt8`
+  - `k1_entry_20260326_1shape_nt8_rerun1`
+  - `k1_entry_20260326_1shape_nt8_rerun2`
+- 集約:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260326_1shape_nt6b_20260326_042113.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260326_1shape_nt8_20260326_042113.tsv`
+- 比較:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_num_thread_6_vs_8_20260326_0421.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_num_thread_6_vs_8_20260326_0421.txt`
+
+確認結果（facts）:
+
+- AETS lane:
+  - `phase_set`: `decode_signature_detected -> decode_signature_detected`（維持）
+  - `shape_hits_mode`: `192 -> 192`（維持）
+  - `fallback/dispatch/direct`: `1/1/1 -> 1/1/1`（維持）
+  - `rocblas_trace_gemm_avg`: `1002 -> 1002`（維持）
+  - `ttft_ms_avg`: `12404.614 -> 12388.718`（-15.896）
+  - `total_ms_avg`: `15056.919 -> 15025.956`（-30.963）
+  - `tok_s_avg`: `49.7767 -> 49.8512`（+0.0745）
+- system lane:
+  - `phase_set=unavailable` / `shape_hits=0` / `fallback=0` / `dispatch=0` / `direct=0` を維持
+  - `total_ms_avg`: `35362.952 -> 44616.701`（+9253.749）
+  - `tok_s_avg`: `6.1859 -> 4.2422`（-1.9437）
+
+判定:
+
+- C7 は観測クラス不変の single-knob control として成立。
+- AETS 指標差は小さく、`6 -> 8` の改善は微差に留まる。
+- lane 比較の再現性を優先し、現時点の基準は `NUM_THREAD=6` を継続する。
+
+---
+
+## 68. C8 追加解析（candidate / HSACO マップ比較, `NUM_THREAD=6 vs 8`）(2026-03-26 04 JST) [main-node confirmed]
+
+目的:
+
+- C7 で観測クラス不変が確認されたため、同一 run 群（nt6/nt8）を再利用し、
+  candidate 層（Cijk カーネル）と HSACO 対応の差分有無を確認する。
+- 追加計測や低レイヤ改造は行わず、既存ログの再解析のみで実施する。
+
+入力:
+
+- nt6 AETS rocprof summaries:
+  - `g4_k1_k1_entry_20260326_1shape_nt6b*_aets_rocprof_summary.txt`（3反復）
+- nt8 AETS rocprof summaries:
+  - `g4_k1_k1_entry_20260326_1shape_nt8*_aets_rocprof_summary.txt`（3反復）
+
+生成物:
+
+- Cijk candidate 比較:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_cijk_candidate_compare_num_thread_6_vs_8_20260326_0429.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_cijk_candidate_compare_num_thread_6_vs_8_20260326_0429.txt`
+- HSACO map 比較:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_hsaco_map_compare_num_thread_6_vs_8_20260326_0429.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_hsaco_map_compare_num_thread_6_vs_8_20260326_0429.txt`
+
+確認結果（facts）:
+
+- Cijk kernel count（3反復合算）:
+  - BBS: `288 vs 288`
+  - HB_GB(ISA900): `72 vs 72`
+  - HSS_BH_GB: `72 vs 72`
+  - SB(ISA900): `69 vs 69`
+- `nt6_tensile_like_rows_total = 501`, `nt8_tensile_like_rows_total = 501`
+- HSACO map match_count は全 kernel で差分なし（changed=0）
+  - total kernels: `4`
+  - unchanged match_count kernels: `4`
+
+判定:
+
+- C8 では candidate/HSACO 層でも `NUM_THREAD=6 vs 8` の差分は観測されなかった。
+- したがって C7 の「観測クラス不変」結果は、候補 kernel と HSACO 対応の層でも整合する。
+- ここでも strict kernel-level causal mapping は未確定のまま維持する。
+
+## 69. C9 追加解析（candidate / HSACO マップ比較, `NUM_CTX=8192 vs 12288`）(2026-03-26 06 JST) [main-node confirmed]
+
+目的:
+
+- C4 で観測クラス不変が確認されたため、同一 run 群（ctx8192/ctx12288）を再利用し、
+  candidate 層（Cijk カーネル）と HSACO 対応の差分有無を確認する。
+- 追加計測や低レイヤ改造は行わず、既存ログの再解析のみで実施する。
+
+入力:
+
+- ctx8192 AETS rocprof summaries:
+  - `g4_k1_k1_entry_20260325_1shape_ctx8192*_aets_rocprof_summary.txt`（3反復）
+- ctx12288 AETS rocprof summaries:
+  - `g4_k1_k1_entry_20260325_1shape_ctx12288*_aets_rocprof_summary.txt`（3反復）
+
+生成物:
+
+- Cijk candidate 比較:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_cijk_candidate_compare_num_ctx_8192_vs_12288_20260326_0640.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_cijk_candidate_compare_num_ctx_8192_vs_12288_20260326_0640.txt`
+- HSACO map 比較:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_hsaco_map_compare_num_ctx_8192_vs_12288_20260326_0640.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_hsaco_map_compare_num_ctx_8192_vs_12288_20260326_0640.txt`
+
+確認結果（facts）:
+
+- Cijk kernel count（3反復合算）:
+  - BBS: `288 vs 288`
+  - HSS_BH_GB: `72 vs 72`
+- `ctx8192_tensile_like_rows_total = 501`, `ctx12288_tensile_like_rows_total = 501`
+- HSACO map match_count は全 kernel で差分なし（changed=0）
+  - total kernels: `2`
+  - unchanged match_count kernels: `2`
+
+判定:
+
+- C9 では candidate/HSACO 層でも `NUM_CTX=8192 vs 12288` の差分は観測されなかった。
+- したがって C4 の「観測クラス不変」結果は、候補 kernel と HSACO 対応の層でも整合する。
+- ここでも strict kernel-level causal mapping は未確定のまま維持する。
+
