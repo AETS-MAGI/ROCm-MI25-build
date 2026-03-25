@@ -54,6 +54,10 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - One-page public summary of root cause, fix, and validation result.
 - `ROCm-MI25-tips/MI25_logging-and-benchmark-notes.md`
   - Log naming rules, TSV column definitions, and benchmark baselines.
+- `ROCm-MI25-tips/MI25_ollama_ux_minimum.md`
+  - Anchor-limited, safe-first UX minimum for `ollama run` operations on MI25/gfx900.
+- `ROCm-MI25-tips/MI25_ollama_ux_minimum.ja.md`
+  - Japanese edition of the same anchor-limited safe UX guidance.
 - `ROCm-MI25-tips/MI25_community-outreach-kit.md`
   - Draft posts and link-routing plan for community/forum/pages sharing.
 - `ROCm-MI25-tips/MI25_companion-repo-positioning.md`

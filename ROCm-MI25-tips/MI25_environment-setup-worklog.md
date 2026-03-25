@@ -2205,3 +2205,34 @@ LANE=side ./g4-anchor-observation-status.sh
 
 - 「勝利宣言UI」ではなく、「観測結果を安全に返す最小UX」として成立。
 - kernel-level の厳密因果は pending 表示で維持（過剰一般化を回避）。
+
+---
+
+## 53. Step3 文書反映（safe UX minimum の EN/JA 追加）(2026-03-25) [main-node confirmed]
+
+目的:
+
+- Step3 を「研究結論の実装」ではなく、現在の再現事実を安全に見せる最小UX文書として定着させる。
+- 断定を避けた運用ガイドを EN/JA で揃える。
+
+追加/更新:
+
+- 追加:
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/ROCm-MI25-tips/MI25_ollama_ux_minimum.md`
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/ROCm-MI25-tips/MI25_ollama_ux_minimum.ja.md`
+- 更新:
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/README.md`
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/README.ja.md`
+
+文書化した内容（facts）:
+
+- anchor 条件限定の観測ラベル表示（decode/fallback/dispatch/shape）
+- `keep_alive>=10s`（実運用既定 `5m`）を含む safe 条件
+- `ollama run` 向け最小設定（`num_ctx=8192`, `num_batch=512`, side=1024）
+- upstream 還元候補（観測ステータス表示、anchor_scope、short keep_alive 警告 等）
+- `catalog-read` と `dispatch` を別レイヤとして扱う注意
+
+判定:
+
+- 「安全な最小UXとしての見せ方」は EN/JA で一貫化できた。
+- kernel-level 因果は未確定として明示し、過剰一般化を回避できている。
