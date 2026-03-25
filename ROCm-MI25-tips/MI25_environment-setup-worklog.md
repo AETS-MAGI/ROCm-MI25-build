@@ -2533,3 +2533,52 @@ TARGET_M=512 TARGET_N=512 TARGET_K=2880 \
 
 - 「1shape 固定→A/B 比較→記録」の入口ループが成立。
 - 次段はこの `RUN_TAG` 命名フォーマットを維持し、shape を増やさず同じ対象で再測定を重ねる。
+
+---
+
+## 60. 1shape 反復再測定（初回+r1+r2）と安定性集約 (2026-03-25 14 JST) [main-node confirmed]
+
+目的:
+
+- 1shape 入口ループの再現性を、同条件の反復で確認する。
+- shape を増やさず、`ROCBLAS_TENSILE_LIBPATH` の one-point A/B を維持する。
+
+実施:
+
+- 再測定:
+  - `RUN_TAG=k1_entry_20260325_1shape_rerun1`
+  - `RUN_TAG=k1_entry_20260325_1shape_rerun2`
+- 集約補助:
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/summarize-k1-single-shape-repeats.sh`
+  - 実行:
+    - `RUN_ROOT=k1_entry_20260325_1shape ./summarize-k1-single-shape-repeats.sh`
+
+証跡:
+
+- rerun1:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_loop_k1_entry_20260325_1shape_rerun1.tsv`
+- rerun2:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_loop_k1_entry_20260325_1shape_rerun2.tsv`
+- repeat summary:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260325_1shape_20260325_143343.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260325_1shape_20260325_143343.tsv`
+
+確認結果（facts）:
+
+- AETS lane（3 run）:
+  - `fallback/dispatch/direct` は全runで `1`（`all_same=1`）
+  - `shape_hits_mode=192`（`all_same=1`）
+  - `ttft_ms(avg/min/max)=12420.169/12258.629/12626.515`
+  - `total_ms(avg/min/max)=15059.612/14904.098/15269.780`
+  - `tok_s(avg/min/max)=49.8266/49.7468/49.8963`
+- system lane（3 run）:
+  - `fallback/dispatch/direct` は全runで `0`（`all_same=1`）
+  - `shape_hits_mode=0`（`all_same=1`）
+  - `ttft_ms(avg/min/max)=17003.929/14808.780/20419.886`
+  - `total_ms(avg/min/max)=40334.107/37375.081/44119.010`
+  - `tok_s(avg/min/max)=5.3880/5.2899/5.5733`
+
+判定:
+
+- 1shape 入口ループは、観測ラベルと shape hit の再現性が高い状態で維持できている。
+- 次段は shape を増やさず、同対象で「1ノブだけ変える」比較へ進める。

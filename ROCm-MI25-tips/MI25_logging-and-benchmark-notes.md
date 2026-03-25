@@ -95,3 +95,25 @@ RUN_TAG=k1_entry_20260325_1shape ./g4-k1-single-shape-loop.sh
   - `ttft/total/tok_s` は運用比較指標
 - 禁止:
   - この段階で solver/kernel の 1:1 因果を断定しない。
+
+## 8. 1shape 反復観測の集約
+
+`RUN_TAG` を同一 root で揃えた反復（例: `...`, `..._rerun1`, `..._rerun2`）は、
+次の補助で lane 集約する。
+
+```bash
+cd /home/limonene/ROCm-project/ROCm-MI25-build
+RUN_ROOT=k1_entry_20260325_1shape ./summarize-k1-single-shape-repeats.sh
+```
+
+出力:
+
+- `g4_k1_single_shape_repeat_summary_<RUN_ROOT>_<TS>.txt`
+- `g4_k1_single_shape_repeat_summary_<RUN_ROOT>_<TS>.tsv`
+- `g4_k1_single_shape_repeat_detail_<RUN_ROOT>_<TS>.tsv`
+
+確認ポイント:
+
+- `fallback/dispatch/direct` が lane 内で `all_same=1` か
+- `shape_hits_mode` が lane 内で固定か
+- `ttft/total/tok_s` の平均と min/max が実運用で許容か

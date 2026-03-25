@@ -38,6 +38,8 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - Lane-paired (`baseline/side`) K1-entry summary wrapper: split -> candidate extraction -> hsaco mapping -> K1..K4 status table.
 - `g4-k1-single-shape-loop.sh`
   - One-shape (`512x512x2880`) K1 entry loop with one-point A/B (`ROCBLAS_TENSILE_LIBPATH` only), including canonical `RUN_TAG` naming, shape-hit extraction, and `ttft/total/tok_s` capture.
+- `summarize-k1-single-shape-repeats.sh`
+  - Repeat summary helper for K1 one-shape loops (`g4_k1_single_shape_loop_<RUN_TAG>*.tsv`), producing per-lane avg/min/max and stability flags.
 - `commit-no-raw.sh`
   - Commit helper that excludes staged raw/probe logs (`vega_path_check_logs/`, `.rocprofv3/`).
 - `raw-log-one-line-index.sh`
