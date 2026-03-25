@@ -2294,3 +2294,40 @@ LANE=side ./g4-anchor-observation-status.sh
 
 - 本サイクルは「観測→比較→記録」の更新として完了。
 - 低レイヤ改造は未着手のまま維持。
+
+---
+
+## 55. 低レイヤ最適化の入口着手（shape=512x512x2880 ペア）(2026-03-25 10 JST) [main-node confirmed]
+
+目的:
+
+- 低レイヤ改造を急がず、まず「最初に刺す対象」を固定する。
+- Tier-1 最優先 shape（baseline/side ペア）を入口にする。
+
+対象:
+
+- baseline: `512x512x2880`
+- side: `512x1024x2880`
+
+実施（facts）:
+
+- baseline split 由来の kernel candidate 抽出:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_092328__rocprofv3_summary_gpt-oss_latest_20260325_092357_20260325_105550.txt`
+- side split 由来の kernel candidate 抽出:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_092433__rocprofv3_summary_gpt-oss_latest_20260325_092510_20260325_105556.txt`
+- candidate -> hsaco 再マップ（baseline/side）:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_092328__rocprofv3_summary_gpt-oss_latest_20260325_092357_20260325_105550_20260325_105606.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/hsaco_candidate_map_kernel_candidates_rocprofv3_summary_gpt-oss_latest_20260325_092433__rocprofv3_summary_gpt-oss_latest_20260325_092510_20260325_105556_20260325_105606.txt`
+
+確認結果（facts）:
+
+- baseline/side とも同じ結果:
+  - `total_candidates=4`
+  - `matched_candidates=3`
+  - unmatched は `..._SB_..._ISA900...` 1件
+- 既存の `K1/K2/K3 matched + K4 unmatched` 構造が再確認された。
+
+判定:
+
+- 「低レイヤ最適化を始める」の入口条件は満たした。
+- ここでの着手は、対象固定と証跡更新まで（コード改変は未実施）。
