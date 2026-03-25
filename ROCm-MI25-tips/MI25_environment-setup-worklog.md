@@ -2420,3 +2420,58 @@ cd /home/limonene/ROCm-project/ROCm-MI25-build
 
 - K1入口の lane差分は、candidate/map/disasm の3層で同値を確認できた。
 - ここまでの更新は観測・比較・記録のみ（コード改変なし）。
+
+---
+
+## 58. `ROCBLAS_TENSILE_LIBPATH` A/B 実行時経路チェック（2026-03-25 14 JST）[main-node confirmed]
+
+目的:
+
+- 低レイヤ改造なしで、runtime path 差分が観測レイヤにどう出るかを確認する。
+- 固定条件は anchor のまま（`MODEL=gpt-oss:latest`, `NUM_BATCH=512`, `NUM_CTX=8192`, `NUM_PREDICT=128`, `ROCBLAS_LAYER=9`）。
+
+実施:
+
+- AETS lane:
+  - `ROCBLAS_TENSILE_LIBPATH=/home/limonene/ROCm-project/ROCm-repos_AETS/rocBLAS/build-mi25-gfx900/release/rocblas-install/lib/rocblas/library`
+  - link summary:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_link_summary_gpt-oss_latest_20260325_135852.txt`
+- system lane:
+  - `ROCBLAS_TENSILE_LIBPATH=/opt/rocm-7.2.0/lib/rocblas/library`
+  - strace raw prefix:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/g4_strace_openat_gpt-oss_latest_20260325_140141.log*`
+  - rocprof summary:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/rocprofv3_summary_gpt-oss_latest_20260325_140345.txt`
+- A/B compare summary:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_runtime_path_ab_compare_20260325_140536.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_runtime_path_ab_compare_20260325_140536.tsv`
+
+確認結果（facts）:
+
+- AETS lane:
+  - `fallback_confirmed=1`
+  - `dispatch_confirmed=1`
+  - `direct_rocblas_or_tensile_dispatch=1`
+  - `fallback_dat_openat=56`, `fallback_hsaco_openat=56`
+  - `rocblas_trace_gemm_lines=1002`
+  - `kernel_dispatch_rows=21664`, `kernel_tensile_like_rows=167`
+  - `phase_split_status_proxy=decode_signature_detected`
+- system lane:
+  - `fallback_confirmed=0`
+  - `dispatch_confirmed=0`
+  - `direct_rocblas_or_tensile_dispatch=0`
+  - `fallback_dat_openat=0`, `fallback_hsaco_openat=0`
+  - `rocblas_trace_gemm_lines=0`
+  - `kernel_dispatch_rows=0`, `kernel_tensile_like_rows=0`
+  - `phase_split_status_proxy=unavailable`
+- system lane strace では `librocblas.so.5` が `/opt/rocm-7.2.0/lib/librocblas.so.5` から解決されることを再確認。
+
+補足（tooling）:
+
+- 現行 `g4-fallback-strace-check.sh` は fallback `.dat/.hsaco` が 0 件の場合に `rg` の戻り値で early-exit するため、system lane は raw strace から手動集計した。
+- ここでの結論は観測差分のみ。catalog 項目と decode 計算の 1:1 因果は未確定のまま。
+
+判定:
+
+- anchor 条件では runtime path によって観測結果が大きく分岐しうることを確認。
+- 次段は引き続き「観測→比較→記録」を維持し、過剰な因果断定を避ける。
