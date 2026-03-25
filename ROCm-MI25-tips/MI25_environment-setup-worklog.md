@@ -2582,3 +2582,59 @@ TARGET_M=512 TARGET_N=512 TARGET_K=2880 \
 
 - 1shape 入口ループは、観測ラベルと shape hit の再現性が高い状態で維持できている。
 - 次段は shape を増やさず、同対象で「1ノブだけ変える」比較へ進める。
+
+---
+
+## 61. 対照実験（1ノブ変更: `NUM_PREDICT=128 -> 256`）(2026-03-25 14 JST) [main-node confirmed]
+
+目的:
+
+- 1shape 入口ループを維持したまま、1ノブ変更の影響だけを確認する。
+- 変更対象は `NUM_PREDICT` のみ（`128 -> 256`）。
+
+固定条件:
+
+- `MODEL=gpt-oss:latest`
+- `NUM_BATCH=512`
+- `NUM_CTX=8192`
+- `KEEP_ALIVE=5m`
+- `STREAM=1`
+- `ROCBLAS_LAYER=9`
+- target shape: `512x512x2880`
+- lane差分は従来どおり `ROCBLAS_TENSILE_LIBPATH` のみ
+
+実施:
+
+- np256 反復:
+  - `k1_entry_20260325_1shape_np256`
+  - `k1_entry_20260325_1shape_np256_rerun1`
+  - `k1_entry_20260325_1shape_np256_rerun2`
+- np256 集約:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260325_1shape_np256_20260325_144830.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_repeat_summary_k1_entry_20260325_1shape_np256_20260325_144830.tsv`
+- 128 vs 256 比較:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_num_predict_128_vs_256_20260325_144910.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_control_compare_num_predict_128_vs_256_20260325_144910.tsv`
+
+確認結果（facts）:
+
+- AETS lane:
+  - phase: `decode_signature_detected` 維持
+  - shape_hits_mode: `192 -> 192`（不変）
+  - `ttft_ms_avg`: `12420.169 -> 12432.884`（+12.715）
+  - `total_ms_avg`: `15059.612 -> 17869.656`（+2810.044）
+  - `tok_s_avg`: `49.8266 -> 48.6955`（-1.1311）
+  - `rocblas_trace_gemm_avg`: `1002 -> 1002`（不変）
+- system lane:
+  - phase: `unavailable` 維持
+  - shape_hits_mode: `0 -> 0`（不変）
+  - `ttft_ms_avg`: `17003.929 -> 15791.522`
+  - `total_ms_avg`: `40334.107 -> 62182.247`
+  - `tok_s_avg`: `5.3880 -> 5.4871`
+  - dispatch/gemm 系は引き続き 0
+
+判定:
+
+- 1ノブ変更でも lane 分離（AETS=direct/shape-hitあり, system=なし）は維持された。
+- ただし AETS lane の throughput は `NUM_PREDICT=256` で微減、`total_ms` は増加。
+- 次段も shape を増やさず、単一ノブ比較を積み上げる方針を継続する。
