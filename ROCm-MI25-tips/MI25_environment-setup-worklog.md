@@ -2062,3 +2062,146 @@ per-file（抜粋）:
 
 - 「どこから刺すか」の見通しが、単一ファイルで追える状態になった。
 - ここまでの作業は引き続き観測・比較・記録のみ。
+
+---
+
+## 51. decode署名の再現性固定（baseline/side再走）(2026-03-25 03:31-03:33 JST) [main-node confirmed]
+
+意図:
+
+- 「深く見る」を改造ではなく観測再現で進める。
+- `gpt-oss` anchor で baseline/side の decode 側署名を再確認する。
+
+固定条件:
+
+- `MODEL=gpt-oss:latest`
+- `ROCBLAS_LAYER=9`
+- baseline lane: `NUM_BATCH=512`
+- side lane: `NUM_BATCH=1024`
+
+実行コマンド:
+
+```bash
+cd /home/limonene/ROCm-project/ROCm-MI25-build
+MODEL=gpt-oss:latest NUM_BATCH=512 ROCBLAS_LAYER=9 ./g4-stream-phase-window-sweep.sh
+MODEL=gpt-oss:latest NUM_BATCH=1024 ROCBLAS_LAYER=9 ./g4-stream-phase-window-sweep.sh
+MODEL=gpt-oss:latest NUM_BATCH=512 ROCBLAS_LAYER=9 ./g4-prefill-decode-split.sh
+MODEL=gpt-oss:latest NUM_BATCH=1024 ROCBLAS_LAYER=9 ./g4-prefill-decode-split.sh
+```
+
+証跡（summary）:
+
+- phase-window sweep
+  - baseline:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_phase_window_sweep_gpt-oss_latest_20260325_031811.txt`
+  - side:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_phase_window_sweep_gpt-oss_latest_20260325_032242.txt`
+- prefill/full split
+  - baseline:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_split_gpt-oss_latest_20260325_032955.txt`
+  - side:
+    - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_split_gpt-oss_latest_20260325_033100.txt`
+
+確認結果（facts）:
+
+- phase-window（num_predict `64,128,256,512,1024`）
+  - baseline: `ok_cases=5`, `decode_signature_cases=5`
+  - side: `ok_cases=5`, `decode_signature_cases=5`
+  - 両lane共通:
+    - `direct_rocblas_or_tensile_dispatch=1`
+    - `fallback_confirmed=1`
+    - `dispatch_confirmed=1`
+    - `decode_kernel_tensile_like_rows=167`
+- prefill/full split（prefill=1, full=128）
+  - 両lane共通:
+    - `phase_split_status=prefill_dominant_signature`
+    - `decode_delta_gemm_lines=0`
+    - `decode_delta_target_shape_hits=0`
+
+補足（facts）:
+
+- side split は baseline-target shape
+  (`512x512x2880`, `2880x512x4096`, `4096x512x2880`) を使っているため、
+  `shape_hits=0` になりやすい。
+- side lane で shape delta を追う場合は `*x1024x*` 系 target set を別途使うのが妥当。
+
+補正再走（facts）:
+
+- side lane (`NUM_BATCH=1024`) で `TARGET_SHAPES` を `*x1024x*` 系に補正して再実行:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_prefill_decode_split_gpt-oss_latest_20260325_033458.txt`
+- 確認値:
+  - `shape_512_1024_2880=288`
+  - `shape_2880_1024_4096=144`
+  - `shape_4096_1024_2880=144`
+- 補正後も `phase_split_status=prefill_dominant_signature` は維持。
+
+推測（inference）:
+
+- decode署名の再現性は stream-window レイヤでは固定できた。
+- prefill/full proxy と stream-window は別レイヤ証拠として扱う必要がある
+  （同一ゲートとして混同しない）。
+
+判定:
+
+- 今回サイクルは「観測・比較・記録」の深掘りとして完了。
+- 低レイヤ改造は未着手のまま維持。
+
+---
+
+## 52. Step3 最小UX: anchor観測ラベル表示の追加（2026-03-25）[main-node confirmed]
+
+目的:
+
+- 研究結論の実装ではなく、現在の再現事実を安全に見せる最小UXを追加する。
+- 原因断定を避け、観測ラベルのみを返す。
+
+追加:
+
+- 新規スクリプト:
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/g4-anchor-observation-status.sh`
+
+仕様（断定回避）:
+
+- 出力ラベル:
+  - `decode_signature_label=...`
+  - `fallback_label=...`
+  - `dispatch_label=...`
+  - `shape_match_note=...`
+- 安全ガード:
+  - `anchor_scope_note=anchor_condition_limited_to_current_probe`
+  - `anchor_scope_match=0|1`
+  - `kernel_mapping_note=...pending...`
+  - `generalization_note=do_not_generalize_to_other_workloads_without_revalidation`
+
+実行確認:
+
+```bash
+cd /home/limonene/ROCm-project/ROCm-MI25-build
+./g4-anchor-observation-status.sh
+LANE=side ./g4-anchor-observation-status.sh
+```
+
+証跡:
+
+- baseline:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_anchor_observation_status_gpt-oss_latest_20260325_085744.txt`
+- side:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_anchor_observation_status_gpt-oss_latest_20260325_085825.txt`
+
+確認値（facts）:
+
+- baseline:
+  - `decode_signature_label=decode_signature_observed`
+  - `fallback_label=fallback_confirmed`
+  - `dispatch_label=dispatch_confirmed`
+  - `shape_match_note=shape_match_observed` (`shape_hit_total=384`)
+- side:
+  - `decode_signature_label=decode_signature_observed`
+  - `fallback_label=fallback_confirmed`
+  - `dispatch_label=dispatch_confirmed`
+  - `shape_match_note=shape_match_observed` (`shape_hit_total=576`)
+
+判定:
+
+- 「勝利宣言UI」ではなく、「観測結果を安全に返す最小UX」として成立。
+- kernel-level の厳密因果は pending 表示で維持（過剰一般化を回避）。

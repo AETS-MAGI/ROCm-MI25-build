@@ -32,6 +32,8 @@ Experimental build and validation workspace for AMD MI25 (gfx900) with ROCm 7.2 
   - Batch runner for `num_predict` sweep on the stream probe (default: `64,128,256,512,1024`) with unified TSV summary.
 - `g4-stream-keepalive-sweep.sh`
   - `keep_alive` sweep runner (default stable set: `10s,30s,5m`) for stream probe robustness checks.
+- `g4-anchor-observation-status.sh`
+  - Anchor-limited status wrapper that reports safe observation labels (`decode/fallback/dispatch/shape`) without kernel-level causal claims.
 - `commit-no-raw.sh`
   - Commit helper that excludes staged raw/probe logs (`vega_path_check_logs/`, `.rocprofv3/`).
 - `raw-log-one-line-index.sh`
@@ -104,6 +106,41 @@ Notes:
 - For stream+rocprof phase-window probes, `keep_alive=0s` and very short values can yield
   `phase_split_status_proxy=unavailable` with empty rocprof CSV. Prefer `keep_alive>=10s`
   for stable dispatch/phase observability.
+
+## Minimal anchor observation UX (safe labels)
+
+If you want a one-shot, user-readable status view (without over-claiming causal mapping),
+use:
+
+```bash
+cd /path/to/ROCm-MI25-build
+./g4-anchor-observation-status.sh
+```
+
+Side-lane check (`num_batch=1024`):
+
+```bash
+LANE=side ./g4-anchor-observation-status.sh
+```
+
+This wrapper emits labels such as:
+
+- `decode_signature_label=decode_signature_observed|decode_signature_not_observed`
+- `fallback_label=fallback_confirmed|fallback_not_confirmed`
+- `dispatch_label=dispatch_confirmed|dispatch_not_confirmed`
+- `shape_match_note=shape_match_observed|shape_match_not_observed_or_out_of_target_set`
+
+Safety guards in output:
+
+- `anchor_scope_note=anchor_condition_limited_to_current_probe`
+- `anchor_scope_match=0|1`
+- `kernel_mapping_note=...pending...`
+- `generalization_note=do_not_generalize_to_other_workloads_without_revalidation`
+
+Important:
+
+- This is an anchor-condition status view, not a final solver/kernel causality claim.
+- `catalog-read` evidence and `dispatch` evidence are reported as separate layers.
 
 ## Expected directory layout
 
