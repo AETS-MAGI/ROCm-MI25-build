@@ -2475,3 +2475,61 @@ cd /home/limonene/ROCm-project/ROCm-MI25-build
 
 - anchor 条件では runtime path によって観測結果が大きく分岐しうることを確認。
 - 次段は引き続き「観測→比較→記録」を維持し、過剰な因果断定を避ける。
+
+---
+
+## 59. 1shape 入口ループ（K1: `512x512x2880`）開始 (2026-03-25 14 JST) [main-node confirmed]
+
+目的:
+
+- 「本命 shape を1個だけ」で低レイヤ最適化入口を開始する。
+- 改造前提ではなく、観測→比較→記録を同一命名で固定する。
+
+実施:
+
+- 新規スクリプト:
+  - `/home/limonene/ROCm-project/ROCm-MI25-build/g4-k1-single-shape-loop.sh`
+- 実行:
+
+```bash
+cd /home/limonene/ROCm-project/ROCm-MI25-build
+RUN_TAG=k1_entry_20260325_1shape \
+MODEL=gpt-oss:latest NUM_BATCH=512 NUM_CTX=8192 NUM_PREDICT=128 \
+KEEP_ALIVE=5m STREAM=1 ROCBLAS_LAYER=9 \
+TARGET_M=512 TARGET_N=512 TARGET_K=2880 \
+./g4-k1-single-shape-loop.sh
+```
+
+証跡:
+
+- summary:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_loop_k1_entry_20260325_1shape.txt`
+- tsv:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_loop_k1_entry_20260325_1shape.tsv`
+- index:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_k1_single_shape_loop_k1_entry_20260325_1shape_index.tsv`
+
+確認結果（facts）:
+
+- one-point change:
+  - `ROCBLAS_TENSILE_LIBPATH` のみ lane 間で変更（AETS vs system）
+- target shape:
+  - `512x512x2880`
+- AETS lane:
+  - `fallback_confirmed=1`, `dispatch_confirmed=1`, `direct_rocblas_or_tensile_dispatch=1`
+  - `shape_target_hits=192`
+  - `ttft_ms=12258.629`, `total_ms=14904.098`, `tok_s=49.8367`
+- system lane:
+  - `fallback_confirmed=0`, `dispatch_confirmed=0`, `direct_rocblas_or_tensile_dispatch=0`
+  - `shape_target_hits=0`
+  - `ttft_ms=15783.122`, `total_ms=39508.229`, `tok_s=5.2899`
+
+補足（tooling）:
+
+- `g4-fallback-strace-check.sh` の fallback 0件時 early-exit を修正し、
+  system lane でも同一手順で summary を生成できるようにした。
+
+判定:
+
+- 「1shape 固定→A/B 比較→記録」の入口ループが成立。
+- 次段はこの `RUN_TAG` 命名フォーマットを維持し、shape を増やさず同じ対象で再測定を重ねる。

@@ -60,3 +60,38 @@ MODEL=deepseek-r1:14b NUM_PREDICT=140 TEMPERATURE=0.1 KEEP_ALIVE=0s \
   - `total_duration=1562813760 ns`（約 1.56 s）
   - 推定 `tokens/sec` 約 61.4
   - VRAM 目安: 約 5-6%
+
+## 6. G4/K1 観測ログの命名規則（最終運用）
+
+`g4-k1-single-shape-loop.sh` を使う場合、`RUN_TAG` を基準に命名を揃える。
+
+- 実行例:
+
+```bash
+cd /home/limonene/ROCm-project/ROCm-MI25-build
+RUN_TAG=k1_entry_20260325_1shape ./g4-k1-single-shape-loop.sh
+```
+
+- 主要出力:
+  - `g4_k1_single_shape_loop_<RUN_TAG>.txt`
+  - `g4_k1_single_shape_loop_<RUN_TAG>.tsv`
+  - `g4_k1_single_shape_loop_<RUN_TAG>_index.tsv`
+
+- canonical 証跡（lane別）:
+  - `g4_k1_<RUN_TAG>_aets_link_summary.txt`
+  - `g4_k1_<RUN_TAG>_system_link_summary.txt`
+  - `g4_k1_<RUN_TAG>_<lane>_strace_summary.txt`
+  - `g4_k1_<RUN_TAG>_<lane>_rocprof_summary.txt`
+  - `g4_k1_<RUN_TAG>_aets_rocblas_gemm_shapes.tsv`（system は shape 観測 0 の場合は未生成）
+
+## 7. 1shape 入口ループの扱い
+
+- 入口ループは「最小 A/B」のみを行う。
+  - 変更点は `ROCBLAS_TENSILE_LIBPATH` のみ（one-point change）。
+  - workload 条件は固定（anchor）。
+- 出力の解釈:
+  - `fallback/dispatch/direct` は観測ラベル
+  - `shape_target_hits` は対象 shape の再現確認
+  - `ttft/total/tok_s` は運用比較指標
+- 禁止:
+  - この段階で solver/kernel の 1:1 因果を断定しない。

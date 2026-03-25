@@ -274,9 +274,18 @@ sleep 2
 
 cleanup
 
-fallback_dat_count="$(rg -n "TensileLibrary_.*_fallback\\.dat" "${STRACE_PREFIX}"* | wc -l | tr -d ' ')"
-fallback_hsaco_count="$(rg -n "TensileLibrary_.*_fallback_gfx900\\.hsaco" "${STRACE_PREFIX}"* | wc -l | tr -d ' ')"
-hip_backend_count="$(rg -n "libggml-hip\\.so" "${STRACE_PREFIX}"* | wc -l | tr -d ' ')"
+count_in_strace() {
+  local pattern="$1"
+  {
+    set +o pipefail
+    rg -n "$pattern" "${STRACE_PREFIX}"* 2>/dev/null | wc -l | tr -d ' '
+    set -o pipefail
+  }
+}
+
+fallback_dat_count="$(count_in_strace "TensileLibrary_.*_fallback\\.dat")"
+fallback_hsaco_count="$(count_in_strace "TensileLibrary_.*_fallback_gfx900\\.hsaco")"
+hip_backend_count="$(count_in_strace "libggml-hip\\.so")"
 rocblas_trace_lines=0
 rocblas_trace_gemm_lines=0
 rocblas_trace_handle_lines=0
