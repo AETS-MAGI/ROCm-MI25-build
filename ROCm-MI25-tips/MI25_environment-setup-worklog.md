@@ -3153,3 +3153,108 @@ TARGET_M=512 TARGET_N=512 TARGET_K=2880 \
   この指標のみで経路変化を主張しない（gemm/shape/dispatch class は不変）。
 - この結論は `gpt-oss:latest` anchor 条件に限定し、kernel-level causal mapping は未確定のまま扱う。
 
+## 71. C12 workload 可視性マトリクス（model差分のみ）(2026-03-26 08 JST) [main-node confirmed]
+
+目的:
+
+- C12 として、`gpt-oss` 依存の direct 可視性を「同一 anchor 条件で model のみ変更」して確認する。
+- 断定を増やさず、`direct/indirect` を workload 依存の観測事実として固定する。
+
+固定条件:
+
+- `NUM_BATCH=512`
+- `NUM_CTX=8192`
+- `NUM_THREAD=6`
+- `NUM_PREDICT=128`
+- `KEEP_ALIVE=5m`
+- `ROCBLAS_LAYER=9`
+- `prompt_profile=short`
+- lane 差分は既存運用（AETS vs system）を維持
+
+実施:
+
+- sweep:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_workload_path_sweep_20260326_081421.txt`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_workload_path_sweep_20260326_081421.tsv`
+- matrix:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_c12_workload_visibility_matrix_20260326_081421.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_c12_workload_visibility_matrix_20260326_081421.txt`
+
+確認結果（facts）:
+
+- `ok_cases=4`, `direct_cases=1`, `indirect_cases=3`, `insufficient_cases=0`
+- `gpt-oss:latest`:
+  - `link_status=direct_rocblas_or_tensile_dispatch_observed`
+  - `direct=1`, `fallback=1`, `dispatch=1`, `rocblas_trace_gemm_lines=1002`
+- `tinyllama:latest`, `qwen2.5:7b`, `deepseek-r1:14b`:
+  - `link_status=indirect_link_only_same_scenario`
+  - `direct=0`, `fallback=1`, `dispatch=1`, `rocblas_trace_gemm_lines=0`
+
+判定:
+
+- C12 の範囲では、direct 可視性は workload 依存であることを再確認した。
+- これは「gpt-oss では direct 観測、GGUF 系では indirect 観測が中心」という
+  anchor 条件限定の観測結果であり、一般化しない。
+- catalog-read と dispatch の 1:1 因果、および kernel-level causal mapping は未確定のまま維持する。
+
+## 72. C13 catalog-read と dispatch 相関（phase-window 前提）(2026-03-26 14 JST) [main-node confirmed]
+
+目的:
+
+- C12 の workload 可視性差を受け、`phase-window` 前提で
+  `catalog-read` と `dispatch` の共起を相関レベルで定量化する。
+- 1:1 因果は主張せず、観測粒度を揃えた比較表を固定する。
+
+固定条件:
+
+- model 以外は C12 同等:
+  - `NUM_BATCH=512`
+  - `NUM_CTX=8192`
+  - `NUM_THREAD=6`
+  - `KEEP_ALIVE=5m`
+  - `ROCBLAS_LAYER=9`
+  - `NUM_PREDICT in {64,128,256}`
+
+実施:
+
+- phase-window sweep（4 workload）:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_phase_window_sweep_gpt-oss_latest_20260326_135538.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_phase_window_sweep_tinyllama_latest_20260326_135836.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_phase_window_sweep_qwen2.5_7b_20260326_135932.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_stream_phase_window_sweep_deepseek-r1_14b_20260326_140047.tsv`
+- C13 相関テーブル:
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_c13_catalog_dispatch_phase_correlation_20260326_140431.tsv`
+  - `/home/limonene/ROCm-project/vega_path_check_logs_raw/summaries/g4_c13_catalog_dispatch_phase_correlation_20260326_140431.txt`
+
+確認結果（facts）:
+
+- 全体件数:
+  - `total_rows=12`
+  - `decode_signature_rows=3`
+  - `prefill_dominant_rows=9`
+  - `direct_rows=3`
+  - `indirect_rows=9`
+- joint class:
+  - `catalog_and_dispatch_observed_direct_visible=3`
+  - `catalog_and_dispatch_observed_indirect_only=9`
+- `gpt-oss:latest`（3/3 rows）:
+  - `phase_split_status_proxy=decode_signature_detected`
+  - `fallback_dat_openat=57`, `fallback_hsaco_openat=57`
+  - `rocblas_trace_gemm_lines=1002`
+  - `kernel_tensile_like_rows=167`
+  - `direct=1`, `fallback=1`, `dispatch=1`
+- `tinyllama/qwen/deepseek`（各 3/3 rows）:
+  - `phase_split_status_proxy=prefill_dominant_signature`
+  - `fallback_dat_openat=54`, `fallback_hsaco_openat=54`
+  - `rocblas_trace_gemm_lines=0`
+  - `kernel_tensile_like_rows=0`
+  - `direct=0`, `fallback=1`, `dispatch=1`
+- `kernel_dispatch_rows` は direct/indirect 両群で非ゼロ:
+  - direct 群レンジ: `21376..25223`
+  - indirect 群レンジ: `24123..59611`
+
+判定:
+
+- C13 の範囲では、「catalog-read あり + dispatch あり」は workload 全体で再現される一方、
+  direct 可視性と phase 署名（decode/prefill）は workload 依存で分岐することを再確認した。
+- これは相関レベルの定量化であり、catalog 項目と個別 dispatch の strict 1:1 対応は未確定のまま維持する。
