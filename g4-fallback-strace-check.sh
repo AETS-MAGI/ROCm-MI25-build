@@ -35,6 +35,12 @@ PROBE_ROCBLAS_LOG="${PROBE_ROCBLAS_LOG:-0}"
 # backend-path debugging on current GGUF runs.
 ROCBLAS_LAYER="${ROCBLAS_LAYER:-9}"
 
+if ! command -v rg >/dev/null 2>&1; then
+  rg() {
+    grep -En "$@"
+  }
+fi
+
 mkdir -p "$LOG_DIR" "$RAW_LOG_DIR"
 
 TS="$(date +%Y%m%d_%H%M%S)"

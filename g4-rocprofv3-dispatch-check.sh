@@ -448,7 +448,38 @@ fi
   if [[ -n "$kernel_trace_file" && -f "$kernel_trace_file" ]]; then
     echo
     echo "--- top kernel names (dispatch rows) ---"
-    awk 'NR>1 && /"KERNEL_DISPATCH"/ { if (match($0, /,[0-9]+,"([^"]+)",[0-9]+,/, a)) c[a[1]]++ } END { for (k in c) print c[k] "\t" k }' "$kernel_trace_file" | sort -nr | head -n 30
+    python3 - "$kernel_trace_file" <<'PY' | sort -nr | head -n 30
+import csv
+import sys
+from collections import Counter
+
+path = sys.argv[1]
+counts = Counter()
+with open(path, newline="", encoding="utf-8", errors="replace") as f:
+    reader = csv.reader(f)
+    header = next(reader, None)
+    if not header:
+        sys.exit(0)
+    lowered = [h.strip().lower() for h in header]
+    try:
+        kind_idx = lowered.index("kind")
+    except ValueError:
+        kind_idx = None
+    name_idx = None
+    for candidate in ("kernel_name", "name"):
+        if candidate in lowered:
+            name_idx = lowered.index(candidate)
+            break
+    if kind_idx is None or name_idx is None:
+        sys.exit(0)
+    for row in reader:
+        if len(row) <= max(kind_idx, name_idx):
+            continue
+        if row[kind_idx] == "KERNEL_DISPATCH":
+            counts[row[name_idx]] += 1
+for name, count in counts.items():
+    print(f"{count}\t{name}")
+PY
   fi
   echo
   echo "--- sample matches (dispatch/tensile/gemm) ---"
